@@ -10,11 +10,12 @@ namespace StartGrow.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet <Inversor> Inversor { get; set; }        
-        public DbSet <Proyecto> Proyecto { get; set; }
-        public DbSet <Monedero> Monedero { get; set; }
-        public DbSet <Inversion> Inversion { get; set; }
-        public DbSet <InversionProyecto> InversionProyecto { get; set; }
+       
+        public DbSet<Monedero> Monedero { get; set; }
+        public DbSet<Inversion> Inversion { get; set; }
+        public DbSet<InversionProyecto> InversionProyecto { get; set; }
+        public DbSet<Inversor> Inversor { get; set; }
+        public DbSet<Proyecto> Proyecto { get; set; }
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
