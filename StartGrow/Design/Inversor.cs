@@ -9,7 +9,6 @@ namespace StartGrow.Models
     public class Inversor : ApplicationUser
     {
         [Required]
-        public virtual IList<Inversion> Inversiones { get; set; }       
-
+        public virtual IList<Inversion> Inversiones { get; set; }
     }
 }

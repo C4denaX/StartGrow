@@ -21,6 +21,8 @@ namespace StartGrow.Models
 
         [ForeignKey("TrabajadorID")]
         public virtual Trabajador Trabajador { get; set; }
+
+       
     }
 
 }
