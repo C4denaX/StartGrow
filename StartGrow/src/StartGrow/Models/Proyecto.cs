@@ -10,20 +10,20 @@ namespace StartGrow.Models
     public class Proyecto
     {
         [Key]
-        public int IdProyecto
+        public virtual int ProyectoId
         {
             get;
             set;
         }
 
         [Required]
-        [ForeignKey ("Inversor")]
-        public virtual Inversor Inversor
+        [ForeignKey("InvProyectoId")]
+        public virtual InversionProyecto InvProyecto
         {
             get;
             set;
         }
-        public virtual string IdInversor
+        public virtual int InvProyectoId
         {
             get;
             set;
@@ -44,63 +44,6 @@ namespace StartGrow.Models
         }
 
         [Required]
-        public virtual String TiposDeInversion
-        {
-            get;
-            set;
-        }
-
-        [Required]        
-        [Range(100, int.MaxValue, ErrorMessage = "La inversión Mínima es 100 euros")]
-        public virtual int MinInversion
-        {
-            get;
-            set;
-        }
-
-        [Required]
-        public virtual int Plazo
-        {
-            get;
-            set;
-        }
-
-        [Required]
-        public virtual char Rating
-        {
-            get;
-            set;
-        }
-
-        [Required]
-        public virtual double Interes
-        {
-            get;
-            set;
-        }
-
-        [Required]
-        public virtual double Importe
-        {
-            get;
-            set;
-        }
-
-        [Required]
-        public virtual int Progreso
-        {
-            get;
-            set;
-        }
-
-        [Required]
-        public virtual int NumInversores
-        {
-            get;
-            set;
-        }
-
-        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha expiración")]
@@ -109,7 +52,5 @@ namespace StartGrow.Models
             get;
             set;
         }
-
-
     }
 }

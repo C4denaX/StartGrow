@@ -1,85 +1,94 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 
 namespace StartGrow.Models
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
-    public class ApplicationUser : IdentityUser
+    public class InversionProyecto
     {
-        [Required]
-        public virtual string Nombre
+        [Key]
+        public virtual int InvProyectoId
         {
             get;
             set;
         }
 
         [Required]
-        public virtual string Apellido1
+        [ForeignKey("ProyectoId")]
+        public virtual Proyecto Proyecto
+        {
+            get;
+            set;
+        }
+        public virtual int ProyectoId
+        {
+            get;
+            set;
+        }
+
+        public virtual IList<Inversion> Inversiones
         {
             get;
             set;
         }
 
         [Required]
-        public virtual string Apellido2
+        [Range(100, int.MaxValue, ErrorMessage = "La inversión Mínima es 100 euros")]
+        public virtual int MinInversion
         {
             get;
             set;
         }
 
         [Required]
-        public virtual string Nif
+        public virtual int Plazo
         {
             get;
             set;
         }
 
         [Required]
-        public virtual string Nacionalidad
+        public virtual char Rating
         {
             get;
             set;
         }
 
         [Required]
-        public virtual string PaisResidencia
+        public virtual double Interes
+        {
+            get;
+            set;
+        }
+
+        public virtual IList <TiposInversiones> TiposDeInversion
         {
             get;
             set;
         }
 
         [Required]
-        public virtual string Provincia
+        public virtual double Importe
         {
             get;
             set;
         }
 
         [Required]
-        public virtual string Municipio
+        public virtual int Progreso
         {
             get;
             set;
         }
 
         [Required]
-        public virtual string Domicilio
+        public virtual int NumInversores
         {
             get;
             set;
         }
-
-        [Required]
-        public virtual string CodPost
-        {
-            get;
-            set;
-        }
-
-
     }
 }
