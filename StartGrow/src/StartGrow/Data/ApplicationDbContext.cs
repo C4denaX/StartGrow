@@ -10,6 +10,14 @@ namespace StartGrow.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Trabajador> Trabajadores { get; set; }
+     
+        public DbSet<Solicitud> Solicitudes { get; set; }
+
+        public DbSet<InversionProyecto> InversionesProyecto { get; set; }
+
+        public DbSet<Proyecto> Proyectos { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
