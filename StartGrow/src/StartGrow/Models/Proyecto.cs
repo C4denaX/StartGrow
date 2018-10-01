@@ -10,22 +10,47 @@ namespace StartGrow.Models
     public class Proyecto
     {
         [Key]
-        public virtual int ProyectoId { get; set; }
+        public virtual int ProyectoId
+        {
+            get;
+            set;
+        }
 
         [Required]
-        public virtual int InvProyectoId { get; set; }
         [ForeignKey("InvProyectoId")]
-        public virtual InversionProyecto InvProyecto { get; set; }
+        public virtual InversionProyecto InvProyecto
+        {
+            get;
+            set;
+        }
+        public virtual int InvProyectoId
+        {
+            get;
+            set;
+        }
 
         [Required]
-        public virtual string Nombre { get; set; }
+        public virtual String Nombre
+        {
+            get;
+            set;
+        }
+
         [Required]
-        public virtual Areas Area { get; set; }
+        public virtual String Area
+        {
+            get;
+            set;
+        }
+
         [Required]
         [DataType(DataType.Date)]
-        public virtual DateTime FechaExpiracion { get; set; }
-
-
-
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Fecha expiración")]
+        public virtual DateTime FechaExpiracion
+        {
+            get;
+            set;
+        }
     }
 }
