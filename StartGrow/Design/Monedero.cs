@@ -29,12 +29,10 @@ namespace StartGrow.Models
             set;
         }
 
+        
         [Required]
-        public virtual double Dinero
-        {
-            get;
-            set;
-        }
+        [DataType(DataType.Currency)]
+        public virtual decimal Dinero { get; set; }
 
 
     }
