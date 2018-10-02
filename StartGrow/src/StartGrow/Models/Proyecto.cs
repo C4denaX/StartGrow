@@ -29,12 +29,7 @@ namespace StartGrow.Models
             set;
         }
 
-        [Required]
-        public virtual String Area
-        {
-            get;
-            set;
-        }
+      
 
         [Required]
         public virtual float MinInversion
@@ -50,12 +45,7 @@ namespace StartGrow.Models
             set;
         }
 
-        [Required]
-        public virtual char Rating
-        {
-            get;
-            set;
-        }
+      
 
         [Required]
         public virtual float Interes
@@ -102,5 +92,6 @@ namespace StartGrow.Models
             set;
         }
 
+        public virtual IList<Solicitud> Solicitudes { get; set; }
     }
 }

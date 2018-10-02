@@ -28,8 +28,8 @@ namespace StartGrow.Models
         public virtual float Intereses { get; set; }
         [Required]
         public virtual float Total { get; set; }
-        //[Required]
-        //public virtual IList<TiposInversiones> TiposDeInversion { get; set; }
+        [Required]
+        public virtual IList<TiposInversiones> TiposDeInversion { get; set; }
 
         [Required]
         public virtual IList<InversionRecuperada> InversionesRecuperadas { get; set; }
