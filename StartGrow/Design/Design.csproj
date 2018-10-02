@@ -40,11 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Areas.cs" />
     <Compile Include="ErrorViewModel.cs" />
     <Compile Include="Inversion.cs" />
-    <Compile Include="InversionProyecto.cs" />
+    <Compile Include="InversionRecuperada.cs" />
     <Compile Include="Inversor.cs" />
     <Compile Include="Monedero.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,7 +53,7 @@
     <Compile Include="TiposInversiones.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Invertir.cd" />
+    <None Include="RecuperarInversion.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
