@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 
 namespace StartGrow.Models
 {
-    public class Monedero
+    public class Inversion
     {
-        [Key]
-        public virtual int MonederoId
+        [Required]
+        [ForeignKey("ProyectoId")]
+        public virtual Proyecto Proyecto
+        {
+            get;
+            set;
+        }
+        public virtual int ProyectoId
         {
             get;
             set;
@@ -22,17 +28,11 @@ namespace StartGrow.Models
         {
             get;
             set;
-        }
-        public virtual string InversorId
+        }           
+        public virtual int InversorId
         {
             get;
             set;
         }
-        
-        [Required]
-        [DataType(DataType.Currency)]
-        public virtual decimal Dinero { get; set; }
-
-
     }
 }
