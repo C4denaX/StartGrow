@@ -27,19 +27,22 @@
   <Class Name="StartGrow.Models.ApplicationUser">
     <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAAAAAAAEEAAAkCAACAQAAAAAAAAAAAAAAAI=</HashCode>
+      <HashCode>ACAAAAAAAAAAAAAEEAAAkCAACQQAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>ApplicationUser.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="StartGrow.Models.Monedero">
     <Position X="0.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAACAAAAACAAAABAAAAAA=</HashCode>
+      <HashCode>AQAACAAAAAAAAAAAAAAAAAAAACAAAAACAAAABAAAAAA=</HashCode>
       <FileName>Monedero.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Inversor" />
     </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="InversionesRecuperadas" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Solicitud">
     <Position X="11.5" Y="1.5" Width="1.5" />
@@ -48,8 +51,8 @@
       <FileName>Solicitud.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Trabajador" />
       <Property Name="Proyecto" />
+      <Property Name="Trabajador" />
     </ShowAsAssociation>
   </Class>
   <Class Name="StartGrow.Models.Trabajador">
@@ -75,12 +78,85 @@
   <Class Name="StartGrow.Models.Inversion">
     <Position X="7.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAIAAAAAAAAAAAAgCAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAACAAIAAAAQAAAAAAAgCCAQAACAAAAAAAAAAA=</HashCode>
       <FileName>Inversion.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Inversor" />
       <Property Name="Proyecto" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="InversionesRecuperadas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.Preferencias">
+    <Position X="14" Y="1.25" Width="1.5" />
+    <AssociationLine Name="ApplicationUser" Type="StartGrow.Models.ApplicationUser" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.562" Y="1.25" />
+        <Point X="14.562" Y="0.125" />
+        <Point X="3.75" Y="0.125" />
+        <Point X="3.75" Y="0.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TiposInversiones" Type="StartGrow.Models.TiposInversiones" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.375" Y="3.315" />
+        <Point X="15.375" Y="4.375" />
+        <Point X="16" Y="4.375" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAACAAAgACwAAAAAAAAgACAAAEAAIgAAAAAAAA=</HashCode>
+      <FileName>Preferencias.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Proyecto" />
+      <Property Name="ApplicationUser" />
+      <Property Name="Rating" />
+      <Property Name="TiposInversiones" />
+      <Property Name="Areas" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.Rating">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAgAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rating.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Preferencias" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.Areas">
+    <Position X="16.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Areas.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Preferencias" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.TiposInversiones">
+    <Position X="16" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>TiposInversiones.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Preferencias" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.InversionRecuperada">
+    <Position X="7.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACBIAFA=</HashCode>
+      <FileName>InversionRecuperada.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Monedero" />
+      <Property Name="Inversion" />
     </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />

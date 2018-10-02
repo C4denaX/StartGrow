@@ -32,7 +32,7 @@ namespace StartGrow.Models
         //public virtual IList<TiposInversiones> TiposDeInversion { get; set; }
 
         [Required]
-        public virtual IList<InversionRecuperada> InversionesRecuperadas { get; set; }
+        public virtual System.Collections.Generic.IList<InversionRecuperada> InversionesRecuperadas { get; set; }
 
     }
 }
