@@ -9,6 +9,13 @@ namespace StartGrow.Models
 {
     public class Inversion
     {
+        [Key]
+        public virtual int InversionId
+        {
+            get;
+            set;
+        }
+
         [Required]
         [ForeignKey("ProyectoId")]
         public virtual Proyecto Proyecto
