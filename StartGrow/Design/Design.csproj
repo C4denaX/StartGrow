@@ -134,9 +134,12 @@
     <Compile Include="Inversor.cs" />
     <Compile Include="Monedero.cs" />
     <Compile Include="Particular.cs" />
+    <Compile Include="Preferencias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proyecto.cs" />
+    <Compile Include="Rating.cs" />
     <Compile Include="Solicitud.cs" />
+    <Compile Include="TiposInversiones.cs" />
     <Compile Include="Trabajador.cs" />
   </ItemGroup>
   <ItemGroup>
