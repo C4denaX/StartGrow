@@ -8,9 +8,7 @@ namespace StartGrow.Models
 {
     public class InversionProyecto
     {
-        public virtual float Importe { get; set; }
-
-       public virtual decimal Interes { get; set; }
+       
             [Key]
             public virtual int InvProyectoId { get; set; }
             public virtual int MinInversion { get; set; }
