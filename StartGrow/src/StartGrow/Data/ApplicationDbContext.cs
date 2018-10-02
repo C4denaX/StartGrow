@@ -14,10 +14,7 @@ namespace StartGrow.Data
      
         public DbSet<Solicitud> Solicitudes { get; set; }
 
-        public DbSet<InversionProyecto> InversionesProyecto { get; set; }
-
-        public DbSet<Proyecto> Proyectos { get; set; }
-
+      public DbSet<Proyecto> Proyectos { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

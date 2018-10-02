@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-StartGrow-1F2575AD-5E27-4158-8E1D-EB83855B39B2</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20181002150625_AddTrabajador.cs" />
+    <Compile Remove="Data\Migrations\20181002150625_AddTrabajador.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002150720_AddSolicitud.cs" />
+    <Compile Remove="Data\Migrations\20181002150720_AddSolicitud.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />

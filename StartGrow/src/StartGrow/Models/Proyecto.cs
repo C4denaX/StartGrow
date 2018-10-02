@@ -12,8 +12,8 @@ namespace StartGrow.Models
         public virtual int ProyectoID { get; set; }
         [Required]
         public virtual string Nombre { get; set; }
-        [Required]
-        public virtual IList<Areas> Area { get; set; }
+      //  [Required]
+    //    public virtual IList<Areas> Area { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -21,6 +21,5 @@ namespace StartGrow.Models
         
         public virtual IList<Solicitud> Solicitudes { get; set; }
 
-        public virtual InversionProyecto InvProyecto { get; set; }
     }
 }
