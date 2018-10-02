@@ -5,6 +5,27 @@
     <UserSecretsId>aspnet-StartGrow-1F2575AD-5E27-4158-8E1D-EB83855B39B2</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
+    <Compile Remove="Data\Migrations\20180925143704_CreateDatabase.cs" />
+    <Compile Remove="Data\Migrations\20180925143704_CreateDatabase.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002163132_addingInversior.cs" />
+    <Compile Remove="Data\Migrations\20181002163132_addingInversior.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002163255_addingEmpresa.cs" />
+    <Compile Remove="Data\Migrations\20181002163255_addingEmpresa.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002163342_addingParticular.cs" />
+    <Compile Remove="Data\Migrations\20181002163342_addingParticular.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002163426_addingPreferencias.cs" />
+    <Compile Remove="Data\Migrations\20181002163426_addingPreferencias.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002163504_addingRating.cs" />
+    <Compile Remove="Data\Migrations\20181002163504_addingRating.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002163538_addingAreas.cs" />
+    <Compile Remove="Data\Migrations\20181002163538_addingAreas.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002163617_addingTiposInversiones.cs" />
+    <Compile Remove="Data\Migrations\20181002163617_addingTiposInversiones.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
@@ -17,6 +38,10 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>
