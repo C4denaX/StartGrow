@@ -16,14 +16,7 @@ namespace StartGrow.Models
             set;
         }
 
-        [Required]
-        [ForeignKey("InvProyectoId")]
-        public virtual InversionProyecto InvProyecto
-        {
-            get;
-            set;
-        }
-        public virtual int InvProyectoId
+        public IList <Inversion> Inversiones
         {
             get;
             set;
@@ -44,6 +37,55 @@ namespace StartGrow.Models
         }
 
         [Required]
+        public virtual float MinInversion
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        public virtual int Plazo
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        public virtual char Rating
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        public virtual float Interes
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        public virtual float Importe
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        public virtual int Progreso
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        public virtual int NumInversores
+        {
+            get;
+            set;
+        }
+
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha expiración")]
@@ -52,5 +94,7 @@ namespace StartGrow.Models
             get;
             set;
         }
+
+
     }
 }

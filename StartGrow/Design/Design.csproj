@@ -128,7 +128,6 @@
     <Compile Include="Empresa.cs" />
     <Compile Include="Estados.cs" />
     <Compile Include="Inversion.cs" />
-    <Compile Include="InversionProyecto.cs" />
     <Compile Include="Inversor.cs" />
     <Compile Include="Monedero.cs" />
     <Compile Include="Particular.cs" />
