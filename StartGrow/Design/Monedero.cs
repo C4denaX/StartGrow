@@ -16,6 +16,7 @@ namespace StartGrow.Models
         [ForeignKey("InversorId")]
         public virtual int InversorId { get; set; }
         public virtual Inversor Inversor { get; set; }
+        public virtual int InversorId { get; set; }                
 
         [Required]
         public virtual float Dinero { get; set; }
