@@ -18,6 +18,11 @@ namespace StartGrow.Data
         public DbSet<Particular> Particular { get; set; }
         public DbSet<Trabajador> Trabajador { get; set; }
         public DbSet<Solicitud> Solicitud{ get; set; }
+        public DbSet<Preferencias> Preferencias { get; set; }
+        public DbSet<Areas> Areas { get; set; }
+        public DbSet<Rating> Rating { get; set; }
+        public DbSet<TiposInversiones> TiposInversiones { get; set; }
+        public DbSet<InversionRecuperada> InversionRecuperadas  { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
