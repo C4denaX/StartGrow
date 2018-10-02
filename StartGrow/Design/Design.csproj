@@ -127,8 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
-    <Compile Include="Inversion.cs" />
-    <Compile Include="InversionProyecto.cs" />
     <Compile Include="Inversor.cs" />
     <Compile Include="Monedero.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

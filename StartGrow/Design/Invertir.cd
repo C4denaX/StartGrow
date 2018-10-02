@@ -7,35 +7,12 @@
       <FileName>ApplicationUser.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StartGrow.Models.Inversion">
-    <Position X="8.25" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIAAAAQAAAIAAAACCAQAACABAAAABAAQA=</HashCode>
-      <FileName>Inversion.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="StartGrow.Models.InversionProyecto">
-    <Position X="11.25" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAACAAAAAAAAAGAAAAAgAEAgAEABDAAAABAAAA=</HashCode>
-      <FileName>InversionProyecto.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Proyecto" />
-    </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="Inversiones" />
-    </ShowAsCollectionAssociation>
-  </Class>
   <Class Name="StartGrow.Models.Inversor">
     <Position X="5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>Inversor.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="Inversiones" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Monedero">
     <Position X="1.75" Y="3.75" Width="1.5" />
@@ -53,9 +30,6 @@
       <HashCode>AAAAAAgACAAAAAAAAAAAgAAAAAAAAAAAABAAAQAAAQA=</HashCode>
       <FileName>Proyecto.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="InvProyecto" />
-    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
