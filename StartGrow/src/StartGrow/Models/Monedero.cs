@@ -14,11 +14,13 @@ namespace StartGrow.Models
 
         [Required]
         [ForeignKey("InversorId")]
+        public virtual int InversorId { get; set; }
         public virtual Inversor Inversor { get; set; }
-        public virtual string InversorId { get; set; }                
 
         [Required]
-        [DataType (DataType.Currency)]
-        public virtual decimal Dinero { get; set; }
+        public virtual float Dinero { get; set; }
+
+        [Required]
+        public virtual IList<InversionRecuperada> InversionesRecuperadas { get; set; }
     }
 }

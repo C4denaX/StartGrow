@@ -7,19 +7,6 @@
       <FileName>Inversion.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StartGrow.Models.InversionProyecto">
-    <Position X="9.5" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAACAAAAAAAAAGBAAAAgAEAgAEABCAAAABAAAA=</HashCode>
-      <FileName>InversionProyecto.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Proyecto" />
-    </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="Inversiones" />
-    </ShowAsCollectionAssociation>
-  </Class>
   <Class Name="StartGrow.Models.Inversor">
     <Position X="4.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
@@ -41,14 +28,11 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="StartGrow.Models.Proyecto">
-    <Position X="12" Y="4" Width="1.5" />
+    <Position X="11.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgACAAAAAAAAAAAgAAAAAAAAAAAABAAAQAAAQA=</HashCode>
       <FileName>Proyecto.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="InvProyecto" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="StartGrow.Models.ApplicationUser">
     <Position X="4.25" Y="0.5" Width="1.5" />
@@ -58,7 +42,7 @@
     </TypeIdentifier>
   </Class>
   <Enum Name="StartGrow.Models.TiposInversiones" Collapsed="true">
-    <Position X="8.75" Y="2.25" Width="1.5" />
+    <Position X="7.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQAAAAAAAAAAABAAAAAAAAAAQAAAAAAAABAAAAA=</HashCode>
       <FileName>TiposInversiones.cs</FileName>

@@ -5,6 +5,17 @@
     <UserSecretsId>aspnet-StartGrow-1F2575AD-5E27-4158-8E1D-EB83855B39B2</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20181002155332_AddingClassInversor.cs" />
+    <Compile Remove="Data\Migrations\20181002155332_AddingClassInversor.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002155535_AddingClassInversion.cs" />
+    <Compile Remove="Data\Migrations\20181002155535_AddingClassInversion.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002155612_AddingClassProyecto.cs" />
+    <Compile Remove="Data\Migrations\20181002155612_AddingClassProyecto.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002155632_AddingClassMonedero.cs" />
+    <Compile Remove="Data\Migrations\20181002155632_AddingClassMonedero.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
