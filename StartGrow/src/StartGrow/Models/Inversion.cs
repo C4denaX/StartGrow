@@ -13,14 +13,14 @@ namespace StartGrow.Models
         public virtual int InversionId { get; set; }
 
         [Required]
-        public virtual int InversorId { get; set; }
         [ForeignKey("InversorId")]
+        public virtual int InversorId { get; set; }
         public virtual Inversor Inversor { get; set; }
 
         [Required]
-        public virtual int InvProyectoId { get; set; }
-        [ForeignKey("InvProyectoId")]
-        public virtual InversionProyecto InversionProyecto { get; set; }
+        [ForeignKey("ProyectoId")]
+        public virtual int ProyectoId { get; set; }
+        public virtual Proyecto Proyecto { get; set; }
 
         [Required]
         public virtual float Cuota { get; set; }
@@ -28,10 +28,11 @@ namespace StartGrow.Models
         public virtual float Intereses { get; set; }
         [Required]
         public virtual float Total { get; set; }
-        [Required]
-        public virtual IList<TiposInversiones> TiposDeInversion { get; set; }
+        //[Required]
+        //public virtual IList<TiposInversiones> TiposDeInversion { get; set; }
 
-        
+        [Required]
+        public virtual IList<InversionRecuperada> InversionesRecuperadas { get; set; }
 
     }
 }

@@ -13,9 +13,7 @@ namespace StartGrow.Models
         public virtual int ProyectoId { get; set; }
 
         [Required]
-        public virtual int InvProyectoId { get; set; }
-        [ForeignKey("InvProyectoId")]
-        public virtual InversionProyecto InvProyecto { get; set; }
+        public virtual IList<Inversion> Inversiones { get; set; }
 
         [Required]
         public virtual string Nombre { get; set; }
@@ -24,6 +22,23 @@ namespace StartGrow.Models
         [Required]
         [DataType(DataType.Date)]
         public virtual DateTime FechaExpiracion { get; set; }
+        [Required]
+        public virtual TiposInversiones TiposDeInversion { get; set; }
+        [Required]
+        [Range(100, int.MaxValue, ErrorMessage = "La inversión Mínima es 100 euros")]
+        public virtual float MinInversion { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        public virtual DateTime Plazo { get; set; }
+        [Required]
+        public virtual float Interes { get; set; }
+        [Required]
+        public virtual float Importe { get; set; }
+        [Required]
+        public virtual float Progreso { get; set; }
+        [Required]
+        public virtual int NumInversores { get; set; }
+        
 
 
 
