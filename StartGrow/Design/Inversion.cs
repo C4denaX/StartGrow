@@ -41,5 +41,14 @@ namespace StartGrow.Models
             get;
             set;
         }
+
+        public virtual int cantidad
+        {
+            get;
+            set;
+        }
+
+
+
     }
 }
