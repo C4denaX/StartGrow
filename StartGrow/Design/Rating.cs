@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace StartGrow.Models
 {
-    public class TiposInversiones
+    public class Rating
     {
         [Key]
-        public virtual string TiposInversionesID
+        public virtual string RatingID
         {
             get;
             set;

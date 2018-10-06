@@ -6,10 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\20181002150625_AddTrabajador.cs" />
-    <Compile Remove="Data\Migrations\20181002150625_AddTrabajador.Designer.cs" />
-    <Compile Remove="Data\Migrations\20181002150720_AddSolicitud.cs" />
-    <Compile Remove="Data\Migrations\20181002150720_AddSolicitud.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002155332_AddingClassInversor.cs" />
+    <Compile Remove="Data\Migrations\20181002155332_AddingClassInversor.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002155535_AddingClassInversion.cs" />
+    <Compile Remove="Data\Migrations\20181002155535_AddingClassInversion.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002155612_AddingClassProyecto.cs" />
+    <Compile Remove="Data\Migrations\20181002155612_AddingClassProyecto.Designer.cs" />
+    <Compile Remove="Data\Migrations\20181002155632_AddingClassMonedero.cs" />
+    <Compile Remove="Data\Migrations\20181002155632_AddingClassMonedero.Designer.cs" />
   </ItemGroup>
 
 
