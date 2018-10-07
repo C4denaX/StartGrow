@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="StartGrow.Models.Proyecto">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgACAAAAAAAAAGAgAAAAAEAgAEABCAAAQAAAAA=</HashCode>
+      <FileName>Proyecto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StartGrow.Models.Areas">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Areas.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Preferencias" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.ApplicationUser" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAEEAAAkCAACQQAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StartGrow.Models.Trabajador">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Trabajador.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="SolicitudesTratadas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.TiposInversiones">
+    <Position X="11" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>TiposInversiones.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Preferencias" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.Preferencias">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAACAAAgACwAAAAAAAAgACAAAEAAIgAAAAAAAA=</HashCode>
+      <FileName>Preferencias.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Areas" />
+      <Property Name="TiposInversiones" />
+      <Property Name="Rating" />
+      <Property Name="Proyecto" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.Solicitud">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAABAAAgAAAQAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Solicitud.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Trabajador" />
+      <Property Name="Proyecto" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.Rating">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAgAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rating.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Preferencias" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Enum Name="StartGrow.Models.Estados" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Estados.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
