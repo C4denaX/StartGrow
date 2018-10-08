@@ -2,10 +2,19 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="StartGrow.Models.ApplicationUser">
     <Position X="5" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Preferencias" Type="StartGrow.Models.Preferencias" FixedToPoint="true">
+      <Path>
+        <Point X="6.5" Y="2.125" />
+        <Point X="11.25" Y="2.125" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAAAAAAAEsAAAgCAACAAAAgAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACAAAAAAAAAAAAAEsAAAgCAACQAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>ApplicationUser.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Preferencias" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Inversor">
     <Position X="5" Y="3.75" Width="1.5" />
@@ -50,11 +59,10 @@
   </Class>
   <Class Name="StartGrow.Models.Preferencias">
     <Position X="11.25" Y="0.5" Width="1.5" />
-    <AssociationLine Name="Areas" Type="StartGrow.Models.Areas" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="ApplicationUser" Type="StartGrow.Models.ApplicationUser" FixedToPoint="true">
       <Path>
-        <Point X="12.625" Y="2.565" />
-        <Point X="12.625" Y="3.375" />
-        <Point X="14.75" Y="3.375" />
+        <Point X="11.25" Y="2.438" />
+        <Point X="6.5" Y="2.438" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -62,11 +70,11 @@
       <FileName>Preferencias.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="ApplicationUser" />
-      <Property Name="Rating" />
       <Property Name="TiposInversiones" />
-      <Property Name="Proyecto" />
+      <Property Name="Rating" />
       <Property Name="Areas" />
+      <Property Name="ApplicationUser" />
+      <Property Name="Proyecto" />
     </ShowAsAssociation>
   </Class>
   <Class Name="StartGrow.Models.Rating">
