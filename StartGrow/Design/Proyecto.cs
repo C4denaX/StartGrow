@@ -29,8 +29,6 @@ namespace StartGrow.Models
             set;
         }
 
-      
-
         [Required]
         public virtual float MinInversion
         {
@@ -44,8 +42,7 @@ namespace StartGrow.Models
             get;
             set;
         }
-        
-      
+
 
         [Required]
         public virtual float Interes
