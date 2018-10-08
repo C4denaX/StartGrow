@@ -55,5 +55,12 @@
       <FileName>Preferencias.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="StartGrow.Models.Rating">
+    <Position X="16" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAgAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rating.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
