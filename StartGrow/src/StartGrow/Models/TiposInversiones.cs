@@ -15,7 +15,7 @@ namespace StartGrow.Models
             set;
         }
 
-
+    
         [Required]
         public virtual string Nombre
         {
