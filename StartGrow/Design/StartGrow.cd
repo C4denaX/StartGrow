@@ -91,6 +91,13 @@
   </Class>
   <Class Name="StartGrow.Models.Preferencias">
     <Position X="14" Y="1.25" Width="1.5" />
+    <AssociationLine Name="TiposInversiones" Type="StartGrow.Models.TiposInversiones" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.375" Y="3.315" />
+        <Point X="15.375" Y="4.375" />
+        <Point X="17.25" Y="4.375" />
+      </Path>
+    </AssociationLine>
     <AssociationLine Name="ApplicationUser" Type="StartGrow.Models.ApplicationUser" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="14.562" Y="1.25" />
@@ -99,23 +106,16 @@
         <Point X="3.75" Y="0.5" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="TiposInversiones" Type="StartGrow.Models.TiposInversiones" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="15.375" Y="3.315" />
-        <Point X="15.375" Y="4.375" />
-        <Point X="16" Y="4.375" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
       <HashCode>BAAAAAAACAAAgACwAAAAAAAAgACAAAEAAIgAAAAAAAA=</HashCode>
       <FileName>Preferencias.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Proyecto" />
-      <Property Name="ApplicationUser" />
-      <Property Name="Rating" />
       <Property Name="TiposInversiones" />
+      <Property Name="Rating" />
       <Property Name="Areas" />
+      <Property Name="ApplicationUser" />
+      <Property Name="Proyecto" />
     </ShowAsAssociation>
   </Class>
   <Class Name="StartGrow.Models.Rating">
@@ -129,7 +129,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Areas">
-    <Position X="16.75" Y="2" Width="1.5" />
+    <Position X="17.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAAgAAAAAAAA=</HashCode>
       <FileName>Areas.cs</FileName>
@@ -139,7 +139,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.TiposInversiones">
-    <Position X="16" Y="4" Width="1.5" />
+    <Position X="17.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>TiposInversiones.cs</FileName>
