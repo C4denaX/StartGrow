@@ -42,7 +42,7 @@ namespace StartGrow.Models
             set;
         }
 
-        public virtual int cantidad
+        public virtual int Cantidad
         {
             get;
             set;
