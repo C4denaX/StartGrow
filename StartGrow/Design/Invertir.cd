@@ -4,8 +4,8 @@
     <Position X="5" Y="0.5" Width="1.5" />
     <AssociationLine Name="Preferencias" Type="StartGrow.Models.Preferencias" FixedToPoint="true">
       <Path>
-        <Point X="6.5" Y="2.125" />
-        <Point X="10.75" Y="2.125" />
+        <Point X="6.5" Y="0.688" />
+        <Point X="10.75" Y="0.688" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -17,7 +17,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Inversor">
-    <Position X="5" Y="3.75" Width="1.5" />
+    <Position X="5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>Inversor.cs</FileName>
@@ -27,7 +27,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Monedero">
-    <Position X="2.5" Y="3.75" Width="1.5" />
+    <Position X="2.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAACAAAAACAAAABAAAAAA=</HashCode>
       <FileName>Monedero.cs</FileName>
@@ -37,9 +37,9 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="StartGrow.Models.Proyecto">
-    <Position X="10.75" Y="3.75" Width="1.5" />
+    <Position X="10.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgACAAAAAAAAAGAgAAAAAEAgAEABCAAAQAAAAA=</HashCode>
+      <HashCode>AAAAAAgACAAAAAAAAAGAgAAAAAEAgAAABCAAAAAAAAA=</HashCode>
       <FileName>Proyecto.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -47,22 +47,22 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Inversion">
-    <Position X="7.75" Y="3.75" Width="1.5" />
+    <Position X="7.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEACAAIAAAAAAAAAAAAgCAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAACAAIAAAAQAAAAAAAgCCAQAACAAAAAAAAAAA=</HashCode>
       <FileName>Inversion.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Proyecto" />
       <Property Name="Inversor" />
+      <Property Name="Proyecto" />
     </ShowAsAssociation>
   </Class>
   <Class Name="StartGrow.Models.Preferencias">
     <Position X="10.75" Y="0.5" Width="1.75" />
     <AssociationLine Name="ApplicationUser" Type="StartGrow.Models.ApplicationUser" FixedToPoint="true">
       <Path>
-        <Point X="10.75" Y="2.438" />
-        <Point X="6.5" Y="2.438" />
+        <Point X="10.75" Y="1.062" />
+        <Point X="6.5" Y="1.062" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -106,7 +106,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.TiposInversiones">
-    <Position X="7.5" Y="0.5" Width="1.75" />
+    <Position X="7.5" Y="1.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>TiposInversiones.cs</FileName>
