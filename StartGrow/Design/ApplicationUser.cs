@@ -30,6 +30,12 @@ namespace StartGrow.Models
         public virtual string Domicilio { get; set; }
         [Required]
         public virtual int CodPost { get; set; }
+
+        public virtual IList<Preferencias> Preferencias
+        {
+            get;
+            set;
+        }
     }
 
 }

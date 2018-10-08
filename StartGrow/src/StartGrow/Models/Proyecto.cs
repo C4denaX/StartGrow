@@ -17,8 +17,7 @@ namespace StartGrow.Models
 
         [Required]
         public virtual string Nombre { get; set; }
-        [Required]
-        public virtual Areas Area { get; set; }
+  
         [Required]
         [DataType(DataType.Date)]
         public virtual DateTime FechaExpiracion { get; set; }
