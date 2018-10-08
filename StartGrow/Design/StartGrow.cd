@@ -79,7 +79,7 @@
   <Class Name="StartGrow.Models.Proyecto">
     <Position X="11.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgACAAAAAAAAAGAgAAAAAEAgAEABCAAAQAAAAA=</HashCode>
+      <HashCode>AAAAAAgACAAAAAAAAAGAgAAAAAEAgAAABCAAAAAAAAA=</HashCode>
       <FileName>Proyecto.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -89,7 +89,7 @@
   <Class Name="StartGrow.Models.Inversion">
     <Position X="7.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAACAAIAAAAQAAAAAAAgCCAQAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAACAAIAAAAQAAAAAAAgCCAQAACAAAAAABAAAA=</HashCode>
       <FileName>Inversion.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
