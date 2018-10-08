@@ -1,15 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace StartGrow.Models
 {
-    public enum TiposInversiones
+    public class TiposInversiones
     {
-        BusinessAngels,
-        Crowdfunding,
-        VentureCapital,
-        Playfunding
+        [Key]
+        public virtual string TiposInversionesID
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        public virtual string Nombre
+        {
+            get;
+            set;
+        }
+
+        public virtual IList<Preferencias> Preferencias
+        {
+            get;
+            set;
+        }
     }
 }
+
