@@ -40,13 +40,20 @@
   <Class Name="StartGrow.Models.Inversion">
     <Position X="8.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgCAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AQAAAAAACAAIAAAAAAAAAAAAgCAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Inversion.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Proyecto" />
       <Property Name="Inversor" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.Preferencias">
+    <Position X="13.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAACAAAgACwAAAAAAAAgACAAAEAAIgAAAAAAAA=</HashCode>
+      <FileName>Preferencias.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

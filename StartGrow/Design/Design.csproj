@@ -130,6 +130,7 @@
     <Compile Include="Inversion.cs" />
     <Compile Include="Inversor.cs" />
     <Compile Include="Monedero.cs" />
+    <Compile Include="Preferencias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proyecto.cs" />
     <Compile Include="TiposInversiones.cs" />
