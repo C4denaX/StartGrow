@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Design;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -53,6 +54,12 @@ namespace StartGrow.Models
         }
 
         public IList<Inversion> Inversiones
+        {
+            get;
+            set;
+        }
+
+        public IList <ProyectoAreas> ProyectoAreas
         {
             get;
             set;

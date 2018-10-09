@@ -47,6 +47,7 @@
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Inversiones" />
+      <Property Name="ProyectoAreas" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Inversion">
@@ -90,20 +91,21 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Areas">
-    <Position X="13.25" Y="2.5" Width="1.5" />
+    <Position X="14" Y="2.5" Width="1.5" />
     <AssociationLine Name="Preferencias" Type="StartGrow.Models.Preferencias" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="13.25" Y="2.75" />
+        <Point X="14" Y="2.75" />
         <Point X="11.75" Y="2.75" />
         <Point X="11.75" Y="2.373" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAAgAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAIgAAAAAAAA=</HashCode>
       <FileName>Areas.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Preferencias" />
+      <Property Name="ProyectoAreas" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.TiposInversiones">
@@ -115,6 +117,17 @@
     <ShowAsCollectionAssociation>
       <Property Name="Preferencias" />
     </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Design.ProyectoAreas">
+    <Position X="14" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAIAAAAAAAAAAAAgACAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>ProyectoAreas.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Proyecto" />
+      <Property Name="Areas" />
+    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
