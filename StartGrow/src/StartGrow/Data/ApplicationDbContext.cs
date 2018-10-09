@@ -14,7 +14,10 @@ namespace StartGrow.Data
         public DbSet<Inversion> Inversion { get; set; }        
         public DbSet<Inversor> Inversor { get; set; }
         public DbSet<Proyecto> Proyecto { get; set; }
-
+        public DbSet <TiposInversiones> Tipoinversiones { get; set; }
+        public DbSet <Preferencias> Preferencias { get; set; }
+        public DbSet <Rating> Rating { get; set; }
+        public DbSet <Areas> Areas { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

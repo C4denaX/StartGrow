@@ -61,18 +61,6 @@ namespace StartGrow.Models
         {
             get;
             set;
-        }
-
-        [ForeignKey("ProyectoId")]
-        public int ProyectoId
-        {
-            get;
-            set;
-        }
-        public virtual Proyecto Proyecto
-        {
-            get;
-            set;
-        }
+        }        
     }
 }

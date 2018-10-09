@@ -16,6 +16,42 @@ namespace StartGrow.Models
             set;
         }
 
+        [ForeignKey("AreasID")]
+        public string AreasID
+        {
+            get;
+            set;
+        }
+        public virtual StartGrow.Models.TiposInversiones Areas
+        {
+            get;
+            set;
+        }
+
+        [ForeignKey("RatingID")]
+        public string RatingID
+        {
+            get;
+            set;
+        }
+        public virtual Rating Rating
+        {
+            get;
+            set;
+        }
+
+        [ForeignKey("TiposInversionesID")]
+        public string TiposInversionesID
+        {
+            get;
+            set;
+        }
+        public virtual TiposInversiones TiposInversiones
+        {
+            get;
+            set;
+        }
+
         public IList<Inversion> Inversiones
         {
             get;
@@ -29,7 +65,6 @@ namespace StartGrow.Models
             set;
         }
         
-
         [Required]
         public virtual float MinInversion
         {

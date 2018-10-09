@@ -4,8 +4,8 @@
     <Position X="5" Y="0.5" Width="1.5" />
     <AssociationLine Name="Preferencias" Type="StartGrow.Models.Preferencias" FixedToPoint="true">
       <Path>
-        <Point X="6.5" Y="0.688" />
-        <Point X="10.75" Y="0.688" />
+        <Point X="6.5" Y="0.67" />
+        <Point X="10.75" Y="0.67" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -39,9 +39,12 @@
   <Class Name="StartGrow.Models.Proyecto">
     <Position X="10.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgACAAAAAAAAAGAgAAAAAEAgAAABCAAAAAAAAA=</HashCode>
+      <HashCode>BAAAAAgACAAAAAAgAAGAgAAAAAGAgAEABKgAAAAAAAA=</HashCode>
       <FileName>Proyecto.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Rating" />
+    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Inversiones" />
     </ShowAsCollectionAssociation>
@@ -53,8 +56,8 @@
       <FileName>Inversion.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Inversor" />
       <Property Name="Proyecto" />
+      <Property Name="Inversor" />
     </ShowAsAssociation>
   </Class>
   <Class Name="StartGrow.Models.Preferencias">
@@ -66,7 +69,7 @@
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BAAAAAAACAAAgACwAAAAAAAAgACAAAEAAIgAAAAAAAA=</HashCode>
+      <HashCode>BAAAAAAAAAAAgACwAAAAAAAAAACAAAEAAIgAAAAAAAA=</HashCode>
       <FileName>Preferencias.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -74,11 +77,10 @@
       <Property Name="Rating" />
       <Property Name="Areas" />
       <Property Name="ApplicationUser" />
-      <Property Name="Proyecto" />
     </ShowAsAssociation>
   </Class>
   <Class Name="StartGrow.Models.Rating">
-    <Position X="14.25" Y="0.5" Width="1.5" />
+    <Position X="15.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAAAgAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Rating.cs</FileName>
@@ -88,13 +90,12 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Areas">
-    <Position X="14.25" Y="2.5" Width="1.5" />
+    <Position X="13.25" Y="2.5" Width="1.5" />
     <AssociationLine Name="Preferencias" Type="StartGrow.Models.Preferencias" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="14.25" Y="2.75" />
-        <Point X="13.875" Y="2.75" />
-        <Point X="13.875" Y="2.25" />
-        <Point X="12.5" Y="2.25" />
+        <Point X="13.25" Y="2.75" />
+        <Point X="11.75" Y="2.75" />
+        <Point X="11.75" Y="2.373" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
