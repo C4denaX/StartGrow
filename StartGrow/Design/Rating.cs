@@ -27,5 +27,11 @@ namespace StartGrow.Models
             get;
             set;
         }
+
+        public IList<Proyecto> Proyectos
+        {
+            get;
+            set;
+        }
     }
 }
