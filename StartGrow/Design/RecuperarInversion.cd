@@ -67,15 +67,14 @@
   <Class Name="StartGrow.Models.Preferencias">
     <Position X="10" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAACAAAgACwAAAAAAAAgACAAAEAAIgAAAAAAAA=</HashCode>
+      <HashCode>BAAAAAAAAAAAgACwAAAAAAAAAACAAAEAAIgAAAAAAAA=</HashCode>
       <FileName>Preferencias.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="ApplicationUser" />
       <Property Name="TiposInversiones" />
       <Property Name="Rating" />
       <Property Name="Areas" />
-      <Property Name="Proyecto" />
+      <Property Name="ApplicationUser" />
     </ShowAsAssociation>
   </Class>
   <Class Name="StartGrow.Models.TiposInversiones">
