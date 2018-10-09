@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace StartGrow.Models
 {
+
     public class Inversor : ApplicationUser
     {
+
         public IList<Inversion> Inversiones
         {
             get;
             set;
         }
+
 
         public virtual IList<Preferencias> Preferencias
         {
