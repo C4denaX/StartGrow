@@ -149,7 +149,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.TiposInversiones">
-    <Position X="16" Y="4" Width="1.5" />
+    <Position X="16" Y="4" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>TiposInversiones.cs</FileName>
@@ -159,7 +159,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.InversionRecuperada">
-    <Position X="7.75" Y="8" Width="1.5" />
+    <Position X="7.75" Y="8" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACBIAFA=</HashCode>
       <FileName>InversionRecuperada.cs</FileName>
