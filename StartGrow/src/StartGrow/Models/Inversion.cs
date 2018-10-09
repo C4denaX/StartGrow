@@ -36,7 +36,7 @@ namespace StartGrow.Models
             get;
             set;
         }           
-        public virtual int InversorId
+        public virtual string InversorId
         {
             get;
             set;
