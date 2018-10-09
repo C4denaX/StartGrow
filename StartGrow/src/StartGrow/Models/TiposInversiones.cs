@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Design;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,7 +16,18 @@ namespace StartGrow.Models
             set;
         }
 
-    
+        public virtual IList<Preferencias> Preferencias
+        {
+            get;
+            set;
+        }
+
+        public IList<ProyectoTiposInversiones> ProyectoTiposInversiones
+        {
+            get;
+            set;
+        }
+
         [Required]
         public virtual string Nombre
         {
@@ -23,11 +35,8 @@ namespace StartGrow.Models
             set;
         }
 
-        public virtual IList<Preferencias> Preferencias
-        {
-            get;
-            set;
-        }
+
+
     }
 }
 
