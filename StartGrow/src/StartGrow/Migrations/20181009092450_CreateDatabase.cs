@@ -72,26 +72,6 @@ namespace StartGrow.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Proyecto",
-                columns: table => new
-                {
-                    ProyectoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FechaExpiracion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Importe = table.Column<float>(type: "real", nullable: false),
-                    Interes = table.Column<float>(type: "real", nullable: false),
-                    MinInversion = table.Column<float>(type: "real", nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumInversores = table.Column<int>(type: "int", nullable: false),
-                    Plazo = table.Column<int>(type: "int", nullable: false),
-                    Progreso = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Proyecto", x => x.ProyectoId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Rating",
                 columns: table => new
                 {
@@ -242,6 +222,80 @@ namespace StartGrow.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Preferencias",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AreasID = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    InversorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    RatingID = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TiposInversionesID = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Preferencias", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Preferencias_Areas_AreasID",
+                        column: x => x.AreasID,
+                        principalTable: "Areas",
+                        principalColumn: "AreasID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Preferencias_AspNetUsers_InversorId",
+                        column: x => x.InversorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Preferencias_Rating_RatingID",
+                        column: x => x.RatingID,
+                        principalTable: "Rating",
+                        principalColumn: "RatingID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Preferencias_TiposInversiones_TiposInversionesID",
+                        column: x => x.TiposInversionesID,
+                        principalTable: "TiposInversiones",
+                        principalColumn: "TiposInversionesID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Proyecto",
+                columns: table => new
+                {
+                    ProyectoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AreasID = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    FechaExpiracion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Importe = table.Column<float>(type: "real", nullable: false),
+                    Interes = table.Column<float>(type: "real", nullable: false),
+                    MinInversion = table.Column<float>(type: "real", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumInversores = table.Column<int>(type: "int", nullable: false),
+                    Plazo = table.Column<int>(type: "int", nullable: false),
+                    Progreso = table.Column<int>(type: "int", nullable: false),
+                    RatingID = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Proyecto", x => x.ProyectoId);
+                    table.ForeignKey(
+                        name: "FK_Proyecto_TiposInversiones_AreasID",
+                        column: x => x.AreasID,
+                        principalTable: "TiposInversiones",
+                        principalColumn: "TiposInversionesID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Proyecto_Rating_RatingID",
+                        column: x => x.RatingID,
+                        principalTable: "Rating",
+                        principalColumn: "RatingID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Inversion",
                 columns: table => new
                 {
@@ -297,44 +351,29 @@ namespace StartGrow.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Preferencias",
+                name: "ProyectoTiposInversiones",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ApplicationUserId = table.Column<int>(type: "int", nullable: false),
-                    ApplicationUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    AreasID = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    RatingID = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    TiposInversionesID = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ProyectoId = table.Column<int>(type: "int", nullable: false),
+                    TiposInversionesId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Preferencias", x => x.ID);
+                    table.PrimaryKey("PK_ProyectoTiposInversiones", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Preferencias_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_ProyectoTiposInversiones_Proyecto_ProyectoId",
+                        column: x => x.ProyectoId,
+                        principalTable: "Proyecto",
+                        principalColumn: "ProyectoId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Preferencias_Areas_AreasID",
-                        column: x => x.AreasID,
-                        principalTable: "Areas",
-                        principalColumn: "AreasID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Preferencias_Rating_RatingID",
-                        column: x => x.RatingID,
-                        principalTable: "Rating",
-                        principalColumn: "RatingID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Preferencias_TiposInversiones_TiposInversionesID",
-                        column: x => x.TiposInversionesID,
+                        name: "FK_ProyectoTiposInversiones_TiposInversiones_TiposInversionesId",
+                        column: x => x.TiposInversionesId,
                         principalTable: "TiposInversiones",
                         principalColumn: "TiposInversionesID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -392,14 +431,14 @@ namespace StartGrow.Migrations
                 column: "InversorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Preferencias_ApplicationUserId1",
-                table: "Preferencias",
-                column: "ApplicationUserId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Preferencias_AreasID",
                 table: "Preferencias",
                 column: "AreasID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Preferencias_InversorId",
+                table: "Preferencias",
+                column: "InversorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Preferencias_RatingID",
@@ -412,6 +451,16 @@ namespace StartGrow.Migrations
                 column: "TiposInversionesID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Proyecto_AreasID",
+                table: "Proyecto",
+                column: "AreasID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Proyecto_RatingID",
+                table: "Proyecto",
+                column: "RatingID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProyectoAreas_AreasId",
                 table: "ProyectoAreas",
                 column: "AreasId");
@@ -420,6 +469,16 @@ namespace StartGrow.Migrations
                 name: "IX_ProyectoAreas_ProyectoId",
                 table: "ProyectoAreas",
                 column: "ProyectoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProyectoTiposInversiones_ProyectoId",
+                table: "ProyectoTiposInversiones",
+                column: "ProyectoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProyectoTiposInversiones_TiposInversionesId",
+                table: "ProyectoTiposInversiones",
+                column: "TiposInversionesId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -452,22 +511,25 @@ namespace StartGrow.Migrations
                 name: "ProyectoAreas");
 
             migrationBuilder.DropTable(
+                name: "ProyectoTiposInversiones");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Rating");
+                name: "Areas");
+
+            migrationBuilder.DropTable(
+                name: "Proyecto");
 
             migrationBuilder.DropTable(
                 name: "TiposInversiones");
 
             migrationBuilder.DropTable(
-                name: "Areas");
-
-            migrationBuilder.DropTable(
-                name: "Proyecto");
+                name: "Rating");
         }
     }
 }
