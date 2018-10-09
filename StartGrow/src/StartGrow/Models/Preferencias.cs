@@ -52,7 +52,7 @@ namespace StartGrow.Models
         }
 
         [ForeignKey("ApplicationUserId")]
-        public int ApplicationUserId
+        public string ApplicationUserId
         {
             get;
             set;

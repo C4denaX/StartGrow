@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20181001180633_UC_RecuperarInversion.cs" />
+    <Compile Remove="Data\Migrations\20181001180633_UC_RecuperarInversion.Designer.cs" />
     <Compile Remove="Data\Migrations\20181002155332_AddingClassInversor.cs" />
     <Compile Remove="Data\Migrations\20181002155332_AddingClassInversor.Designer.cs" />
     <Compile Remove="Data\Migrations\20181002155535_AddingClassInversion.cs" />
@@ -28,6 +30,10 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>
