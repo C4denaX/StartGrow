@@ -9,7 +9,13 @@ using System.Text;
 namespace Design
 {
     public class ProyectoAreas
-    {        
+    {
+        [Key]
+        public virtual int ID
+        {
+            get;
+            set;
+        }
 
         [Required]
         [ForeignKey("ProyectoId")]
