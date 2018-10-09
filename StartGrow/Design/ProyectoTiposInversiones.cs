@@ -8,8 +8,14 @@ using System.Text;
 
 namespace Design
 {
-    public class ProyectoAreas
-    {        
+    public class ProyectoTiposInversiones
+    {
+        [Key]
+        public virtual int ID
+        {
+            get;
+            set;
+        }
 
         [Required]
         [ForeignKey("ProyectoId")]
@@ -25,13 +31,13 @@ namespace Design
         }
 
         [Required]
-        [ForeignKey("AreasId")]
-        public virtual Areas Areas
+        [ForeignKey("TiposInversionesId")]
+        public virtual TiposInversiones TiposInversiones
         {
             get;
             set;
         }
-        public virtual string AreasId
+        public virtual string TiposInversionesId
         {
             get;
             set;

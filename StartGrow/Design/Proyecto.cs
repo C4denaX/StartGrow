@@ -17,12 +17,31 @@ namespace StartGrow.Models
             set;
         }
 
+        public IList<Inversion> Inversiones
+        {
+            get;
+            set;
+        }
+
+        public IList<ProyectoAreas> ProyectoAreas
+        {
+            get;
+            set;
+        }
+
+        public IList<ProyectoTiposInversiones> ProyectoTiposInversiones
+        {
+            get;
+            set;
+        }
+
         [ForeignKey("AreasID")]
         public string AreasID
         {
             get;
             set;
         }
+
         public virtual StartGrow.Models.TiposInversiones Areas
         {
             get;
@@ -41,29 +60,7 @@ namespace StartGrow.Models
             set;
         }
 
-        [ForeignKey("TiposInversionesID")]
-        public string TiposInversionesID
-        {
-            get;
-            set;
-        }
-        public virtual TiposInversiones TiposInversiones
-        {
-            get;
-            set;
-        }
-
-        public IList<Inversion> Inversiones
-        {
-            get;
-            set;
-        }
-
-        public IList <ProyectoAreas> ProyectoAreas
-        {
-            get;
-            set;
-        }
+        
 
         [Required]
         public virtual String Nombre
@@ -85,7 +82,6 @@ namespace StartGrow.Models
             get;
             set;
         }
-
 
         [Required]
         public virtual float Interes

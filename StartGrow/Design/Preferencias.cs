@@ -15,6 +15,7 @@ namespace StartGrow.Models
             get;
             set;
         }
+
         [ForeignKey("TiposInversionesID")]
         public string TiposInversionesID
         {
@@ -51,17 +52,17 @@ namespace StartGrow.Models
             set;
         }
 
-        [ForeignKey("ApplicationUserId")]
-        public int ApplicationUserId
+        [ForeignKey("InversorId")]
+        public string InversorId
         {
             get;
             set;
         }
-        public virtual ApplicationUser ApplicationUser
+        public virtual Inversor Inversor
         {
             get;
             set;
         }
-        
+
     }
 }
