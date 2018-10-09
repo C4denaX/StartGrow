@@ -12,7 +12,7 @@ using System;
 namespace StartGrow.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181009065825_CreateDatabase")]
+    [Migration("20181009091643_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,6 +21,25 @@ namespace StartGrow.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Design.ProyectoAreas", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AreasId")
+                        .IsRequired();
+
+                    b.Property<int>("ProyectoId");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AreasId");
+
+                    b.HasIndex("ProyectoId");
+
+                    b.ToTable("ProyectoAreas");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -282,8 +301,6 @@ namespace StartGrow.Migrations
 
                     b.Property<string>("AreasID");
 
-                    b.Property<int>("ProyectoId");
-
                     b.Property<string>("RatingID");
 
                     b.Property<string>("TiposInversionesID");
@@ -293,8 +310,6 @@ namespace StartGrow.Migrations
                     b.HasIndex("ApplicationUserId1");
 
                     b.HasIndex("AreasID");
-
-                    b.HasIndex("ProyectoId");
 
                     b.HasIndex("RatingID");
 
@@ -353,7 +368,7 @@ namespace StartGrow.Migrations
 
                     b.HasKey("TiposInversionesID");
 
-                    b.ToTable("Tipoinversiones");
+                    b.ToTable("TiposInversiones");
                 });
 
             modelBuilder.Entity("StartGrow.Models.Inversor", b =>
@@ -364,6 +379,19 @@ namespace StartGrow.Migrations
                     b.ToTable("Inversor");
 
                     b.HasDiscriminator().HasValue("Inversor");
+                });
+
+            modelBuilder.Entity("Design.ProyectoAreas", b =>
+                {
+                    b.HasOne("StartGrow.Models.Areas", "Areas")
+                        .WithMany()
+                        .HasForeignKey("AreasId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("StartGrow.Models.Proyecto", "Proyecto")
+                        .WithMany()
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -441,11 +469,6 @@ namespace StartGrow.Migrations
                     b.HasOne("StartGrow.Models.Areas", "Areas")
                         .WithMany("Preferencias")
                         .HasForeignKey("AreasID");
-
-                    b.HasOne("StartGrow.Models.Proyecto", "Proyecto")
-                        .WithMany()
-                        .HasForeignKey("ProyectoId")
-                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("StartGrow.Models.Rating", "Rating")
                         .WithMany("Preferencias")

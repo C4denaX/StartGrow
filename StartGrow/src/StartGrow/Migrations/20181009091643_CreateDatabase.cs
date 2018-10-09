@@ -104,7 +104,7 @@ namespace StartGrow.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tipoinversiones",
+                name: "TiposInversiones",
                 columns: table => new
                 {
                     TiposInversionesID = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -112,7 +112,7 @@ namespace StartGrow.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tipoinversiones", x => x.TiposInversionesID);
+                    table.PrimaryKey("PK_TiposInversiones", x => x.TiposInversionesID);
                 });
 
             migrationBuilder.CreateTable(
@@ -271,6 +271,32 @@ namespace StartGrow.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProyectoAreas",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AreasId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProyectoId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProyectoAreas", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_ProyectoAreas_Areas_AreasId",
+                        column: x => x.AreasId,
+                        principalTable: "Areas",
+                        principalColumn: "AreasID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProyectoAreas_Proyecto_ProyectoId",
+                        column: x => x.ProyectoId,
+                        principalTable: "Proyecto",
+                        principalColumn: "ProyectoId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Preferencias",
                 columns: table => new
                 {
@@ -279,7 +305,6 @@ namespace StartGrow.Migrations
                     ApplicationUserId = table.Column<int>(type: "int", nullable: false),
                     ApplicationUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     AreasID = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ProyectoId = table.Column<int>(type: "int", nullable: false),
                     RatingID = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     TiposInversionesID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -299,21 +324,15 @@ namespace StartGrow.Migrations
                         principalColumn: "AreasID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Preferencias_Proyecto_ProyectoId",
-                        column: x => x.ProyectoId,
-                        principalTable: "Proyecto",
-                        principalColumn: "ProyectoId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Preferencias_Rating_RatingID",
                         column: x => x.RatingID,
                         principalTable: "Rating",
                         principalColumn: "RatingID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Preferencias_Tipoinversiones_TiposInversionesID",
+                        name: "FK_Preferencias_TiposInversiones_TiposInversionesID",
                         column: x => x.TiposInversionesID,
-                        principalTable: "Tipoinversiones",
+                        principalTable: "TiposInversiones",
                         principalColumn: "TiposInversionesID",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -383,11 +402,6 @@ namespace StartGrow.Migrations
                 column: "AreasID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Preferencias_ProyectoId",
-                table: "Preferencias",
-                column: "ProyectoId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Preferencias_RatingID",
                 table: "Preferencias",
                 column: "RatingID");
@@ -396,6 +410,16 @@ namespace StartGrow.Migrations
                 name: "IX_Preferencias_TiposInversionesID",
                 table: "Preferencias",
                 column: "TiposInversionesID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProyectoAreas_AreasId",
+                table: "ProyectoAreas",
+                column: "AreasId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProyectoAreas_ProyectoId",
+                table: "ProyectoAreas",
+                column: "ProyectoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -425,22 +449,25 @@ namespace StartGrow.Migrations
                 name: "Preferencias");
 
             migrationBuilder.DropTable(
+                name: "ProyectoAreas");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "Rating");
+
+            migrationBuilder.DropTable(
+                name: "TiposInversiones");
+
+            migrationBuilder.DropTable(
                 name: "Areas");
 
             migrationBuilder.DropTable(
                 name: "Proyecto");
-
-            migrationBuilder.DropTable(
-                name: "Rating");
-
-            migrationBuilder.DropTable(
-                name: "Tipoinversiones");
         }
     }
 }

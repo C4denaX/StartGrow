@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Design;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StartGrow.Models;
@@ -18,6 +19,8 @@ namespace StartGrow.Data
         public DbSet <Preferencias> Preferencias { get; set; }
         public DbSet <Rating> Rating { get; set; }
         public DbSet <Areas> Areas { get; set; }
+        public DbSet <TiposInversiones> TiposInversiones { get; set; }
+        public DbSet <ProyectoAreas> ProyectoAreas { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
