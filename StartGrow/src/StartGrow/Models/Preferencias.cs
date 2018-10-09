@@ -7,82 +7,72 @@ using System.Threading.Tasks;
 
 namespace StartGrow.Models
 {
-    public class Proyecto
+    public class Preferencias
     {
         [Key]
-        public virtual int ProyectoId
+        public virtual int ID
+        {
+            get;
+            set;
+        }
+        [ForeignKey("TiposInversionesID")]
+        public string TiposInversionesID
+        {
+            get;
+            set;
+        }
+        public virtual TiposInversiones TiposInversiones
         {
             get;
             set;
         }
 
-        public IList<Inversion> Inversiones
+        [ForeignKey("RatingID")]
+        public string RatingID
+        {
+            get;
+            set;
+        }
+        public virtual Rating Rating
         {
             get;
             set;
         }
 
-        [Required]
-        public virtual String Nombre
+        [ForeignKey("AreasID")]
+        public string AreasID
         {
             get;
             set;
         }
-        
-
-        [Required]
-        public virtual float MinInversion
-        {
-            get;
-            set;
-        }
-
-        [Required]
-        public virtual int Plazo
+        public virtual Areas Areas
         {
             get;
             set;
         }
 
-
-        [Required]
-        public virtual float Interes
+        [ForeignKey("ApplicationUserId")]
+        public int ApplicationUserId
+        {
+            get;
+            set;
+        }
+        public virtual ApplicationUser ApplicationUser
         {
             get;
             set;
         }
 
-        [Required]
-        public virtual float Importe
+        [ForeignKey("ProyectoId")]
+        public int ProyectoId
         {
             get;
             set;
         }
-
-        [Required]
-        public virtual int Progreso
+        public virtual Proyecto Proyecto
         {
             get;
             set;
         }
-
-        [Required]
-        public virtual int NumInversores
-        {
-            get;
-            set;
-        }
-
-        [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Fecha expiración")]
-        public virtual DateTime FechaExpiracion
-        {
-            get;
-            set;
-        }
-
-
     }
 }

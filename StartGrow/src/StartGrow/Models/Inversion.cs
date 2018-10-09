@@ -41,5 +41,27 @@ namespace StartGrow.Models
             get;
             set;
         }
+
+        [Required]
+        public virtual float Cuota
+        {
+            get;
+            set;
+        }
+        [Required]
+        public virtual float Intereses
+        {
+            get;
+            set;
+        }
+        [Required]
+        public virtual float Total
+        {
+            get;
+            set;
+        }
+
+
+
     }
 }

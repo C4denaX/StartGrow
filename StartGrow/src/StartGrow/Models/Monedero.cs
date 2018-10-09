@@ -28,7 +28,6 @@ namespace StartGrow.Models
             get;
             set;
         }
-
         
         [Required]
         [DataType(DataType.Currency)]
