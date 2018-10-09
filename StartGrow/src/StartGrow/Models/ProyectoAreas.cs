@@ -6,10 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace Design
+namespace StartGrow.Models
 {
     public class ProyectoAreas
     {
+        [Key]
+        public virtual string ProyectoAreasId { get; set; }
+     
 
         [Required]
         [ForeignKey("ProyectoId")]

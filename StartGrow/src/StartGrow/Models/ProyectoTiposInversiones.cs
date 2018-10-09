@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace Design
+namespace StartGrow.Models
 {
     public class ProyectoTiposInversiones
     {

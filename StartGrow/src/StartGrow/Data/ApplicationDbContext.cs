@@ -15,6 +15,14 @@ namespace StartGrow.Data
         public DbSet<Proyecto> Proyecto { get; set; }
         public DbSet<Monedero> Monedero { get; set; }
         public DbSet<InversionRecuperada> InversionRecuperada { get; set; }
+        public DbSet<ProyectoAreas> ProyectoAreas { get; set; }
+        public DbSet<ProyectoTiposInversiones> ProyectoTiposInversiones { get; set; }
+        public DbSet<Rating> Rating { get; set; }
+        public DbSet<Areas> Areas { get; set; }
+        public DbSet<Preferencias> Preferencias { get; set; }
+        public DbSet<TiposInversiones> TiposInversiones { get; set; }
+        
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
