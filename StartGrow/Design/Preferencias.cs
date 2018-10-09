@@ -62,11 +62,5 @@ namespace StartGrow.Models
             get;
             set;
         }
-
-        public virtual Proyecto Proyecto
-        {
-            get;
-            set;
-        }
     }
 }
