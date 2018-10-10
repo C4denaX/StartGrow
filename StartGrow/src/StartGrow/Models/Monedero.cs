@@ -33,6 +33,9 @@ namespace StartGrow.Models
         [DataType(DataType.Currency)]
         public virtual decimal Dinero { get; set; }
 
+        [Required]
+        public virtual IList<InversionRecuperada> InversionesRecuperadas { get; set; }
+
 
     }
 }
