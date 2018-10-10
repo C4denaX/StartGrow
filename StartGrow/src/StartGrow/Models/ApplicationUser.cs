@@ -91,13 +91,7 @@ namespace StartGrow.Models
 
         [Required]
         [StringLength(5, ErrorMessage = "El Codigo Postal no puede tener mas de 5 caracteres")]
-        public virtual int CodigoPostal
-        {
-            get;
-            set;
-        }
-
-        public virtual IList<Preferencias> Preferencias
+        public virtual int CodPost
         {
             get;
             set;

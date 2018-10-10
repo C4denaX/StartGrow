@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Design;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,11 +17,50 @@ namespace StartGrow.Models
             set;
         }
 
-        public IList <Inversion> Inversiones
+        public IList<Inversion> Inversiones
         {
             get;
             set;
         }
+
+        public IList<ProyectoAreas> ProyectoAreas
+        {
+            get;
+            set;
+        }
+
+        public IList<ProyectoTiposInversiones> ProyectoTiposInversiones
+        {
+            get;
+            set;
+        }
+
+        [ForeignKey("AreasID")]
+        public string AreasID
+        {
+            get;
+            set;
+        }
+
+        public virtual StartGrow.Models.TiposInversiones Areas
+        {
+            get;
+            set;
+        }
+
+        [ForeignKey("RatingID")]
+        public string RatingID
+        {
+            get;
+            set;
+        }
+        public virtual Rating Rating
+        {
+            get;
+            set;
+        }
+
+
 
         [Required]
         public virtual String Nombre
@@ -28,8 +68,6 @@ namespace StartGrow.Models
             get;
             set;
         }
-
-      
 
         [Required]
         public virtual float MinInversion
@@ -44,8 +82,6 @@ namespace StartGrow.Models
             get;
             set;
         }
-
-      
 
         [Required]
         public virtual float Interes
@@ -86,12 +122,5 @@ namespace StartGrow.Models
         }
 
 
-        public virtual IList<Preferencias> Preferencias
-        {
-            get;
-            set;
-        }
-
-        public virtual IList<Solicitud> Solicitudes { get; set; }
     }
 }

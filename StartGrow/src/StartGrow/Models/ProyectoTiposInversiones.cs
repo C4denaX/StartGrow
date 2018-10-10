@@ -1,16 +1,17 @@
-﻿using System;
+﻿using StartGrow.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace StartGrow.Models
+namespace Design
 {
-    public class Inversion
+    public class ProyectoTiposInversiones
     {
         [Key]
-        public virtual int InversionId
+        public virtual int ID
         {
             get;
             set;
@@ -30,38 +31,16 @@ namespace StartGrow.Models
         }
 
         [Required]
-        [ForeignKey("InversorId")]
-        public virtual Inversor Inversor
+        [ForeignKey("TiposInversionesId")]
+        public virtual TiposInversiones TiposInversiones
         {
             get;
             set;
         }
-        public virtual string InversorId
+        public virtual string TiposInversionesId
         {
             get;
             set;
         }
-
-        [Required]
-        public virtual float Cuota
-        {
-            get;
-            set;
-        }
-        [Required]
-        public virtual float Intereses
-        {
-            get;
-            set;
-        }
-        [Required]
-        public virtual float Total
-        {
-            get;
-            set;
-        }
-
-
-
     }
 }
