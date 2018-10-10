@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Design;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,6 +18,12 @@ namespace StartGrow.Models
 
         [Required]
         public virtual string Nombre
+        {
+            get;
+            set;
+        }
+
+        public IList<ProyectoAreas> ProyectoAreas
         {
             get;
             set;

@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20181001180633_UC_RecuperarInversion.cs" />
+    <Compile Remove="Data\Migrations\20181001180633_UC_RecuperarInversion.Designer.cs" />
     <Compile Remove="Data\Migrations\20181002155332_AddingClassInversor.cs" />
     <Compile Remove="Data\Migrations\20181002155332_AddingClassInversor.Designer.cs" />
     <Compile Remove="Data\Migrations\20181002155535_AddingClassInversion.cs" />
@@ -31,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\fd\" />
+    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>

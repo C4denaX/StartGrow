@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-
-
+using Microsoft.AspNetCore.Identity;
 
 namespace StartGrow.Models
 {
@@ -93,13 +91,7 @@ namespace StartGrow.Models
 
         [Required]
         [StringLength(5, ErrorMessage = "El Codigo Postal no puede tener mas de 5 caracteres")]
-        public virtual int CodigoPostal
-        {
-            get;
-            set;
-        }
-
-        public virtual IList<Preferencias> Preferencias
+        public virtual int CodPost
         {
             get;
             set;
