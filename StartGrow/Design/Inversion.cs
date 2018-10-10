@@ -61,6 +61,8 @@ namespace StartGrow.Models
             set;
         }
 
+        [Required]
+        public virtual IList<InversionRecuperada> InversionesRecuperadas { get; set; }
 
 
     }
