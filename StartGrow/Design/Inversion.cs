@@ -49,7 +49,7 @@ namespace StartGrow.Models
             get;
             set;
         }
-        public virtual int TipoInversionesId
+        public virtual string TipoInversionesId
         {
             get;
             set;
