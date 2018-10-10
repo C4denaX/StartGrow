@@ -8,5 +8,10 @@ namespace StartGrow.Models
 {
     public class Inversor : ApplicationUser
     {
+        public virtual IList<Preferencias> Preferencias
+        {
+            get;
+            set;
+        }
     }
 }

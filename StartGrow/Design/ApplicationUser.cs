@@ -96,11 +96,5 @@ namespace StartGrow.Models
             get;
             set;
         }
-
-        public virtual IList<Preferencias> Preferencias
-        {
-            get;
-            set;
-        }
     }
 }

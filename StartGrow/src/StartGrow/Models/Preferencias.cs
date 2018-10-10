@@ -51,13 +51,13 @@ namespace StartGrow.Models
             set;
         }
 
-        [ForeignKey("ApplicationUserId")]
-        public int ApplicationUserId
+        [ForeignKey("InversorId")]
+        public int InversorId
         {
             get;
             set;
         }
-        public virtual ApplicationUser ApplicationUser
+        public virtual Inversor inversor
         {
             get;
             set;
