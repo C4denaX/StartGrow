@@ -43,6 +43,19 @@ namespace StartGrow.Models
         }
 
         [Required]
+        [ForeignKey("TipoInversionesId")]
+        public virtual TiposInversiones TipoInversiones
+        {
+            get;
+            set;
+        }
+        public virtual int TipoInversionesId
+        {
+            get;
+            set;
+        }
+
+        [Required]
         public virtual float Cuota
         {
             get;
@@ -61,8 +74,6 @@ namespace StartGrow.Models
             set;
         }
 
-        [Required]
-        public virtual IList<InversionRecuperada> InversionesRecuperadas { get; set; }
 
 
     }
