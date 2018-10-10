@@ -28,6 +28,12 @@ namespace StartGrow.Models
             set;
         }
 
+        public IList<Inversion> Inversiones
+        {
+            get;
+            set;
+        }
+
         [Required]
         public virtual string Nombre
         {
