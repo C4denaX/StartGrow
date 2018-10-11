@@ -10,7 +10,7 @@ namespace StartGrow.Models
     public class Preferencias
     {
         [Key]
-        public virtual int ID
+        public virtual int PreferenciasId
         {
             get;
             set;
