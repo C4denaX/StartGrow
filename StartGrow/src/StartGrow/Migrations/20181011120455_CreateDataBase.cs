@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace StartGrow.Migrations
 {
-    public partial class CreateDatabase : Migration
+    public partial class CreateDataBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
