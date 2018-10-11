@@ -11,7 +11,7 @@ namespace StartGrow.Models
     public class ProyectoAreas
     {
         [Key]
-        public virtual string ProyectoAreasId { get; set; }
+        public virtual string ID { get; set; }
      
 
         [Required]

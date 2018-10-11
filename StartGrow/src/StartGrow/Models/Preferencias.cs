@@ -10,7 +10,7 @@ namespace StartGrow.Models
     public class Preferencias
     {
         [Key]
-        public virtual int ID
+        public virtual int PreferenciasId
         {
             get;
             set;
@@ -52,13 +52,14 @@ namespace StartGrow.Models
             set;
         }
 
-        [ForeignKey("InversorId")]
-        public string InversorId
+        [Required]
+        [ForeignKey("Id")]
+        public virtual ApplicationUser ApplicationUser
         {
             get;
             set;
         }
-        public virtual Inversor Inversor
+        public virtual string Id
         {
             get;
             set;

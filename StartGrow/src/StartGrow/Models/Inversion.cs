@@ -10,29 +10,71 @@ namespace StartGrow.Models
     public class Inversion
     {
         [Key]
-        public virtual int InversionId { get; set; }
-
-        [Required]
-        [ForeignKey("InversorId")]
-        public virtual string InversorId { get; set; }
-        public virtual Inversor Inversor { get; set; }
+        public virtual int InversionId
+        {
+            get;
+            set;
+        }
 
         [Required]
         [ForeignKey("ProyectoId")]
-        public virtual int ProyectoId { get; set; }
-        public virtual Proyecto Proyecto { get; set; }
+        public virtual Proyecto Proyecto
+        {
+            get;
+            set;
+        }
+        public virtual int ProyectoId
+        {
+            get;
+            set;
+        }
 
         [Required]
-        public virtual float Cuota { get; set; }
-        [Required]
-        public virtual float Intereses { get; set; }
-        [Required]
-        public virtual float Total { get; set; }
-        //[Required]
-        //public virtual IList<TiposInversiones> TiposDeInversion { get; set; }
+        [ForeignKey("Id")]
+        public virtual ApplicationUser ApplicationUser
+        {
+            get;
+            set;
+        }
+        public virtual string Id
+        {
+            get;
+            set;
+        }
 
         [Required]
-        public virtual IList<InversionRecuperada> InversionesRecuperadas { get; set; }
+        [ForeignKey("TipoInversionesId")]
+        public virtual TiposInversiones TipoInversiones
+        {
+            get;
+            set;
+        }
+        public virtual string TipoInversionesId
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        public virtual float Cuota
+        {
+            get;
+            set;
+        }
+        [Required]
+        public virtual float Intereses
+        {
+            get;
+            set;
+        }
+        [Required]
+        public virtual float Total
+        {
+            get;
+            set;
+        }
+
+
 
     }
 }

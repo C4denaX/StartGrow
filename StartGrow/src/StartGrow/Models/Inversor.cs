@@ -24,5 +24,11 @@ namespace StartGrow.Models
             get;
             set;
         }
+
+        public IList<Monedero> Monedero
+        {
+            get;
+            set;
+        }
     }
 }

@@ -6,68 +6,134 @@
       <HashCode>ACAAAAAAAAAAAAAEsAAAgCAACQAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>ApplicationUser.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="Preferencias" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Inversion">
-    <Position X="6.75" Y="4.25" Width="1.5" />
-    <AssociationLine Name="InversionesRecuperadas" Type="StartGrow.Models.InversionRecuperada" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+    <Position X="6.75" Y="6.25" Width="1.5" />
+    <AssociationLine Name="Proyecto" Type="StartGrow.Models.Proyecto" FixedFromPoint="true">
       <Path>
-        <Point X="7.938" Y="6.315" />
-        <Point X="7.938" Y="7.846" />
-        <Point X="5.5" Y="7.846" />
+        <Point X="8.25" Y="6.945" />
+        <Point X="10" Y="6.945" />
       </Path>
     </AssociationLine>
+    <AssociationLine Name="ApplicationUser" Type="StartGrow.Models.ApplicationUser" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.5" Y="6.25" />
+        <Point X="7.5" Y="5.875" />
+        <Point X="5.188" Y="5.875" />
+        <Point X="5.188" Y="3.906" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.199" Y="0.418" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAACAAACAAIAAAAQAAAAAAAgCCAQAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAACAAIAAAQQAAAAAAAgACAQAAQAAACAAAAAAA=</HashCode>
       <FileName>Inversion.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Inversor" />
       <Property Name="Proyecto" />
+      <Property Name="ApplicationUser" />
     </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="InversionesRecuperadas" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Inversor">
-    <Position X="4" Y="4.25" Width="1.5" />
+    <Position X="3.25" Y="6.25" Width="1.5" />
+    <AssociationLine Name="Preferencias" Type="StartGrow.Models.Preferencias" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.688" Y="6.25" />
+        <Point X="3.688" Y="0.339" />
+        <Point X="10.25" Y="0.339" />
+        <Point X="10.25" Y="1.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.01" Y="0.622" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Monedero" Type="StartGrow.Models.Monedero" FixedFromPoint="true">
+      <Path>
+        <Point X="3.25" Y="7.062" />
+        <Point X="2" Y="7.062" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAABAAAAAAAABA=</HashCode>
       <FileName>Inversor.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Inversiones" />
+      <Property Name="Preferencias" />
+      <Property Name="Monedero" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Monedero">
-    <Position X="1.5" Y="4.25" Width="1.5" />
+    <Position X="0.5" Y="6" Width="1.5" />
+    <AssociationLine Name="InversionesRecuperadas" Type="StartGrow.Models.InversionRecuperada">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.102" Y="0.15" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AQAACAAAAAAAAAAAAAAAAAAAACAAAAACAAAABAAAAAA=</HashCode>
+      <HashCode>AQACCAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Monedero.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Inversor" />
+      <Property Name="ApplicationUser" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="InversionesRecuperadas" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Proyecto">
-    <Position X="10" Y="4" Width="1.5" />
+    <Position X="10" Y="6.5" Width="1.5" />
+    <AssociationLine Name="Inversiones" Type="StartGrow.Models.Inversion" FixedToPoint="true">
+      <Path>
+        <Point X="10" Y="6.598" />
+        <Point X="8.25" Y="6.598" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ProyectoAreas" Type="StartGrow.Models.ProyectoAreas" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.5" Y="7.739" />
+        <Point X="12.938" Y="7.739" />
+        <Point X="12.938" Y="6.238" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.144" Y="0.156" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ProyectoTiposInversiones" Type="StartGrow.Models.ProyectoTiposInversiones" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11" Y="6.5" />
+        <Point X="11" Y="4.562" />
+        <Point X="10" Y="4.562" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Rating" Type="StartGrow.Models.Rating" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.5" Y="8.812" />
+        <Point X="16.312" Y="8.812" />
+        <Point X="16.312" Y="1.796" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.799" Y="0.129" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAgACAAAAAAAAAGAgAAAAAEAgAAABCAAAABAAAA=</HashCode>
+      <HashCode>AAAAAAgACAAAAAAgAAGAgAAAAAGAgAEABKwAAAAAAAA=</HashCode>
       <FileName>Proyecto.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Rating" />
+    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Inversiones" />
+      <Property Name="ProyectoAreas" />
+      <Property Name="ProyectoTiposInversiones" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Preferencias">
-    <Position X="10" Y="0.75" Width="1.5" />
+    <Position X="10" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAAAAgACwAAAAAAAAAACAAAEAAIgAAAAAAAA=</HashCode>
+      <HashCode>BAACAAAAAAAAAAAwAAAAAAAAAACAIAEAAIgAAAAAAAA=</HashCode>
       <FileName>Preferencias.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -78,37 +144,79 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="StartGrow.Models.TiposInversiones">
-    <Position X="6.75" Y="0.5" Width="1.5" />
+    <Position X="6.5" Y="1.25" Width="1.5" />
+    <AssociationLine Name="ProyectoTiposInversiones" Type="StartGrow.Models.ProyectoTiposInversiones" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="2.546" />
+        <Point X="7.25" Y="4.968" />
+        <Point X="8" Y="4.968" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.294" Y="-0.317" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAIAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAIQAAAAAAAA=</HashCode>
       <FileName>TiposInversiones.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Preferencias" />
+      <Property Name="ProyectoTiposInversiones" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Rating">
-    <Position X="13.75" Y="0.5" Width="1.5" />
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Proyectos" Type="StartGrow.Models.Proyecto" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.938" Y="1.796" />
+        <Point X="15.938" Y="8.328" />
+        <Point X="11.5" Y="8.328" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAgAAAAgAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAgAAAgQAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Rating.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Preferencias" />
+      <Property Name="Proyectos" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.Areas">
-    <Position X="13.75" Y="2.25" Width="1.5" />
+    <Position X="13.75" Y="2.5" Width="1.5" />
+    <AssociationLine Name="ProyectoAreas" Type="StartGrow.Models.ProyectoAreas" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.625" Y="3.796" />
+        <Point X="14.625" Y="5.875" />
+        <Point X="14" Y="5.875" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.799" Y="0.17" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAAgAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAIgAAAAAAAA=</HashCode>
       <FileName>Areas.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
+      <Property Name="ProyectoAreas" />
       <Property Name="Preferencias" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.InversionRecuperada">
-    <Position X="4" Y="6.25" Width="1.5" />
+    <Position X="3.75" Y="8.5" Width="2" />
+    <AssociationLine Name="Monedero" Type="StartGrow.Models.Monedero" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.75" Y="8.938" />
+        <Point X="1.625" Y="8.938" />
+        <Point X="1.625" Y="7.488" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Inversion" Type="StartGrow.Models.Inversion">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.286" Y="0.119" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACBIAFA=</HashCode>
       <FileName>InversionRecuperada.cs</FileName>
@@ -116,6 +224,60 @@
     <ShowAsAssociation>
       <Property Name="Monedero" />
       <Property Name="Inversion" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.ProyectoAreas">
+    <Position X="12.5" Y="4.75" Width="1.5" />
+    <AssociationLine Name="Proyecto" Type="StartGrow.Models.Proyecto" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.5" Y="5.826" />
+        <Point X="12.125" Y="5.826" />
+        <Point X="12.125" Y="7.503" />
+        <Point X="11.5" Y="7.503" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Areas" Type="StartGrow.Models.Areas" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14" Y="5.25" />
+        <Point X="14.25" Y="5.25" />
+        <Point X="14.25" Y="3.796" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAgAAAAAAAAAAAgACAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>ProyectoAreas.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Proyecto" />
+      <Property Name="Areas" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="StartGrow.Models.ProyectoTiposInversiones">
+    <Position X="8" Y="3.75" Width="2" />
+    <AssociationLine Name="Proyecto" Type="StartGrow.Models.Proyecto" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10" Y="4.938" />
+        <Point X="10.438" Y="4.938" />
+        <Point X="10.438" Y="6.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TiposInversiones" Type="StartGrow.Models.TiposInversiones" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8" Y="4.58" />
+        <Point X="7.625" Y="4.58" />
+        <Point X="7.625" Y="2.546" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.323" Y="0.225" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAACAAAgAAAAAAAAAAAgAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>ProyectoTiposInversiones.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Proyecto" />
+      <Property Name="TiposInversiones" />
     </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
