@@ -18,6 +18,10 @@
     <Compile Remove="Data\Migrations\20181002155632_AddingClassMonedero.Designer.cs" />
     <Compile Remove="Migrations\20181009065007_create-database.cs" />
     <Compile Remove="Migrations\20181009065007_create-database.Designer.cs" />
+    <Compile Remove="Migrations\20181011094252_CreateDatabase.cs" />
+    <Compile Remove="Migrations\20181011094252_CreateDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20181011095052_CreateDatabase.cs" />
+    <Compile Remove="Migrations\20181011095052_CreateDatabase.Designer.cs" />
   </ItemGroup>
 
 
@@ -36,7 +40,6 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
