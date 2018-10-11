@@ -18,12 +18,18 @@ namespace StartGrow.Models
         [DataType(DataType.Date)]
         [Required]
         public virtual DateTime FechaSolicitud { get; set; }
-
-        [ForeignKey("TrabajadorID")]
-        public virtual Trabajador Trabajador { get; set; }
-
-
+        [Required]
+        [ForeignKey("Id")]
+        public virtual ApplicationUser ApplicationUser
+        {
+            get;
+            set;
+        }
+        public virtual string Id
+        {
+            get;
+            set;
+        }
     }
 
 }
-
