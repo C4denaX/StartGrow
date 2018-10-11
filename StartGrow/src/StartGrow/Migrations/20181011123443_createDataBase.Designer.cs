@@ -12,8 +12,8 @@ using System;
 namespace StartGrow.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181011120455_CreateDataBase")]
-    partial class CreateDataBase
+    [Migration("20181011123443_createDataBase")]
+    partial class createDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

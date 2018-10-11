@@ -24,6 +24,8 @@
     <Compile Remove="Migrations\20181011095052_CreateDatabase.Designer.cs" />
     <Compile Remove="Migrations\20181011100113_CreateDatabase.cs" />
     <Compile Remove="Migrations\20181011100113_CreateDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20181011120455_CreateDataBase.cs" />
+    <Compile Remove="Migrations\20181011120455_CreateDataBase.Designer.cs" />
   </ItemGroup>
 
 
