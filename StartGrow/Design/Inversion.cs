@@ -30,13 +30,13 @@ namespace StartGrow.Models
         }
 
         [Required]
-        [ForeignKey("InversorId")]
-        public virtual Inversor Inversor
+        [ForeignKey("Id")]
+        public virtual ApplicationUser ApplicationUser
         {
             get;
             set;
-        }           
-        public virtual string InversorId
+        }
+        public virtual string Id
         {
             get;
             set;
@@ -54,6 +54,7 @@ namespace StartGrow.Models
             get;
             set;
         }
+
         [Required]
         public virtual float Cuota
         {
