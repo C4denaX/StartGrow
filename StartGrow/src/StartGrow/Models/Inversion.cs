@@ -30,13 +30,26 @@ namespace StartGrow.Models
         }
 
         [Required]
-        [ForeignKey("InversorId")]
-        public virtual Inversor Inversor
+        [ForeignKey("Id")]
+        public virtual ApplicationUser ApplicationUser
         {
             get;
             set;
         }
-        public virtual string InversorId
+        public virtual string Id
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        [ForeignKey("TipoInversionesId")]
+        public virtual TiposInversiones TipoInversiones
+        {
+            get;
+            set;
+        }
+        public virtual string TipoInversionesId
         {
             get;
             set;

@@ -17,9 +17,12 @@ namespace StartGrow.Models
             get;
             set;
         }
-
-
         public virtual IList<Preferencias> Preferencias
+        {
+            get;
+            set;
+        }
+        public IList<Monedero> Monedero
         {
             get;
             set;

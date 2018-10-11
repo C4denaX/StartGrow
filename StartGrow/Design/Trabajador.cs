@@ -8,8 +8,6 @@ namespace StartGrow.Models
 {
     public class Trabajador : ApplicationUser
     {
-        [Key]
-        public virtual int TrabajadorID { get; set; }
         [Required]
         public virtual string PuestoDeTrabajo { get; set; }
 
