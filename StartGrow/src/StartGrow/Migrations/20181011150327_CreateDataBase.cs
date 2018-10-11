@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace StartGrow.Migrations
 {
-    public partial class createDataBase : Migration
+    public partial class CreateDataBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -468,7 +468,7 @@ namespace StartGrow.Migrations
                         column: x => x.InversionId,
                         principalTable: "Inversion",
                         principalColumn: "InversionId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_InversionRecuperada_Monedero_MonederoId",
                         column: x => x.MonederoId,
