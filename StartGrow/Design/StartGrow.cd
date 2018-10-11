@@ -334,8 +334,8 @@
     <Position X="1" Y="4.5" Width="1.5" />
     <AssociationLine Name="SolicitudesTratadas" Type="StartGrow.Models.Solicitud" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="1" Y="5" />
-        <Point X="0.174" Y="5" />
+        <Point X="1" Y="4.933" />
+        <Point X="0.174" Y="4.933" />
         <Point X="0.174" Y="12.989" />
         <Point X="11.688" Y="12.989" />
         <Point X="11.688" Y="12.43" />
@@ -345,7 +345,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>CAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <HashCode>CAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Trabajador.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
