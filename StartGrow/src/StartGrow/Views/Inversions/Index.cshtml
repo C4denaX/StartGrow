@@ -13,9 +13,6 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.InversorId)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Cuota)
                 </th>
                 <th>
@@ -25,7 +22,13 @@
                     @Html.DisplayNameFor(model => model.Total)
                 </th>
             <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Proyecto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoInversiones)
             </th>
             <th></th>
         </tr>
@@ -33,9 +36,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.InversorId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cuota)
             </td>
@@ -46,7 +46,13 @@
                 @Html.DisplayFor(modelItem => item.Total)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Proyecto.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoInversiones.TiposInversionesID)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.InversionId">Edit</a> |

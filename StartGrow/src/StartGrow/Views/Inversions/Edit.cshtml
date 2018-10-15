@@ -14,14 +14,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="InversionId" />
             <div class="form-group">
-                <label asp-for="InversorId" class="control-label"></label>
-                <input asp-for="InversorId" class="form-control" />
-                <span asp-validation-for="InversorId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="ProyectoId" class="control-label"></label>
                 <select asp-for="ProyectoId" class="form-control" asp-items="ViewBag.ProyectoId"></select>
                 <span asp-validation-for="ProyectoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <select asp-for="Id" class="form-control" asp-items="ViewBag.Id"></select>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoInversionesId" class="control-label"></label>
+                <select asp-for="TipoInversionesId" class="form-control" asp-items="ViewBag.TipoInversionesId"></select>
+                <span asp-validation-for="TipoInversionesId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Cuota" class="control-label"></label>
