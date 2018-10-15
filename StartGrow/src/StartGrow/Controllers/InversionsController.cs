@@ -19,7 +19,7 @@ namespace StartGrow.Controllers
             _context = context;
         }
 
-        // GET: Inversions
+        // GET: Inversions 
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Inversion.Include(i => i.ApplicationUser).Include(i => i.Proyecto).Include(i => i.TipoInversiones);
