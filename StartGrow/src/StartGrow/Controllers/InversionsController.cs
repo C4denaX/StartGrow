@@ -22,7 +22,7 @@ namespace StartGrow.Controllers
         // GET: Inversions
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Inversion.Include(i => i.Proyecto);
+            var applicationDbContext = _context.Inversion.Include(i => i.ApplicationUser).Include(i => i.Proyecto).Include(i => i.TipoInversiones);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,9 @@ namespace StartGrow.Controllers
             }
 
             var inversion = await _context.Inversion
+                .Include(i => i.ApplicationUser)
                 .Include(i => i.Proyecto)
+                .Include(i => i.TipoInversiones)
                 .SingleOrDefaultAsync(m => m.InversionId == id);
             if (inversion == null)
             {
@@ -48,7 +50,9 @@ namespace StartGrow.Controllers
         // GET: Inversions/Create
         public IActionResult Create()
         {
+            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre");
+            ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID");
             return View();
         }
 
@@ -57,7 +61,7 @@ namespace StartGrow.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InversionId,InversorId,ProyectoId,Cuota,Intereses,Total")] Inversion inversion)
+        public async Task<IActionResult> Create([Bind("InversionId,ProyectoId,Id,TipoInversionesId,Cuota,Intereses,Total")] Inversion inversion)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +69,9 @@ namespace StartGrow.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", inversion.Id);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
+            ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", inversion.TipoInversionesId);
             return View(inversion);
         }
 
@@ -82,7 +88,9 @@ namespace StartGrow.Controllers
             {
                 return NotFound();
             }
+            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", inversion.Id);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
+            ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", inversion.TipoInversionesId);
             return View(inversion);
         }
 
@@ -91,7 +99,7 @@ namespace StartGrow.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InversionId,InversorId,ProyectoId,Cuota,Intereses,Total")] Inversion inversion)
+        public async Task<IActionResult> Edit(int id, [Bind("InversionId,ProyectoId,Id,TipoInversionesId,Cuota,Intereses,Total")] Inversion inversion)
         {
             if (id != inversion.InversionId)
             {
@@ -118,7 +126,9 @@ namespace StartGrow.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", inversion.Id);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
+            ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", inversion.TipoInversionesId);
             return View(inversion);
         }
 
@@ -131,7 +141,9 @@ namespace StartGrow.Controllers
             }
 
             var inversion = await _context.Inversion
+                .Include(i => i.ApplicationUser)
                 .Include(i => i.Proyecto)
+                .Include(i => i.TipoInversiones)
                 .SingleOrDefaultAsync(m => m.InversionId == id);
             if (inversion == null)
             {

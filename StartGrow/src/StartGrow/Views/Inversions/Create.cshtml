@@ -13,13 +13,16 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="InversorId" class="control-label"></label>
-                <input asp-for="InversorId" class="form-control" />
-                <span asp-validation-for="InversorId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="ProyectoId" class="control-label"></label>
                 <select asp-for="ProyectoId" class ="form-control" asp-items="ViewBag.ProyectoId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <select asp-for="Id" class ="form-control" asp-items="ViewBag.Id"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoInversionesId" class="control-label"></label>
+                <select asp-for="TipoInversionesId" class ="form-control" asp-items="ViewBag.TipoInversionesId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Cuota" class="control-label"></label>
