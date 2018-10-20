@@ -17,8 +17,8 @@
     </InheritanceLine>
     <AssociationLine Name="Inversiones" Type="StartGrow.Models.Inversion" FixedToPoint="true">
       <Path>
-        <Point X="5.5" Y="7.95" />
-        <Point X="7.25" Y="7.95" />
+        <Point X="5.5" Y="7.875" />
+        <Point X="7.25" Y="7.875" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Preferencias" Type="StartGrow.Models.Preferencias" FixedFromPoint="true" FixedToPoint="true">
@@ -90,8 +90,8 @@
     </AssociationLine>
     <AssociationLine Name="ApplicationUser" Type="StartGrow.Models.ApplicationUser" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="7.25" Y="7.293" />
-        <Point X="5.873" Y="7.293" />
+        <Point X="7.25" Y="7.27" />
+        <Point X="5.873" Y="7.27" />
         <Point X="5.873" Y="5.188" />
         <Point X="5.364" Y="5.188" Type="JumpStart" />
         <Point X="5.198" Y="5.188" Type="JumpEnd" />
@@ -110,7 +110,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAACAAAACAAIAAAQRAAAAAAAgACAQAgQAAACAAAAAAA=</HashCode>
+      <HashCode>AAACAAAACAAIAAAQQAAAAAAAgACAQAAQAAACAAAAAAA=</HashCode>
       <FileName>Inversion.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -316,12 +316,7 @@
         <Position X="0.078" Y="0.155" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="Inversion" Type="StartGrow.Models.Inversion" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="3" Y="12.188" />
-        <Point X="8.708" Y="12.188" />
-        <Point X="8.708" Y="9.642" />
-      </Path>
+    <AssociationLine Name="Inversion" Type="StartGrow.Models.Inversion">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-0.888" Y="0.187" />
       </MemberNameLabel>
