@@ -13,16 +13,35 @@ namespace StartGrow.Models.InversionRecuperadaViewModels
         public IEnumerable<Inversion> Inversiones { get; set; }
         public IList<int> IdsToAdd { get; set; }
 
-        //Utilizado para filtrar por Rating
+
+
+        //Utilizado para filtrar por AREA
+        public SelectList Areas;
+        [Display(Name = "Areas")]
+        public string inversionAreaSeleccionada { get; set; }
+
+        //Utilizado para filtrar por ESTADO
+        public SelectList Estados;
+        [Display(Name = "Estados")]
+        public string inversionEstadoSeleccionado { get; set; }
+
+
+        //Utilizado para filtrar por TIPO
+        public SelectList Tipos;
+        [Display(Name = "Tipo")]
+        public string inversionTipoSeleccionado { get; set; }
+
+
+        //Utilizado para filtrar por RATING
         public SelectList Ratings;
         [Display(Name = "Rating")]
         public string inversionRatingSeleccionado { get; set; }
-
-        //Utilizado para filtrar por el nombre de la inversión
-        [Display(Name = "Nombre")]
-        public string nombreInv{ get; set; }
-
-
+       
+        
+        
+        //Utilizado para filtrar por el ID de la inversión
+        [Display(Name = "ID")]
+        public int idInv{ get; set; }
         
     }
 }

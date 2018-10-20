@@ -26,42 +26,78 @@ namespace StartGrow.Controllers
 
 
         //SELECT (GET)
-        public IActionResult SelectInversionForRecuperarInversion(string nombreInversion, string sectorSeleccionado,
-            string estadoSeleccionado, string tipoSeleccionado, string ratingSeleccionado)
+        public IActionResult SelectInversionForRecuperarInversion(int idInv, string inversionAreaSeleccionada,
+            string inversionEstadoSeleccionado, string inversionTipoSeleccionado, string inversionRatingSeleccionado)
         {
-            //Creamos un objeto de tipo SelectInversionForRecuperarInversionViewModel usado para renderizar la vista SelectInversionForRecuperarInversion.
+            //Creamos un OBJETO de tipo SelectInversionForRecuperarInversionViewModel usado para renderizar la vista SelectInversionForRecuperarInversion.
             SelectInversionForRecuperarInversionViewModel selectInversiones = new SelectInversionForRecuperarInversionViewModel();
 
 
+            //Solo mostrará las inversiones que estén en estado FINALIZADO o EN CURSO
+            selectInversiones.Inversiones = _context.Inversion.Include(i => i.EstadosInversiones).
+                Where(i => i.EstadosInversiones.Equals("Finalizado") || i.EstadosInversiones.Equals("En_curso"));
+            //selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto).
+            // ThenInclude<Inversion, Proyecto, Rating>(p => p.Rating).Where(m => m.TipoInversiones.Equals(tipoSeleccionado));
+
+
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+            //******* FILTRAR POR ID *********
+            if (idInv != 0)
+                selectInversiones.Inversiones = selectInversiones.Inversiones.Where(id => id.InversionId == idInv);
+
+
+
+            //******* FILTRAR POR AREA *******
+
+            //Para que el desplegable ofrezca la lista de Estados que hay en la BD.
+            selectInversiones.Areas = new SelectList(_context.TiposInversiones.Select(a => a.Nombre).ToList());
+
+            //Utilizado si el usuario selecciona un Area en el desplegable. Al seleccionar dicha Area, 
+            //se añadirá al IEnumerable Inversiones todas las inversiones donde el Area sea el Area seleccionado.
+            if (inversionAreaSeleccionada != null)
+                selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.Proyecto.Areas.Nombre.Contains(inversionEstadoSeleccionado));
+
+
+
+            //******* FILTRAR POR ESTADO *******
+
+            //Para que el desplegable ofrezca la lista de Estados que hay en la BD.
+            selectInversiones.Estados = new SelectList(Enum.GetNames(typeof(StartGrow.Models.EstadosInversiones)));
+
+            //Utilizado si el usuario selecciona un Estado en el desplegable. Al seleccionar dicho Estado, 
+            //se añadirá al IEnumerable Inversiones todas las inversiones donde el Estado sea el Estado seleccionado.
+            if (inversionEstadoSeleccionado != null)       
+                selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.EstadosInversiones.Equals(inversionEstadoSeleccionado));
+            
+
+
+            //******* FILTRAR POR TIPO *******
+
+            //Para que el desplegable ofrezca la lista de TIPOS que hay en la BD.
+            selectInversiones.Tipos = new SelectList(_context.TiposInversiones.Select(t => t.Nombre).ToList());
+
+            //Utilizado si el usuario selecciona un Tipo en el desplegable. Al seleccionar dicho Tipo, 
+            //se añadirá al IEnumerable Inversiones todas las inversiones donde el Tipo sea el Tipo seleccionado.
+            if (inversionTipoSeleccionado != null)        
+                selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.TipoInversiones.Nombre.Contains(inversionTipoSeleccionado));
+           
+
 
             //******* FILTRAR POR RATING *******
-       
+
             //Para que el desplegable ofrezca la lista de Ratings que hay en la BD.
             selectInversiones.Ratings = new SelectList(_context.Rating.Select(r => r.Nombre).ToList());
 
-            //Utilizado si el usuario selecciona un género en el desplegable. Al seleccionar dicho género, 
+            //Utilizado si el usuario selecciona un Rating en el desplegable. Al seleccionar dicho Rating, 
             //se añadirá al IEnumerable Inversiones todas las inversiones donde el rating sea el rating seleccionado.
-            if (ratingSeleccionado != null)
-            {
-                selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.)
-            }
+            if (inversionRatingSeleccionado != null)        
+                selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.Proyecto.Rating.Nombre.Contains(inversionRatingSeleccionado));
 
+            //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-
-
-
-
-
-
-
-
-            selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto).
-                ThenInclude<Inversion, Proyecto, Rating>(p => p.Rating).Where(m => m.TipoInversiones.Equals(tipoSeleccionado));
-
-            //Utilizado si el usuario quiere buscar por título.
-            if (nombreInversion != null)
-                selectInversiones.Inversiones = selectInversiones.Inversiones.Where(m => m.InversionId.Equals(nombreInversion));
-          
+         
+            //En este punto ejecuta la consulta con los filtros que hemos establecido.
             selectInversiones.Inversiones.ToList();
             return View(selectInversiones);
         }
