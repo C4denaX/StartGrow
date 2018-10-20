@@ -389,10 +389,17 @@
     </ShowAsAssociation>
   </Class>
   <Enum Name="StartGrow.Models.Estados">
-    <Position X="1" Y="2.25" Width="1.5" />
+    <Position X="0.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Estados.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="StartGrow.Models.EstadosInversiones">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAACBAAAAA=</HashCode>
+      <FileName>EstadosInversiones.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />
