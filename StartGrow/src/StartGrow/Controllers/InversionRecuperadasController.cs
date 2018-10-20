@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StartGrow.Data;
 using StartGrow.Models;
+using StartGrow.Models.InversionRecuperadaViewModels;
 
 namespace StartGrow.Controllers
 {
@@ -19,8 +20,60 @@ namespace StartGrow.Controllers
             _context = context;
         }
 
-        // GET: InversionRecuperadas
-        public async Task<IActionResult> Index()
+
+
+
+
+
+        //SELECT (GET)
+        public IActionResult SelectInversionForRecuperarInversion(string nombreInversion, string sectorSeleccionado,
+            string estadoSeleccionado, string tipoSeleccionado, string ratingSeleccionado)
+        {
+            //Creamos un objeto de tipo SelectInversionForRecuperarInversionViewModel usado para renderizar la vista SelectInversionForRecuperarInversion.
+            SelectInversionForRecuperarInversionViewModel selectInversiones = new SelectInversionForRecuperarInversionViewModel();
+
+
+
+            //******* FILTRAR POR RATING *******
+       
+            //Para que el desplegable ofrezca la lista de Ratings que hay en la BD.
+            selectInversiones.Ratings = new SelectList(_context.Rating.Select(r => r.Nombre).ToList());
+
+            //Utilizado si el usuario selecciona un género en el desplegable. Al seleccionar dicho género, 
+            //se añadirá al IEnumerable Inversiones todas las inversiones donde el rating sea el rating seleccionado.
+            if (ratingSeleccionado != null)
+            {
+                selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.)
+            }
+
+
+
+
+
+
+
+
+
+
+            selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto).
+                ThenInclude<Inversion, Proyecto, Rating>(p => p.Rating).Where(m => m.TipoInversiones.Equals(tipoSeleccionado));
+
+            //Utilizado si el usuario quiere buscar por título.
+            if (nombreInversion != null)
+                selectInversiones.Inversiones = selectInversiones.Inversiones.Where(m => m.InversionId.Equals(nombreInversion));
+          
+            selectInversiones.Inversiones.ToList();
+            return View(selectInversiones);
+        }
+
+
+
+
+
+
+
+            // GET: InversionRecuperadas
+            public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.InversionRecuperada.Include(i => i.Inversion).Include(i => i.Monedero);
             return View(await applicationDbContext.ToListAsync());
