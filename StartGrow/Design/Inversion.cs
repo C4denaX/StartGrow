@@ -43,6 +43,12 @@ namespace StartGrow.Models
         }
 
         [Required]
+        [ForeignKey("EstadosInversionesID")]
+        public string EstadosInversionesID { get; set; }
+        public virtual EstadosInversiones EstadosInversiones { get; set; }
+
+
+        [Required]
         [ForeignKey("TipoInversionesId")]
         public virtual TiposInversiones TipoInversiones
         {
