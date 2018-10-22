@@ -10,14 +10,22 @@ namespace StartGrow.Models
     {
         [Key]
         public virtual int SolicitudID { get; set; }
+
+
         [Required]
         [ForeignKey("ProyectoID")]
         public virtual Proyecto Proyecto { get; set; }
+
+
         [Required]
         public virtual int Estado { get; set; }
+
+
         [DataType(DataType.Date)]
         [Required]
         public virtual DateTime FechaSolicitud { get; set; }
+
+
         [Required]
         [ForeignKey("Id")]
         public virtual ApplicationUser ApplicationUser
@@ -25,6 +33,8 @@ namespace StartGrow.Models
             get;
             set;
         }
+
+
         public virtual string Id
         {
             get;

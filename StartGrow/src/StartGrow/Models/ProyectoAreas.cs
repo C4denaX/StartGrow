@@ -18,13 +18,7 @@ namespace Design
             set;
         }
 
-        [Required]
-        [ForeignKey("ProyectoId")]
-        public virtual Proyecto Proyecto
-        {
-            get;
-            set;
-        }
+
         public virtual int ProyectoId
         {
             get;
@@ -32,16 +26,27 @@ namespace Design
         }
 
         [Required]
+        [ForeignKey("ProyectoId")]
+        public virtual Proyecto Proyecto
+        {
+            get;
+            set;
+        }
+
+
+
+        public virtual string AreasId
+        {
+            get;
+            set;
+        }
+        [Required]
         [ForeignKey("AreasId")]
         public virtual Areas Areas
         {
             get;
             set;
         }
-        public virtual string AreasId
-        {
-            get;
-            set;
-        }
+
     }
 }

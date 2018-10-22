@@ -16,6 +16,13 @@ namespace StartGrow.Models
             set;
         }
 
+
+
+        public virtual string Id
+        {
+            get;
+            set;
+        }
         [Required]
         [ForeignKey("Id")]
         public virtual ApplicationUser ApplicationUser
@@ -23,11 +30,7 @@ namespace StartGrow.Models
             get;
             set;
         }
-        public virtual string Id
-        {
-            get;
-            set;
-        }
+
 
         [Required]
         [DataType(DataType.Currency)]
