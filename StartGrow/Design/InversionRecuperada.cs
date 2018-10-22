@@ -20,14 +20,18 @@ namespace StartGrow.Models
         [Required]
         public virtual float CantidadRecuperada { get; set; }
 
+
+
+        public virtual int MonederoId { get; set; }
         [Required]
         [ForeignKey("MonederoId")]
         public virtual Monedero Monedero { get; set; }
-        public virtual int MonederoId { get; set; }
 
+
+        public virtual int InversionId { get; set; }
         [Required]
         [ForeignKey("InversionId")]
         public virtual Inversion Inversion { get; set; }
-        public virtual int InversionId { get; set; }
+
     }
 }

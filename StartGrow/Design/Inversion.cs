@@ -16,6 +16,13 @@ namespace StartGrow.Models
             set;
         }
 
+
+
+        public virtual int ProyectoId
+        {
+            get;
+            set;
+        }
         [Required]
         [ForeignKey("ProyectoId")]
         public virtual Proyecto Proyecto
@@ -23,12 +30,15 @@ namespace StartGrow.Models
             get;
             set;
         }
-        public virtual int ProyectoId
+
+
+
+
+        public virtual string Id
         {
             get;
             set;
         }
-
         [Required]
         [ForeignKey("Id")]
         public virtual ApplicationUser ApplicationUser
@@ -36,12 +46,9 @@ namespace StartGrow.Models
             get;
             set;
         }
-        public virtual string Id
-        {
-            get;
-            set;
-        }
 
+
+        public virtual string TipoInversionesId { get; set; }
         [Required]
         [ForeignKey("TipoInversionesId")]
         public virtual TiposInversiones TipoInversiones

@@ -16,49 +16,53 @@ namespace StartGrow.Models
             set;
         }
 
-        [ForeignKey("TiposInversionesID")]
+
         public string TiposInversionesID
         {
             get;
             set;
         }
+        [ForeignKey("TiposInversionesID")]
         public virtual TiposInversiones TiposInversiones
         {
             get;
             set;
         }
 
-        [ForeignKey("RatingID")]
+
         public string RatingID
         {
             get;
             set;
         }
+        [ForeignKey("RatingID")]
         public virtual Rating Rating
         {
             get;
             set;
         }
 
-        [ForeignKey("AreasID")]
+
         public string AreasID
         {
             get;
             set;
         }
+        [ForeignKey("AreasID")]
         public virtual Areas Areas
         {
             get;
             set;
         }
 
-        [Required]
-        [ForeignKey("Id")]
+
         public virtual ApplicationUser ApplicationUser
         {
             get;
             set;
         }
+        [Required]
+        [ForeignKey("Id")]
         public virtual string Id
         {
             get;
