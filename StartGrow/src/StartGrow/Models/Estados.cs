@@ -9,7 +9,5 @@ namespace StartGrow.Models
     {
         Aceptada,
         Rechazada
-
     }
 }
-
