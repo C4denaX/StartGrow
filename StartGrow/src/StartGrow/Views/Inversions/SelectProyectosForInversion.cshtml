@@ -1,0 +1,110 @@
+﻿@model StartGrow.Models.InversionViewModels.SelectProyectosForInversionViewModel;
+@{
+    ViewData["Title"] = "SelectProyectosForInversion";
+}
+<h2>Invertir</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-controller="Inversions" asp-action="SelectProyectosForInversion" method="get">
+    <p>
+        Name: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="SelectProyectosForInversion" method="post">
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-default">Cancel</a>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Areas
+            </th>
+            <th>
+                Tipos de Inversión
+            </th>
+            <th>
+                Inversion Minima
+            </th>
+            <th>
+                Plazo
+            </th>
+            <th>
+                Rating
+            </th>
+            <th>
+                Interés
+            </th>
+            <th>
+                Importe
+            </th>
+            <th>
+                Progreso
+            </th>
+            <th>
+                Nº Inversores
+            </th>
+            <th>
+                Fecha de Expiración
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Proyectos.Count() == 0)
+        {
+            <tr><td colspan="3">No hay Proyectos Disponibles</td></tr>
+        }
+        else
+        {
+            @foreach (var item in Model.Proyectos)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProyectoAreas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProyectoTiposInversiones)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MinInversion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plazo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RatingId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Interes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Importe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Progreso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumInversores)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaExpiracion)
+                </td>
+                <td>
+                    <input type="checkbox" name="IdsToAdd" value="@item.ProyectoId">
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
