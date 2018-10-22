@@ -30,20 +30,17 @@ namespace StartGrow.Models
         }
 
         [Required]
-        [ForeignKey("Id")]
+        [ForeignKey("ApplicationUserId")]
         public virtual ApplicationUser ApplicationUser
         {
             get;
             set;
         }
-        public virtual string Id
+        public virtual string ApplicationUserId
         {
             get;
             set;
         }
-
-
-
 
         [Required]
         [ForeignKey("TipoInversionesId")]
@@ -52,7 +49,7 @@ namespace StartGrow.Models
             get;
             set;
         }
-        public virtual string TipoInversionesId
+        public virtual int TipoInversionesId
         {
             get;
             set;
@@ -76,8 +73,5 @@ namespace StartGrow.Models
             get;
             set;
         }
-
-
-
     }
 }
