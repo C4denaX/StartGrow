@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace StartGrow.Models
+namespace Design
 {
     public class ProyectoTiposInversiones
     {
@@ -17,12 +17,6 @@ namespace StartGrow.Models
             set;
         }
 
-
-        public virtual int ProyectoId
-        {
-            get;
-            set;
-        }
         [Required]
         [ForeignKey("ProyectoId")]
         public virtual Proyecto Proyecto
@@ -30,14 +24,12 @@ namespace StartGrow.Models
             get;
             set;
         }
-
-
-
-        public virtual string TiposInversionesId
+        public virtual int ProyectoId
         {
             get;
             set;
         }
+
         [Required]
         [ForeignKey("TiposInversionesId")]
         public virtual TiposInversiones TiposInversiones
@@ -45,6 +37,10 @@ namespace StartGrow.Models
             get;
             set;
         }
-
+        public virtual string TiposInversionesId
+        {
+            get;
+            set;
+        }
     }
 }

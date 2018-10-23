@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using StartGrow.Models.InversionRecuperadaViewModels;
 
 namespace StartGrow.Controllers
 {
+    [Authorize(Roles = "Inversor")]
     public class InversionRecuperadasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -69,7 +71,6 @@ namespace StartGrow.Controllers
             //se añadirá al IEnumerable Inversiones todas las inversiones donde el Estado sea el Estado seleccionado.
             if (inversionEstadoSeleccionado != null)       
                 selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.EstadosInversiones.Equals(inversionEstadoSeleccionado));
-            
 
 
             //******* FILTRAR POR TIPO *******
@@ -78,6 +79,7 @@ namespace StartGrow.Controllers
             selectInversiones.Tipos = new SelectList(_context.TiposInversiones.Select(t => t.Nombre).ToList());
 
             //Utilizado si el usuario selecciona un Tipo en el desplegable. Al seleccionar dicho Tipo, 
+            
             //se añadirá al IEnumerable Inversiones todas las inversiones donde el Tipo sea el Tipo seleccionado.
             if (inversionTipoSeleccionado != null)        
                 selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.TipoInversiones.Nombre.Contains(inversionTipoSeleccionado));

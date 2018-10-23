@@ -64,7 +64,7 @@ namespace StartGrow.Models
         [Required]
         [StringLength(25, MinimumLength = 3, ErrorMessage = "El Municipio del Domicilio Social no puede tener mas de 25 caracteres")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z'']*$")]
-        public virtual string MunicipioDelDomicilioSocial
+        public virtual string MunucipioDelDomicilioSocial
         {
             get;
             set;

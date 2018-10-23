@@ -35,26 +35,25 @@ namespace StartGrow.Models
             set;
         }
 
-
+        [ForeignKey("AreasID")]
         public string AreasID
         {
             get;
             set;
         }
-        [ForeignKey("AreasID")]
+
         public virtual StartGrow.Models.TiposInversiones Areas
         {
             get;
             set;
         }
 
-
+        [ForeignKey("RatingID")]
         public string RatingID
         {
             get;
             set;
         }
-        [ForeignKey("RatingID")]
         public virtual Rating Rating
         {
             get;
