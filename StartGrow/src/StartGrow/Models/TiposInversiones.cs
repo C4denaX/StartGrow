@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Design;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace StartGrow.Models
     public class TiposInversiones
     {
         [Key]
-        public virtual int TiposInversionesId
+        public virtual string TiposInversionesID
         {
             get;
             set;
@@ -39,5 +40,8 @@ namespace StartGrow.Models
             get;
             set;
         }
+
+
+
     }
 }

@@ -10,58 +10,24 @@ namespace StartGrow.Models
     public class InversionRecuperada
     {
         [Key]
-        public virtual int InversionRecuperadaId
-        {
-            get;
-            set;
-        }
-
-        [Required]
-        [ForeignKey("MonederoId")]
-        public virtual Monedero Monedero
-        {
-            get;
-            set;
-        }
-        public virtual int MonederoId
-        {
-            get;
-            set;
-        }
-
-        [Required]
-        [ForeignKey("InversionId")]
-        public virtual Inversion Inversion
-        {
-            get;
-            set;
-        }
-        public virtual int InversionId
-        {
-            get;
-            set;
-        }
+        public virtual int InversionRecuperadaId { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        public virtual DateTime FechaRecuperacion
-        {
-            get;
-            set;
-        }
+        public virtual DateTime FechaRecuperacion { get; set; }
         [Required]
-        public virtual string Comentario
-        {
-            get;
-            set;
-        }
+        public virtual string Comentario { get; set; }
         [Required]
-        public virtual float CantidadRecuperada
-        {
-            get;
-            set;
-        }
+        public virtual float CantidadRecuperada { get; set; }
 
+        [Required]
+        [ForeignKey("MonederoId")]
+        public virtual Monedero Monedero { get; set; }
+        public virtual int MonederoId { get; set; }
 
+        [Required]
+        [ForeignKey("InversionId")]
+        public virtual Inversion Inversion { get; set; }
+        public virtual int InversionId { get; set; }
     }
 }

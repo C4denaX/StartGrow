@@ -17,13 +17,13 @@ namespace StartGrow.Models
         }
 
         [Required]
-        [ForeignKey("ApplicationUserId")]
+        [ForeignKey("Id")]
         public virtual ApplicationUser ApplicationUser
         {
             get;
             set;
         }
-        public virtual string ApplicationUserId
+        public virtual string Id
         {
             get;
             set;

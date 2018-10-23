@@ -58,7 +58,7 @@ namespace StartGrow.Controllers
             //Utilizado si el usuario selecciona un Area en el desplegable. Al seleccionar dicha Area, 
             //se añadirá al IEnumerable Inversiones todas las inversiones donde el Area sea el Area seleccionado.
             if (inversionAreaSeleccionada != null)
-                selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.Proyecto.Areas.Nombre.Contains(inversionEstadoSeleccionado));
+                selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.Proyecto.ProyectoAreas.Any(p => p.Areas.Nombre.Contains(inversionAreaSeleccionada)));
 
 
 

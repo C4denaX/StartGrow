@@ -9,7 +9,7 @@ namespace StartGrow.Models
     public class Areas
     {
         [Key]
-        public virtual int AreasId
+        public virtual string AreasID
         {
             get;
             set;
