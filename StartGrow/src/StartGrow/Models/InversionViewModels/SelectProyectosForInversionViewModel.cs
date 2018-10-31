@@ -14,15 +14,18 @@ namespace StartGrow.Models.InversionViewModels
 
         //Utilizado para filtrar por Areas
         [Display(Name = "Areas")]
-        public SelectList Areas;
+        public string[] areas {get; set;}
+        public IEnumerable <Areas> Areas { get; set; }
         
         //Utilizado para filtrar por Rating
         [Display(Name = "Rating")]
-        public SelectList Rating;
+        public string[] rating { get; set; }
+        public IEnumerable<Rating> Rating{ get; set; }
 
         //Utilizado para filtrar por TiposInversiones
         [Display(Name = "TiposInversiones")]
-        public SelectList TiposInversiones;
+        public string [] ids_tiposInversiones { get; set; }
+        public IEnumerable<TiposInversiones> TiposInversiones { get; set; }
         
 
         public IList<int> IdsToAdd { get; set; }

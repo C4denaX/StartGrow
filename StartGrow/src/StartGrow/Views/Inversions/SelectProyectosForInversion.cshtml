@@ -7,8 +7,24 @@
 
 <form asp-controller="Inversions" asp-action="SelectProyectosForInversion" method="get">
     <p>
-        Name: <input type="text" name="SearchString">
-        <input type="submit" value="Filter" />
+
+        @* Filtrar tipo de inversión *@
+        <label asp-for="TiposInversiones"> </label>
+
+        <div class="col-md-10 input-box">
+            <div class="form-control">
+                @{ 
+                    foreach (var item in Model.TiposInversiones)
+                    {
+                        <input type ="checkbox" name= "ids_tiposInversiones" value= "@item.Nombre" />
+                        @item.Nombre
+                    }
+                }
+
+            </div>
+
+        </div>
+                
     </p>
 </form>
 
@@ -72,10 +88,16 @@
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProyectoAreas)
+                    @foreach (var item2 in item.ProyectoAreas)
+                    {
+                        @Html.DisplayFor(modelItem => item2.Areas.Nombre)
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProyectoTiposInversiones)
+                    @foreach (var item3 in item.ProyectoTiposInversiones)
+                    {
+                        @Html.DisplayFor(modelItem => item3.TiposInversiones.Nombre) <br />
+                    }                    
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MinInversion)
@@ -84,10 +106,10 @@
                     @Html.DisplayFor(modelItem => item.Plazo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RatingId)
+                    @Html.DisplayFor(modelItem => item.Rating.Nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Interes)
+                    @Html.DisplayFor(modelItem => item.Interes)%                   
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Importe)

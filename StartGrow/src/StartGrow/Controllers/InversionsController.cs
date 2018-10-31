@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +12,9 @@ using StartGrow.Models.InversionViewModels;
 
 namespace StartGrow.Controllers
 {
+    //[Authorize (Roles = "Trabajador, Inversor")]
     public class InversionsController : Controller
-    {
+    {        
         private readonly ApplicationDbContext _context;
 
         public InversionsController(ApplicationDbContext context)
@@ -21,14 +23,26 @@ namespace StartGrow.Controllers
         }
 
         //GET : SELECT
-        public IActionResult SelectProyectosForInversion(string areaSeleccionada, string inverminSeleccionada, string ratingSeleccionado, float interesSeleccionado)
+        public IActionResult SelectProyectosForInversion(string[] ids_tiposInversiones)
         {
             SelectProyectosForInversionViewModel selectProyectos = new SelectProyectosForInversionViewModel();
 
-            selectProyectos.Proyectos = _context.Proyecto.Include(p => p.ProyectoAreas).ThenInclude<Proyecto, ProyectoAreas, Areas>(p => p.Areas);
-            //selectProyectos.Proyectos = _context.Proyecto.Include
+            selectProyectos.Proyectos = _context.Proyecto.Include(p => p.ProyectoAreas).ThenInclude<Proyecto, ProyectoAreas, Areas>(p => p.Areas).
+                Include(p => p.ProyectoTiposInversiones).ThenInclude<Proyecto, ProyectoTiposInversiones, TiposInversiones>(p => p.TiposInversiones).
+                Include (p => p.Rating);
+
+            selectProyectos.TiposInversiones = _context.TiposInversiones;
+
+            if (ids_tiposInversiones.Length != 0)
+            {
+                foreach (var i in ids_tiposInversiones)
+                {
+                    selectProyectos.Proyectos = selectProyectos.Proyectos.Where(p => p.ProyectoTiposInversiones.Any(t1 => t1.TiposInversiones.Nombre.Contains(i)));
+                }                                
+            }
 
             selectProyectos.Proyectos.ToList();
+            selectProyectos.TiposInversiones.ToList();
             return View(selectProyectos);
         }
 
@@ -37,7 +51,6 @@ namespace StartGrow.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SelectProyectosForInversion(SelectProyectosForInversionViewModel selectedProyectos)
         {            
-
             if (selectedProyectos.IdsToAdd != null)
             {
                 return RedirectToAction("Create", selectedProyectos);
