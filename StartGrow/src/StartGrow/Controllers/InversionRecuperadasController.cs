@@ -104,7 +104,7 @@ namespace StartGrow.Controllers
             return View(selectInversiones);
         }
 
-
+ 
 
         //SELECT (POST)
         [HttpPost]
