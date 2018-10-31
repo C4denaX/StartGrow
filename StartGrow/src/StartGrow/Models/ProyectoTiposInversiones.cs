@@ -1,17 +1,16 @@
-﻿using StartGrow.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace Design
+namespace StartGrow.Models
 {
     public class ProyectoTiposInversiones
     {
         [Key]
-        public virtual int ID
+        public virtual int ProyectoTiposInversionesId
         {
             get;
             set;
@@ -37,7 +36,7 @@ namespace Design
             get;
             set;
         }
-        public virtual string TiposInversionesId
+        public virtual int TiposInversionesId
         {
             get;
             set;

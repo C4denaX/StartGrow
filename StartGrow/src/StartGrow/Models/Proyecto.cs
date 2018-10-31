@@ -1,5 +1,4 @@
-﻿using Design;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -35,32 +34,18 @@ namespace StartGrow.Models
             set;
         }
 
-        [ForeignKey("AreasID")]
-        public string AreasID
-        {
-            get;
-            set;
-        }
-
-        public virtual StartGrow.Models.TiposInversiones Areas
-        {
-            get;
-            set;
-        }
-
-        [ForeignKey("RatingID")]
-        public string RatingID
-        {
-            get;
-            set;
-        }
+        
+        [ForeignKey("RatingId")]
         public virtual Rating Rating
         {
             get;
             set;
         }
-
-
+        public int? RatingId
+        {
+            get;
+            set;
+        }
 
         [Required]
         public virtual String Nombre
@@ -76,15 +61,15 @@ namespace StartGrow.Models
             set;
         }
 
-        [Required]
-        public virtual int Plazo
+    
+        public virtual int? Plazo
         {
             get;
             set;
         }
 
-        [Required]
-        public virtual float Interes
+     
+        public virtual float? Interes
         {
             get;
             set;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Design;
+
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StartGrow.Models;
@@ -12,7 +12,7 @@ namespace StartGrow.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Areas> Areas { get; set; }
-        public DbSet<Empresa> Empresa { get; set; }        
+        public DbSet<Empresa> Empresa { get; set; }
         public DbSet<Inversion> Inversion { get; set; }
         public DbSet<InversionRecuperada> InversionRecuperada { get; set; }
         public DbSet<Inversor> Inversor { get; set; }
@@ -25,8 +25,8 @@ namespace StartGrow.Data
         public DbSet<Rating> Rating { get; set; }
         public DbSet<Solicitud> Solicitud { get; set; }
         public DbSet<TiposInversiones> TiposInversiones { get; set; }
-        public DbSet<Trabajador> Trabajador { get; set; }        
-        
+        public DbSet<Trabajador> Trabajador { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -35,9 +35,7 @@ namespace StartGrow.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+           
         }
     }
 }

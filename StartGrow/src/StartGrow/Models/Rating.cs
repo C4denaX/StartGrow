@@ -9,7 +9,7 @@ namespace StartGrow.Models
     public class Rating
     {
         [Key]
-        public virtual string RatingID
+        public virtual int RatingId
         {
             get;
             set;
@@ -35,4 +35,3 @@ namespace StartGrow.Models
         }
     }
 }
-
