@@ -54,7 +54,7 @@ namespace StartGrow.Models
             get;
             set;
         }
-
+        
         [Required]
         [ForeignKey("ApplicationUserId")]
         public virtual ApplicationUser ApplicationUser
