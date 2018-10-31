@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Design", "Design\Design.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StartGrow", "src\StartGrow\StartGrow.csproj", "{8DF9EE6D-B76D-49D2-9EA1-2ABF34B5809C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1A9EB17A-D897-46F7-B6F9-78D8C5DA318E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartGrow.UT", "test\StartGrow.UT\StartGrow.UT.csproj", "{64ECD19D-B546-433E-9FF6-55514CA2E216}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,11 +25,18 @@ Global
 		{8DF9EE6D-B76D-49D2-9EA1-2ABF34B5809C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DF9EE6D-B76D-49D2-9EA1-2ABF34B5809C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DF9EE6D-B76D-49D2-9EA1-2ABF34B5809C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64ECD19D-B546-433E-9FF6-55514CA2E216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64ECD19D-B546-433E-9FF6-55514CA2E216}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64ECD19D-B546-433E-9FF6-55514CA2E216}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64ECD19D-B546-433E-9FF6-55514CA2E216}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E21E4F33-2EC0-431C-A773-F3B77B546282}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{64ECD19D-B546-433E-9FF6-55514CA2E216} = {1A9EB17A-D897-46F7-B6F9-78D8C5DA318E}
 	EndGlobalSection
 EndGlobal
