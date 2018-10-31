@@ -49,6 +49,10 @@ namespace StartGrow.Models
             get;
             set;
         }
+
+        [Required]
+        public virtual string EstadosInversiones { get; set; }
+
         public virtual string TipoInversionesId
         {
             get;

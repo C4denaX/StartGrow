@@ -129,7 +129,9 @@
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Areas.cs" />
     <Compile Include="Empresa.cs" />
+    <Compile Include="ErrorViewModel.cs" />
     <Compile Include="Estados.cs" />
+    <Compile Include="EstadosInversiones.cs" />
     <Compile Include="Inversion.cs" />
     <Compile Include="InversionRecuperada.cs" />
     <Compile Include="Inversor.cs" />

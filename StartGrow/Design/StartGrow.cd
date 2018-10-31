@@ -17,8 +17,8 @@
     </InheritanceLine>
     <AssociationLine Name="Inversiones" Type="StartGrow.Models.Inversion" FixedToPoint="true">
       <Path>
-        <Point X="5.5" Y="7.812" />
-        <Point X="7.25" Y="7.812" />
+        <Point X="5.5" Y="7.881" />
+        <Point X="7.25" Y="7.881" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Preferencias" Type="StartGrow.Models.Preferencias" FixedFromPoint="true" FixedToPoint="true">
@@ -90,8 +90,8 @@
     </AssociationLine>
     <AssociationLine Name="ApplicationUser" Type="StartGrow.Models.ApplicationUser" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="7.25" Y="7.25" />
-        <Point X="5.873" Y="7.25" />
+        <Point X="7.25" Y="7.271" />
+        <Point X="5.873" Y="7.271" />
         <Point X="5.873" Y="5.188" />
         <Point X="5.364" Y="5.188" Type="JumpStart" />
         <Point X="5.198" Y="5.188" Type="JumpEnd" />
@@ -101,8 +101,6 @@
     <AssociationLine Name="TipoInversiones" Type="StartGrow.Models.TiposInversiones" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="7.438" Y="7" />
-        <Point X="7.438" Y="6.625" />
-        <Point X="7.438" Y="6.625" />
         <Point X="7.438" Y="4.046" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
@@ -110,7 +108,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAACAAAACAAIAAAQQAAAAAAAgACAQAAQAAACAAAAAAA=</HashCode>
+      <HashCode>AAACAAAACAAIAAAQQAAAAAAAgACAQAgQAAACAAAAAAA=</HashCode>
       <FileName>Inversion.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -322,14 +320,9 @@
         <Position X="0.078" Y="0.155" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="Inversion" Type="StartGrow.Models.Inversion" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="3" Y="12.188" />
-        <Point X="8.5" Y="12.188" />
-        <Point X="8.5" Y="9.257" />
-      </Path>
+    <AssociationLine Name="Inversion" Type="StartGrow.Models.Inversion">
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-0.888" Y="0.187" />
+        <Position X="-0.002" Y="0.151" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -395,10 +388,17 @@
     </ShowAsAssociation>
   </Class>
   <Enum Name="StartGrow.Models.Estados">
-    <Position X="1" Y="2.25" Width="1.5" />
+    <Position X="1" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Estados.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="StartGrow.Models.EstadosInversiones">
+    <Position X="1" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAACBAAAAA=</HashCode>
+      <FileName>EstadosInversiones.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

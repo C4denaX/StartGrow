@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace StartGrow.Migrations
 {
-    public partial class createDatabase : Migration
+    public partial class createdatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -322,6 +322,7 @@ namespace StartGrow.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Cuota = table.Column<float>(type: "real", nullable: false),
+                    EstadosInversiones = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Intereses = table.Column<float>(type: "real", nullable: false),
                     InversorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ProyectoId = table.Column<int>(type: "int", nullable: false),

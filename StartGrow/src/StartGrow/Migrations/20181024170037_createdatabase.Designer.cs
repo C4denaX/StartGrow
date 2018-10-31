@@ -12,8 +12,8 @@ using System;
 namespace StartGrow.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181023165534_createDatabase")]
-    partial class createDatabase
+    [Migration("20181024170037_createdatabase")]
+    partial class createdatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -246,6 +246,9 @@ namespace StartGrow.Migrations
                         .IsRequired();
 
                     b.Property<float>("Cuota");
+
+                    b.Property<string>("EstadosInversiones")
+                        .IsRequired();
 
                     b.Property<float>("Intereses");
 

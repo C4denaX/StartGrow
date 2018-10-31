@@ -16,6 +16,7 @@ namespace StartGrow.Models
             set;
         }
 
+
         [ForeignKey("TiposInversionesID")]
         public string TiposInversionesID
         {

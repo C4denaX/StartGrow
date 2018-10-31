@@ -41,4 +41,3 @@ namespace StartGrow.Models
         }
     }
 }
-

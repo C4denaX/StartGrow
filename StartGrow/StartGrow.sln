@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Design", "Design\Design.csproj", "{248B341C-5CFB-49FC-A7BF-945825ACF77C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartGrow", "src\StartGrow\StartGrow.csproj", "{8DF9EE6D-B76D-49D2-9EA1-2ABF34B5809C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StartGrow", "src\StartGrow\StartGrow.csproj", "{8DF9EE6D-B76D-49D2-9EA1-2ABF34B5809C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
