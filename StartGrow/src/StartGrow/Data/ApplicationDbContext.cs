@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StartGrow.Models;
-using Design;
 
 namespace StartGrow.Data
 {
@@ -29,8 +26,6 @@ namespace StartGrow.Data
         public DbSet<Solicitud> Solicitud { get; set; }
         public DbSet<TiposInversiones> TiposInversiones { get; set; }
         public DbSet<Trabajador> Trabajador { get; set; }
-      
-
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

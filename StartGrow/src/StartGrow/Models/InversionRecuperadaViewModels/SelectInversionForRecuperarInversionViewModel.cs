@@ -11,7 +11,7 @@ namespace StartGrow.Models.InversionRecuperadaViewModels
     {
         //Lista de Inversiones
         public IEnumerable<Inversion> Inversiones { get; set; }
-        public IList<int> IdsToAdd { get; set; }
+       
 
 
 

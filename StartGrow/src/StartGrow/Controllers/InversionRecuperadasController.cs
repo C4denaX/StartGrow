@@ -12,7 +12,7 @@ using StartGrow.Models.InversionRecuperadaViewModels;
 
 namespace StartGrow.Controllers
 {
-    [Authorize(Roles = "Inversor")]
+    //[Authorize(Roles = "Inversor")]
     public class InversionRecuperadasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -28,7 +28,7 @@ namespace StartGrow.Controllers
 
 
         //SELECT (GET)
-        public IActionResult SelectInversionForRecuperarInversion(int idInv, string inversionAreaSeleccionada,
+        public IActionResult SelectInversionForRecuperarInversion(int? idInv, string inversionAreaSeleccionada,
             string inversionEstadoSeleccionado, string inversionTipoSeleccionado, string inversionRatingSeleccionado)
         {
             //Creamos un OBJETO de tipo SelectInversionForRecuperarInversionViewModel usado para renderizar la vista SelectInversionForRecuperarInversion.
@@ -36,10 +36,10 @@ namespace StartGrow.Controllers
 
 
             //Solo mostrará las inversiones que estén en estado FINALIZADO o EN CURSO
-            selectInversiones.Inversiones = _context.Inversion.Include(i => i.EstadosInversiones).
-                Where(i => i.EstadosInversiones.Equals("Finalizado") || i.EstadosInversiones.Equals("En_curso"));
-            //selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto).
-            // ThenInclude<Inversion, Proyecto, Rating>(p => p.Rating).Where(m => m.TipoInversiones.Equals(tipoSeleccionado));
+            //selectInversiones.Inversiones = _context.Inversion.Include(i => i.EstadosInversiones).
+            //  Where(i => i.EstadosInversiones.Equals("Finalizado") || i.EstadosInversiones.Equals("En_curso"));
+            selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto).
+             ThenInclude<Inversion, Proyecto, Rating>(p => p.Rating).Where(m => m.EstadosInversiones.Equals(EstadosInversiones.En_curso)).Where(m => m.EstadosInversiones.Equals(EstadosInversiones.Finalizado));
 
 
             //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -53,7 +53,7 @@ namespace StartGrow.Controllers
             //******* FILTRAR POR AREA *******
 
             //Para que el desplegable ofrezca la lista de Estados que hay en la BD.
-            selectInversiones.Areas = new SelectList(_context.TiposInversiones.Select(a => a.Nombre).ToList());
+            selectInversiones.Areas = new SelectList(_context.Areas.Select(a => a.Nombre).ToList());
 
             //Utilizado si el usuario selecciona un Area en el desplegable. Al seleccionar dicha Area, 
             //se añadirá al IEnumerable Inversiones todas las inversiones donde el Area sea el Area seleccionado.
@@ -97,7 +97,7 @@ namespace StartGrow.Controllers
                 selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.Proyecto.Rating.Nombre.Contains(inversionRatingSeleccionado));
 
             //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+            
          
             //En este punto ejecuta la consulta con los filtros que hemos establecido.
             selectInversiones.Inversiones.ToList();
@@ -106,12 +106,40 @@ namespace StartGrow.Controllers
 
 
 
+        //SELECT (POST)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SelectInversionForRecuperarInversion(SelectedInversionForRecuperarInversionViewModel selectedInversiones)
+        {
+            if (selectedInversiones.IdsToAdd != null)
+            {
+                return RedirectToAction("Create", selectedInversiones);
+            }
+
+            //Se mostrará un mensaje de error al usuario para indicar que seleccione alguna inversión.
+            ModelState.AddModelError(string.Empty, "Debes seleccionar al menos una inversión");
+            SelectInversionForRecuperarInversionViewModel selectInversiones = new SelectInversionForRecuperarInversionViewModel();
+            selectInversiones.Areas = new SelectList(_context.Areas.Select(a => a.Nombre).ToList());
+            selectInversiones.Estados = new SelectList(Enum.GetNames(typeof(StartGrow.Models.EstadosInversiones)));
+            selectInversiones.Tipos = new SelectList(_context.TiposInversiones.Select(t => t.Nombre).ToList());
+            selectInversiones.Ratings = new SelectList(_context.Rating.Select(r => r.Nombre).ToList());
+
+           // selectInversiones.Inversiones = _context.Inversion.Include(m => m.EstadosInversiones).Include(m => m.TipoInversiones).
+               // Include(m => m.Proyecto).ThenInclude<Inversion, Proyecto, Rating>(p => p.Rating).
+               // Include(m => m.Proyecto).ThenInclude<Inversion, Proyecto, ProyectoAreas>(p => p.ProyectoAreas).Include
+
+
+                selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto).
+             ThenInclude<Inversion, Proyecto, Rating>(p => p.Rating).Where(m => m.EstadosInversiones.Equals(EstadosInversiones.En_curso)).Where(m => m.EstadosInversiones.Equals(EstadosInversiones.Finalizado));
+
+            return View(selectInversiones);
+        }
 
 
 
 
-            // GET: InversionRecuperadas
-            public async Task<IActionResult> Index()
+        // GET: InversionRecuperadas
+        public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.InversionRecuperada.Include(i => i.Inversion).Include(i => i.Monedero);
             return View(await applicationDbContext.ToListAsync());
