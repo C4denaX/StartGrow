@@ -11,7 +11,7 @@ using StartGrow.Models.SolicitudViewModels;
 
 namespace StartGrow.Controllers
 {
-    public class SolicitudesController : Controller
+    public class SolicitudesController : Controller 
     {
         private readonly ApplicationDbContext _context;
 
