@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StartGrow.Models.InversionRecuperadaViewModels
 {
     public class SelectedInversionForRecuperarInversionViewModel
-    {
+    { 
   public string[] IdsToAdd { get; set; }        
     }
 }

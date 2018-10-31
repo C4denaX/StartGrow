@@ -19,7 +19,7 @@ namespace StartGrow.Models.InversionRecuperadaViewModels
         public SelectList Areas;
         [Display(Name = "Areas")]
         public string inversionAreaSeleccionada { get; set; }
-
+         
         //Utilizado para filtrar por ESTADO
         public SelectList Estados;
         [Display(Name = "Estados")]
