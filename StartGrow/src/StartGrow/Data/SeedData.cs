@@ -70,7 +70,7 @@ namespace StartGrow.Data
                 user.UserName = "gregorio@uclm.com";
                 user.Email = "gregorio@uclm.com";
                 user.Nombre = "Gregorio";
-                user.Apellido1= "Diaz";
+                 user.Apellido1= "Diaz";
                 user.Apellido2 = "Descalzo";
 
                 IdentityResult result = userManager.CreateAsync(user, "APassword1234%").Result;

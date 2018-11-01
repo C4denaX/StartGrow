@@ -8,41 +8,59 @@
 <form asp-controller="Solicitudes" asp-action="SelectProyectosForSolicitud"
       method="get">
     <p>
-        @* Filtrado del nombre          *@
-        <label asp-for="nombreProyecto"></label>
-        <input asp-for="nombreProyecto" size="50" />
-        <span asp-validation-for="nombreProyecto" class="text-danger"></span>
-        @*Filtrado del tipo*@
-        <label asp-for="tipoSeleccionado"></label>
+        <table class="table">
+            <tr>
+                <td>
+                
+                    <label asp-for="nombreProyecto"></label>
+                    <input asp-for="nombreProyecto" size="30" />
+                    <span asp-validation-for="nombreProyecto" class="text-danger"></span>
+                </td>
 
-        <div class="col-md-10 input-box">
-            <div class="form-control">
-                @{
-                  
-                    foreach (var item in Model.Tipos)
-                    {
-                        <input type="checkbox" name="tipoSeleccionado" value="@item.Nombre" />
-                        @item.Nombre
-                      
-                    }
-                }
+                <td>
+                    <label asp-for="tipoSeleccionado"></label>
 
-            </div>
-        </div>
-            @*Filtrado del area*@
-            <label asp-for="areasSeleccionada"></label>
-            <select asp-for="areasSeleccionada" asp-items="Model.areas">
-                <option value="">All</option>
-            </select>
+                    <div class="">
+                        <div class="">
+                            @{
 
-            @*Filtrado por fecha*@
-            <label asp-for="fecha"></label>
-            <input asp-for="fecha" size="25" type="date" />
+                                foreach (var item in Model.Tipos)
+                                {
+                                    <input type="checkbox" name="tipoSeleccionado" value="@item.Nombre" />
+                                    @item.Nombre
+                                    <br />
 
-            @*Filtrado por Capital*@
-            <label asp-for="capital"></label>
-            <input asp-for="capital" size="25" type="number" />
+                                }
+                            }
 
+                        </div>
+                    </div>
+
+
+
+                </td>
+                <td>
+                    @*Filtrado del area*@
+                    <label asp-for="areasSeleccionada"></label>
+                    <select asp-for="areasSeleccionada" asp-items="Model.areas">
+                        <option value="">All</option>
+                    </select>
+                </td>
+                <td>
+                    @*Filtrado por fecha*@
+                    <label asp-for="fecha"></label>
+                    <input asp-for="fecha" size="25" type="date" />
+                </td>
+                <td>
+                    @*Filtrado por Capital*@
+                    <label asp-for="capital"></label>
+                    <input asp-for="capital" size="25" type="number" />
+                </td>
+                
+            </tr>
+        </table>
+
+           
 
 
 
