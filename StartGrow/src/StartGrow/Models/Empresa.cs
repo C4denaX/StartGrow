@@ -37,7 +37,7 @@ namespace StartGrow.Models
 
         [Required]
         [StringLength(9, ErrorMessage = "El CIF no puede tener mas de 9 caracteres")]
-        public virtual int CIF
+        public virtual string CIF
         {
             get;
             set;

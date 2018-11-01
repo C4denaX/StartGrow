@@ -11,23 +11,23 @@ namespace StartGrow.Models.InversionViewModels
     {
         //Lista de Proyectos
         public IEnumerable <Proyecto> Proyectos { get; set; }
+        // Lista de Preferencias seleccionadas por el Inversor
+        public IEnumerable <Preferencias> Preferencias { get; set; }
 
         //Utilizado para filtrar por Areas
         [Display(Name = "Areas")]
-        public string[] areas {get; set;}
-        public IEnumerable <Areas> Areas { get; set; }
-        
+        public string[] ids_areas {get; set;}
+        public IEnumerable <Areas> Areas { get; set; }        
+
         //Utilizado para filtrar por Rating
         [Display(Name = "Rating")]
-        public string[] rating { get; set; }
-        public IEnumerable<Rating> Rating{ get; set; }
+        public string[] ids_rating { get; set; }
+        public IEnumerable <Rating> Rating{ get; set; }
 
         //Utilizado para filtrar por TiposInversiones
         [Display(Name = "TiposInversiones")]
         public string [] ids_tiposInversiones { get; set; }
         public IEnumerable<TiposInversiones> TiposInversiones { get; set; }
-        
-
-        public IList<int> IdsToAdd { get; set; }
+               
     }
 }

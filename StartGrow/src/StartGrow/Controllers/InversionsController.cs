@@ -29,7 +29,11 @@ namespace StartGrow.Controllers
 
             selectProyectos.Proyectos = _context.Proyecto.Include(p => p.ProyectoAreas).ThenInclude<Proyecto, ProyectoAreas, Areas>(p => p.Areas).
                 Include(p => p.ProyectoTiposInversiones).ThenInclude<Proyecto, ProyectoTiposInversiones, TiposInversiones>(p => p.TiposInversiones).
-                Include (p => p.Rating);
+                Include(p => p.Rating);
+
+            selectProyectos.Preferencias = _context.Preferencias.Include(p => p.Areas);
+            selectProyectos.Preferencias = _context.Preferencias.Include(p => p.Rating);
+            selectProyectos.Preferencias = _context.Preferencias.Include(p => p.TiposInversiones);
 
             selectProyectos.TiposInversiones = _context.TiposInversiones;
 
@@ -41,7 +45,7 @@ namespace StartGrow.Controllers
                 }                                
             }
 
-            selectProyectos.Proyectos.ToList();
+            selectProyectos.Proyectos.ToList();            
             selectProyectos.TiposInversiones.ToList();
             return View(selectProyectos);
         }
@@ -49,7 +53,7 @@ namespace StartGrow.Controllers
         //POST: SELECT
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SelectProyectosForInversion(SelectProyectosForInversionViewModel selectedProyectos)
+        public IActionResult SelectProyectosForInversion(SelectedProyectosForInversionViewModel selectedProyectos)
         {            
             if (selectedProyectos.IdsToAdd != null)
             {
@@ -71,7 +75,7 @@ namespace StartGrow.Controllers
         // GET: Inversions
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Inversion.Include(i => i.ApplicationUser).Include(i => i.Proyecto).Include(i => i.TipoInversiones);
+            var applicationDbContext = _context.Inversion.Include(i => i.Inversor).Include(i => i.Proyecto).Include(i => i.TipoInversiones);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -84,7 +88,7 @@ namespace StartGrow.Controllers
             }
 
             var inversion = await _context.Inversion
-                .Include(i => i.ApplicationUser)
+                .Include(i => i.Inversor)
                 .Include(i => i.Proyecto)
                 .Include(i => i.TipoInversiones)
                 .SingleOrDefaultAsync(m => m.InversionId == id);
@@ -118,7 +122,7 @@ namespace StartGrow.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id", inversion.ApplicationUserId);
+            ViewData["InversorId"] = new SelectList(_context.Users, "Id", "Id", inversion.InversorId);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
             ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesId", "Nombre", inversion.TipoInversionesId);
             return View(inversion);
@@ -137,7 +141,7 @@ namespace StartGrow.Controllers
             {
                 return NotFound();
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id", inversion.ApplicationUserId);
+            ViewData["InversorId"] = new SelectList(_context.Users, "Id", "Id", inversion.InversorId);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
             ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesId", "Nombre", inversion.TipoInversionesId);
             return View(inversion);
@@ -175,7 +179,7 @@ namespace StartGrow.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id", inversion.ApplicationUserId);
+            ViewData["InversorId"] = new SelectList(_context.Users, "Id", "Id", inversion.InversorId);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
             ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesId", "Nombre", inversion.TipoInversionesId);
             return View(inversion);
@@ -190,7 +194,7 @@ namespace StartGrow.Controllers
             }
 
             var inversion = await _context.Inversion
-                .Include(i => i.ApplicationUser)
+                .Include(i => i.Inversor)
                 .Include(i => i.Proyecto)
                 .Include(i => i.TipoInversiones)
                 .SingleOrDefaultAsync(m => m.InversionId == id);

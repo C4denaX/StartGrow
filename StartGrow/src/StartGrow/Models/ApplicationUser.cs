@@ -38,8 +38,8 @@ namespace StartGrow.Models
         }
 
         [Required]
-        [StringLength(8, ErrorMessage = "El NIF no puede tener mas de 8 caracteres")]
-        public virtual int NIF
+        [StringLength(9, ErrorMessage = "El NIF no puede tener mas de 9 caracteres")]
+        public virtual string NIF
         {
             get;
             set;
