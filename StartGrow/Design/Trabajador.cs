@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace StartGrow.Models
 {
     public class Trabajador : ApplicationUser
-    {
+    {        
         [Required]
         public virtual string PuestoDeTrabajo
         {

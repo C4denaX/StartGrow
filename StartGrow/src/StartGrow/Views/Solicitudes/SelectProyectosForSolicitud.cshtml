@@ -1,0 +1,144 @@
+﻿@model StartGrow.Models.SolicitudViewModels.SelectProyectosForSolicitudViewModel;
+@{
+    ViewData["Title"] = "Seleccione los proyectos que vaya a publicar";
+}
+<h2>Selecciones proyectos para publicar</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-controller="Solicitudes" asp-action="SelectProyectosForSolicitud"
+      method="get">
+    <p>
+        <table class="table">
+            <tr>
+                <td>
+                
+                    <label asp-for="nombreProyecto"></label>
+                    <input asp-for="nombreProyecto" size="30" />
+                    <span asp-validation-for="nombreProyecto" class="text-danger"></span>
+                </td>
+
+                <td>
+                    <label asp-for="tipoSeleccionado"></label>
+
+                    <div class="">
+                        <div class="">
+                            @{
+
+                                foreach (var item in Model.Tipos)
+                                {
+                                    <input type="checkbox" name="tipoSeleccionado" value="@item.Nombre" />
+                                    @item.Nombre
+                                    <br />
+
+                                }
+                            }
+
+                        </div>
+                    </div>
+
+
+
+                </td>
+                <td>
+                    @*Filtrado del area*@
+                    <label asp-for="areasSeleccionada"></label>
+                    <select asp-for="areasSeleccionada" asp-items="Model.areas">
+                        <option value="">All</option>
+                    </select>
+                </td>
+                <td>
+                    @*Filtrado por fecha*@
+                    <label asp-for="fecha"></label>
+                    <input asp-for="fecha" size="25" type="date" />
+                </td>
+                <td>
+                    @*Filtrado por Capital*@
+                    <label asp-for="capital"></label>
+                    <input asp-for="capital" size="25" type="number" />
+                </td>
+                
+            </tr>
+        </table>
+
+           
+
+
+
+            <input type="submit" value="Filtrar" />
+
+
+
+
+
+
+    </p>
+</form>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="SelectProyectosForSolicitud" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nombre del proyecto
+                </th>
+                <th>
+                    Fecha de Expiración
+                </th>
+                <th>
+                    Área temática
+                </th>
+                <th>
+                    Tipo de inversión
+                </th>
+                <th>
+                    Capital
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.proyectos.Count() == 0)
+            {
+                <tr><td colspan="3">No hay proyectos para publicar</td></tr>
+            }
+            else
+            {
+                @foreach (var item in Model.proyectos)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaExpiracion)
+                        </td>
+                        <td>
+                            @foreach (var i in item.ProyectoAreas)
+                            {
+                                @Html.DisplayFor(modelItem => i.Areas.Nombre) <br />
+                                
+                            }
+                        </td>
+                        <td>
+                            @foreach (var i in item.ProyectoTiposInversiones)
+                            {
+                                @Html.DisplayFor(modelItem => i.TiposInversiones.Nombre) <br />
+                                
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Importe)
+                        </td>
+                        <td>
+                            <input type="checkbox" name="IdsToAdd" value="@item.ProyectoId">
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-default">Cancel</a>
+</form>
+

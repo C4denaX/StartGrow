@@ -41,7 +41,7 @@ namespace StartGrow.Models
             get;
             set;
         }
-        
+
         [Required]
         public virtual int Estado
         {
@@ -55,7 +55,7 @@ namespace StartGrow.Models
         {
             get;
             set;
-        }         
+        }
     }
 
 }

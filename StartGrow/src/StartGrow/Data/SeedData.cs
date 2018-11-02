@@ -18,20 +18,19 @@ namespace StartGrow.Data
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
-
-
-            List<string> rolesNames = new List<string> { "Administrator", "Employee", "Customer" };
+ 
+            
+            List<string> rolesNames = new List<string> { "Trabajador", "Inversor" };
 
             SeedRoles(roleManager, rolesNames);
             SeedUsers(userManager, rolesNames);
-            SeedMovies(dbContext);
+            //SeedMovies(dbContext);
         }
 
         public static void SeedRoles(RoleManager<IdentityRole> roleManager, List<string> roles)
-        {
+        {    
 
-            foreach (string roleName in roles)
-            {
+            foreach (string roleName in roles) { 
                 //it checks such role does not exist in the database 
                 if (!roleManager.RoleExistsAsync(roleName).Result)
                 {
@@ -47,14 +46,14 @@ namespace StartGrow.Data
         public static void SeedUsers(UserManager<ApplicationUser> userManager, List<string> roles)
         {
             //first, it checks the user does not already exist in the DB
-            if (userManager.FindByNameAsync("yasin@startgrow.com").Result == null)
+            if (userManager.FindByNameAsync("sergio@startgrow.trabajador.com").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "yasin@startgrow.com";
-                user.Email = "yasin@startgrow.com";
-                user.Nombre = "Yasin";
-                user.Apellido1 = "Muñoz";
-                user.Apellido1 = "El Merabety";
+                user.UserName = "sergio@startgrow.trabajador.com";
+                user.Email = "sergio@startgrow.trabajador.com";
+                user.Nombre = "Sergio";
+                user.Apellido1 = "Ruiz";
+                user.Apellido2 = "Villafranca";
 
                 IdentityResult result = userManager.CreateAsync(user, "Password1234%").Result;
  
@@ -71,7 +70,7 @@ namespace StartGrow.Data
                 user.UserName = "gregorio@uclm.com";
                 user.Email = "gregorio@uclm.com";
                 user.Nombre = "Gregorio";
-                user.Apellido1 = "Diaz";
+                 user.Apellido1= "Diaz";
                 user.Apellido2 = "Descalzo";
 
                 IdentityResult result = userManager.CreateAsync(user, "APassword1234%").Result;
@@ -82,31 +81,31 @@ namespace StartGrow.Data
                     userManager.AddToRoleAsync(user, roles[1]).Wait();
                 }
             }
-
+            /*
             if (userManager.FindByNameAsync("peter@uclm.com").Result == null)
             {
                 //A customer class has been defined because it has different attributes (purchase, rental, etc.)
-                /*Customer user = new Customer();
+                Customer user = new Customer();
                 user.UserName = "peter@uclm.com";
                 user.Email = "peter@uclm.com";
                 user.Name = "Peter";
                 user.FirstSurname = "Jackson";
-                user.SecondSurname = "Jackson";*/
+                user.SecondSurname = "Jackson";
 
-                //IdentityResult result = userManager.CreateAsync(user, "OtherPass12$").Result;
+                IdentityResult result = userManager.CreateAsync(user, "OtherPass12$").Result;
 
-                /*if (result.Succeeded)
+                if (result.Succeeded)
                 {
                     //customer role
                     userManager.AddToRoleAsync(user, roles[2]).Wait();
-                }*/
+                }
             }
-
+            */
         }
-
+/*
         public static void SeedMovies(ApplicationDbContext dbContext)
         {
-            /*//Genres and movies are created so that they are available whenever the system is run
+            //Genres and movies are created so that they are available whenever the system is run
             Movie movie;
             Genre genre = dbContext.Genre.FirstOrDefault(m => m.Name.Contains("The Lord of the Rings"));
             if (genre == null) { 
@@ -114,10 +113,10 @@ namespace StartGrow.Data
             {
                 Name = "Drama"
             };
-            dbContext.Genre.Add(genre);*/
+            dbContext.Genre.Add(genre);
         }
           
-           /* if (!dbContext.Movie.Any(m => m.Title.Contains("The Lord of the Rings"))) {
+            if (!dbContext.Movie.Any(m => m.Title.Contains("The Lord of the Rings"))) {
                 movie = new Movie()
                 {
                     Title = "The Lord of the Rings",
@@ -170,12 +169,13 @@ namespace StartGrow.Data
                 };
                 dbContext.Movie.Add(movie);
             }
-            dbContext.SaveChanges();*/
+            dbContext.SaveChanges();
         }
-
+        */
     }
+   
 
-    
 
+}
 
 

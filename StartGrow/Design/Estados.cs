@@ -11,4 +11,3 @@ namespace StartGrow.Models
         Rechazada
     }
 }
-

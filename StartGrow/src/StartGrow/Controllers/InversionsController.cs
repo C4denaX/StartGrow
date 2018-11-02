@@ -23,13 +23,14 @@ namespace StartGrow.Controllers
         }
 
         //GET : SELECT
-        public IActionResult SelectProyectosForInversion(string[] ids_tiposInversiones)
+        public IActionResult SelectProyectosForInversion(string[] ids_tiposInversiones, string[] ids_areas, string[] ids_rating, int? invMin, float? interes, int? plazo)
         {
             SelectProyectosForInversionViewModel selectProyectos = new SelectProyectosForInversionViewModel();
 
             selectProyectos.Proyectos = _context.Proyecto.Include(p => p.ProyectoAreas).ThenInclude<Proyecto, ProyectoAreas, Areas>(p => p.Areas).
                 Include(p => p.ProyectoTiposInversiones).ThenInclude<Proyecto, ProyectoTiposInversiones, TiposInversiones>(p => p.TiposInversiones).
-                Include (p => p.Rating);
+                Include(p => p.Rating).Where(p => p.Plazo != null).Where(p => p.Plazo != null);
+
 
             selectProyectos.TiposInversiones = _context.TiposInversiones;
 
@@ -41,15 +42,54 @@ namespace StartGrow.Controllers
                 }                                
             }
 
-            selectProyectos.Proyectos.ToList();
+            selectProyectos.Areas = _context.Areas;
+
+            if (ids_areas.Length != 0)
+            {
+                foreach (var i in ids_areas)
+                {
+                    selectProyectos.Proyectos = selectProyectos.Proyectos.Where(p => p.ProyectoAreas.Any(t1 => t1.Areas.Nombre.Equals(i)));
+                }
+            }
+
+            selectProyectos.Rating = _context.Rating;
+
+            if (ids_rating.Length != 0)
+            {
+                foreach (var i in ids_tiposInversiones)
+                {
+                    selectProyectos.Proyectos = selectProyectos.Proyectos.Where(p => p.Rating.Nombre.Contains(i));
+                }
+            }
+
+            if (invMin != null)
+            {
+                selectProyectos.Proyectos = selectProyectos.Proyectos.Where(p => p.MinInversion.CompareTo((float)invMin) >= 0);
+            }
+
+            
+            if (interes != null)
+            {
+                selectProyectos.Proyectos = selectProyectos.Proyectos.Where(p => ((float)p.Interes).CompareTo(interes) >= 0);
+            }
+
+            if (plazo != null)
+            {
+                selectProyectos.Proyectos = selectProyectos.Proyectos.Where(p => ((int) p.Plazo).CompareTo((int) plazo) >= 0);
+            }            
+
+            selectProyectos.Proyectos.ToList();            
             selectProyectos.TiposInversiones.ToList();
+            selectProyectos.Areas.ToList();
+            selectProyectos.Rating.ToList();
+
             return View(selectProyectos);
         }
 
         //POST: SELECT
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SelectProyectosForInversion(SelectProyectosForInversionViewModel selectedProyectos)
+        public IActionResult SelectProyectosForInversion(SelectedProyectosForInversionViewModel selectedProyectos)
         {            
             if (selectedProyectos.IdsToAdd != null)
             {
@@ -71,7 +111,7 @@ namespace StartGrow.Controllers
         // GET: Inversions
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Inversion.Include(i => i.ApplicationUser).Include(i => i.Proyecto).Include(i => i.TipoInversiones);
+            var applicationDbContext = _context.Inversion.Include(i => i.Inversor).Include(i => i.Proyecto).Include(i => i.TipoInversiones);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -84,7 +124,7 @@ namespace StartGrow.Controllers
             }
 
             var inversion = await _context.Inversion
-                .Include(i => i.ApplicationUser)
+                .Include(i => i.Inversor)
                 .Include(i => i.Proyecto)
                 .Include(i => i.TipoInversiones)
                 .SingleOrDefaultAsync(m => m.InversionId == id);
@@ -118,7 +158,7 @@ namespace StartGrow.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id", inversion.ApplicationUserId);
+            ViewData["InversorId"] = new SelectList(_context.Users, "Id", "Id", inversion.InversorId);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
             ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesId", "Nombre", inversion.TipoInversionesId);
             return View(inversion);
@@ -137,7 +177,7 @@ namespace StartGrow.Controllers
             {
                 return NotFound();
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id", inversion.ApplicationUserId);
+            ViewData["InversorId"] = new SelectList(_context.Users, "Id", "Id", inversion.InversorId);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
             ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesId", "Nombre", inversion.TipoInversionesId);
             return View(inversion);
@@ -175,7 +215,7 @@ namespace StartGrow.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id", inversion.ApplicationUserId);
+            ViewData["InversorId"] = new SelectList(_context.Users, "Id", "Id", inversion.InversorId);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
             ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesId", "Nombre", inversion.TipoInversionesId);
             return View(inversion);
@@ -190,7 +230,7 @@ namespace StartGrow.Controllers
             }
 
             var inversion = await _context.Inversion
-                .Include(i => i.ApplicationUser)
+                .Include(i => i.Inversor)
                 .Include(i => i.Proyecto)
                 .Include(i => i.TipoInversiones)
                 .SingleOrDefaultAsync(m => m.InversionId == id);

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using StartGrow.Data;
 
 namespace StartGrow
@@ -17,17 +17,14 @@ namespace StartGrow
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
-
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<ApplicationDbContext>();
-
                 try
                 {
-                    // Requires using RazorPagesMovie.Models;
+                    //It calls to SeedData
                     SeedData.Initialize(services);
-
                 }
                 catch (Exception ex)
                 {
@@ -35,7 +32,6 @@ namespace StartGrow
                     logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
-
             host.Run();
         }
 
