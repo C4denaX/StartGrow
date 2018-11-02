@@ -23,17 +23,14 @@ namespace StartGrow.Controllers
         }
 
         //GET : SELECT
-        public IActionResult SelectProyectosForInversion(string[] ids_tiposInversiones)
+        public IActionResult SelectProyectosForInversion(string[] ids_tiposInversiones, string[] ids_areas, string[] ids_rating, int? invMin, float? interes, int? plazo)
         {
             SelectProyectosForInversionViewModel selectProyectos = new SelectProyectosForInversionViewModel();
 
             selectProyectos.Proyectos = _context.Proyecto.Include(p => p.ProyectoAreas).ThenInclude<Proyecto, ProyectoAreas, Areas>(p => p.Areas).
                 Include(p => p.ProyectoTiposInversiones).ThenInclude<Proyecto, ProyectoTiposInversiones, TiposInversiones>(p => p.TiposInversiones).
-                Include(p => p.Rating);
+                Include(p => p.Rating).Where(p => p.Plazo != null).Where(p => p.Plazo != null);
 
-            selectProyectos.Preferencias = _context.Preferencias.Include(p => p.Areas);
-            selectProyectos.Preferencias = _context.Preferencias.Include(p => p.Rating);
-            selectProyectos.Preferencias = _context.Preferencias.Include(p => p.TiposInversiones);
 
             selectProyectos.TiposInversiones = _context.TiposInversiones;
 
@@ -45,8 +42,47 @@ namespace StartGrow.Controllers
                 }                                
             }
 
+            selectProyectos.Areas = _context.Areas;
+
+            if (ids_areas.Length != 0)
+            {
+                foreach (var i in ids_areas)
+                {
+                    selectProyectos.Proyectos = selectProyectos.Proyectos.Where(p => p.ProyectoAreas.Any(t1 => t1.Areas.Nombre.Equals(i)));
+                }
+            }
+
+            selectProyectos.Rating = _context.Rating;
+
+            if (ids_rating.Length != 0)
+            {
+                foreach (var i in ids_tiposInversiones)
+                {
+                    selectProyectos.Proyectos = selectProyectos.Proyectos.Where(p => p.Rating.Nombre.Contains(i));
+                }
+            }
+
+            if (invMin != null)
+            {
+                selectProyectos.Proyectos = selectProyectos.Proyectos.Where(p => p.MinInversion.CompareTo((float)invMin) >= 0);
+            }
+
+            
+            if (interes != null)
+            {
+                selectProyectos.Proyectos = selectProyectos.Proyectos.Where(p => ((float)p.Interes).CompareTo(interes) >= 0);
+            }
+
+            if (plazo != null)
+            {
+                selectProyectos.Proyectos = selectProyectos.Proyectos.Where(p => ((int) p.Plazo).CompareTo((int) plazo) >= 0);
+            }            
+
             selectProyectos.Proyectos.ToList();            
             selectProyectos.TiposInversiones.ToList();
+            selectProyectos.Areas.ToList();
+            selectProyectos.Rating.ToList();
+
             return View(selectProyectos);
         }
 
