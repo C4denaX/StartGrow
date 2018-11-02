@@ -8,45 +8,63 @@
 <form asp-controller="Solicitudes" asp-action="SelectProyectosForSolicitud"
       method="get">
     <p>
-        @* Filtrado del nombre          *@
-        <label asp-for="nombreProyecto"></label>
-        <input asp-for="nombreProyecto" size="50" />
-        <span asp-validation-for="nombreProyecto" class="text-danger"></span>
-        @*Filtrado del tipo*@
-        <label asp-for="tipoSeleccionado"></label>
+        <table class="table">
+            <tr>
+                <td>
 
-        <div class="col-md-10 input-box">
-            <div class="form-control">
-                @{
-                  
-                    foreach (var item in Model.Tipos)
-                    {
-                        <input type="checkbox" name="tipoSeleccionado" value="@item.Nombre" />
-                        @item.Nombre
-                      
-                    }
-                }
+                    <label asp-for="nombreProyecto"></label>
+                    <input asp-for="nombreProyecto" size="30" />
+                    <span asp-validation-for="nombreProyecto" class="text-danger"></span>
+                </td>
 
-            </div>
-        </div>
-            @*Filtrado del area*@
-            <label asp-for="areasSeleccionada"></label>
-            <select asp-for="areasSeleccionada" asp-items="Model.areas">
-                <option value="">All</option>
-            </select>
+                <td>
+                    <label asp-for="tipoSeleccionado"></label>
 
-            @*Filtrado por fecha*@
-            <label asp-for="fecha"></label>
-            <input asp-for="fecha" size="25" type="date" />
+                    <div class="">
+                        <div class="">
+                            @{
 
-            @*Filtrado por Capital*@
-            <label asp-for="capital"></label>
-            <input asp-for="capital" size="25" type="number" />
+                                foreach (var item in Model.Tipos)
+                                {
+                                    <input type="checkbox" name="tipoSeleccionado" value="@item.Nombre" />
+                                    @item.Nombre
+                                    <br />
+
+                                }
+                            }
+
+                        </div>
+                    </div>
 
 
 
+                </td>
+                <td>
+                    @*Filtrado del area*@
+                    <label asp-for="areasSeleccionada"></label>
+                    <select asp-for="areasSeleccionada" asp-items="Model.areas">
+                        <option value="">All</option>
+                    </select>
+                </td>
+                <td>
+                    @*Filtrado por fecha*@
+                    <label asp-for="fecha"></label>
+                    <input asp-for="fecha" size="25" type="date" />
+                </td>
+                <td>
+                    @*Filtrado por Capital*@
+                    <label asp-for="capital"></label>
+                    <input asp-for="capital" size="25" type="number" />
+                </td>
 
-            <input type="submit" value="Filtrar" />
+            </tr>
+        </table>
+
+
+
+
+
+        <input type="submit" value="Filtrar" />
 
 
 
@@ -99,14 +117,14 @@
                             @foreach (var i in item.ProyectoAreas)
                             {
                                 @Html.DisplayFor(modelItem => i.Areas.Nombre) <br />
-                                
+
                             }
                         </td>
                         <td>
                             @foreach (var i in item.ProyectoTiposInversiones)
                             {
                                 @Html.DisplayFor(modelItem => i.TiposInversiones.Nombre) <br />
-                                
+
                             }
                         </td>
                         <td>
@@ -123,4 +141,3 @@
     <button type="submit" class="btn btn-primary">Save</button>
     <a asp-action="Index" class="btn btn-default">Cancel</a>
 </form>
-
