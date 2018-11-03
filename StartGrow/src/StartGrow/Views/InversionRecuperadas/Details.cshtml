@@ -1,0 +1,48 @@
+﻿@model StartGrow.Models.InversionRecuperada
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InversionRecuperada</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRecuperacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaRecuperacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Comentario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Comentario)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadRecuperada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CantidadRecuperada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Inversion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Inversion.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Monedero)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Monedero.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.InversionRecuperadaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

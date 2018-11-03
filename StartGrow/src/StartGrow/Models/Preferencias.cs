@@ -57,7 +57,7 @@ namespace StartGrow.Models
 
         [Required]
         [ForeignKey("InversorId")]
-        public virtual ApplicationUser ApplicationUser
+        public virtual ApplicationUser Inversor
         {
             get;
             set;

@@ -9,7 +9,6 @@ namespace StartGrow.Models
 {
     public class ProyectoAreas
     {
-
         [Key]
         public virtual int ProyectoAreasId
         {

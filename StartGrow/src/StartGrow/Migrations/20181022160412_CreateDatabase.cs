@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace StartGrow.Migrations
 {
-    public partial class createDatabase : Migration
+    public partial class CreateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -248,13 +248,13 @@ namespace StartGrow.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FechaExpiracion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Importe = table.Column<float>(type: "real", nullable: false),
-                    Interes = table.Column<float>(type: "real", nullable: true),
+                    Interes = table.Column<float>(type: "real", nullable: false),
                     MinInversion = table.Column<float>(type: "real", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NumInversores = table.Column<int>(type: "int", nullable: false),
-                    Plazo = table.Column<int>(type: "int", nullable: true),
+                    Plazo = table.Column<int>(type: "int", nullable: false),
                     Progreso = table.Column<int>(type: "int", nullable: false),
-                    RatingId = table.Column<int>(type: "int", nullable: true)
+                    RatingId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -264,7 +264,7 @@ namespace StartGrow.Migrations
                         column: x => x.RatingId,
                         principalTable: "Rating",
                         principalColumn: "RatingId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -273,15 +273,21 @@ namespace StartGrow.Migrations
                 {
                     PreferenciasId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     AreasId = table.Column<int>(type: "int", nullable: false),
-                    InversorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    InversorId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    InversorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     RatingId = table.Column<int>(type: "int", nullable: false),
                     TiposInversionesId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Preferencias", x => x.PreferenciasId);
+                    table.ForeignKey(
+                        name: "FK_Preferencias_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Preferencias_Areas_AreasId",
                         column: x => x.AreasId,
@@ -291,12 +297,6 @@ namespace StartGrow.Migrations
                     table.ForeignKey(
                         name: "FK_Preferencias_AspNetUsers_InversorId",
                         column: x => x.InversorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Preferencias_AspNetUsers_InversorId1",
-                        column: x => x.InversorId1,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -546,6 +546,11 @@ namespace StartGrow.Migrations
                 column: "InversorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Preferencias_ApplicationUserId",
+                table: "Preferencias",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Preferencias_AreasId",
                 table: "Preferencias",
                 column: "AreasId");
@@ -554,11 +559,6 @@ namespace StartGrow.Migrations
                 name: "IX_Preferencias_InversorId",
                 table: "Preferencias",
                 column: "InversorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Preferencias_InversorId1",
-                table: "Preferencias",
-                column: "InversorId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Preferencias_RatingId",

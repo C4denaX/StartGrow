@@ -12,8 +12,8 @@ using System;
 namespace StartGrow.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181023165534_createDatabase")]
-    partial class createDatabase
+    [Migration("20181022160412_CreateDatabase")]
+    partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -321,12 +321,12 @@ namespace StartGrow.Migrations
                     b.Property<int>("PreferenciasId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AreasId");
-
-                    b.Property<string>("InversorId")
+                    b.Property<string>("ApplicationUserId")
                         .IsRequired();
 
-                    b.Property<string>("InversorId1");
+                    b.Property<int>("AreasId");
+
+                    b.Property<string>("InversorId");
 
                     b.Property<int>("RatingId");
 
@@ -334,11 +334,11 @@ namespace StartGrow.Migrations
 
                     b.HasKey("PreferenciasId");
 
+                    b.HasIndex("ApplicationUserId");
+
                     b.HasIndex("AreasId");
 
                     b.HasIndex("InversorId");
-
-                    b.HasIndex("InversorId1");
 
                     b.HasIndex("RatingId");
 
@@ -356,7 +356,7 @@ namespace StartGrow.Migrations
 
                     b.Property<float>("Importe");
 
-                    b.Property<float?>("Interes");
+                    b.Property<float>("Interes");
 
                     b.Property<float>("MinInversion");
 
@@ -365,11 +365,11 @@ namespace StartGrow.Migrations
 
                     b.Property<int>("NumInversores");
 
-                    b.Property<int?>("Plazo");
+                    b.Property<int>("Plazo");
 
                     b.Property<int>("Progreso");
 
-                    b.Property<int?>("RatingId");
+                    b.Property<int>("RatingId");
 
                     b.HasKey("ProyectoId");
 
@@ -627,19 +627,19 @@ namespace StartGrow.Migrations
 
             modelBuilder.Entity("StartGrow.Models.Preferencias", b =>
                 {
+                    b.HasOne("StartGrow.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("StartGrow.Models.Areas", "Areas")
                         .WithMany("Preferencias")
                         .HasForeignKey("AreasId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("StartGrow.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("InversorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("StartGrow.Models.Inversor")
                         .WithMany("Preferencias")
-                        .HasForeignKey("InversorId1");
+                        .HasForeignKey("InversorId");
 
                     b.HasOne("StartGrow.Models.Rating", "Rating")
                         .WithMany("Preferencias")
@@ -656,7 +656,8 @@ namespace StartGrow.Migrations
                 {
                     b.HasOne("StartGrow.Models.Rating", "Rating")
                         .WithMany("Proyectos")
-                        .HasForeignKey("RatingId");
+                        .HasForeignKey("RatingId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("StartGrow.Models.ProyectoAreas", b =>

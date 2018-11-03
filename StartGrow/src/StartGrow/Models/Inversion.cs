@@ -30,13 +30,13 @@ namespace StartGrow.Models
         }
 
         [Required]
-        [ForeignKey("ApplicationUserId")]
-        public virtual ApplicationUser ApplicationUser
+        [ForeignKey("InversorId")]
+        public virtual ApplicationUser Inversor
         {
             get;
             set;
         }
-        public virtual string ApplicationUserId
+        public virtual string InversorId
         {
             get;
             set;
@@ -67,14 +67,15 @@ namespace StartGrow.Models
             get;
             set;
         }
+
+        [Required]
+        public virtual string EstadosInversiones { get; set; }
+
         [Required]
         public virtual float Total
         {
             get;
             set;
         }
-
-
-
     }
 }
