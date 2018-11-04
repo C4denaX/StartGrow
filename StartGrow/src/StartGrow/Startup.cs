@@ -57,12 +57,27 @@ namespace StartGrow
 
             app.UseAuthentication();
 
+
+                app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Account}/{action=SelectPreferenciasForInversor}/{id?}");
+
+
+            });
+
+            /**
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+
             });
+            **/
+
         }
     }
 }
