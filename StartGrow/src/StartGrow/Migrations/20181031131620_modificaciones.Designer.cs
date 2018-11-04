@@ -12,8 +12,8 @@ using System;
 namespace StartGrow.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181011150327_CreateDataBase")]
-    partial class CreateDataBase
+    [Migration("20181031131620_modificaciones")]
+    partial class modificaciones
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,44 +21,6 @@ namespace StartGrow.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Design.ProyectoAreas", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AreasId")
-                        .IsRequired();
-
-                    b.Property<int>("ProyectoId");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AreasId");
-
-                    b.HasIndex("ProyectoId");
-
-                    b.ToTable("ProyectoAreas");
-                });
-
-            modelBuilder.Entity("Design.ProyectoTiposInversiones", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ProyectoId");
-
-                    b.Property<string>("TiposInversionesId")
-                        .IsRequired();
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ProyectoId");
-
-                    b.HasIndex("TiposInversionesId");
-
-                    b.ToTable("ProyectoTiposInversiones");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -264,13 +226,13 @@ namespace StartGrow.Migrations
 
             modelBuilder.Entity("StartGrow.Models.Areas", b =>
                 {
-                    b.Property<string>("AreasID")
+                    b.Property<int>("AreasId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Nombre")
                         .IsRequired();
 
-                    b.HasKey("AreasID");
+                    b.HasKey("AreasId");
 
                     b.ToTable("Areas");
                 });
@@ -280,10 +242,10 @@ namespace StartGrow.Migrations
                     b.Property<int>("InversionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<float>("Cuota");
-
-                    b.Property<string>("Id")
+                    b.Property<string>("ApplicationUserId")
                         .IsRequired();
+
+                    b.Property<float>("Cuota");
 
                     b.Property<float>("Intereses");
 
@@ -291,14 +253,13 @@ namespace StartGrow.Migrations
 
                     b.Property<int>("ProyectoId");
 
-                    b.Property<string>("TipoInversionesId")
-                        .IsRequired();
+                    b.Property<int>("TipoInversionesId");
 
                     b.Property<float>("Total");
 
                     b.HasKey("InversionId");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("InversorId");
 
@@ -339,16 +300,16 @@ namespace StartGrow.Migrations
                     b.Property<int>("MonederoId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<decimal>("Dinero");
-
-                    b.Property<string>("Id")
+                    b.Property<string>("ApplicationUserId")
                         .IsRequired();
+
+                    b.Property<decimal>("Dinero");
 
                     b.Property<string>("InversorId");
 
                     b.HasKey("MonederoId");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("InversorId");
 
@@ -360,28 +321,28 @@ namespace StartGrow.Migrations
                     b.Property<int>("PreferenciasId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AreasID");
-
-                    b.Property<string>("Id")
+                    b.Property<string>("ApplicationUserId")
                         .IsRequired();
+
+                    b.Property<int>("AreasId");
 
                     b.Property<string>("InversorId");
 
-                    b.Property<string>("RatingID");
+                    b.Property<int>("RatingId");
 
-                    b.Property<string>("TiposInversionesID");
+                    b.Property<int>("TiposInversionesId");
 
                     b.HasKey("PreferenciasId");
 
-                    b.HasIndex("AreasID");
+                    b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("AreasId");
 
                     b.HasIndex("InversorId");
 
-                    b.HasIndex("RatingID");
+                    b.HasIndex("RatingId");
 
-                    b.HasIndex("TiposInversionesID");
+                    b.HasIndex("TiposInversionesId");
 
                     b.ToTable("Preferencias");
                 });
@@ -390,8 +351,6 @@ namespace StartGrow.Migrations
                 {
                     b.Property<int>("ProyectoId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AreasID");
 
                     b.Property<DateTime>("FechaExpiracion");
 
@@ -410,52 +369,81 @@ namespace StartGrow.Migrations
 
                     b.Property<int>("Progreso");
 
-                    b.Property<string>("RatingID");
+                    b.Property<int>("RatingId");
 
                     b.HasKey("ProyectoId");
 
-                    b.HasIndex("AreasID");
-
-                    b.HasIndex("RatingID");
+                    b.HasIndex("RatingId");
 
                     b.ToTable("Proyecto");
                 });
 
+            modelBuilder.Entity("StartGrow.Models.ProyectoAreas", b =>
+                {
+                    b.Property<int>("ProyectoAreasId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AreasId");
+
+                    b.Property<int>("ProyectoId");
+
+                    b.HasKey("ProyectoAreasId");
+
+                    b.HasIndex("AreasId");
+
+                    b.HasIndex("ProyectoId");
+
+                    b.ToTable("ProyectoAreas");
+                });
+
+            modelBuilder.Entity("StartGrow.Models.ProyectoTiposInversiones", b =>
+                {
+                    b.Property<int>("ProyectoTiposInversionesId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ProyectoId");
+
+                    b.Property<int>("TiposInversionesId");
+
+                    b.HasKey("ProyectoTiposInversionesId");
+
+                    b.HasIndex("ProyectoId");
+
+                    b.HasIndex("TiposInversionesId");
+
+                    b.ToTable("ProyectoTiposInversiones");
+                });
+
             modelBuilder.Entity("StartGrow.Models.Rating", b =>
                 {
-                    b.Property<string>("RatingID")
+                    b.Property<int>("RatingId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Nombre")
                         .IsRequired();
 
-                    b.HasKey("RatingID");
+                    b.HasKey("RatingId");
 
                     b.ToTable("Rating");
                 });
 
             modelBuilder.Entity("StartGrow.Models.Solicitud", b =>
                 {
-                    b.Property<int>("SolicitudID")
+                    b.Property<int>("SolicitudId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("Estado");
 
                     b.Property<DateTime>("FechaSolicitud");
 
-                    b.Property<string>("Id")
+                    b.Property<int>("ProyectoId");
+
+                    b.Property<string>("TrabajadorId")
                         .IsRequired();
 
-                    b.Property<int?>("ProyectoID")
-                        .IsRequired();
+                    b.HasKey("SolicitudId");
 
-                    b.Property<string>("TrabajadorId");
-
-                    b.HasKey("SolicitudID");
-
-                    b.HasIndex("Id");
-
-                    b.HasIndex("ProyectoID");
+                    b.HasIndex("ProyectoId");
 
                     b.HasIndex("TrabajadorId");
 
@@ -464,13 +452,13 @@ namespace StartGrow.Migrations
 
             modelBuilder.Entity("StartGrow.Models.TiposInversiones", b =>
                 {
-                    b.Property<string>("TiposInversionesID")
+                    b.Property<int>("TiposInversionesId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Nombre")
                         .IsRequired();
 
-                    b.HasKey("TiposInversionesID");
+                    b.HasKey("TiposInversionesId");
 
                     b.ToTable("TiposInversiones");
                 });
@@ -545,32 +533,6 @@ namespace StartGrow.Migrations
                     b.HasDiscriminator().HasValue("Particular");
                 });
 
-            modelBuilder.Entity("Design.ProyectoAreas", b =>
-                {
-                    b.HasOne("StartGrow.Models.Areas", "Areas")
-                        .WithMany("ProyectoAreas")
-                        .HasForeignKey("AreasId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("StartGrow.Models.Proyecto", "Proyecto")
-                        .WithMany("ProyectoAreas")
-                        .HasForeignKey("ProyectoId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Design.ProyectoTiposInversiones", b =>
-                {
-                    b.HasOne("StartGrow.Models.Proyecto", "Proyecto")
-                        .WithMany("ProyectoTiposInversiones")
-                        .HasForeignKey("ProyectoId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("StartGrow.Models.TiposInversiones", "TiposInversiones")
-                        .WithMany("ProyectoTiposInversiones")
-                        .HasForeignKey("TiposInversionesId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -620,7 +582,7 @@ namespace StartGrow.Migrations
                 {
                     b.HasOne("StartGrow.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("Id")
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("StartGrow.Models.Inversor")
@@ -655,7 +617,7 @@ namespace StartGrow.Migrations
                 {
                     b.HasOne("StartGrow.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("Id")
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("StartGrow.Models.Inversor")
@@ -665,13 +627,14 @@ namespace StartGrow.Migrations
 
             modelBuilder.Entity("StartGrow.Models.Preferencias", b =>
                 {
-                    b.HasOne("StartGrow.Models.Areas", "Areas")
-                        .WithMany("Preferencias")
-                        .HasForeignKey("AreasID");
-
                     b.HasOne("StartGrow.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("Id")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("StartGrow.Models.Areas", "Areas")
+                        .WithMany("Preferencias")
+                        .HasForeignKey("AreasId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("StartGrow.Models.Inversor")
@@ -680,39 +643,60 @@ namespace StartGrow.Migrations
 
                     b.HasOne("StartGrow.Models.Rating", "Rating")
                         .WithMany("Preferencias")
-                        .HasForeignKey("RatingID");
+                        .HasForeignKey("RatingId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("StartGrow.Models.TiposInversiones", "TiposInversiones")
                         .WithMany("Preferencias")
-                        .HasForeignKey("TiposInversionesID");
+                        .HasForeignKey("TiposInversionesId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("StartGrow.Models.Proyecto", b =>
                 {
-                    b.HasOne("StartGrow.Models.TiposInversiones", "Areas")
-                        .WithMany()
-                        .HasForeignKey("AreasID");
-
                     b.HasOne("StartGrow.Models.Rating", "Rating")
                         .WithMany("Proyectos")
-                        .HasForeignKey("RatingID");
+                        .HasForeignKey("RatingId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("StartGrow.Models.ProyectoAreas", b =>
+                {
+                    b.HasOne("StartGrow.Models.Areas", "Areas")
+                        .WithMany("ProyectoAreas")
+                        .HasForeignKey("AreasId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("StartGrow.Models.Proyecto", "Proyecto")
+                        .WithMany("ProyectoAreas")
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("StartGrow.Models.ProyectoTiposInversiones", b =>
+                {
+                    b.HasOne("StartGrow.Models.Proyecto", "Proyecto")
+                        .WithMany("ProyectoTiposInversiones")
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("StartGrow.Models.TiposInversiones", "TiposInversiones")
+                        .WithMany("ProyectoTiposInversiones")
+                        .HasForeignKey("TiposInversionesId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("StartGrow.Models.Solicitud", b =>
                 {
-                    b.HasOne("StartGrow.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("StartGrow.Models.Proyecto", "Proyecto")
                         .WithMany()
-                        .HasForeignKey("ProyectoID")
+                        .HasForeignKey("ProyectoId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("StartGrow.Models.Trabajador")
+                    b.HasOne("StartGrow.Models.Trabajador", "Trabajador")
                         .WithMany("SolicitudesTratadas")
-                        .HasForeignKey("TrabajadorId");
+                        .HasForeignKey("TrabajadorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
