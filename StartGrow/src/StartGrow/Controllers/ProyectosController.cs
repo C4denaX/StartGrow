@@ -22,7 +22,7 @@ namespace StartGrow.Controllers
         // GET: Proyectos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Proyecto.Include(p => p.Areas).Include(p => p.Rating);
+            var applicationDbContext = _context.Proyecto.Include(p => p.ProyectoAreas).Include(p => p.Rating);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace StartGrow.Controllers
             }
 
             var proyecto = await _context.Proyecto
-                .Include(p => p.Areas)
+                .Include(p => p.ProyectoAreas)
                 .Include(p => p.Rating)
                 .SingleOrDefaultAsync(m => m.ProyectoId == id);
             if (proyecto == null)
@@ -67,8 +67,8 @@ namespace StartGrow.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AreasID"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", proyecto.AreasID);
-            ViewData["RatingID"] = new SelectList(_context.Rating, "RatingID", "RatingID", proyecto.RatingID);
+            ViewData["AreasID"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", proyecto.ProyectoAreas);
+            ViewData["RatingID"] = new SelectList(_context.Rating, "RatingID", "RatingID", proyecto.RatingId);
             return View(proyecto);
         }
 
@@ -85,8 +85,8 @@ namespace StartGrow.Controllers
             {
                 return NotFound();
             }
-            ViewData["AreasID"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", proyecto.AreasID);
-            ViewData["RatingID"] = new SelectList(_context.Rating, "RatingID", "RatingID", proyecto.RatingID);
+            ViewData["AreasID"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", proyecto.ProyectoAreas);
+            ViewData["RatingID"] = new SelectList(_context.Rating, "RatingID", "RatingID", proyecto.RatingId);
             return View(proyecto);
         }
 
@@ -122,8 +122,8 @@ namespace StartGrow.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AreasID"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", proyecto.AreasID);
-            ViewData["RatingID"] = new SelectList(_context.Rating, "RatingID", "RatingID", proyecto.RatingID);
+            ViewData["AreasID"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", proyecto.ProyectoAreas);
+            ViewData["RatingID"] = new SelectList(_context.Rating, "RatingID", "RatingID", proyecto.RatingId);
             return View(proyecto);
         }
 
@@ -136,7 +136,7 @@ namespace StartGrow.Controllers
             }
 
             var proyecto = await _context.Proyecto
-                .Include(p => p.Areas)
+                .Include(p => p.ProyectoAreas)
                 .Include(p => p.Rating)
                 .SingleOrDefaultAsync(m => m.ProyectoId == id);
             if (proyecto == null)

@@ -13,29 +13,92 @@ using Microsoft.Extensions.Options;
 using StartGrow.Models;
 using StartGrow.Models.AccountViewModels;
 using StartGrow.Services;
+using StartGrow.Data;
+
+using StartGrow.Models.PreferenciasViewModel;
+
 
 namespace StartGrow.Controllers
 {
-    [Authorize]
-    [Route("[controller]/[action]")]
+    
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _context = context;
         }
+
+        
+        
+
+
+
+        //----------------------------------------------------------------------------------------------------------//
+        
+
+
+      public IActionResult SelectPreferenciasForInversor()
+        {
+            SelectPreferenciasForInversorViewModel SelectPreferencias = new SelectPreferenciasForInversorViewModel();
+            SelectPreferencias.Areas = _context.Areas.ToList();
+            SelectPreferencias.TiposInversiones =_context.TiposInversiones.ToList();
+            SelectPreferencias.Rating = _context.Rating.ToList();
+
+            SelectPreferencias.Areas.ToList();
+            SelectPreferencias.TiposInversiones.ToList();
+            SelectPreferencias.Rating.ToList();
+
+            return View(SelectPreferencias);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SelectPreferenciasForInversor(SelectedPreferenciasForInversor SelectedPreferencias)
+        {
+
+            if(SelectedPreferencias.IdsToAddAreas != null)
+            {
+                return RedirectToAction("create", SelectedPreferencias);
+            }
+
+            if (SelectedPreferencias.IdsToAddRating != null)
+            {
+                return RedirectToAction("create", SelectedPreferencias);
+            }
+
+            if (SelectedPreferencias.IdsToAddTiposInversion != null)
+            {
+                return RedirectToAction("create", SelectedPreferencias);
+            }
+
+            ModelState.AddModelError(string.Empty, "Debes seleccionar al menos 1 Area, un Rating y un Tipo de Inversion");
+
+            SelectPreferenciasForInversorViewModel SelectPreferencias = new SelectPreferenciasForInversorViewModel();
+            SelectPreferencias.Areas = _context.Areas.ToList();
+            SelectPreferencias.TiposInversiones = _context.TiposInversiones.ToList();
+            SelectPreferencias.Rating = _context.Rating.ToList();
+
+            return View(SelectPreferencias);
+        }
+
+
+        //-------------------------------------------------------------------------------------------------------//
+
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -211,10 +274,12 @@ namespace StartGrow.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
+        
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -240,6 +305,7 @@ namespace StartGrow.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]

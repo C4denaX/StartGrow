@@ -69,7 +69,7 @@ namespace StartGrow.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", inversion.Id);
+            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", inversion.InversionId);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
             ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", inversion.TipoInversionesId);
             return View(inversion);
@@ -88,7 +88,7 @@ namespace StartGrow.Controllers
             {
                 return NotFound();
             }
-            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", inversion.Id);
+            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", inversion.InversionId);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
             ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", inversion.TipoInversionesId);
             return View(inversion);
@@ -126,7 +126,7 @@ namespace StartGrow.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", inversion.Id);
+            ViewData["Id"] = new SelectList(_context.Users, "Id", "Id", inversion.InversionId);
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
             ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesID", "TiposInversionesID", inversion.TipoInversionesId);
             return View(inversion);
