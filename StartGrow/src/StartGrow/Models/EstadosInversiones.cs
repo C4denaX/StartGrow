@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace StartGrow.Models
 {
-    public enum Estados
+    public enum EstadosInversiones
     {
-        Aceptada,
-        Rechazada
+        Recaudacion,
+        En_curso,
+        Finalizado
     }
 }
-

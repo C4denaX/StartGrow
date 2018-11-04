@@ -28,6 +28,8 @@
     <Compile Remove="Migrations\20181011120455_CreateDataBase.Designer.cs" />
     <Compile Remove="Migrations\20181011123443_createDataBase.cs" />
     <Compile Remove="Migrations\20181011123443_createDataBase.Designer.cs" />
+    <Compile Remove="Migrations\20181011150327_CreateDataBase.cs" />
+    <Compile Remove="Migrations\20181011150327_CreateDataBase.Designer.cs" />
   </ItemGroup>
 
 
@@ -46,6 +48,12 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Account\SelectPreferenciasForInversor.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>
