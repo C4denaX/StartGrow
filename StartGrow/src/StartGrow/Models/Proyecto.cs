@@ -34,7 +34,7 @@ namespace StartGrow.Models
             set;
         }
 
-
+        
         [ForeignKey("RatingId")]
         public virtual Rating Rating
         {
@@ -61,14 +61,14 @@ namespace StartGrow.Models
             set;
         }
 
-
+    
         public virtual int? Plazo
         {
             get;
             set;
         }
 
-
+     
         public virtual float? Interes
         {
             get;

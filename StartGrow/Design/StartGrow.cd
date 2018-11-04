@@ -84,8 +84,8 @@
     <Position X="7.25" Y="7" Width="1.5" />
     <AssociationLine Name="Proyecto" Type="StartGrow.Models.Proyecto" FixedToPoint="true">
       <Path>
-        <Point X="8.75" Y="7.938" />
-        <Point X="10.75" Y="7.938" />
+        <Point X="8.75" Y="7.857" />
+        <Point X="10.75" Y="7.857" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="ApplicationUser" Type="StartGrow.Models.ApplicationUser" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
@@ -121,8 +121,8 @@
     <Position X="10.75" Y="6.5" Width="1.5" />
     <AssociationLine Name="Inversiones" Type="StartGrow.Models.Inversion" FixedFromPoint="true">
       <Path>
-        <Point X="10.75" Y="8.312" />
-        <Point X="8.75" Y="8.312" />
+        <Point X="10.75" Y="8.21" />
+        <Point X="8.75" Y="8.21" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="ProyectoTiposInversiones" Type="Design.ProyectoTiposInversiones" FixedFromPoint="true">
@@ -138,6 +138,9 @@
       <HashCode>AAAAAAgACAAAAAAgAAGAgAAAAAGAgAEABKwAAAAAAAA=</HashCode>
       <FileName>Proyecto.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Rating" />
+    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Inversiones" />
       <Property Name="ProyectoAreas" />
@@ -145,10 +148,10 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Design.ProyectoAreas">
-    <Position X="14.25" Y="8" Width="1.5" />
+    <Position X="14.25" Y="7" Width="1.5" />
     <AssociationLine Name="Areas" Type="StartGrow.Models.Areas" FixedToPoint="true">
       <Path>
-        <Point X="15.188" Y="8" />
+        <Point X="15.188" Y="7" />
         <Point X="15.188" Y="3.796" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
@@ -189,7 +192,7 @@
     <AssociationLine Name="ProyectoAreas" Type="Design.ProyectoAreas" FixedFromPoint="true">
       <Path>
         <Point X="14.75" Y="3.796" />
-        <Point X="14.75" Y="8" />
+        <Point X="14.75" Y="7" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.098" Y="0.335" />
@@ -290,8 +293,15 @@
     <Position X="15.75" Y="0.5" Width="1.5" />
     <AssociationLine Name="Preferencias" Type="StartGrow.Models.Preferencias" FixedFromPoint="true">
       <Path>
-        <Point X="15.75" Y="1" />
-        <Point X="11.5" Y="1" />
+        <Point X="15.75" Y="0.935" />
+        <Point X="11.5" Y="0.935" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Proyectos" Type="StartGrow.Models.Proyecto" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.531" Y="1.796" />
+        <Point X="16.531" Y="9.626" />
+        <Point X="12.25" Y="9.626" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -300,6 +310,7 @@
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Preferencias" />
+      <Property Name="Proyectos" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="StartGrow.Models.InversionRecuperada">
@@ -350,7 +361,7 @@
     <AssociationLine Name="Proyecto" Type="StartGrow.Models.Proyecto" FixedToPoint="true">
       <Path>
         <Point X="11.562" Y="10.75" />
-        <Point X="11.562" Y="9.911" />
+        <Point X="11.562" Y="9.719" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-0.891" Y="0.173" />

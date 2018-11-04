@@ -46,23 +46,21 @@ namespace StartGrow.Data
         public static void SeedUsers(UserManager<ApplicationUser> userManager, List<string> roles)
         {
             //first, it checks the user does not already exist in the DB
-            if (userManager.FindByNameAsync("elena@uclm.com").Result == null)
+            if (userManager.FindByNameAsync("sergio@startgrow.trabajador.com").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "pocholo24@startgrow.inv";
-                user.Email = "pocholo24@startgrow.inv";
-                user.Nombre = "Pedro";
-                user.Apellido1 = "Jiménez";
-                user.Apellido2 = "Herreros";
+                user.UserName = "sergio@startgrow.trabajador.com";
+                user.Email = "sergio@startgrow.trabajador.com";
+                user.Nombre = "Sergio";
+                user.Apellido1 = "Ruiz";
+                user.Apellido2 = "Villafranca";
 
                 IdentityResult result = userManager.CreateAsync(user, "Password1234%").Result;
-
+ 
                 if (result.Succeeded)
                 {
                     //administrator role
                     userManager.AddToRoleAsync(user,roles[0]).Wait();
-                    userManager.AddToRoleAsync(user, roles[1]).Wait();
-
                 }
             }
 
@@ -72,10 +70,10 @@ namespace StartGrow.Data
                 user.UserName = "gregorio@uclm.com";
                 user.Email = "gregorio@uclm.com";
                 user.Nombre = "Gregorio";
-                user.Apellido1 = "Diaz";
+                 user.Apellido1= "Diaz";
                 user.Apellido2 = "Descalzo";
 
-                IdentityResult result = userManager.CreateAsync(user, "Password1234%").Result;
+                IdentityResult result = userManager.CreateAsync(user, "APassword1234%").Result;
 
                 if (result.Succeeded)
                 {
@@ -83,18 +81,18 @@ namespace StartGrow.Data
                     userManager.AddToRoleAsync(user, roles[1]).Wait();
                 }
             }
-
+            /*
             if (userManager.FindByNameAsync("peter@uclm.com").Result == null)
             {
                 //A customer class has been defined because it has different attributes (purchase, rental, etc.)
-                ApplicationUser user = new ApplicationUser();
+                Customer user = new Customer();
                 user.UserName = "peter@uclm.com";
                 user.Email = "peter@uclm.com";
-                user.Nombre = "Peter";
-                user.Apellido1 = "Jackson";
-                user.Apellido2 = "Jackson";
+                user.Name = "Peter";
+                user.FirstSurname = "Jackson";
+                user.SecondSurname = "Jackson";
 
-                IdentityResult result = userManager.CreateAsync(user, "Password12$").Result;
+                IdentityResult result = userManager.CreateAsync(user, "OtherPass12$").Result;
 
                 if (result.Succeeded)
                 {
@@ -102,10 +100,9 @@ namespace StartGrow.Data
                     userManager.AddToRoleAsync(user, roles[2]).Wait();
                 }
             }
-
+            */
         }
-
-        /*
+/*
         public static void SeedMovies(ApplicationDbContext dbContext)
         {
             //Genres and movies are created so that they are available whenever the system is run
@@ -175,9 +172,8 @@ namespace StartGrow.Data
             dbContext.SaveChanges();
         }
         */
-
     }
-
+   
 
 
 }

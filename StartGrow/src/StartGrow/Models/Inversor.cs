@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace StartGrow.Models
 {
-
     public class Inversor : ApplicationUser
     {
         public IList<Inversion> Inversiones
@@ -30,4 +29,3 @@ namespace StartGrow.Models
         }
     }
 }
-
