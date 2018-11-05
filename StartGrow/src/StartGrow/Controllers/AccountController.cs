@@ -28,6 +28,7 @@ namespace StartGrow.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly ApplicationDbContext _context;
+        private ApplicationDbContext context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -43,13 +44,16 @@ namespace StartGrow.Controllers
             _context = context;
         }
 
-        
-        
+        public AccountController(ApplicationDbContext context)
+        {
+            this.context = context;
+        }
+
 
 
 
         //----------------------------------------------------------------------------------------------------------//
-        
+
         //GET
 
         public IActionResult SelectPreferenciasForInversor()
