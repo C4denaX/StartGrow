@@ -42,10 +42,6 @@ namespace StartGrow.Controllers
             _emailSender = emailSender;
             _logger = logger;
             _context = context;
-        }
-
-        public AccountController(ApplicationDbContext context)
-        {
             this.context = context;
         }
 

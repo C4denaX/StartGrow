@@ -111,12 +111,6 @@ namespace StartGrow.UT.Controllers.AccountController_test
                 Assert.Equal(tipoEsperado, model.TiposInversiones, Comparer.Get<TiposInversiones>((t1, t2) => t1.Nombre == t2.Nombre));
                 Assert.Equal(ratingEsperado, model.Rating, Comparer.Get<Rating>((r1, r2) => r1.Nombre == r2.Nombre));
             }
-        }
-
-
-
-
-
-
+        }
     }
 }
