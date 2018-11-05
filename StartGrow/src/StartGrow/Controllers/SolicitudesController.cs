@@ -8,16 +8,16 @@ using Microsoft.EntityFrameworkCore;
 using StartGrow.Data;
 using StartGrow.Models;
 using StartGrow.Models.SolicitudViewModels;
-
+using Microsoft.AspNetCore.Authorization;
 namespace StartGrow.Controllers
-{
+{[Authorize (Roles="Trabajador")]
     public class SolicitudesController : Controller 
     {
         private readonly ApplicationDbContext _context;
 
         public SolicitudesController(ApplicationDbContext context)
         {
-            _context = context;
+            _context = context; 
         }
 
         // GET: Solicitudes
@@ -29,11 +29,11 @@ namespace StartGrow.Controllers
 
 
         //GET: Select
-        public IActionResult SelectProyectosForSolicitud(string nombreProyecto, string[] tipoSeleccionado, string areasSeleccionada, int? capital, DateTime? fecha
+        public IActionResult SelectProyectosForSolicitud(string nombreProyecto, string[] tipoSeleccionado, string[] areasSeleccionada, int? capital, DateTime? fecha
     )
         {
             SelectProyectosForSolicitudViewModel selectProyecto = new SelectProyectosForSolicitudViewModel();
-            selectProyecto.areas = new SelectList(_context.Areas.Select(a =>a.Nombre).ToList());
+            selectProyecto.areas = _context.Areas;
             selectProyecto.Tipos = _context.TiposInversiones;
             selectProyecto.proyectos = _context.Proyecto.Include(m => m.Rating).Include(m => m.ProyectoAreas).
                 ThenInclude<Proyecto, ProyectoAreas, Areas>(p => p.Areas).Include(p => p.ProyectoTiposInversiones).
@@ -57,9 +57,10 @@ namespace StartGrow.Controllers
                 }
             }
 
-            if(areasSeleccionada != null)
+            if(areasSeleccionada.Length != 0)
             {
-                selectProyecto.proyectos = selectProyecto.proyectos.Where(p => p.ProyectoAreas.Any(a => a.Areas.Nombre.Contains(areasSeleccionada)));
+                foreach(String i in areasSeleccionada)
+                selectProyecto.proyectos = selectProyecto.proyectos.Where(p => p.ProyectoAreas.Any(a => a.Areas.Nombre.Contains(i)));
             }
 
             if(fecha != null)
@@ -86,7 +87,7 @@ namespace StartGrow.Controllers
             ModelState.AddModelError(string.Empty, "Debes seleccionar al menos 1 proyecto para publicar");
 
             SelectProyectosForSolicitudViewModel selectProyecto = new SelectProyectosForSolicitudViewModel();
-            selectProyecto.areas = new SelectList(_context.Areas.Select(a => a.Nombre));
+            selectProyecto.areas = _context.Areas;
             selectProyecto.Tipos = _context.TiposInversiones;
             selectProyecto.proyectos = _context.Proyecto.Include(m => m.Rating).Include(m => m.ProyectoAreas).
                            ThenInclude<Proyecto, ProyectoAreas, Areas>(p => p.Areas).Include(p => p.ProyectoTiposInversiones).
