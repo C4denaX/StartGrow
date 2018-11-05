@@ -50,9 +50,9 @@ namespace StartGrow.Controllers
 
         //----------------------------------------------------------------------------------------------------------//
         
+        //GET
 
-
-      public IActionResult SelectPreferenciasForInversor()
+        public IActionResult SelectPreferenciasForInversor()
         {
             SelectPreferenciasForInversorViewModel SelectPreferencias = new SelectPreferenciasForInversorViewModel();
             SelectPreferencias.Areas = _context.Areas.ToList();
@@ -66,27 +66,20 @@ namespace StartGrow.Controllers
             return View(SelectPreferencias);
         }
 
+        //POST
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SelectPreferenciasForInversor(SelectedPreferenciasForInversor SelectedPreferencias)
         {
 
-            if(SelectedPreferencias.IdsToAddAreas != null)
+            if((SelectedPreferencias.IdsToAddAreas != null) && (SelectedPreferencias.IdsToAddRating != null) && (SelectedPreferencias.IdsToAddTiposInversion != null))
             {
                 return RedirectToAction("create", SelectedPreferencias);
             }
 
-            if (SelectedPreferencias.IdsToAddRating != null)
-            {
-                return RedirectToAction("create", SelectedPreferencias);
-            }
 
-            if (SelectedPreferencias.IdsToAddTiposInversion != null)
-            {
-                return RedirectToAction("create", SelectedPreferencias);
-            }
-
-            ModelState.AddModelError(string.Empty, "Debes seleccionar al menos 1 Area, un Rating y un Tipo de Inversion");
+            ModelState.AddModelError(string.Empty, "Debes seleccionar al menos un Area, un Rating y un Tipo de Inversion");
 
             SelectPreferenciasForInversorViewModel SelectPreferencias = new SelectPreferenciasForInversorViewModel();
             SelectPreferencias.Areas = _context.Areas.ToList();
