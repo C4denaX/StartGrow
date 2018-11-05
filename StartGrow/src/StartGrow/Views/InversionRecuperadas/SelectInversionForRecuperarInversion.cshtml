@@ -56,6 +56,12 @@
                     Tipo de Inversión
                 </th>
                 <th>
+                    Área
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
                     Cuota
                 </th>
                 <th>
@@ -78,33 +84,39 @@
             {
                 @foreach (var item in Model.Inversiones)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.InversionId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProyectoId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TipoInversiones.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Cuota)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Intereses)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EstadosInversiones)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Total)
-                        </td>
-                        <td>
-                            <input type="checkbox" name="IdsToAdd" value="@item.InversionId" />
-                        </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InversionId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProyectoId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoInversiones.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Proyecto.ProyectoAreas)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Proyecto.Rating.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cuota)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Intereses)%
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EstadosInversiones)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        <input type="checkbox" name="IdsToAdd" value="@item.InversionId" />
+                    </td>
 
-                    </tr>
+                </tr>
                 }
             }
         </tbody>

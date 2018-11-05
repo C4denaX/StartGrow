@@ -61,8 +61,9 @@ namespace StartGrow
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Inversions}/{action=SelectProyectosForInversion}/{id?}");
-            });
+                    template: "{controller=InversionRecuperadas}/{action=SelectInversionForRecuperarInversion}/{id?}");
+                    //template: "{controller=Solicitudes}/{action=SelectProyectosForSolicitud}/{id?}");
+        });
         }
     }
 }
