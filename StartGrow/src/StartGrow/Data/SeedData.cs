@@ -46,14 +46,23 @@ namespace StartGrow.Data
         public static void SeedUsers(UserManager<ApplicationUser> userManager, List<string> roles)
         {
             //first, it checks the user does not already exist in the DB
+
             if (userManager.FindByNameAsync("sergio@startgrow.trabajador.com").Result == null)
             {
-                ApplicationUser user = new ApplicationUser();
+                ApplicationUser user = new Trabajador();
                 user.UserName = "sergio@startgrow.trabajador.com";
                 user.Email = "sergio@startgrow.trabajador.com";
                 user.Nombre = "Sergio";
                 user.Apellido1 = "Ruiz";
                 user.Apellido2 = "Villafranca";
+                user.CodPost = 2000;
+                user.Domicilio = "Calle";
+                user.Municipio = "Albacete";
+                user.Nacionalidad = "Española";
+                user.NIF = "123";
+                user.PaisDeResidencia = "España";
+                user.Provincia = "Albacete";
+               
 
                 IdentityResult result = userManager.CreateAsync(user, "Password1234%").Result;
  
@@ -66,12 +75,19 @@ namespace StartGrow.Data
 
             if (userManager.FindByNameAsync("gregorio@uclm.com").Result == null)
             {
-                ApplicationUser user = new ApplicationUser();
+                ApplicationUser user = new Inversor();
                 user.UserName = "gregorio@uclm.com";
                 user.Email = "gregorio@uclm.com";
                 user.Nombre = "Gregorio";
                  user.Apellido1= "Diaz";
                 user.Apellido2 = "Descalzo";
+                user.CodPost = 2000;
+                user.Domicilio = "Calle";
+                user.Municipio = "Albacete";
+                user.Nacionalidad = "Española";
+                user.NIF = "123";
+                user.PaisDeResidencia = "España";
+                user.Provincia = "Albacete";
 
                 IdentityResult result = userManager.CreateAsync(user, "APassword1234%").Result;
 
