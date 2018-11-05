@@ -64,14 +64,14 @@ namespace StartGrow.Data
                 }
             }
 
-            if (userManager.FindByNameAsync("gregorio@uclm.com").Result == null)
+            if (userManager.FindByNameAsync("David@startgrow.inversor.com").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "gregorio@uclm.com";
-                user.Email = "gregorio@uclm.com";
-                user.Nombre = "Gregorio";
-                 user.Apellido1= "Diaz";
-                user.Apellido2 = "Descalzo";
+                user.UserName = "David@startgrow.inversor.com";
+                user.Email = "David@startgrow.inversor.com";
+                user.Nombre = "David";
+                 user.Apellido1= "Giron";
+                user.Apellido2 = "Lopez";
 
                 IdentityResult result = userManager.CreateAsync(user, "APassword1234%").Result;
 
@@ -81,101 +81,8 @@ namespace StartGrow.Data
                     userManager.AddToRoleAsync(user, roles[1]).Wait();
                 }
             }
-            /*
-            if (userManager.FindByNameAsync("peter@uclm.com").Result == null)
-            {
-                //A customer class has been defined because it has different attributes (purchase, rental, etc.)
-                Customer user = new Customer();
-                user.UserName = "peter@uclm.com";
-                user.Email = "peter@uclm.com";
-                user.Name = "Peter";
-                user.FirstSurname = "Jackson";
-                user.SecondSurname = "Jackson";
-
-                IdentityResult result = userManager.CreateAsync(user, "OtherPass12$").Result;
-
-                if (result.Succeeded)
-                {
-                    //customer role
-                    userManager.AddToRoleAsync(user, roles[2]).Wait();
-                }
-            }
-            */
         }
-/*
-        public static void SeedMovies(ApplicationDbContext dbContext)
-        {
-            //Genres and movies are created so that they are available whenever the system is run
-            Movie movie;
-            Genre genre = dbContext.Genre.FirstOrDefault(m => m.Name.Contains("The Lord of the Rings"));
-            if (genre == null) { 
-            genre = new Genre()
-            {
-                Name = "Drama"
-            };
-            dbContext.Genre.Add(genre);
-        }
-          
-            if (!dbContext.Movie.Any(m => m.Title.Contains("The Lord of the Rings"))) {
-                movie = new Movie()
-                {
-                    Title = "The Lord of the Rings",
-                    QuantityForRenting = 10,
-                    PriceForRenting = 1,
-                    QuantityForPurchase = 12,
-                    PriceForPurchase = 15,
-                    Genre = genre
-                };
-                dbContext.Movie.Add(movie);
-            }
-            
-            genre = dbContext.Genre.FirstOrDefault(m => m.Name.Contains("The Lord of the Rings"));
-            if (genre == null) { 
-                genre = new Genre()
-                {
-                    Name = "Action"
-                };
-                dbContext.Genre.Add(genre);
-            }
-            if (!dbContext.Movie.Any(m => m.Title.Contains("Star Wars"))) {
-                movie = new Movie()
-                {
-                    Title = "Star Wars",
-                    QuantityForRenting = 10,
-                    PriceForRenting = 1,
-                    QuantityForPurchase = 12,
-                    PriceForPurchase = 10,
-                    Genre = genre
-                };
-                dbContext.Movie.Add(movie);
-            }
-            genre = dbContext.Genre.FirstOrDefault(m => m.Name.Contains("The Lord of the Rings"));
-            if (genre == null) { 
-                genre = new Genre()
-                {
-                    Name = "Commedy"
-                };
-                dbContext.Genre.Add(genre);
-            }
-            if (!dbContext.Movie.Any(m => m.Title.Contains("Campeones"))) {
-                movie = new Movie()
-                {
-                    Title = "Campeones",
-                    QuantityForRenting = 10,
-                    PriceForRenting = 2,
-                    QuantityForPurchase = 12,
-                    PriceForPurchase = 20,
-                    Genre = genre
-                };
-                dbContext.Movie.Add(movie);
-            }
-            dbContext.SaveChanges();
-        }
-        */
     }
-   
-
-
 }
 
 
