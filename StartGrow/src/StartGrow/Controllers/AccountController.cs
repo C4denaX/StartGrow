@@ -42,7 +42,6 @@ namespace StartGrow.Controllers
             _emailSender = emailSender;
             _logger = logger;
             _context = context;
-            this.context = context;
         }
 
 
