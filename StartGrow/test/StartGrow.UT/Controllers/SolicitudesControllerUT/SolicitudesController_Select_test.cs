@@ -27,7 +27,8 @@ namespace StartGrow.UT.Controllers.SolicitudesControllerUT
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
             builder.UseInMemoryDatabase("StartGrow")
             .UseInternalServiceProvider(serviceProvider);
-            return builder.Options;
+            return builder.Options;
+
         }
 
 
