@@ -118,21 +118,15 @@
             background-color: #369681;
             color: white;
         }
-
-
-
     </style>
 </head>
 
 
 <h2>Invertir</h2>
 
-
 <div asp-validation-summary="All" class="text-danger"></div>
 
-<form asp-controller="Inversions" asp-action="SelectProyectosForInversion" method="get">
-
-
+<form asp-controller="Inversions" asp-action="SelectProyectosForInversion" method="get">m
     <table class="" align="left">
         <tr>
             <td>
@@ -188,19 +182,18 @@
             <td>
                 @*Filtrado por Inversión Mínima*@
                 <label asp-for="invMin" class="InvMinima"></label>
-                <input asp-for="invMin" class="InvMinima2" size="25" type="number" />
+                <input asp-for="invMin" class="InvMinima2" size="15" type="number" />
             </td>
             <td>
                 @*Filtrado por Interés*@
                 <label asp-for="interes" class="interes"></label>
-                <input asp-for="interes" class="interes2" size="25" type="number" />
+                <input asp-for="interes" class="interes2" size="15" type="number" />
             </td>
             <td>
                 @*Filtrado por Plazo*@
                 <label asp-for="plazo" class="plazo"></label>
-                <input asp-for="plazo" class="plazo2" size="25" type="number" />
+                <input asp-for="plazo" class="plazo2" size="15" type="number" />
             </td>
-
         </tr>
     </table>
     <input class="botonFiltro" type="submit" value="Filtrar" />
