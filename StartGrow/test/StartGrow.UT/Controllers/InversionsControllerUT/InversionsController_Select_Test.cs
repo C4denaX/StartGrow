@@ -374,22 +374,20 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 var controller = new InversionsController(context);
                 controller.ControllerContext.HttpContext = inversionContext;
 
-                //String[] ids = new string[1] { "1" };
+                String[] ids = new string[1] { "1" };                
 
-                //public IList<int> IdsToAdd { get; set; }
-
-                //SelectedProyectosForInversionViewModel Proyectos = new SelectedProyectosForInversionViewModel { IdsToAdd  };
+                SelectedProyectosForInversionViewModel Proyectos = new SelectedProyectosForInversionViewModel { IdsToAdd = ids };
 
 
                 // ACT                
-                //var result = controller.SelectProyectosForInversion(Proyectos);
+                var result = controller.SelectProyectosForInversion(Proyectos);
 
                 //ASSERT  
-                // Assert
-                //var viewResult = Assert.IsType<RedirectToActionResult>(result);
-                //Assert.Equal(viewResult.ActionName, "Create");
-                //var resultadoproyectos = viewResult.RouteValues.Values.First();
-                //Assert.Equal(Proyectos.IdsToAdd, resultadoproyectos);
+                
+                var viewResult = Assert.IsType<RedirectToActionResult>(result);
+                Assert.Equal(viewResult.ActionName, "Create");
+                var resultadoproyectos = viewResult.RouteValues.Values.First();
+                Assert.Equal(Proyectos.IdsToAdd, resultadoproyectos);
                 // Check that both collections (expected and result returned) have the same elements with the same name
 
             }

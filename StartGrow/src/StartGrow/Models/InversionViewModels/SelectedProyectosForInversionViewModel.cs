@@ -7,6 +7,6 @@ namespace StartGrow.Models.InversionViewModels
 {
     public class SelectedProyectosForInversionViewModel
     {
-        public IList<int> IdsToAdd { get; set; }
+        public string[] IdsToAdd { get; set; }
     }
 }
