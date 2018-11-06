@@ -10,7 +10,7 @@ using StartGrow.Models;
 using StartGrow.Data;
 using StartGrow.Models.SolicitudViewModels;
 using StartGrow.Controllers;
-namespace StartGrow.UT.Controller.SolicitudesControllerUT
+namespace StartGrow.UT.Controllers.SolicitudesControllerUT
 {
     public class SolicitudesController_Select_test
     {
