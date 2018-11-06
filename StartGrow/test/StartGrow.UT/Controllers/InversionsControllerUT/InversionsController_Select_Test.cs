@@ -362,6 +362,82 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
             }
         }
 
+                                                                        //PRUEBAS POST
+
+
+        [Fact]
+        public async Task Select_ProyectoSeleccionados()
+        {
+            using (context)
+            {
+                // ARRANGE: Set the test case will use the inMemoty database created in the constructor
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+
+                //String[] ids = new string[1] { "1" };
+
+                //public IList<int> IdsToAdd { get; set; }
+
+                //SelectedProyectosForInversionViewModel Proyectos = new SelectedProyectosForInversionViewModel { IdsToAdd  };
+
+
+                // ACT                
+                //var result = controller.SelectProyectosForInversion(Proyectos);
+
+                //ASSERT  
+                // Assert
+                //var viewResult = Assert.IsType<RedirectToActionResult>(result);
+                //Assert.Equal(viewResult.ActionName, "Create");
+                //var resultadoproyectos = viewResult.RouteValues.Values.First();
+                //Assert.Equal(Proyectos.IdsToAdd, resultadoproyectos);
+                // Check that both collections (expected and result returned) have the same elements with the same name
+
+            }
+        }
+
+        [Fact]
+        public async Task Select_NoProyectoSeleccionados()
+        {
+            using (context)
+            {
+                // ARRANGE: Set the test case will use the inMemoty database created in the constructor
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+
+                //Proyectos
+                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 3},
+                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 2 }};
+
+                //Areas
+                var expectedAreas = new Areas[1] { new Areas { Nombre = "Sanidad" } };
+
+                //Tipos de Inversiones
+                var expectedTiposInversiones = new TiposInversiones[1] { new TiposInversiones { Nombre = "Crowdfunding" } };
+
+                //Rating
+                var expectedRating = new Rating[1] { new Rating { Nombre = "A" } };
+
+                SelectedProyectosForInversionViewModel Proyectos = new SelectedProyectosForInversionViewModel { IdsToAdd = null };
+
+                // ACT                
+                var result = controller.SelectProyectosForInversion(Proyectos);
+
+                //ASSERT  
+                var viewResult = Assert.IsType<ViewResult>(result);
+                SelectProyectosForInversionViewModel model = viewResult.Model as SelectProyectosForInversionViewModel;
+
+                Assert.Equal(expectedProyectos, model.Proyectos, Comparer.Get<Proyecto>((p1, p2) => p1.Nombre == p2.Nombre
+                && p1.Importe == p2.Importe && p1.MinInversion == p2.MinInversion && p1.Progreso == p2.Progreso && p1.ProyectoId == p2.ProyectoId));
+
+                Assert.Equal(expectedTiposInversiones, model.TiposInversiones, Comparer.Get<TiposInversiones>((p1, p2) => p1.Nombre == p2.Nombre));
+                Assert.Equal(expectedAreas, model.Areas, Comparer.Get<Areas>((a1, b2) => a1.Nombre == a1.Nombre));
+                Assert.Equal(expectedRating, model.Rating, Comparer.Get<Rating>((r1, r2) => r1.Nombre == r2.Nombre));
+                // Check that both collections (expected and result returned) have the same elements with the same name
+
+            }
+        }
+
+
 
 
     }
