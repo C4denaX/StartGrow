@@ -7,6 +7,6 @@ namespace StartGrow.Models.SolicitudViewModels
 {
     public class SelectedProyectosForSolicitudViewModel
     {
-        public IList<int> IdsToAdd { get; set; }
+        public string [] IdsToAdd { get; set; }
     }
 }

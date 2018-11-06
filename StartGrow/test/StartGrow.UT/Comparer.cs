@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace StartGrow.UT
 {
     public class Comparer
@@ -13,7 +11,6 @@ namespace StartGrow.UT
             return new Comparer<U>(func);
         }
     }
-
     public class Comparer<T> : Comparer, IEqualityComparer<T>
     {
         private Func<T, T, bool> comparisonFunction;
@@ -30,5 +27,4 @@ namespace StartGrow.UT
             return obj.GetHashCode();
         }
     }
-
 }

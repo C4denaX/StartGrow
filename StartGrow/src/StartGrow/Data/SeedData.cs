@@ -20,7 +20,7 @@ namespace StartGrow.Data
             var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
  
             
-            List<string> rolesNames = new List<string> { "Inversor", "Trabajador" };
+            List<string> rolesNames = new List<string> { "Trabajador", "Inversor" };
 
             SeedRoles(roleManager, rolesNames);
             SeedUsers(userManager, rolesNames);
@@ -46,26 +46,25 @@ namespace StartGrow.Data
         public static void SeedUsers(UserManager<ApplicationUser> userManager, List<string> roles)
         {
             //first, it checks the user does not already exist in the DB
+
             if (userManager.FindByNameAsync("sergio@startgrow.trabajador.com").Result == null)
             {
-                Inversor user = new Inversor();
+                ApplicationUser user = new Trabajador();
                 user.UserName = "sergio@startgrow.trabajador.com";
                 user.Email = "sergio@startgrow.trabajador.com";
                 user.Nombre = "Sergio";
                 user.Apellido1 = "Ruiz";
                 user.Apellido2 = "Villafranca";
-                user.CodPost = 02002;
-                user.Domicilio = "C/Madrid";
-                user.Id = "1";
+                user.CodPost = 2000;
+                user.Domicilio = "Calle";
                 user.Municipio = "Albacete";
-                user.Nacionalidad = "España";
-                user.NIF = "01234567J";
+                user.Nacionalidad = "Española";
+                user.NIF = "123";
                 user.PaisDeResidencia = "España";
                 user.Provincia = "Albacete";
-                user.UserName = "Sergio001";
+               
 
-
-                IdentityResult result = userManager.CreateAsync(user, "password1234%").Result;
+                IdentityResult result = userManager.CreateAsync(user, "Password1234%").Result;
  
                 if (result.Succeeded)
                 {
@@ -76,23 +75,21 @@ namespace StartGrow.Data
 
             if (userManager.FindByNameAsync("gregorio@uclm.com").Result == null)
             {
-                Inversor user = new Inversor();
+                ApplicationUser user = new Inversor();
                 user.UserName = "gregorio@uclm.com";
                 user.Email = "gregorio@uclm.com";
                 user.Nombre = "Gregorio";
                  user.Apellido1= "Diaz";
                 user.Apellido2 = "Descalzo";
-                user.CodPost = 02003;
-                user.Domicilio = "C/Informatica";
-                user.Id = "2";
-                user.Municipio = "Cuenca";
-                user.Nacionalidad = "España";
-                user.NIF = "01234332K";
+                user.CodPost = 2000;
+                user.Domicilio = "Calle";
+                user.Municipio = "Albacete";
+                user.Nacionalidad = "Española";
+                user.NIF = "123";
                 user.PaisDeResidencia = "España";
-                user.Provincia = "Cuenca";
-                user.UserName = "Gregorio001";
+                user.Provincia = "Albacete";
 
-                IdentityResult result = userManager.CreateAsync(user, "password1234%").Result;
+                IdentityResult result = userManager.CreateAsync(user, "APassword1234%").Result;
 
                 if (result.Succeeded)
                 {
