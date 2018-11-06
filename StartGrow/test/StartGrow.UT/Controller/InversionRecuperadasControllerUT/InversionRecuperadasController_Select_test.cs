@@ -199,7 +199,7 @@ namespace StartGrow.UT.Controller.InversionRecuperadasControllerUT
                     },
 
                      new Inversion {
-                        InversionId = 1,
+                        InversionId = 2,
                         Cuota = 15,
                         EstadosInversiones = "Finalizado",
                         Intereses = 23,
@@ -217,9 +217,8 @@ namespace StartGrow.UT.Controller.InversionRecuperadasControllerUT
                 var viewResult = Assert.IsType<ViewResult>(result); //Comprueba si el controlador devuelve una vista
                 SelectInversionForRecuperarInversionViewModel model = viewResult.Model as SelectInversionForRecuperarInversionViewModel;
 
-                Assert.Equal(inversionesEsperadas, model.Inversiones, Comparer.Get<Inversion>((i1, i2) => i1.InversionId == i2.InversionId
-                && i1.Cuota == i2.Cuota && i1.EstadosInversiones == i2.EstadosInversiones && i1.Intereses == i2.Intereses && i1.Inversor == i2.Inversor
-                && i1.Proyecto == i2.Proyecto && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
+                Assert.Equal(inversionesEsperadas, model.Inversiones, Comparer.Get<Inversion>((i1, i2) =>  i1.Cuota == i2.Cuota && i1.EstadosInversiones == i2.EstadosInversiones
+                 && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
             }
         }
 
@@ -238,7 +237,7 @@ namespace StartGrow.UT.Controller.InversionRecuperadasControllerUT
                 controller.ControllerContext.HttpContext = inversionRecuperadaContext;
 
 
-                var inversionesEsperadas = new Inversion[2]
+                var inversionesEsperadas = new Inversion[1]
                 {
                     new Inversion {
                         InversionId = 1,
@@ -249,10 +248,10 @@ namespace StartGrow.UT.Controller.InversionRecuperadasControllerUT
                         ProyectoId = 1,
                         TipoInversionesId = 1,
                         Total = 50
-                    },
-
+                    }
+                    /*
                      new Inversion {
-                        InversionId = 1,
+                        InversionId = 2,
                         Cuota = 15,
                         EstadosInversiones = "Recaudación",
                         Intereses = 23,
@@ -261,6 +260,7 @@ namespace StartGrow.UT.Controller.InversionRecuperadasControllerUT
                         TipoInversionesId = 1,
                         Total = 100
                     }
+                    */
                 };
 
                 //ACT (Actuar) --> Realización de la prueba
