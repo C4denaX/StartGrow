@@ -46,11 +46,11 @@ namespace StartGrow.Data
         public static void SeedUsers(UserManager<ApplicationUser> userManager, List<string> roles)
         {
             //first, it checks the user does not already exist in the DB
-            if (userManager.FindByNameAsync("sergio@startgrow.trabajador.com").Result == null)
+            if (userManager.FindByNameAsync("sergio@uclm.com").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "sergio@startgrow.trabajador.com";
-                user.Email = "sergio@startgrow.trabajador.com";
+                user.UserName = "sergio@uclm.com";
+                user.Email = "sergio@uclm.com";
                 user.Nombre = "Sergio";
                 user.Apellido1 = "Ruiz";
                 user.Apellido2 = "Villafranca";
@@ -64,11 +64,11 @@ namespace StartGrow.Data
                 }
             }
 
-            if (userManager.FindByNameAsync("David@startgrow.inversor.com").Result == null)
+            if (userManager.FindByNameAsync("David@uclm.com").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "David@startgrow.inversor.com";
-                user.Email = "David@startgrow.inversor.com";
+                user.UserName = "David@uclm.com";
+                user.Email = "David@uclm.com";
                 user.Nombre = "David";
                  user.Apellido1= "Giron";
                 user.Apellido2 = "Lopez";

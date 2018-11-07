@@ -68,6 +68,7 @@ namespace StartGrow.Controllers
         //POST
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public IActionResult SelectPreferenciasForInversor(SelectedPreferenciasForInversor SelectedPreferencias)
         {
@@ -264,6 +265,7 @@ namespace StartGrow.Controllers
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            var _context = HttpContext.RequestServices.GetService(Type.GetType("StartGrow.Data.ApplicationDbContext"));
             return View();
         }
         

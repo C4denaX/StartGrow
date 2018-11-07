@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StartGrow.test
+namespace StartGrow.UT
 {
     public class Comparer
     {

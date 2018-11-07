@@ -10,6 +10,7 @@ using StartGrow.Models;
 using StartGrow.Data;
 using StartGrow.Models.PreferenciasViewModel;
 using StartGrow.Controllers;
+using Microsoft.AspNetCore.Http;
 
 namespace StartGrow.UT.Controllers.AccountController_test
 {
@@ -68,11 +69,6 @@ namespace StartGrow.UT.Controllers.AccountController_test
             context.Rating.Add(new Rating { Nombre = "D" });
 
             context.SaveChanges();
-
-            System.Security.Principal.GenericIdentity user = new System.Security.Principal.GenericIdentity("David@startgrow.inversor.com");
-            System.Security.Claims.ClaimsPrincipal identity = new System.Security.Claims.ClaimsPrincipal(user);
-            accountContext = new Microsoft.AspNetCore.Http.DefaultHttpContext();
-            accountContext.User = identity;
         }
 
 
@@ -82,7 +78,9 @@ namespace StartGrow.UT.Controllers.AccountController_test
             // Arrange
             using (context) //Set the test case will use the inMemory database created in the constructor
             {
-                var controller = new AccountController(context);
+                var controller = HttpContext.RequestServices.GetService(Type.GetType("StartGrow.Data.ApplicationDbContext"));
+
+                //var controller = new AccountController(context);
                 controller.ControllerContext.HttpContext = accountContext;
 
                 var preferenciaEsperada = new Preferencias[2]
@@ -101,7 +99,7 @@ namespace StartGrow.UT.Controllers.AccountController_test
                 var ratingEsperado = new Rating[1] { new Rating { Nombre = "A" } };
 
                 //Act
-                var result = controller.SelectPreferenciasForInversor();
+                var result = await controller.SelectPreferenciasForInversor();
 
                 //Assert
                 var viewResult = Assert.IsType<ViewResult>(result);
