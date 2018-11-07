@@ -22,8 +22,8 @@ namespace StartGrow.Models.SolicitudViewModels
 
         //Para filtrar por las Areas temáticas
         [Display(Name = "Areas Tematicas")]
-        public string areasSeleccionada { get; set; }
-        public SelectList areas { get; set; }
+        public string [] areasSeleccionada { get; set; }
+        public IEnumerable<Areas> areas { get; set; }
 
         //Para filtrar por la fecha de expiración
 

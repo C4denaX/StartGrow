@@ -37,15 +37,18 @@ namespace StartGrow.Controllers
 
             //Solo mostrará las inversiones que estén en estado FINALIZADO o EN CURSO
             //selectInversiones.Inversiones = _context.Inversion.Include(i => i.EstadosInversiones).
-            //  Where(i => i.EstadosInversiones.Equals("Finalizado") || i.EstadosInversiones.Equals("En_curso"));
-            selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto).
-             ThenInclude<Inversion, Proyecto, Rating>(p => p.Rating).Where(m => m.EstadosInversiones.Equals(EstadosInversiones.En_curso)).Where(m => m.EstadosInversiones.Equals(EstadosInversiones.Finalizado));
+
+            selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones)
+             .Include(m => m.Proyecto)
+             .ThenInclude(p => p.ProyectoAreas).ThenInclude(pa => pa.Areas)
+             .Include(m => m.Proyecto).ThenInclude(r => r.Rating)
+             .Where(m => m.EstadosInversiones !="Recaudacion" && m.Inversor.UserName == User.Identity.Name);
 
 
             //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
             //******* FILTRAR POR ID *********
-            if (idInv != 0)
+            if (idInv != null && idInv > 0)
                 selectInversiones.Inversiones = selectInversiones.Inversiones.Where(id => id.InversionId == idInv);
 
 
@@ -104,7 +107,7 @@ namespace StartGrow.Controllers
             return View(selectInversiones);
         }
 
-
+  
 
         //SELECT (POST)
         [HttpPost]
@@ -124,12 +127,14 @@ namespace StartGrow.Controllers
             selectInversiones.Tipos = new SelectList(_context.TiposInversiones.Select(t => t.Nombre).ToList());
             selectInversiones.Ratings = new SelectList(_context.Rating.Select(r => r.Nombre).ToList());
 
-           // selectInversiones.Inversiones = _context.Inversion.Include(m => m.EstadosInversiones).Include(m => m.TipoInversiones).
-               // Include(m => m.Proyecto).ThenInclude<Inversion, Proyecto, Rating>(p => p.Rating).
-               // Include(m => m.Proyecto).ThenInclude<Inversion, Proyecto, ProyectoAreas>(p => p.ProyectoAreas).Include
+            selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones)
+             .Include(m => m.Proyecto)
+             .ThenInclude(p => p.ProyectoAreas).ThenInclude(pa => pa.Areas)
+             .Include(m => m.Proyecto).ThenInclude(r => r.Rating)
+             .Where(m => m.EstadosInversiones != "Recaudacion" && m.Inversor.UserName == User.Identity.Name);
 
 
-                selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto).
+            selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto).
              ThenInclude<Inversion, Proyecto, Rating>(p => p.Rating).Where(m => m.EstadosInversiones.Equals(EstadosInversiones.En_curso)).Where(m => m.EstadosInversiones.Equals(EstadosInversiones.Finalizado));
 
             return View(selectInversiones);
