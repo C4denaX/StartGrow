@@ -28,6 +28,7 @@ namespace StartGrow.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly ApplicationDbContext _context;
+        private ApplicationDbContext context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -43,13 +44,11 @@ namespace StartGrow.Controllers
             _context = context;
         }
 
-        
-        
 
 
 
         //----------------------------------------------------------------------------------------------------------//
-        
+
         //GET
 
         public IActionResult SelectPreferenciasForInversor()
@@ -69,6 +68,7 @@ namespace StartGrow.Controllers
         //POST
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public IActionResult SelectPreferenciasForInversor(SelectedPreferenciasForInversor SelectedPreferencias)
         {
@@ -265,6 +265,7 @@ namespace StartGrow.Controllers
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            var _context = HttpContext.RequestServices.GetService(Type.GetType("StartGrow.Data.ApplicationDbContext"));
             return View();
         }
         
