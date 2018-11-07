@@ -82,6 +82,7 @@ namespace StartGrow.UT.Controllers.AccountController_test
             // Arrange
             using (context) //Set the test case will use the inMemory database created in the constructor
             {
+
                 var controller = new AccountController(context);
                 controller.ControllerContext.HttpContext = accountContext;
 
