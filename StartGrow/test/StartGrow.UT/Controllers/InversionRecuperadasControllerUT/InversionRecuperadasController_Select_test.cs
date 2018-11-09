@@ -233,13 +233,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -329,13 +329,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -435,14 +435,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-              //  Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<MultiSelectList>((i1, i2) => i1.Equals(i2)));
-               // Assert.Equal(areasEsperadasSelect.Items, model.Areas.Items);
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -528,13 +527,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -636,13 +635,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -742,13 +741,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -892,13 +891,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
 
 
