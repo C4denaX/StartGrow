@@ -115,11 +115,36 @@ namespace StartGrow.Controllers
         }
 
         // GET: Solicitudes/Create
-        public IActionResult Create()
+        public IActionResult Create(SelectedProyectosForSolicitudViewModel selectedProyectos)
         {
-            ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre");
-            ViewData["TrabajadorId"] = new SelectList(_context.Trabajador, "Id", "Id");
-            return View();
+            Proyecto proyecto;
+            int id;
+            SolicitudCreateViewModel solicitud = new SolicitudCreateViewModel();
+            solicitud.Solicitudes = new List<Solicitud>();
+            Trabajador trabajador = _context.Users.OfType<Trabajador>().FirstOrDefault<Trabajador>(u => u.UserName.Equals(User.Identity.Name));
+
+            if (selectedProyectos.IdsToAdd == null)
+            {
+                ModelState.AddModelError("ProyectoNoSeleccionado", "Por favor, selecciona un proyecto para poder crear la solicitud");
+            }
+            else
+            {
+                foreach(string ids in selectedProyectos.IdsToAdd)
+                {
+                    id = int.Parse(ids);
+                    proyecto = _context.Proyecto.Include(m => m.Rating).Where(m => m.RatingId == null).FirstOrDefault<Proyecto>(p => p.ProyectoId.Equals(id));
+                    solicitud.Solicitudes.Add(new Solicitud() { Proyecto = proyecto, FechaSolicitud = DateTime.Now, Trabajador = trabajador });
+                }
+            }
+            solicitud.Name = trabajador.Nombre;
+            solicitud.FirstSurname = trabajador.Apellido1;
+            solicitud.SecondSurname = trabajador.Apellido2;
+
+
+            ViewBag.Estados = new SelectList(Enum.GetNames(typeof(StartGrow.Models.Estados)));
+            ViewBag.Rating = new SelectList(_context.Rating.Select(c => c.Nombre).Distinct());
+
+            return View(solicitud);
         }
 
         // POST: Solicitudes/Create
