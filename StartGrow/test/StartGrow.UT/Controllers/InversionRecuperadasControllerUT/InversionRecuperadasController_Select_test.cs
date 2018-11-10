@@ -53,7 +53,7 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
             context.TiposInversiones.Add(tipo);
 
 
-            
+
             Proyecto proyecto1 = new Proyecto
             {
                 ProyectoId = 1,
@@ -152,14 +152,14 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                 var controller = new InversionRecuperadasController(context);
                 controller.ControllerContext.HttpContext = inversionRecuperadaContext;
 
-                var area = "Sanidad" ;
+                var area = "Sanidad";
                 var rating = new Rating { RatingId = 1, Nombre = "A" };
                 var tipo = new TiposInversiones { TiposInversionesId = 1, Nombre = "Crownfunding" };
 
-                String[] areasEsperadas = new String [1] { "Sanidad" };
+                String[] areasEsperadas = new String[1] { "Sanidad" };
                 String[] ratingsEsperados = new String[1] { "A" };
                 String[] tiposEsperados = new String[1] { "Crownfunding" };
-                
+
                 var areasEsperadasSelect = new SelectList(areasEsperadas);
                 var ratingsEsperadosSelect = new SelectList(ratingsEsperados);
                 var tiposEsperadosSelect = new SelectList(tiposEsperados);
@@ -178,7 +178,7 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                     Progreso = 34,
                     Rating = rating
                 };
-  
+
                 Inversor inversor1 = new Inversor
                 {
                     Id = "1",
@@ -218,7 +218,7 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                         Proyecto = proyecto1,
                         TipoInversionesId = 1,
                         Total = 100,
-                        
+
                     }
                 };
 
@@ -229,17 +229,17 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                 var viewResult = Assert.IsType<ViewResult>(result); //Comprueba si el controlador devuelve una vista
                 SelectInversionForRecuperarInversionViewModel model = viewResult.Model as SelectInversionForRecuperarInversionViewModel;
 
-                Assert.Equal(inversionesEsperadas, model.Inversiones, Comparer.Get<Inversion>((i1, i2) =>  i1.Cuota == i2.Cuota && i1.EstadosInversiones == i2.EstadosInversiones
+                Assert.Equal(inversionesEsperadas, model.Inversiones, Comparer.Get<Inversion>((i1, i2) => i1.Cuota == i2.Cuota && i1.EstadosInversiones == i2.EstadosInversiones
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -329,13 +329,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -435,13 +435,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -527,13 +527,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -635,13 +635,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -741,13 +741,13 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
                  && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
 
                 Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
 
                 Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
-                //Assert.Equal(areasEsperadasSelect.First(), model.Areas.First());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
             }
         }
 
@@ -767,6 +767,144 @@ namespace StartGrow.UT.Controllers.InversionRecuperadasControllerUT
         //----------------------------------------------------------------------------------------------------------------------------------------------------------------
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+        [Fact]
+        public async Task Select_InversionesSeleccionadas()
+        {
+            using (context)
+            {
+                //Arrange
+
+                var controller = new InversionRecuperadasController(context);
+                controller.ControllerContext.HttpContext = inversionRecuperadaContext;
+                String[] ids = new string[1] { "1" };
+
+                SelectedInversionForRecuperarInversionViewModel inversiones = new SelectedInversionForRecuperarInversionViewModel { IdsToAdd = ids };
+
+                // Act
+
+                var result = controller.SelectInversionForRecuperarInversion(inversiones);
+
+                // Assert
+                var viewResult = Assert.IsType<RedirectToActionResult>(result);
+                Assert.Equal(viewResult.ActionName, "Create");
+                var resultadoinversiones = viewResult.RouteValues.Values.First();
+                Assert.Equal(inversiones.IdsToAdd, resultadoinversiones);
+            }
+
+        }
+
+
+
+
+        [Fact]
+        public async Task Select_NoInversionesSeleccionadas()
+        {
+            using (context)
+            {
+                //Arrange
+
+                var controller = new InversionRecuperadasController(context);
+                controller.ControllerContext.HttpContext = inversionRecuperadaContext;
+
+                var area = "Sanidad";
+                var rating = new Rating { RatingId = 1, Nombre = "A" };
+                var tipo = new TiposInversiones { TiposInversionesId = 1, Nombre = "Crownfunding" };
+
+                String[] areasEsperadas = new String[1] { "Sanidad" };
+                String[] ratingsEsperados = new String[1] { "A" };
+                String[] tiposEsperados = new String[1] { "Crownfunding" };
+
+                var areasEsperadasSelect = new SelectList(areasEsperadas);
+                var ratingsEsperadosSelect = new SelectList(ratingsEsperados);
+                var tiposEsperadosSelect = new SelectList(tiposEsperados);
+
+
+                Proyecto proyecto1 = new Proyecto
+                {
+                    ProyectoId = 1,
+                    FechaExpiracion = new DateTime(2020, 1, 1),
+                    Importe = 12,
+                    Interes = 2,
+                    MinInversion = 5,
+                    Nombre = "Pruebas en sanidad",
+                    NumInversores = 0,
+                    Plazo = 12,
+                    Progreso = 34,
+                    Rating = rating
+                };
+
+                Inversor inversor1 = new Inversor
+                {
+                    Id = "1",
+                    Nombre = "david@uclm.es",
+                    Email = "david@uclm.es",
+                    Apellido1 = "Girón",
+                    Apellido2 = "López",
+                    Domicilio = "C/Cuenca",
+                    Municipio = "Albacete",
+                    NIF = "48259596",
+                    Nacionalidad = "Española",
+                    PaisDeResidencia = "España",
+                    Provincia = "Albacete",
+                    PasswordHash = "hola",
+                    UserName = "david@uclm.es"
+                };
+
+                var inversionesEsperadas = new Inversion[2]
+                {
+                    new Inversion {
+                        InversionId = 1,
+                        Cuota = 6,
+                        EstadosInversiones = "En_Curso",
+                        Intereses = 12,
+                        Inversor = inversor1,
+                        Proyecto = proyecto1,
+                        TipoInversionesId = 1,
+                        Total = 50
+                    },
+
+                     new Inversion {
+                        InversionId = 2,
+                        Cuota = 15,
+                        EstadosInversiones = "Finalizado",
+                        Intereses = 23,
+                        Inversor = inversor1,
+                        Proyecto = proyecto1,
+                        TipoInversionesId = 1,
+                        Total = 100,
+
+                    }
+                };
+
+
+                SelectedInversionForRecuperarInversionViewModel inversiones = new SelectedInversionForRecuperarInversionViewModel { IdsToAdd = null };
+
+                // Act
+
+                var result = controller.SelectInversionForRecuperarInversion(inversiones);
+
+                // Assert
+                var viewResult = Assert.IsType<ViewResult>(result); //Comprueba si el controlador devuelve una vista
+                SelectInversionForRecuperarInversionViewModel model = viewResult.Model as SelectInversionForRecuperarInversionViewModel;
+
+                Assert.Equal(inversionesEsperadas, model.Inversiones, Comparer.Get<Inversion>((i1, i2) => i1.Cuota == i2.Cuota && i1.EstadosInversiones == i2.EstadosInversiones
+                 && i1.TipoInversionesId == i1.TipoInversionesId && i1.Total == i2.Total));
+
+                Assert.Equal(areasEsperadasSelect.Count(), model.Areas.Count());
+                Assert.Equal(areasEsperadasSelect, model.Areas, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
+
+                Assert.Equal(ratingsEsperados.Count(), model.Ratings.Count());
+                Assert.Equal(ratingsEsperadosSelect, model.Ratings, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
+
+                Assert.Equal(tiposEsperados.Count(), model.Tipos.Count());
+                Assert.Equal(tiposEsperadosSelect, model.Tipos, Comparer.Get<SelectListItem>((i1, i2) => i1.Value == i2.Value));
+            }
+
+
+
+
+
+        }
 
     }
 }

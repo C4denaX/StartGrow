@@ -12,7 +12,7 @@ using StartGrow.Models.InversionRecuperadaViewModels;
 
 namespace StartGrow.Controllers
 {
-    //[Authorize(Roles = "Inversor")]
+    [Authorize(Roles = "Inversor")]
     public class InversionRecuperadasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -132,10 +132,6 @@ namespace StartGrow.Controllers
              .ThenInclude(p => p.ProyectoAreas).ThenInclude(pa => pa.Areas)
              .Include(m => m.Proyecto).ThenInclude(r => r.Rating)
              .Where(m => m.EstadosInversiones != "Recaudacion" && m.Inversor.UserName == User.Identity.Name);
-
-
-            selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto).
-             ThenInclude<Inversion, Proyecto, Rating>(p => p.Rating).Where(m => m.EstadosInversiones.Equals(EstadosInversiones.En_curso)).Where(m => m.EstadosInversiones.Equals(EstadosInversiones.Finalizado));
 
             return View(selectInversiones);
         }
