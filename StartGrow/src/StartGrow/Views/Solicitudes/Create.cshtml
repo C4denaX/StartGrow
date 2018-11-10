@@ -1,4 +1,4 @@
-﻿@model StartGrow.Models.Solicitud
+﻿@model StartGrow.Models.SolicitudViewModels.SolicitudCreateViewModel
 
 @{
     ViewData["Title"] = "Create"; 
@@ -6,8 +6,100 @@
 
 <h2>Create</h2>
 
-<h4>Solicitud</h4>
-<hr />
+<form asp-action="Create" method="post">
+    <div class="form-horizontal">
+        <h4>Solicitud</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstSurname)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstSurname)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SecondSurname)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SecondSurname)
+            </dd>
+        </dl>
+    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="TrabajadorId" type="hidden" class="form-control" />
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th width="50%">
+                Nombre Proyecto
+            </th>
+            <th width="20%">
+                Estado Solicitud
+            </th>
+            <th>
+                Rating
+            </th>
+            <th>
+                Interes
+            </th>
+            <th>
+                Plazo de Amortización
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Solicitudes.Count() == 0)
+        {
+            <tr><td colspan="3">No hay proyectos disponibles</td></tr>
+        }
+        else
+        {
+            @for (int i = 0; i < Model.Solicitudes.Count; i++)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Solicitudes.ElementAt<Solicitud>(i).Proyecto.Nombre)
+                </td>
+                <td>
+                    <div class="form-group">
+                        <select asp-for="estados" asp-items="ViewBag.Estados">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <select asp-for="rating" asp-items="ViewBag.Rating">
+                        <option value=""></option>
+                    </select>
+                </td>
+                <td>
+                    <input asp-for="interes" size="25" type="number" />
+                </td>
+                <td>
+                    <input asp-for="plazo" size="25" type="number" />
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input asp-for="Solicitudes[i].Proyecto.ProyectoId" type="hidden" class="form-control" />
+                        <input asp-for="Solicitudes[i].Proyecto.Importe" type="hidden" class="form-control" />
+                        <input asp-for="Solicitudes[i].Proyecto.Nombre" type="hidden" class="form-control" />
+                        <input asp-for="Solicitudes[i].Proyecto.ProyectoAreas" type="hidden" class="form-control" />
+                        <input asp-for="Solicitudes[i].FechaSolicitud" class="form-control" />
+                    </div>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+@*
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -36,8 +128,8 @@
         </form>
     </div>
 </div>
-
+*@
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="SelectProyectosForSolicitud">Back to List</a>
 </div>
 
