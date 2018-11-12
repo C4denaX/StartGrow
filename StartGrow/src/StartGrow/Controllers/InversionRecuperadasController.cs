@@ -42,7 +42,7 @@ namespace StartGrow.Controllers
              .Include(m => m.Proyecto)
              .ThenInclude(p => p.ProyectoAreas).ThenInclude(pa => pa.Areas)
              .Include(m => m.Proyecto).ThenInclude(r => r.Rating)
-             .Where(m => m.EstadosInversiones !="Recaudacion" && m.Inversor.UserName == User.Identity.Name);
+             .Where(m => m.EstadosInversiones != "Recaudacion" && m.Inversor.UserName == User.Identity.Name);
 
 
             //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -72,7 +72,7 @@ namespace StartGrow.Controllers
 
             //Utilizado si el usuario selecciona un Estado en el desplegable. Al seleccionar dicho Estado, 
             //se añadirá al IEnumerable Inversiones todas las inversiones donde el Estado sea el Estado seleccionado.
-            if (inversionEstadoSeleccionado != null)       
+            if (inversionEstadoSeleccionado != null)
                 selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.EstadosInversiones.Equals(inversionEstadoSeleccionado));
 
 
@@ -82,11 +82,11 @@ namespace StartGrow.Controllers
             selectInversiones.Tipos = new SelectList(_context.TiposInversiones.Select(t => t.Nombre).ToList());
 
             //Utilizado si el usuario selecciona un Tipo en el desplegable. Al seleccionar dicho Tipo, 
-            
+
             //se añadirá al IEnumerable Inversiones todas las inversiones donde el Tipo sea el Tipo seleccionado.
-            if (inversionTipoSeleccionado != null)        
+            if (inversionTipoSeleccionado != null)
                 selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.TipoInversiones.Nombre.Contains(inversionTipoSeleccionado));
-           
+
 
 
             //******* FILTRAR POR RATING *******
@@ -96,18 +96,18 @@ namespace StartGrow.Controllers
 
             //Utilizado si el usuario selecciona un Rating en el desplegable. Al seleccionar dicho Rating, 
             //se añadirá al IEnumerable Inversiones todas las inversiones donde el rating sea el rating seleccionado.
-            if (inversionRatingSeleccionado != null)        
+            if (inversionRatingSeleccionado != null)
                 selectInversiones.Inversiones = selectInversiones.Inversiones.Where(i => i.Proyecto.Rating.Nombre.Contains(inversionRatingSeleccionado));
 
             //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-            
-         
+
+
             //En este punto ejecuta la consulta con los filtros que hemos establecido.
             selectInversiones.Inversiones.ToList();
             return View(selectInversiones);
         }
 
-  
+
 
         //SELECT (POST)
         [HttpPost]
@@ -135,6 +135,36 @@ namespace StartGrow.Controllers
 
             return View(selectInversiones);
         }
+
+
+
+        //CREATE (GET)
+        public IActionResult Create()
+        {
+            Inversion inversion;
+            int id;
+
+        }
+
+
+
+        //CREATE (POST)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("InversionRecuperadaId,FechaRecuperacion,Comentario,CantidadRecuperada,MonederoId,InversionId")] InversionRecuperada inversionRecuperada)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(inversionRecuperada);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["InversionId"] = new SelectList(_context.Inversion, "InversionId", "Id", inversionRecuperada.InversionId);
+            ViewData["MonederoId"] = new SelectList(_context.Monedero, "MonederoId", "Id", inversionRecuperada.MonederoId);
+            return View(inversionRecuperada);
+        }
+
+
 
 
 
@@ -166,31 +196,9 @@ namespace StartGrow.Controllers
             return View(inversionRecuperada);
         }
 
-        // GET: InversionRecuperadas/Create
-        public IActionResult Create()
-        {
-            ViewData["InversionId"] = new SelectList(_context.Inversion, "InversionId", "Id");
-            ViewData["MonederoId"] = new SelectList(_context.Monedero, "MonederoId", "Id");
-            return View();
-        }
 
-        // POST: InversionRecuperadas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InversionRecuperadaId,FechaRecuperacion,Comentario,CantidadRecuperada,MonederoId,InversionId")] InversionRecuperada inversionRecuperada)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(inversionRecuperada);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["InversionId"] = new SelectList(_context.Inversion, "InversionId", "Id", inversionRecuperada.InversionId);
-            ViewData["MonederoId"] = new SelectList(_context.Monedero, "MonederoId", "Id", inversionRecuperada.MonederoId);
-            return View(inversionRecuperada);
-        }
+
+
 
         // GET: InversionRecuperadas/Edit/5
         public async Task<IActionResult> Edit(int? id)
