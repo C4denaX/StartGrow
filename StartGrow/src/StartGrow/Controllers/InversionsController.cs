@@ -132,13 +132,37 @@ namespace StartGrow.Controllers
             return View(inversion);
         }
 
-        // GET: Inversions/Create
-        public IActionResult Create()
+        // GET: Inversions/CREATE
+        public IActionResult Create(SelectedProyectosForInversionViewModel selectedProyectos)
         {
-            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre");
-            ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesId", "Nombre");
-            return View();
+            Proyecto proyecto;
+            int id;
+
+            InversionCreateViewModel inversion = new InversionCreateViewModel();
+            inversion.Inversiones = new List<Inversion>();
+
+            
+
+            if(selectedProyectos.IdsToAdd == null)
+            {
+                ModelState.AddModelError("Inversion no seleccionada", "Debes seleccionar al menos una inversión para poder invertir, por favor");
+            }
+            else
+            {
+                foreach (string ids in selectedProyectos.IdsToAdd)
+                {
+                    id = int.Parse(ids);
+                    inversion = _context.Inversion.Include(m => m.Cuota).FirstOrDefault<Inversion>(m => m.InversionId.Equals(id));
+                    inversion.Inversiones.Add(new Inversion() {Proyecto = proyecto, Inversor = inversor});
+                }
+            }
+
+            Inversor inversor = _context.Users.OfType<Inversor>().FirstOrDefault<Inversor>(u => u.UserName.Equals(User.Identity.Name));
+            inversion.Name = inversor.Nombre;
+            inversion.FirstSurname = inversor.Apellido1;
+            inversion.SecondSurname = inversor.Apellido2;
+
+            return View(inversion);   
         }
 
         // POST: Inversions/Create
