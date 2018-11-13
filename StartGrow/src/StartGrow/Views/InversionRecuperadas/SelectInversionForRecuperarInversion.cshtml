@@ -91,14 +91,18 @@
                         @Html.DisplayFor(modelItem => item.InversionId)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ProyectoId)
+                        @Html.DisplayFor(modelItem => item.Proyecto.Nombre)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.TipoInversiones.Nombre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Proyecto.ProyectoAreas)
+                        @foreach (var proyectoAreas in item.Proyecto.ProyectoAreas)
+                        {
+                            @Html.DisplayFor(modelItem => proyectoAreas.Areas.Nombre)
+                        }<br>
                     </td>
+                    
                     <td>
                         @Html.DisplayFor(modelItem => item.Proyecto.Rating.Nombre)
                     </td>
@@ -125,7 +129,7 @@
     </table>
 
 
-    <button type="submit" class="btn btn-primary">Recuperar Inversiones</button>
+    <button type="submit" class="btn btn-primary">Siguiente</button>
     <a asp-action="Index" class="btn btn-default">Cancelar</a>
 </form>
       
