@@ -64,10 +64,4 @@
     <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="Views\InversionRecuperadas\CreateInversionesRecuperadasForInversion.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-  </ItemGroup>
-
 </Project>
