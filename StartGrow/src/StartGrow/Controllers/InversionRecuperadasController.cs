@@ -138,13 +138,58 @@ namespace StartGrow.Controllers
 
 
 
+
+
+
+
+
+
+
+
+
         //CREATE (GET)
-        public IActionResult Create()
+        public IActionResult Create(SelectedInversionForRecuperarInversionViewModel selectedInversiones)
         {
             Inversion inversion;
             int id;
+            InversionRecuperadaCreateViewModel inv = new InversionRecuperadaCreateViewModel();
+            inv.Inversiones = new List<Inversion>();
+            Inversor inversor = _context.Users.OfType<Inversor>().FirstOrDefault<Inversor>(u => u.UserName.Equals(User.Identity.Name));
 
+            if (selectedInversiones.IdsToAdd == null)
+            {
+                ModelState.AddModelError("InversionNoSeleccionada", "Por favor, selecciona al menos una inversión para recuperarla");
+            }
+            else
+            {
+                foreach (string ids in selectedInversiones.IdsToAdd)
+                {
+                    id = int.Parse(ids);
+                    inversion = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto)
+                        .ThenInclude(p => p.ProyectoAreas).ThenInclude(pa => pa.Areas)
+                        .Include(m => m.Proyecto).ThenInclude(r => r.Rating)
+                        .Where(m => m.EstadosInversiones != "Recaudacion" && m.Inversor.UserName == User.Identity.Name)
+                        .FirstOrDefault<Inversion>(i => i.InversionId.Equals(id));
+
+                    inv.Inversiones.Add(inversion);
+                }
+            }
+            inv.Name = inversor.Nombre;
+            inv.FirstSurname = inversor.Apellido1;
+            inv.SecondSurname = inversor.Apellido2;
+
+            return View(inv);
         }
+
+
+
+
+
+
+
+
+
+
 
 
 
