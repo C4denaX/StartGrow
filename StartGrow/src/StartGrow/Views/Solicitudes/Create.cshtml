@@ -1,4 +1,4 @@
-﻿@model StartGrow.Models.SolicitudViewModels.SolicitudCreateViewModel
+﻿@model StartGrow.Models.SolicitudViewModels.SolicitudesCreateViewModel
 
 @{
     ViewData["Title"] = "Create"; 
@@ -32,103 +32,110 @@
         </dl>
     </div>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input asp-for="TrabajadorId" type="hidden" class="form-control" />
-</form>
-<table class="table">
-    <thead>
-        <tr>
-            <th width="50%">
-                Nombre Proyecto
-            </th>
-            <th width="20%">
-                Estado Solicitud
-            </th>
-            <th>
-                Rating
-            </th>
-            <th>
-                Interes
-            </th>
-            <th>
-                Plazo de Amortización
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.Solicitudes.Count() == 0)
-        {
-            <tr><td colspan="3">No hay proyectos disponibles</td></tr>
-        }
-        else
-        {
-            @for (int i = 0; i < Model.Solicitudes.Count; i++)
-            {
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => Model.Solicitudes.ElementAt<Solicitud>(i).Proyecto.Nombre)
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select asp-for="estados" asp-items="ViewBag.Estados">
-                            <option value=""></option>
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <select asp-for="rating" asp-items="ViewBag.Rating">
-                        <option value=""></option>
-                    </select>
-                </td>
-                <td>
-                    <input asp-for="interes" size="25" type="number" />
-                </td>
-                <td>
-                    <input asp-for="plazo" size="25" type="number" />
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input asp-for="Solicitudes[i].Proyecto.ProyectoId" type="hidden" class="form-control" />
-                        <input asp-for="Solicitudes[i].Proyecto.Importe" type="hidden" class="form-control" />
-                        <input asp-for="Solicitudes[i].Proyecto.Nombre" type="hidden" class="form-control" />
-                        <input asp-for="Solicitudes[i].Proyecto.ProyectoAreas" type="hidden" class="form-control" />
-                        <input asp-for="Solicitudes[i].FechaSolicitud" class="form-control" />
-                    </div>
-                </td>
+                <th width="50%">
+                    Nombre Proyecto
+                </th>
+                <th width="20%">
+                    Estado Solicitud
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Interes
+                </th>
+                <th>
+                    Plazo de Amortización
+                </th>
             </tr>
+        </thead>
+        <tbody>
+            @if (Model.Solicitudes.Count() == 0)
+            {
+                <tr><td colspan="3">No hay proyectos disponibles</td></tr>
             }
-        }
-    </tbody>
-</table>
-@*
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TrabajadorId" class="control-label"></label>
-                <select asp-for="TrabajadorId" class ="form-control" asp-items="ViewBag.TrabajadorId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProyectoId" class="control-label"></label>
-                <select asp-for="ProyectoId" class ="form-control" asp-items="ViewBag.ProyectoId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
-                <span asp-validation-for="Estado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaSolicitud" class="control-label"></label>
-                <input asp-for="FechaSolicitud" class="form-control" />
-                <span asp-validation-for="FechaSolicitud" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+            else
+            {
+                @for (int i = 0; i < Model.Solicitudes.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => modelItem.Solicitudes.ElementAt(i).solicitud.Proyecto.Nombre)
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select asp-for="Solicitudes[i].estados" asp-items="ViewBag.Estados">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select asp-for="Solicitudes[i].rating" asp-items="ViewBag.Rating">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <input asp-for="Solicitudes[i].interes" size="25" type="number" />
+                        </td>
+                        <td>
+                            <input asp-for="Solicitudes[i].plazo" size="25" type="number" />
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <input asp-for="Solicitudes[i].solicitud.Proyecto.FechaExpiracion" type="hidden" class="form-control" />
+                                <input asp-for="Solicitudes[i].solicitud.Proyecto.ProyectoId" type ="hidden" class="form-control"/>
+                                <input asp-for="Solicitudes[i].solicitud.ProyectoId" type="hidden" class="form-control" />
+                                <input asp-for="Solicitudes[i].solicitud.Proyecto.Importe" type="hidden" class="form-control" />
+                                <input asp-for="Solicitudes[i].solicitud.Proyecto.Nombre" type="hidden" class="form-control" />
+                                <input asp-for="Solicitudes[i].FechaSolicitud" class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-default" />
     </div>
-</div>
-*@
+    @*
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="TrabajadorId" class="control-label"></label>
+                        <select asp-for="TrabajadorId" class ="form-control" asp-items="ViewBag.TrabajadorId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProyectoId" class="control-label"></label>
+                        <select asp-for="ProyectoId" class ="form-control" asp-items="ViewBag.ProyectoId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Estado" class="control-label"></label>
+                        <input asp-for="Estado" class="form-control" />
+                        <span asp-validation-for="Estado" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FechaSolicitud" class="control-label"></label>
+                        <input asp-for="FechaSolicitud" class="form-control" />
+                        <span asp-validation-for="FechaSolicitud" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    *@
+</form>
 <div>
     <a asp-action="SelectProyectosForSolicitud">Back to List</a>
 </div>
