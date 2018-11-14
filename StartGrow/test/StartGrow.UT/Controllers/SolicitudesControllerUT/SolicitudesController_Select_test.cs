@@ -52,12 +52,19 @@ namespace StartGrow.UT.Controllers.SolicitudesControllerUT
 
             TiposInversiones tipo = new TiposInversiones { Nombre = "Crowdfunding" };
 
+           // TiposInversiones tipo2 = new TiposInversiones { Nombre = "TIC" };
+
             context.TiposInversiones.Add(tipo);
+       //     context.TiposInversiones.Add(tipo2);
 
             context.Proyecto.Add(new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 70000, Interes = null, MinInversion = 50, Nombre = "POCHOLO RULES", NumInversores = 0, Plazo = null, Progreso = 0, RatingId = null });
             context.Proyecto.Add(new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = null, MinInversion = 50, Nombre = "GRE-GYM", NumInversores = 0, Plazo = null, Progreso = 0, RatingId = null });
             context.Proyecto.Add(new Proyecto { ProyectoId = 3, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = null, MinInversion = 50, Nombre = "EINSTEIN-MANIA", NumInversores = 0, Plazo = null, Progreso = 0, RatingId = 1 });
 
+
+            
+
+           
             
             context.SaveChanges();
 
@@ -67,6 +74,11 @@ namespace StartGrow.UT.Controllers.SolicitudesControllerUT
                 context.ProyectoTiposInversiones.Add(new ProyectoTiposInversiones { Proyecto = proyecto, TiposInversiones = context.TiposInversiones.First() });
 
             }
+            /*
+            Proyecto proyecto1 = new Proyecto { ProyectoId = 4, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = null, MinInversion = 50, Nombre = "EINSTEIN-MANIA", NumInversores = 0, Plazo = null, Progreso = 0, RatingId = null };
+            context.Proyecto.Add(proyecto1);
+            context.ProyectoTiposInversiones.Add(new ProyectoTiposInversiones { Proyecto = proyecto1, TiposInversiones = tipo2 });
+           */
             context.SaveChanges();
 
             //how to simulate the connection 
