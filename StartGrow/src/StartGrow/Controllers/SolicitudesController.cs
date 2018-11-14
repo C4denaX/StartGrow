@@ -52,16 +52,22 @@ namespace StartGrow.Controllers
 
             if(tipoSeleccionado.Length !=0)
             {
-                foreach(String i in tipoSeleccionado){
-                    selectProyecto.proyectos = selectProyecto.proyectos.Where(p => p.ProyectoTiposInversiones.Any(ti => ti.TiposInversiones.Nombre.Contains(i)));
-                }
+
+                selectProyecto.proyectos = selectProyecto.proyectos.Where(p => p.ProyectoTiposInversiones.Any(ti => tipoSeleccionado.Contains(ti.TiposInversiones.Nombre)));
+
             }
 
             if(areasSeleccionada.Length != 0)
+               
             {
-                foreach(String i in areasSeleccionada)
+                selectProyecto.proyectos = selectProyecto.proyectos.Where(p => p.ProyectoAreas.Any(ti => areasSeleccionada.Contains(ti.Areas.Nombre)));
+                /*
+                foreach (String i in areasSeleccionada)
                 selectProyecto.proyectos = selectProyecto.proyectos.Where(p => p.ProyectoAreas.Any(a => a.Areas.Nombre.Contains(i)));
-            }
+          */
+             }
+            
+
 
             if(fecha != null)
             {
@@ -95,7 +101,7 @@ namespace StartGrow.Controllers
             return View(selectProyecto);
         }
         // GET: Solicitudes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? [] id)
         {
             if (id == null)
             {
@@ -105,7 +111,7 @@ namespace StartGrow.Controllers
             var solicitud = await _context.Solicitud
                 .Include(s => s.Proyecto)
                 .Include(s => s.Trabajador)
-                .SingleOrDefaultAsync(m => m.SolicitudId == id);
+                .SingleOrDefaultAsync(m => m.SolicitudId == id[0]);
             if (solicitud == null)
             {
                 return NotFound();
@@ -119,8 +125,8 @@ namespace StartGrow.Controllers
         {
             Proyecto proyecto;
             int id;
-            SolicitudCreateViewModel solicitud = new SolicitudCreateViewModel();
-            solicitud.Solicitudes = new List<Solicitud>();
+            SolicitudesCreateViewModel solicitud = new SolicitudesCreateViewModel();
+            solicitud.Solicitudes = new List<SolicitudCreateViewModel>();
             Trabajador trabajador = _context.Users.OfType<Trabajador>().FirstOrDefault<Trabajador>(u => u.UserName.Equals(User.Identity.Name));
 
             if (selectedProyectos.IdsToAdd == null)
@@ -133,36 +139,90 @@ namespace StartGrow.Controllers
                 {
                     id = int.Parse(ids);
                     proyecto = _context.Proyecto.Include(m => m.Rating).Where(m => m.RatingId == null).FirstOrDefault<Proyecto>(p => p.ProyectoId.Equals(id));
-                    solicitud.Solicitudes.Add(new Solicitud() { Proyecto = proyecto, FechaSolicitud = DateTime.Now, Trabajador = trabajador });
+                    solicitud.Solicitudes.Add(new SolicitudCreateViewModel()
+                    {
+                      FechaSolicitud = DateTime.Now, solicitud = new Solicitud()
+                    { Proyecto = proyecto, Trabajador = trabajador } });
                 }
             }
-            solicitud.Name = trabajador.Nombre;
-            solicitud.FirstSurname = trabajador.Apellido1;
+
             solicitud.SecondSurname = trabajador.Apellido2;
+            solicitud.FirstSurname = trabajador.Apellido1;
+            solicitud.Name = trabajador.Nombre;
 
 
             ViewBag.Estados = new SelectList(Enum.GetNames(typeof(StartGrow.Models.Estados)));
             ViewBag.Rating = new SelectList(_context.Rating.Select(c => c.Nombre).Distinct());
+            ViewBag.Trabajador = trabajador;
 
             return View(solicitud);
         }
-
+ 
         // POST: Solicitudes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SolicitudId,TrabajadorId,ProyectoId,Estado,FechaSolicitud")] Solicitud solicitud)
+        public async Task<IActionResult> Create(SolicitudesCreateViewModel solicitudCreate)
         {
-            if (ModelState.IsValid)
+            var solicitudes = new List<SolicitudCreateViewModel>();
+            Trabajador trabajador;
+            Proyecto proyecto;
+            trabajador = _context.Users.OfType<Trabajador>().FirstOrDefault<Trabajador>(u => u.UserName.Equals(User.Identity.Name));
+            List<int> idsSolicitud = new List<int>();
+            ModelState.Clear();
+
+
+                foreach(SolicitudCreateViewModel solicitudCV in solicitudCreate.Solicitudes)
+                {
+                    proyecto = await _context.Proyecto.FirstOrDefaultAsync<Proyecto>(m => m.ProyectoId == solicitudCV.solicitud.Proyecto.ProyectoId);
+
+                    if ((solicitudCV.estados == Estados.Aceptada && solicitudCV.rating.Equals("F")) || (solicitudCV.estados == Estados.Rechazada && !solicitudCV.rating.Equals("F")))
+                    {
+                        ModelState.AddModelError("SolicitudIncorrecta", $"La solicitud de  {solicitudCV.solicitud.Proyecto.Nombre}, no puede estar aprobada y tener una calificacion de F o viceversa");
+
+
+                    }
+                    else
+                    {
+                       if(solicitudCV.estados == Estados.Aceptada && (solicitudCV.interes <= 0 || solicitudCV.interes == null || solicitudCV.plazo <= 0 || solicitudCV.plazo == null))
+                        {
+                            ModelState.AddModelError("NoInteresPlazo", $"No se ha introducido correctamente el plazo o el interes del proyecto {solicitudCV.solicitud.Proyecto.Nombre}");
+
+                        }
+                        else
+                        {
+                            proyecto.Interes = (float) solicitudCV.interes;
+                            proyecto.Plazo = solicitudCV.plazo;
+                            proyecto.Rating = _context.Rating.Where(r => r.Nombre.Equals(solicitudCV.rating)).FirstOrDefault();
+                            solicitudCV.solicitud.Estado = (int)solicitudCV.estados;
+                            solicitudCV.solicitud.Trabajador = trabajador;
+                            solicitudCV.solicitud.FechaSolicitud = DateTime.Now;
+                            _context.Add(solicitudCV.solicitud);
+                        }
+                    }
+  
+                }
+
+            if (ModelState.ErrorCount > 0)
             {
-                _context.Add(solicitud);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                solicitudCreate.Name = trabajador.Nombre;
+                solicitudCreate.FirstSurname = trabajador.Apellido1;
+                solicitudCreate.SecondSurname = trabajador.Apellido2;
+                ViewBag.Estados = new SelectList(Enum.GetNames(typeof(StartGrow.Models.Estados)));
+                ViewBag.Rating = new SelectList(_context.Rating.Select(c => c.Nombre).Distinct());
+
+                return View(solicitudCreate);
             }
-            ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", solicitud.ProyectoId);
-            ViewData["TrabajadorId"] = new SelectList(_context.Trabajador, "Id", "Id", solicitud.TrabajadorId);
-            return View(solicitud);
+
+            await _context.SaveChangesAsync();
+
+            foreach(SolicitudCreateViewModel solicitudCV in solicitudCreate.Solicitudes )
+            {
+                idsSolicitud.Add(solicitudCV.solicitud.SolicitudId);
+            }
+
+            return RedirectToAction("Details",idsSolicitud);
         }
 
         // GET: Solicitudes/Edit/5
