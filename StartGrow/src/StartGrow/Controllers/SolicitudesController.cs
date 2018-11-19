@@ -117,7 +117,7 @@ namespace StartGrow.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.solicitudes= solicitudes;
             return View(solicitudes);
         }
 
@@ -181,7 +181,7 @@ namespace StartGrow.Controllers
                 foreach(SolicitudCreateViewModel solicitudCV in solicitudCreate.Solicitudes)
                 {
                     proyecto = await _context.Proyecto.FirstOrDefaultAsync<Proyecto>(m => m.ProyectoId == solicitudCV.solicitud.Proyecto.ProyectoId);
-
+                Boolean aceptada = solicitudCV.estados == Estados.Aceptada;
                     if ((solicitudCV.estados == Estados.Aceptada && solicitudCV.rating.Equals("F")) || (solicitudCV.estados == Estados.Rechazada && !solicitudCV.rating.Equals("F")))
                     {
                         ModelState.AddModelError("SolicitudIncorrecta", $"La solicitud de  {solicitudCV.solicitud.Proyecto.Nombre}, no puede estar aprobada y tener una calificacion de F o viceversa");
@@ -197,8 +197,11 @@ namespace StartGrow.Controllers
                         }
                         else
                         {
-                            proyecto.Interes = (float) solicitudCV.interes;
+                        if (aceptada)
+                        {
+                            proyecto.Interes = (float)solicitudCV.interes;
                             proyecto.Plazo = solicitudCV.plazo;
+                        }
                             proyecto.Rating = _context.Rating.Where(r => r.Nombre.Equals(solicitudCV.rating)).FirstOrDefault();
                             solicitudCV.solicitud.Estado = (int)solicitudCV.estados;
                             solicitudCV.solicitud.Trabajador = trabajador;
