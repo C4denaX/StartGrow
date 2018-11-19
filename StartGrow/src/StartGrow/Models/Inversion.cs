@@ -77,5 +77,11 @@ namespace StartGrow.Models
             get;
             set;
         }
+
+        public virtual IList<Inversion> Inversiones
+        {
+            get;
+            set;
+        }
     }
 }

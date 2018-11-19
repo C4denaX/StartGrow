@@ -141,9 +141,12 @@ namespace StartGrow.Controllers
             InversionCreateViewModel inversion = new InversionCreateViewModel();
             inversion.Inversiones = new List<Inversion>();
 
-            
+            Inversor inversor = _context.Users.OfType<Inversor>().FirstOrDefault<Inversor>(u => u.UserName.Equals(User.Identity.Name));
+            inversion.Name = inversor.Nombre;
+            inversion.FirstSurname = inversor.Apellido1;
+            inversion.SecondSurname = inversor.Apellido2;
 
-            if(selectedProyectos.IdsToAdd == null)
+            if (selectedProyectos.IdsToAdd == null)
             {
                 ModelState.AddModelError("Inversion no seleccionada", "Debes seleccionar al menos una inversión para poder invertir, por favor");
             }
@@ -152,15 +155,11 @@ namespace StartGrow.Controllers
                 foreach (string ids in selectedProyectos.IdsToAdd)
                 {
                     id = int.Parse(ids);
-                    inversion = _context.Inversion.Include(m => m.Cuota).FirstOrDefault<Inversion>(m => m.InversionId.Equals(id));
-                    inversion.Inversiones.Add(new Inversion() {Proyecto = proyecto, Inversor = inversor});
+                    //inversion = _context.Proyecto.Where(m => m.Nombre).FirstOrDefault<Inversion>(m => m.InversionId.Equals(id));
+                    //inversion.Inversiones.Add(new Inversion() {Proyecto = proyecto, Inversor = inversor});
                 }
             }
-
-            Inversor inversor = _context.Users.OfType<Inversor>().FirstOrDefault<Inversor>(u => u.UserName.Equals(User.Identity.Name));
-            inversion.Name = inversor.Nombre;
-            inversion.FirstSurname = inversor.Apellido1;
-            inversion.SecondSurname = inversor.Apellido2;
+                        
 
             return View(inversion);   
         }
@@ -170,8 +169,22 @@ namespace StartGrow.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InversionId,ProyectoId,ApplicationUserId,TipoInversionesId,Cuota,Intereses,Total")] Inversion inversion)
+        public async Task<IActionResult> Create(InversionCreateViewModel inversionCreate, IList<Inversion> Inversiones)
         {
+            //var inversiones = new List<InversionCreateViewModel>();
+            Proyecto proyecto;
+            Inversor inversor;
+            Inversion inversion = new Inversion();
+            inversion.Cuota = 0;
+            inversion.Inversiones = new List<Inversion>();
+            ModelState.Clear();
+
+            foreach (Inversion item in Inversiones)
+            {
+                //proyecto = await _context.Proyecto.FirstOrDefaultAsync<Proyecto>(m => m.ProyectoId == item.Inversiones);
+                //if (proyecto)
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(inversion);
@@ -182,6 +195,8 @@ namespace StartGrow.Controllers
             ViewData["ProyectoId"] = new SelectList(_context.Proyecto, "ProyectoId", "Nombre", inversion.ProyectoId);
             ViewData["TipoInversionesId"] = new SelectList(_context.TiposInversiones, "TiposInversionesId", "Nombre", inversion.TipoInversionesId);
             return View(inversion);
+
+
         }
 
         // GET: Inversions/Edit/5
