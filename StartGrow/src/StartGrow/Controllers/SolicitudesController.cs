@@ -103,21 +103,22 @@ namespace StartGrow.Controllers
         // GET: Solicitudes/Details/5
         public async Task<IActionResult> Details(int? [] id)
         {
-            if (id == null)
+            if (id.Length == 0)
+            {
+                return NotFound();
+            }
+            List<Solicitud> solicitudes = new List<Solicitud>();
+            foreach(int idSolicitud in id)
+            {
+                solicitudes.Add(_context.Solicitud.Include(s => s.Proyecto).Where(s => s.SolicitudId == idSolicitud).First());
+            }
+
+            if (solicitudes.Count == 0)
             {
                 return NotFound();
             }
 
-            var solicitud = await _context.Solicitud
-                .Include(s => s.Proyecto)
-                .Include(s => s.Trabajador)
-                .SingleOrDefaultAsync(m => m.SolicitudId == id[0]);
-            if (solicitud == null)
-            {
-                return NotFound();
-            }
-
-            return View(solicitud);
+            return View(solicitudes);
         }
 
         // GET: Solicitudes/Create
@@ -130,6 +131,10 @@ namespace StartGrow.Controllers
             Trabajador trabajador = _context.Users.OfType<Trabajador>().FirstOrDefault<Trabajador>(u => u.UserName.Equals(User.Identity.Name));
 
             if (selectedProyectos.IdsToAdd == null)
+            {
+                ModelState.AddModelError("ProyectoNoSeleccionado", "Por favor, selecciona un proyecto para poder crear la solicitud");
+            }
+            else if (selectedProyectos.IdsToAdd.Length == 0)
             {
                 ModelState.AddModelError("ProyectoNoSeleccionado", "Por favor, selecciona un proyecto para poder crear la solicitud");
             }

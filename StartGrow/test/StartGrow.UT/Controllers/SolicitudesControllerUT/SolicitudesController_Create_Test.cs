@@ -103,7 +103,7 @@ namespace StartGrow.UT.Controllers.SolicitudesControllerUT
         //=======================================================================================================================================
 
         [Fact]
-        public async Task Create_SinProyectos()
+        public async Task Create_ProyectosNULL()
         {
             using (context)
             {
@@ -112,6 +112,63 @@ namespace StartGrow.UT.Controllers.SolicitudesControllerUT
                 //Simular una conexion de usuario
                 controller.ControllerContext.HttpContext = solicitudContext;
                 SelectedProyectosForSolicitudViewModel proyectos = new SelectedProyectosForSolicitudViewModel();
+                //Select List Rating
+                Rating rating1 = new Rating { Nombre = "A" };
+                Rating rating2 = new Rating { Nombre = "F" };
+
+                var ratings = new List<Rating> { rating1, rating2 };
+
+                var ratingEsperados = new SelectList(ratings.Select(r => r.Nombre.ToList()));
+                var estados = new List<Estados> { Estados.Aceptada, Estados.Rechazada };
+
+                var estadosEsperados = new SelectList(Enum.GetNames(typeof(StartGrow.Models.Estados)));
+
+                Trabajador trabajadorEsperado = new Trabajador
+                {
+                    UserName = "sergio@uclm.es",
+                    Email = "sergio@uclm.es",
+                    Apellido1 = "Ruiz",
+                    Apellido2 = "Villafranca",
+                    Domicilio = "C/Hellin",
+                    Municipio = "Albacete",
+                    NIF = "06290424",
+                    Nacionalidad = "Española",
+                    PaisDeResidencia = "España",
+                    Provincia
+            = "Albacete"
+                };
+                SolicitudesCreateViewModel solicitudEsperada = new SolicitudesCreateViewModel
+                {
+                    Name = trabajadorEsperado.Nombre,
+                    FirstSurname = trabajadorEsperado.Apellido1,
+                    SecondSurname = trabajadorEsperado.Apellido2
+                };
+
+                //Act
+                var result = controller.Create(proyectos);
+
+                //Assert
+                ViewResult viewResult = Assert.IsType<ViewResult>(result);
+                SolicitudesCreateViewModel currentSolicitud = viewResult.Model as SolicitudesCreateViewModel;
+                var error = viewResult.ViewData.ModelState["ProyectoNoSeleccionado"].Errors.FirstOrDefault();
+                Assert.Equal(currentSolicitud, solicitudEsperada, Comparer.Get<SolicitudesCreateViewModel>((p1, p2) =>
+                p1.Name == p2.Name && p1.FirstSurname == p2.FirstSurname && p1.SecondSurname == p2.SecondSurname));
+                Assert.Equal("Por favor, selecciona un proyecto para poder crear la solicitud", error.ErrorMessage);
+                Assert.Equal(ratingEsperados, (SelectList)viewResult.ViewData["Rating"], Comparer.Get<SelectListItem>((s1, s2) => s1.Value == s2.Value));
+                Assert.Equal(estadosEsperados, (SelectList)viewResult.ViewData["Estados"], Comparer.Get<SelectListItem>((s1, s2) => s1.Value == s2.Value));
+
+            }
+        }
+        [Fact]
+        public async Task Create_SinProyectos()
+        {
+            using (context)
+            {
+                // Arrenge
+                var controller = new SolicitudesController(context);
+                //Simular una conexion de usuario
+                controller.ControllerContext.HttpContext = solicitudContext;
+                SelectedProyectosForSolicitudViewModel proyectos = new SelectedProyectosForSolicitudViewModel() { IdsToAdd = new string [0] };
                 //Select List Rating
                 Rating rating1 = new Rating { Nombre = "A" };
                 Rating rating2 = new Rating { Nombre = "F" };
