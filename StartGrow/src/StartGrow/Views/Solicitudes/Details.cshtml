@@ -1,4 +1,4 @@
-﻿@model StartGrow.Models.Solicitud
+﻿@model IEnumerable<StartGrow.Models.Solicitud>
 
 @{
     ViewData["Title"] = "Details"; 
@@ -31,17 +31,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Solicitud solicitud in ViewBag.solicitudes)
+            @foreach (Solicitud solicitud in Model)
             {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => solicitud.Proyecto.Nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => Enum.GetName(typeof(Estados), solicitud.Estado))
+                    @Html.DisplayFor(modelItem => solicitud.Estado)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => solicitud.Proyecto.Rating)
+                    @Html.DisplayFor(modelItem => solicitud.Proyecto.Rating.Nombre)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => solicitud.Proyecto.Interes)
@@ -91,6 +91,5 @@
 </div>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.SolicitudId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
