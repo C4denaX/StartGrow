@@ -100,16 +100,17 @@ namespace StartGrow.Controllers
                            ThenInclude<Proyecto, ProyectoTiposInversiones, TiposInversiones>(p => p.TiposInversiones).Where(m => m.RatingId == null);
             return View(selectProyecto);
         }
-        // GET: Solicitudes/Details/5  async Task<IActionResult>
-        public async Task<IActionResult> Details(int[] id)//) List<int> id)
+        // GET: Solicitudes/Details/5
+        public async Task<IActionResult> Details(List<int> id)
         {
-            int[] ids = TempData["idsSolicitud"] as int[];
-            if (ids.Length == 0)
+            int[] idsSolicitudes=TempData["Solicitudes"] as int[];
+
+            if (id.Count == 0)
             {
                 return NotFound();
             }
             List<Solicitud> solicitudes = new List<Solicitud>();
-            foreach(int idSolicitud in ids)
+            foreach(int idSolicitud in id)
             {
                 solicitudes.Add(_context.Solicitud.Include(s => s.Proyecto).Where(s => s.SolicitudId == idSolicitud).First());
             }
@@ -175,8 +176,7 @@ namespace StartGrow.Controllers
             Trabajador trabajador;
             Proyecto proyecto;
             trabajador = _context.Users.OfType<Trabajador>().FirstOrDefault<Trabajador>(u => u.UserName.Equals(User.Identity.Name));
-            // List<int> idsSolicitud = new List<int>();
-            int[] idsSolicitud;
+            List<int> idsSolicitud = new List<int>();
             ModelState.Clear();
 
 
@@ -227,17 +227,14 @@ namespace StartGrow.Controllers
 
             await _context.SaveChangesAsync();
 
-            idsSolicitud = new int[solicitudCreate.Solicitudes.Count];
-            //foreach(SolicitudCreateViewModel solicitudCV in solicitudCreate.Solicitudes )
-            //{
-            //    idsSolicitud.Add(solicitudCV.solicitud.SolicitudId);
-            //}
-            for (int i = 0; i < idsSolicitud.Length; i++)
-                idsSolicitud[i] = solicitudCreate.Solicitudes[i].solicitud.SolicitudId;
-            TempData["idsSolicitud"] = idsSolicitud;
-            return RedirectToAction("Details"); //new { id = idsSolicitud });
+            foreach(SolicitudCreateViewModel solicitudCV in solicitudCreate.Solicitudes )
+            {
+                idsSolicitud.Add(solicitudCV.solicitud.SolicitudId);
+            }
 
-         
+            int[] idsSolicitudes = new int[2] { 1, 2 };
+            TempData["Solicitudes"] = idsSolicitudes;
+            return RedirectToAction("Details",idsSolicitud);
         }
 
         // GET: Solicitudes/Edit/5
