@@ -103,6 +103,8 @@ namespace StartGrow.Controllers
         // GET: Solicitudes/Details/5
         public async Task<IActionResult> Details(List<int> id)
         {
+            int[] idsSolicitudes=TempData["Solicitudes"] as int[];
+
             if (id.Count == 0)
             {
                 return NotFound();
@@ -230,6 +232,8 @@ namespace StartGrow.Controllers
                 idsSolicitud.Add(solicitudCV.solicitud.SolicitudId);
             }
 
+            int[] idsSolicitudes = new int[2] { 1, 2 };
+            TempData["Solicitudes"] = idsSolicitudes;
             return RedirectToAction("Details",idsSolicitud);
         }
 
