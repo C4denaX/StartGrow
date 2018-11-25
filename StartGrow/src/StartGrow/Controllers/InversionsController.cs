@@ -149,14 +149,19 @@ namespace StartGrow.Controllers
             if (selectedProyectos.IdsToAdd == null)
             {
                 ModelState.AddModelError("Inversion no seleccionada", "Debes seleccionar al menos una inversión para poder invertir, por favor");
+            } else if (selectedProyectos.IdsToAdd.Length == 0)
+            {
+                ModelState.AddModelError("Inversion no seleccionada", "Debes seleccionar al menos una inversión para poder invertir, por favor");
             }
             else
             {
                 foreach (string ids in selectedProyectos.IdsToAdd)
                 {
                     id = int.Parse(ids);
-                    //inversion = _context.Proyecto.Where(m => m.Nombre).FirstOrDefault<Inversion>(m => m.InversionId.Equals(id));
-                    //inversion.Inversiones.Add(new Inversion() {Proyecto = proyecto, Inversor = inversor});
+                    proyecto = _context.Proyecto.Include(m => m.Rating).Where(m => m.RatingId != null).FirstOrDefault<Proyecto>(p => p.ProyectoId.Equals(id));
+
+                    inversion.Inversiones.Add(new Inversion(){ Cuota = 0, Proyecto = proyecto });
+
                 }
             }
                         
@@ -181,8 +186,7 @@ namespace StartGrow.Controllers
 
             foreach (Inversion item in Inversiones)
             {
-                //proyecto = await _context.Proyecto.FirstOrDefaultAsync<Proyecto>(m => m.ProyectoId == item.Inversiones);
-                //if (proyecto)
+                proyecto = await _context.Proyecto.FirstOrDefaultAsync<Proyecto>(m => m.ProyectoId == item.Proyecto.ProyectoId);                
             }
 
             if (ModelState.IsValid)

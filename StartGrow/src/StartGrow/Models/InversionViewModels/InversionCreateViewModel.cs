@@ -10,7 +10,7 @@ namespace StartGrow.Models.InversionViewModels
     {
         public InversionCreateViewModel()
         {
-            Inversiones= new List<Inversion>();
+            this.Inversiones= new List<Inversion>();
         }
 
         public virtual string Name
@@ -59,10 +59,21 @@ namespace StartGrow.Models.InversionViewModels
             get;
             set;
         }
+        public virtual Inversion inversion
+        {
+            get;
+            set;
+        }
+        public virtual Proyecto Proyecto
+        {
+            get;
+            set;
+        }
         public virtual IList<Inversion> Inversiones
         {
             get;
             set;
-        }        
+        }
+        
     }
 }

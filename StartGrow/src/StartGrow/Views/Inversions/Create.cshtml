@@ -1,4 +1,4 @@
-﻿@model StartGrow.Models.Inversion
+﻿@model StartGrow.Models.InversionViewModels.InversionCreateViewModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -120,51 +120,113 @@
     </style>
 </head>
 
-<h2>Invertir</h2>
+<h2>Invertir En Los Proyectos Seleccionados</h2>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProyectoId" class="control-label"></label>
-                <select asp-for="ProyectoId" class ="form-control" asp-items="ViewBag.ProyectoId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApplicationUserId" class="control-label"></label>
-                <select asp-for="ApplicationUserId" class ="form-control" asp-items="ViewBag.ApplicationUserId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoInversionesId" class="control-label"></label>
-                <select asp-for="TipoInversionesId" class ="form-control" asp-items="ViewBag.TipoInversionesId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cuota" class="control-label"></label>
-                <input asp-for="Cuota" class="form-control" />
-                <span asp-validation-for="Cuota" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Intereses" class="control-label"></label>
-                <input asp-for="Intereses" class="form-control" />
-                <span asp-validation-for="Intereses" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Total" class="control-label"></label>
-                <input asp-for="Total" class="form-control" />
-                <span asp-validation-for="Total" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+<form asp-action="Create" method="post">
+    <div class="form-horizontal">
+        <h4>Solicitud</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstSurname)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstSurname)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SecondSurname)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SecondSurname)
+            </dd>
+        </dl>
     </div>
-</div>
 
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <table class="GeneratedTable">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Interés
+                </th>
+                <th>
+                    Plazo
+                </th>
+                <th>
+                    Tipo Inversion
+                </th>
+                <th>
+                    Cantidad
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Inversiones.Count() == 0)
+            {
+                <tr><td colspan="3">No hay Proyectos Disponibles</td></tr>
+            }
+            else
+            {
+                @for (int i = 0; i < Model.Inversiones.Count; i++)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.Inversiones.ElementAt(i).Proyecto.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.Inversiones.ElementAt(i).Proyecto.Rating)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.Inversiones.ElementAt(i).Proyecto.Interes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.Inversiones.ElementAt(i).Proyecto.Plazo)
+                    </td>
+                    <td>
+                        @* Filtrar tipo de inversión *@
+                        <label asp-for="Proyecto.ProyectoTiposInversiones" class="tiposInversiones"> </label>
+
+                        <div class="tiposInversiones2">
+                            <div class="">
+                                @{
+                                    foreach (var item in Model.Proyecto.ProyectoTiposInversiones)
+                                    {
+                                        <input type="checkbox" name="ids_tiposInversiones" value="@item.TiposInversiones.Nombre" />
+                                        @item.TiposInversiones.Nombre
+                                        <br />
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        @*Filtrado por Interés*@
+                        <label asp-for="inversion.Cuota" class="interes"></label>
+                        <input asp-for="inversion.Cuota" class="interes2" size="15" type="number" />
+                    </td>
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+
+</form>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="SelectProyectosForSolicitud">Back to List</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
