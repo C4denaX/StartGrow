@@ -94,6 +94,8 @@ namespace StartGrow.UT.Controllers.SolicitudesControllerUT
             System.Security.Principal.GenericIdentity user = new System.Security.Principal.GenericIdentity("sergio@uclm.es");
             System.Security.Claims.ClaimsPrincipal identity = new System.Security.Claims.ClaimsPrincipal(user);
             solicitudContext = new DefaultHttpContext();
+            
+
             solicitudContext.User = identity;
 
         }
@@ -770,13 +772,28 @@ namespace StartGrow.UT.Controllers.SolicitudesControllerUT
         [Fact]
         public async Task CreatePost_Aceptada_Rating_ConInteresPlazo()
         {
-            using (context)
+            //var host= Program.BuildWebHost(null);
+
+
+           
+            //    using (var scope = host.Services.CreateScope())
+            //    {
+            //        var services = scope.ServiceProvider;
+            //    var contexto = services.GetRequiredService(Type.GetType("Microsoft.AspNetCore.Session.DistributedSession")); //<Microsoft.AspNetCore.Session.DistributedSession>();
+
+            //    }
+
+                using (context)
             {
                 // Arrenge
                 var controller = new SolicitudesController(context);
+
+
+                controller.TempData = new Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary(solicitudContext, new
+Microsoft.AspNetCore.Mvc.ViewFeatures.SessionStateTempDataProvider());
                 //Simular una conexion de usuario
                 controller.ControllerContext.HttpContext = solicitudContext;
-
+                
                 Rating rating1 = new Rating { Nombre = "A" };
                 Rating rating2 = new Rating { Nombre = "F" };
 
