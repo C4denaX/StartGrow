@@ -109,19 +109,15 @@ namespace StartGrow.Controllers
             {
                 return NotFound();
             }
-            List<Solicitud> solicitudes = new List<Solicitud>();
-            foreach (int idSolicitud in ids)
-            {
-                solicitudes.Add(_context.Solicitud.Include(s => s.Proyecto).ThenInclude<Solicitud,Proyecto,Rating>(s => s.Rating)
-                    .Where(s => s.SolicitudId == idSolicitud).First());
-            }
 
-            if (solicitudes.Count == 0)
+            var solicitud = _context.Solicitud.Include(s => s.Proyecto).ThenInclude<Solicitud, Proyecto, Rating>(s => s.Rating).Where(s => ids.Contains(s.SolicitudId)).ToList();
+            
+
+            if (solicitud.Count == 0)
             {
                 return NotFound();
             }
-            ViewBag.solicitudes = solicitudes;
-            return View(solicitudes);
+            return View(solicitud);
         }
 
 
