@@ -38,13 +38,6 @@ namespace StartGrow.Models.InversionRecuperadaViewModels
             set;
         }
 
-        [Required]
-        [Display(Name = "Cantidad")]
-        public float CantidadRec { get; set; }
-
-        [Required]
-        [Display(Name = "Comentario")]
-        public string Comentario { get; set; }
 
 
 
