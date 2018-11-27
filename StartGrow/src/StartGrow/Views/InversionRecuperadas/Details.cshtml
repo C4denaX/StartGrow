@@ -1,4 +1,4 @@
-﻿@model StartGrow.Models.InversionRecuperada
+﻿@model StartGrow.Models.InversionRecuperadaViewModels.InversionRecuperadaDetailsViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -32,13 +32,13 @@
             @Html.DisplayNameFor(model => model.Inversion)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Inversion.Id)
+            @Html.DisplayFor(model => model.InversionId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Monedero)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Monedero.Id)
+            @Html.DisplayFor(model => model.MonederoId)
         </dd>
     </dl>
 </div>

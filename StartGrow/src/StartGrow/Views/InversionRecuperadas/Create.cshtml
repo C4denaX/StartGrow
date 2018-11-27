@@ -22,9 +22,7 @@
                 <th>
                     Tipo de Inversión
                 </th>
-                <th>
-                    Área
-                </th>
+
                 <th>
                     Rating
                 </th>
@@ -60,49 +58,56 @@
             }
             else
             {
-                @foreach (var item in Model.Inversiones)
+                @for (int i = 0; i < Model.Inversiones.Count; i++)
                 {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.InversionId)
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).InversionId)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Proyecto.Nombre)
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).Proyecto.Nombre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TipoInversiones.Nombre)
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).TipoInversiones.Nombre)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).Proyecto.Rating.Nombre)
                     </td>
                     <td>
-                        @foreach (var proyectoAreas in item.Proyecto.ProyectoAreas)
-                        {
-                            @Html.DisplayFor(modelItem => proyectoAreas.Areas.Nombre)
-                        }<br>
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).Cuota) €
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Proyecto.Rating.Nombre)
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).Intereses) €
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Cuota)%
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).EstadosInversiones)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Intereses)%
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).Total) €
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EstadosInversiones)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Total) €
-                    </td>
+
                     <td>
                         <div class="form-group">
-                            <input asp-for="CantidadRec" class="form-control" size="5" />
+                            <input asp-for="InversionesRecuperadas[i].CantidadRecuperada" class="form-control" size="5" />
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
-                            <textarea asp-for="Comentario" rows="5" cols="30"></textarea>
+                            <textarea asp-for="InversionesRecuperadas[i].Comentario" rows="5" cols="30"></textarea>
+                            <input asp-for="Inversiones[i].InversionId" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].InversorId" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Proyecto.Nombre" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].TipoInversiones.Nombre" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Total" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Cuota" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Intereses" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Proyecto.Rating.Nombre" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].EstadosInversiones" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Inversor" type="hidden" class="form-control" />
                         </div>
                     </td>
+
 
                 </tr>
                 }
