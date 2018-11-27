@@ -12,7 +12,7 @@ using StartGrow.Models.InversionViewModels;
 
 namespace StartGrow.Controllers
 {
-    //[Authorize (Roles = "Trabajador, Inversor")]
+    [Authorize (Roles = "Trabajador, Inversor")]
     public class InversionsController : Controller
     {        
         private readonly ApplicationDbContext _context;
