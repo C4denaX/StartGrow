@@ -102,9 +102,9 @@ namespace StartGrow.Controllers
             return View(selectProyecto);
         }
         // GET: Solicitudes/Details/5  async Task<IActionResult>
-        public async Task<IActionResult> Details(int[] id)//) List<int> id)
+        public async Task<IActionResult> Details(DetailsViewModel model)//) List<int> id)
         {
-            int[] ids = TempData["idsSolicitud"] as int[];
+            int[] ids = model.ids;
             if (ids.Length == 0)
             {
                 return NotFound();
@@ -112,7 +112,30 @@ namespace StartGrow.Controllers
             List<Solicitud> solicitudes = new List<Solicitud>();
             foreach (int idSolicitud in ids)
             {
-                solicitudes.Add(_context.Solicitud.Include(s => s.Proyecto).Where(s => s.SolicitudId == idSolicitud).First());
+                solicitudes.Add(_context.Solicitud.Include(s => s.Proyecto).ThenInclude<Solicitud,Proyecto,Rating>(s => s.Rating)
+                    .Where(s => s.SolicitudId == idSolicitud).First());
+            }
+
+            if (solicitudes.Count == 0)
+            {
+                return NotFound();
+            }
+            ViewBag.solicitudes = solicitudes;
+            return View(solicitudes);
+        }
+
+
+        public  IActionResult ResumeSolicitudes(int[] ids)
+        {
+            if (ids.Length == 0)
+            {
+                return NotFound();
+            }
+            List<Solicitud> solicitudes = new List<Solicitud>();
+            foreach (int idSolicitud in ids)
+            {
+                solicitudes.Add(_context.Solicitud.Include(s => s.Proyecto).ThenInclude<Solicitud, Proyecto, Rating>(s => s.Rating)
+                    .Where(s => s.SolicitudId == idSolicitud).First());
             }
 
             if (solicitudes.Count == 0)
@@ -208,7 +231,7 @@ namespace StartGrow.Controllers
                             proyecto.Plazo = solicitudCV.plazo;
                         }
                         proyecto.Rating = _context.Rating.Where(r => r.Nombre.Equals(solicitudCV.rating)).FirstOrDefault();
-                        solicitudCV.solicitud.Estado = (int)solicitudCV.estados;
+                        solicitudCV.solicitud.Estado = solicitudCV.estados;
                         solicitudCV.solicitud.Trabajador = trabajador;
                         solicitudCV.solicitud.FechaSolicitud = DateTime.Now;
                         _context.Add(solicitudCV.solicitud);
@@ -237,8 +260,10 @@ namespace StartGrow.Controllers
             //}
             for (int i = 0; i < idsSolicitud.Length; i++)
                 idsSolicitud[i] = solicitudCreate.Solicitudes[i].solicitud.SolicitudId;
-            TempData["idsSolicitud"] = idsSolicitud;
-            return RedirectToAction("Details"); //new { id = idsSolicitud });
+            //TempData["idsSolicitud"] = idsSolicitud;
+            DetailsViewModel detailsViewModel = new DetailsViewModel();
+            detailsViewModel.ids = idsSolicitud;
+            return RedirectToAction("Details",detailsViewModel); //new { id = idsSolicitud });
 
 
         }
