@@ -43,7 +43,7 @@ namespace StartGrow.Models
         }
 
         [Required]
-        public virtual int Estado
+        public virtual Estados Estado
         {
             get;
             set;

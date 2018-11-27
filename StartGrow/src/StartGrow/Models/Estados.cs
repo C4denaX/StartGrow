@@ -7,7 +7,7 @@ namespace StartGrow.Models
 {
     public enum Estados
     {
-        Aceptada,
-        Rechazada
+        Aceptada = 1,
+        Rechazada =2
     }
 }
