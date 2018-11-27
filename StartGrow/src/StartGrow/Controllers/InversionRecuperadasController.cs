@@ -36,7 +36,7 @@ namespace StartGrow.Controllers
 
 
             //Solo mostrará las inversiones que estén en estado FINALIZADO o EN CURSO
-            //selectInversiones.Inversiones = _context.Inversion.Include(i => i.EstadosInversiones).
+
 
             selectInversiones.Inversiones = _context.Inversion.Include(m => m.TipoInversiones)
              .Include(m => m.Proyecto)
@@ -156,16 +156,18 @@ namespace StartGrow.Controllers
             inv.Inversiones = new List<Inversion>();
             Inversor inversor = _context.Users.OfType<Inversor>().FirstOrDefault<Inversor>(u => u.UserName.Equals(User.Identity.Name));
 
-            if (selectedInversiones.IdsToAdd == null)
+            if (selectedInversiones.IdsToAdd == null || selectedInversiones.IdsToAdd.Count() == 0)
             {
-                ModelState.AddModelError("InversionNoSeleccionada", "Por favor, selecciona al menos una inversión para recuperarla");
+                return RedirectToAction("SelectInversionForRecuperarInversion");
+               //ModelState.AddModelError("InversionNoSeleccionada", "Por favor, selecciona al menos una inversión para recuperarla");
             }
             else
             {
                 foreach (string ids in selectedInversiones.IdsToAdd)
                 {
                     id = int.Parse(ids);
-                    inversion = _context.Inversion.Include(m => m.TipoInversiones).Include(m => m.Proyecto)
+                    inversion = _context.Inversion.Include(m => m.TipoInversiones)
+                        .Include(m => m.Proyecto)
                         .ThenInclude(p => p.ProyectoAreas).ThenInclude(pa => pa.Areas)
                         .Include(m => m.Proyecto).ThenInclude(r => r.Rating)
                         .Where(m => m.EstadosInversiones != "Recaudacion" && m.Inversor.UserName == User.Identity.Name)
@@ -174,40 +176,117 @@ namespace StartGrow.Controllers
                     inv.Inversiones.Add(inversion);
                 }
             }
-            inv.Name = inversor.Nombre;
-            inv.FirstSurname = inversor.Apellido1;
-            inv.SecondSurname = inversor.Apellido2;
-
             return View(inv);
         }
 
 
 
-
-
-
-
-
-
-
-
-
-
+        
+        
         //CREATE (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InversionRecuperadaId,FechaRecuperacion,Comentario,CantidadRecuperada,MonederoId,InversionId")] InversionRecuperada inversionRecuperada)
+        public async Task<IActionResult> Create(InversionRecuperadaCreateViewModel invRecViewModel)
         {
-            if (ModelState.IsValid)
+            Inversion inversion;
+            List<int> idsInversionesRecuperadas = new List<int>();
+            ModelState.Clear();
+            for (int i = 0; i < invRecViewModel.Inversiones.Count(); i++)
             {
-                _context.Add(inversionRecuperada);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                inversion = await _context.Inversion.FirstOrDefaultAsync<Inversion>(m => m.InversionId == invRecViewModel.Inversiones[i].InversionId);
+                InversionRecuperada invRec = invRecViewModel.InversionesRecuperadas[i];
+                if (invRec.CantidadRecuperada == 0)
+                {
+                    ModelState.AddModelError("CantidadNoIndicada", $"Debe indicar una cantidad mayor que 0 en la inversión {invRecViewModel.Inversiones[i].InversionId}.");
+                }
+                else if (invRec.Comentario == null)
+                {
+                    ModelState.AddModelError("ComentarioNoIndicado", $"Debe indicar un comentario para la inversión {invRecViewModel.Inversiones[i].InversionId}.");
+                }
+                else if (invRec.CantidadRecuperada > (inversion.Total))
+                {
+                    ModelState.AddModelError("CantidadNoPermitida", $"No se puede recuperar dicha cantidad para la inversión {invRecViewModel.Inversiones[i].InversionId}, eliga una cantidad menor.");
+                }
+                else
+                {
+                    invRec.Inversion = inversion;
+                    invRec.FechaRecuperacion = DateTime.Now;
+
+                    //Recuperamos el inversor que está conectado, a la vez que recuperamos su monedero.
+                    inversion.Inversor = await _context.Users.OfType<Inversor>().Include(m => m.Monedero).FirstOrDefaultAsync<Inversor>(c => c.UserName.Equals(User.Identity.Name));
+
+                    if (invRec.CantidadRecuperada <= inversion.Intereses)
+                    {
+                        inversion.Total = inversion.Total - invRec.CantidadRecuperada;
+                        inversion.Intereses = inversion.Intereses - invRec.CantidadRecuperada;
+                    }
+                    else
+                    {
+                        inversion.Total = inversion.Total - invRec.CantidadRecuperada;
+                        inversion.Intereses = 0;
+                        float resto = invRec.CantidadRecuperada - inversion.Intereses;
+                        inversion.Cuota = inversion.Cuota - resto;
+                    }
+
+                    //Actualizamos el dinero del monedero del inversor.    
+                    ((Inversor)inversion.Inversor).Monedero.Dinero = ((Inversor)inversion.Inversor).Monedero.Dinero + (decimal) invRec.CantidadRecuperada;
+                    invRec.Monedero = ((Inversor)inversion.Inversor).Monedero;
+                    _context.Add(invRec);
+                }
             }
-            ViewData["InversionId"] = new SelectList(_context.Inversion, "InversionId", "Id", inversionRecuperada.InversionId);
-            ViewData["MonederoId"] = new SelectList(_context.Monedero, "MonederoId", "Id", inversionRecuperada.MonederoId);
+            if (ModelState.ErrorCount > 0)
+            {
+                return View(invRecViewModel);
+            }
+
+            await _context.SaveChangesAsync();
+
+
+            InversionRecuperadaDetailsViewModel detailsVM = new InversionRecuperadaDetailsViewModel();
+
+            detailsVM.IdsToAdd= invRecViewModel.InversionesRecuperadas.Select(invrec => invrec.InversionId).ToArray();
+
+            return RedirectToAction("Details", detailsVM);
+        }
+
+
+
+
+     
+
+
+
+
+        // GET: InversionRecuperadas/Details/5
+        public async Task<IActionResult> Details(InversionRecuperadaDetailsViewModel detailsVM )
+        {
+            
+            if (detailsVM.IdsToAdd.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            var inversionRecuperada = await _context.InversionRecuperada
+                .Include(i => i.Inversion)
+                .Include(i => i.Monedero)
+                .SingleOrDefaultAsync(m => m.InversionRecuperadaId == detailsVM.IdsToAdd[0]);
+            if (inversionRecuperada == null)
+            {
+                return NotFound();
+            }
+
             return View(inversionRecuperada);
         }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -221,28 +300,7 @@ namespace StartGrow.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: InversionRecuperadas/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var inversionRecuperada = await _context.InversionRecuperada
-                .Include(i => i.Inversion)
-                .Include(i => i.Monedero)
-                .SingleOrDefaultAsync(m => m.InversionRecuperadaId == id);
-            if (inversionRecuperada == null)
-            {
-                return NotFound();
-            }
-
-            return View(inversionRecuperada);
-        }
-
-
-
+        
 
 
         // GET: InversionRecuperadas/Edit/5
