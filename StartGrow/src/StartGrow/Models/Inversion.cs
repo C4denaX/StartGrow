@@ -77,5 +77,20 @@ namespace StartGrow.Models
             get;
             set;
         }
+
+        public override bool Equals(Object obj)
+        {
+
+            Inversion inversion = obj as Inversion;
+            //if ((this.Cuota == inversion.Cuota) && (this.Intereses == inversion.Intereses)
+            //    && (this.InversionId == inversion.InversionId) && (this.ProyectoId == inversion.ProyectoId) && (this.TipoInversionesId == inversion.TipoInversionesId)
+            //    && (this.Total == inversion.Total))
+
+            if ((this.Cuota == inversion.Cuota) && (this.EstadosInversiones == inversion.EstadosInversiones)
+               && (this.InversionId == inversion.InversionId) && (this.Total == inversion.Total))
+
+                    return true;
+            return false;
+        }
     }
 }

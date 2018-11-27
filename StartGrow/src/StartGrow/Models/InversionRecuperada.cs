@@ -62,6 +62,19 @@ namespace StartGrow.Models
             set;
         }
 
+        public override bool Equals(Object obj)
+        {
+
+            InversionRecuperada recuperada = obj as InversionRecuperada;
+       
+
+            if ((this.CantidadRecuperada == recuperada.CantidadRecuperada) && (this.Comentario == recuperada.Comentario)
+               && (this.InversionId == recuperada.InversionId))
+
+                return true;
+            return false;
+        }
+
 
     }
 }

@@ -1,51 +1,123 @@
-﻿@model StartGrow.Models.InversionRecuperada
+﻿@model StartGrow.Models.InversionRecuperadaViewModels.InversionRecuperadaCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
 
-<h4>InversionRecuperada</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FechaRecuperacion" class="control-label"></label>
-                <input asp-for="FechaRecuperacion" class="form-control" />
-                <span asp-validation-for="FechaRecuperacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Comentario" class="control-label"></label>
-                <input asp-for="Comentario" class="form-control" />
-                <span asp-validation-for="Comentario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CantidadRecuperada" class="control-label"></label>
-                <input asp-for="CantidadRecuperada" class="form-control" />
-                <span asp-validation-for="CantidadRecuperada" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MonederoId" class="control-label"></label>
-                <select asp-for="MonederoId" class ="form-control" asp-items="ViewBag.MonederoId"></select>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="InversionId" class="control-label"></label>
-                <select asp-for="InversionId" class ="form-control" asp-items="ViewBag.InversionId"></select>
-            </div>*@
-            <div class="form-group">
-                <input type="submit" value="Realizar Recuperación" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
-</div>
+<h2>Indicar cantidades a recuperar</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
 
-<div>
-    <a asp-action="SelectInversionForRecuperarInversion">Volver a Inversiones</a>
-</div>
+<form asp-action="Create" method="post">
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <table class="table">
+        <thread>
+            <tr>
+                <th>
+                    Id de la Inversión
+                </th>
+                <th>
+                    Proyecto
+                </th>
+                <th>
+                    Tipo de Inversión
+                </th>
+
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Cuota
+                </th>
+                <th>
+                    Intereses
+                </th>
+                <th>
+                    Estado de la Inversión
+                </th>
+                <th width="60">
+                    Total
+                </th>
+                <th>
+                    <center>
+                        Cantidad a Recuperar
+                    </center>
+                </th>
+                <th>
+                    <center>    
+                        Comentario
+                    </center>
+                </th>
+
+            </tr>
+        </thread>
+        <tbody>
+            @if (Model.Inversiones.Count() == 0)
+            {
+                <tr><td colspan="3">No hay inversiones disponibles</td></tr>
+            }
+            else
+            {
+                @for (int i = 0; i < Model.Inversiones.Count; i++)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).InversionId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).Proyecto.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).TipoInversiones.Nombre)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).Proyecto.Rating.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).Cuota) €
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).Intereses) €
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).EstadosInversiones)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Inversiones.ElementAt<Inversion>(i).Total) €
+                    </td>
+
+                    <td>
+                        <div class="form-group">
+                            <input asp-for="InversionesRecuperadas[i].CantidadRecuperada" class="form-control" size="5" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <textarea asp-for="InversionesRecuperadas[i].Comentario" rows="5" cols="30"></textarea>
+                            <input asp-for="Inversiones[i].InversionId" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].InversorId" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Proyecto.Nombre" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].TipoInversiones.Nombre" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Total" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Cuota" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Intereses" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Proyecto.Rating.Nombre" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].EstadosInversiones" type="hidden" class="form-control" />
+                            <input asp-for="Inversiones[i].Inversor" type="hidden" class="form-control" />
+                        </div>
+                    </td>
+
+
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+
+    <button type="submit" class="btn btn-primary">Recuperar Inversiones</button>
+    <a asp-action="Index" class="btn btn-default">Cancelar</a>
+</form>
+
+
