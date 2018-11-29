@@ -1,4 +1,4 @@
-﻿@model StartGrow.Models.InversionViewModels.InversionCreateViewModel
+﻿@model StartGrow.Models.InversionViewModels.InversionesCreateViewModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -124,7 +124,7 @@
 
 <form asp-action="Create" method="post">
     <div class="form-horizontal">
-        <h4>Solicitud</h4>
+        <h4>Inversión</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
@@ -173,48 +173,35 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.Inversiones.Count() == 0)
+            @if (Model.inversiones.Count() == 0)
             {
                 <tr><td colspan="3">No hay Proyectos Disponibles</td></tr>
             }
             else
             {
-                @for (int i = 0; i < Model.Inversiones.Count; i++)
+                @for (int i = 0; i < Model.inversiones.Count; i++)
                 {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => modelItem.Inversiones.ElementAt(i).Proyecto.Nombre)
+                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).inversion.Proyecto.Nombre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => modelItem.Inversiones.ElementAt(i).Proyecto.Rating)
+                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).inversion.Proyecto.Rating.Nombre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => modelItem.Inversiones.ElementAt(i).Proyecto.Interes)
+                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).inversion.Proyecto.Interes)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => modelItem.Inversiones.ElementAt(i).Proyecto.Plazo)
+                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).inversion.Proyecto.Plazo)
                     </td>
                     <td>
-                        @* Filtrar tipo de inversión *@
-                        <label asp-for="Proyecto.ProyectoTiposInversiones" class="tiposInversiones"> </label>
-
-                        <div class="tiposInversiones2">
-                            <div class="">
-                                @{
-                                    foreach (var item in Model.Proyecto.ProyectoTiposInversiones)
-                                    {
-                                        <input type="checkbox" name="ids_tiposInversiones" value="@item.TiposInversiones.Nombre" />
-                                        @item.TiposInversiones.Nombre
-                                        <br />
-                                    }
-                                }
-                            </div>
-                        </div>
+                        @foreach (var item3 in Model.inversiones)
+                        {
+                            @Html.DisplayFor(modelItem => item3.tipoinversion.Nombre) <br />
+                        }
                     </td>
                     <td>
-                        @*Filtrado por Interés*@
-                        <label asp-for="inversion.Cuota" class="interes"></label>
-                        <input asp-for="inversion.Cuota" class="interes2" size="15" type="number" />
+                       
                     </td>
                 </tr>
                 }
@@ -223,10 +210,10 @@
     </table>
     @Html.ValidationSummary(false, "", new { @class = "text-danger" })
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-default" />
+        <input type="submit" value="Continuar" class="btn btn-default" />
     </div>
 
 </form>
 <div>
-    <a asp-action="SelectProyectosForSolicitud">Back to List</a>
+    <a asp-action="SelectProyectosForInversion">Volver a Seleccionar Proyectos</a>
 </div>

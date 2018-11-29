@@ -131,7 +131,7 @@
         <tr>
             <td>
                 @* Filtrar por Areas *@
-                <label asp-for="Areas" class="areas"> </label>
+                <label asp-for="ids_areas" class="areas"> </label>
 
                 <div class="areas2">
                     <div class="">
@@ -164,7 +164,7 @@
             </td>
             <td>
                 @* Filtrar tipo de inversión *@
-                <label asp-for="TiposInversiones" class="tiposInversiones"> </label>
+                <label asp-for="ids_tiposInversiones" class="tiposInversiones"> </label>
 
                 <div class="tiposInversiones2">
                     <div class="">
@@ -301,6 +301,6 @@
             }
         </tbody>
     </table>
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-action="Index" class="btn btn-default">Cancel</a>
+    <button type="submit" class="btn btn-primary">Continuar</button>
+    <a asp-action="SelectProyectosForInversion" class="btn btn-default">Limpiar</a>
 </form>

@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace StartGrow.Models.InversionViewModels
 {
-    public class InversionCreateViewModel
+    public class InversionesCreateViewModel
     {
-        public InversionCreateViewModel()
+        public InversionesCreateViewModel()
         {
-            this.Inversiones= new List<Inversion>();
+            this.inversiones = new List<InversionCreateViewModel>();            
         }
-
         public virtual string Name
         {
             get;
@@ -30,7 +29,19 @@ namespace StartGrow.Models.InversionViewModels
             get;
             set;
         }
+        public virtual IList<InversionCreateViewModel> inversiones
+        {
+            get;
+            set;
+        }        
+    }
 
+    public class InversionCreateViewModel
+    {
+        public InversionCreateViewModel()
+        {
+            this.inversion = new Inversion();
+        }
         //It will be necessary whenever we need a relationship with ApplicationUser or any child class
         public string InversorId
         {
@@ -49,12 +60,13 @@ namespace StartGrow.Models.InversionViewModels
             get;
             set;
         }        
-        public virtual string EstadosInversiones
+        public virtual float Total
         {
             get;
             set;
-        }        
-        public virtual float Total
+        }
+
+        public TiposInversiones tipoinversion
         {
             get;
             set;
@@ -64,16 +76,7 @@ namespace StartGrow.Models.InversionViewModels
             get;
             set;
         }
-        public virtual Proyecto Proyecto
-        {
-            get;
-            set;
-        }
-        public virtual IList<Inversion> Inversiones
-        {
-            get;
-            set;
-        }
-        
     }
+
+
 }
