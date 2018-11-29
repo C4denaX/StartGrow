@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using StartGrow.Controllers;
 using StartGrow.Data;
 using StartGrow.Models;
+using StartGrow.Models.InversionViewModels;
 using StartGrow.Models.SolicitudViewModels;
 using System;
 using System.Collections.Generic;
@@ -31,15 +32,16 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                     .UseInternalServiceProvider(serviceProvider);
             return builder.Options;
         }
+
         private DbContextOptions<ApplicationDbContext> _contextOptions;
         private ApplicationDbContext context;
         Microsoft.AspNetCore.Http.DefaultHttpContext inversionContext;
-        
+
         public InversionsController_Create_Test()
         {
             _contextOptions = CreateNewContextOptions();
-            context = new ApplicationDbContext(_contextOptions);
             // Insert seed data into the database using one instance of the context
+            context = new ApplicationDbContext(_contextOptions);
 
             //Areas Temáticas
             context.Areas.Add(new Areas { Nombre = "Sanidad" });
@@ -87,6 +89,49 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
             inversionContext.User = identity;
         }
 
+        //METODO GET
 
-    }
+        [Fact]
+        public async Task CreateGet_SinProyectosSeleccionados()
+        {
+            using (context)
+            {
+                // Arrenge
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+
+                SelectedProyectosForInversionViewModel proyectos = new SelectedProyectosForInversionViewModel() { IdsToAdd = new string[0] };
+
+
+                //Act
+
+
+                //Assert
+
+
+            }
+        }
+
+        [Fact]
+        public async Task CreateGet_ConProyectosSeleccionados()
+        {
+            using (context)
+            {
+                // Arrenge
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+
+
+
+                //Act
+
+
+                //Assert
+
+            }
+        }
+
+        //METODO POST
+        
 }
+

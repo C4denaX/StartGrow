@@ -165,7 +165,7 @@
                     Plazo
                 </th>
                 <th>
-                    Tipo Inversion
+                    Tipo de Inversion
                 </th>
                 <th>
                     Cantidad
@@ -195,13 +195,15 @@
                         @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).inversion.Proyecto.Plazo)
                     </td>
                     <td>
-                        @foreach (var item3 in Model.inversiones)
-                        {
-                            @Html.DisplayFor(modelItem => item3.tipoinversion.Nombre) <br />
-                        }
+                        <div class="dropdown show">
+                            <select asp-for="inversiones[i].inversion.TipoInversiones.Nombre" asp-items="ViewBag.TiposInversiones">
+                                <option value=""></option>
+                            </select>
+                        </div>
                     </td>
                     <td>
-                       
+                        @*Filtrado por Inversión Mínima*@                       
+                        <input asp-for="inversiones[i].inversion.Cuota" size="10" type="number" />
                     </td>
                 </tr>
                 }

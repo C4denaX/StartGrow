@@ -161,8 +161,8 @@ namespace StartGrow.Controllers
                 }
             }
 
-            ViewBag.Rating = new SelectList(_context.Rating.Select(c => c.Nombre).Distinct());
-            ViewBag.TiposInversiones = new SelectList(Enum.GetNames(typeof(StartGrow.Models.Estados)));
+            ViewBag.Cuota = new SelectList(_context.Inversion.Select(c => c.Cuota).Distinct());
+            ViewBag.TiposInversiones = new SelectList(_context.ProyectoTiposInversiones.Select(c => c.TiposInversiones.Nombre).Distinct());
             ViewBag.Inversor = inversor;
 
             return View(inversion);   
