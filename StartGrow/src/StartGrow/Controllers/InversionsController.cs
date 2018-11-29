@@ -211,7 +211,7 @@ namespace StartGrow.Controllers
                     //Actualizamos Monedero
                     inversor = await _context.Users.OfType<Inversor>().Include(m => m.Monedero).FirstOrDefaultAsync<Inversor>(c => c.UserName.Equals(User.Identity.Name));
 
-                    
+
                 }
             }
 

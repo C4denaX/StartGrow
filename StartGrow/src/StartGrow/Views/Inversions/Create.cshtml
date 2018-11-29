@@ -113,10 +113,7 @@
                 background-color: #ddd;
             }
 
-            table.GeneratedTable tr:hover td {
-                background-color: #369681;
-                color: white;
-            }
+            
     </style>
 </head>
 
@@ -201,8 +198,7 @@
                             </select>
                         </div>
                     </td>
-                    <td>
-                        @*Filtrado por Inversión Mínima*@                       
+                    <td>                                  
                         <input asp-for="inversiones[i].inversion.Cuota" size="10" type="number" />
                     </td>
                 </tr>
@@ -212,7 +208,7 @@
     </table>
     @Html.ValidationSummary(false, "", new { @class = "text-danger" })
     <div class="form-group">
-        <input type="submit" value="Continuar" class="btn btn-default" />
+        <input type="submit" value="Continuar" class="btn btn-primary" />        
     </div>
 
 </form>
