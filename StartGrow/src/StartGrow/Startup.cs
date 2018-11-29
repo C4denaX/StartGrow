@@ -35,12 +35,8 @@ namespace StartGrow
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddMemoryCache();
-            services.AddMvc()
-                .AddSessionStateTempDataProvider();
 
-            services.AddSession();
-
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,17 +54,17 @@ namespace StartGrow
             }
 
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+
             app.UseAuthentication();
-            app.UseSession();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Account}/{action=SelectPreferenciasForInversor}/{id?}");
+                //template: "{controller=Inversions}/{action=Create}/{id?}");
                 //template: "{controller=Solicitudes}/{action=SelectProyectosForSolicitud}/{id?}");
+                template: "{controller=Inversions}/{action=SelectProyectosForInversion}/{id?}");
             });
-         
         }
     }
 }

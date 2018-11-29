@@ -41,6 +41,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
 
         public InversionsController_Select_Test()
         {
+
             _contextOptions = CreateNewContextOptions();
             context = new ApplicationDbContext(_contextOptions);
 
