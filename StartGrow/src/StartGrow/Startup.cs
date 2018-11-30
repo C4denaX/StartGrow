@@ -63,8 +63,8 @@ namespace StartGrow
                     name: "default",
                 //template: "{controller=Inversions}/{action=Create}/{id?}");
                 //template: "{controller=Solicitudes}/{action=SelectProyectosForSolicitud}/{id?}");
-                template: "{controller=Inversions}/{action=SelectProyectosForInversion}/{id?}");
-            });
+                template: "{controller=Inversions}/{action=SelectProyectosForInversion}/{id?}");                
+        });
         }
     }
 }

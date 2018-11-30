@@ -96,6 +96,123 @@ namespace StartGrow.Controllers
             return View(selectProyectos);
         }
 
+        // GET: Inversions/CREATE
+        public IActionResult Create(SelectedProyectosForInversionViewModel selectedProyectos)
+        {
+            Proyecto proyecto;
+            int id;
+
+            InversionesCreateViewModel inversion = new InversionesCreateViewModel();
+            inversion.inversiones = new List<InversionCreateViewModel>();
+
+            Inversor inversor = _context.Users.OfType<Inversor>().FirstOrDefault<Inversor>(p => p.UserName.Equals(User.Identity.Name));
+            inversion.Name = inversor.Nombre;
+            inversion.FirstSurname = inversor.Apellido1;
+            inversion.SecondSurname = inversor.Apellido2;
+
+            if (selectedProyectos.IdsToAdd == null || selectedProyectos.IdsToAdd.Count() == 0)
+            {
+                return RedirectToAction("SelectProyectosForInversion");
+            }
+
+            else
+            {
+                foreach (string ids in selectedProyectos.IdsToAdd)
+                {
+                    id = int.Parse(ids);
+                    proyecto = _context.Proyecto.Include(p => p.Rating).Include(p => p.ProyectoAreas).
+                              ThenInclude<Proyecto, ProyectoAreas, Areas>(p => p.Areas).Include(p => p.ProyectoTiposInversiones).
+                              ThenInclude<Proyecto, ProyectoTiposInversiones, TiposInversiones>(p => p.TiposInversiones).Where(p => p.Plazo != null).Where(p => p.RatingId != null).
+                              FirstOrDefault<Proyecto>(p => p.ProyectoId.Equals(id));
+                    inversion.inversiones.Add(new InversionCreateViewModel()
+                    {
+                        Cuota = 0,
+                        inversion = new Inversion()
+                        { Proyecto = proyecto, Inversor = inversor }
+                    });
+                }
+            }
+
+            ViewBag.Cuota = new SelectList(_context.Inversion.Select(c => c.Cuota).Distinct());
+            ViewBag.TiposInversiones = new SelectList(_context.ProyectoTiposInversiones.Select(c => c.TiposInversiones.Nombre).Distinct());
+            ViewBag.Inversor = inversor;
+
+            return View(inversion);
+        }
+
+        // POST: Inversions/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(InversionesCreateViewModel inversionCreate)
+        {
+            var inversiones = new List<InversionCreateViewModel>();
+            //Proyecto proyecto;
+            Inversion inversion;
+            Inversor inversor = _context.Users.OfType<Inversor>().FirstOrDefault<Inversor>(p => p.UserName.Equals(User.Identity.Name));
+
+            int[] idsInversion;
+            ModelState.Clear();
+
+            foreach (InversionCreateViewModel itemInversion in inversionCreate.inversiones)
+            {
+                //proyecto = await _context.Proyecto.FirstOrDefaultAsync<Proyecto>(m => m.ProyectoId == itemInversion.inversion.Proyecto.ProyectoId);
+
+                inversion = await _context.Inversion.FirstOrDefaultAsync<Inversion>(p => p.InversionId == itemInversion.inversion.InversionId);                
+
+                //float MinInv = proyecto.MinInversion;
+                if (itemInversion.tipoinversion.Nombre == null && itemInversion.Cuota.CompareTo(inversion.Proyecto.MinInversion) <= 0)
+                {
+                    ModelState.AddModelError("Inversión incorrecta", "Por favor, seleccione una inversión e introduzca una cantidad válida");
+                }
+                else if (itemInversion.tipoinversion.Nombre == null && itemInversion.Cuota.CompareTo(inversion.Proyecto.MinInversion) >= 0)
+                {
+                    ModelState.AddModelError("Tipo de Inversión No seleccionada", "Por favor, seleccione un tipo de inversión");
+                }
+                else if (itemInversion.tipoinversion.Nombre != null && itemInversion.Cuota.CompareTo(inversion.Proyecto.MinInversion) <= 0)
+                {
+                    ModelState.AddModelError("Cuota incorrecta", "Por favor, introduzca una couta válida.");
+                }
+                else
+                {
+                    inversion.Cuota = itemInversion.Cuota;
+                    inversion.TipoInversiones.Nombre = itemInversion.tipoinversion.Nombre;
+                    inversion.Intereses = itemInversion.Intereses;
+                    inversion.Total = (itemInversion.Cuota * (itemInversion.Intereses * 100)) + itemInversion.Cuota;
+                    _context.Add(itemInversion.inversion);
+
+                    //Actualizamos Monedero
+                    inversor = await _context.Users.OfType<Inversor>().Include(m => m.Monedero).FirstOrDefaultAsync<Inversor>(c => c.UserName.Equals(User.Identity.Name));
+
+
+                }
+            }
+
+            if (ModelState.ErrorCount > 0)
+            {
+                inversionCreate.Name = inversor.Nombre;
+                inversionCreate.FirstSurname = inversor.Apellido1;
+                inversionCreate.SecondSurname = inversor.Apellido2;
+                ViewBag.Cuota = new SelectList(_context.Inversion.Select(c => c.Cuota).Distinct());
+                ViewBag.TiposInversiones = new SelectList(_context.ProyectoTiposInversiones.Select(c => c.TiposInversiones.Nombre).Distinct());
+
+
+                return View(inversionCreate);
+            }
+
+            await _context.SaveChangesAsync();
+
+            idsInversion = new int[inversionCreate.inversiones.Count];
+
+            for (int i = 0; i < idsInversion.Length; i++)
+                idsInversion[i] = inversionCreate.inversiones[i].inversion.InversionId;
+
+
+            return RedirectToAction("Details");
+        }
+
+
         // GET: Inversions
         public async Task<IActionResult> Index()
         {
@@ -122,106 +239,8 @@ namespace StartGrow.Controllers
             }
 
             return View(inversion);
-        }
-
-        // GET: Inversions/CREATE
-        public IActionResult Create(SelectedProyectosForInversionViewModel selectedProyectos)
-        {
-            Proyecto proyecto;
-            int id;
-                        
-            InversionesCreateViewModel inversion = new InversionesCreateViewModel();
-            inversion.inversiones = new List<InversionCreateViewModel>();
-
-            Inversor inversor = _context.Users.OfType<Inversor>().FirstOrDefault<Inversor>(p => p.UserName.Equals(User.Identity.Name));
-            inversion.Name = inversor.Nombre;
-            inversion.FirstSurname = inversor.Apellido1;
-            inversion.SecondSurname = inversor.Apellido2;
-
-            if (selectedProyectos.IdsToAdd == null || selectedProyectos.IdsToAdd.Count() == 0)
-            {
-                return RedirectToAction("SelectProyectosForInversion");                
-            }
-
-            else
-            {
-                foreach (string ids in selectedProyectos.IdsToAdd)
-                {
-                    id = int.Parse(ids);
-                    proyecto = _context.Proyecto.Include(p => p.Rating).Include(p => p.ProyectoAreas).
-                              ThenInclude<Proyecto, ProyectoAreas, Areas>(p => p.Areas).Include(p => p.ProyectoTiposInversiones).
-                              ThenInclude<Proyecto, ProyectoTiposInversiones, TiposInversiones>(p => p.TiposInversiones).Where(p => p.Plazo != null).Where(p => p.RatingId != null).
-                              FirstOrDefault<Proyecto>(p => p.ProyectoId.Equals(id));
-                    inversion.inversiones.Add(new InversionCreateViewModel()
-                    {
-                        Cuota = 0,
-                        inversion = new Inversion()
-                        {Proyecto = proyecto, Inversor = inversor}
-                    });
-                }
-            }
-
-            ViewBag.Cuota = new SelectList(_context.Inversion.Select(c => c.Cuota).Distinct());
-            ViewBag.TiposInversiones = new SelectList(_context.ProyectoTiposInversiones.Select(c => c.TiposInversiones.Nombre).Distinct());
-            ViewBag.Inversor = inversor;
-
-            return View(inversion);   
-        }
-
-        // POST: Inversions/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(InversionesCreateViewModel inversionCreate)
-        {
-            var inversiones = new List<InversionCreateViewModel>();
-            Proyecto proyecto;
-            Inversion inversion;
-            Inversor inversor = _context.Users.OfType<Inversor>().FirstOrDefault<Inversor>(p => p.UserName.Equals(User.Identity.Name));
-
-            List<int> idsInversion = new List<int>();
-            ModelState.Clear();
-            
-            foreach (InversionCreateViewModel item in inversionCreate.inversiones)
-            {
-                proyecto = await _context.Proyecto.Include(p => p.ProyectoTiposInversiones).
-                           ThenInclude<Proyecto, ProyectoTiposInversiones, TiposInversiones>(p => p.TiposInversiones).
-                           FirstOrDefaultAsync<Proyecto>(m => m.ProyectoId == item.inversion.Proyecto.ProyectoId);
-
-                inversion = await _context.Inversion.FirstOrDefaultAsync<Inversion>(p => p.InversionId == item.inversion.InversionId);
-
-                float MinInv = proyecto.MinInversion;
-                if (item.tipoinversion.Nombre == null && item.Cuota.CompareTo(MinInv) <= 0)
-                {
-                    ModelState.AddModelError("Inversión incorrecta", "Por favor, seleccione una inversión e introduzca una cantidad válida");
-                }
-                else if (item.tipoinversion.Nombre == null && item.Cuota.CompareTo(MinInv) >= 0)
-                {
-                    ModelState.AddModelError("Tipo de Inversión No seleccionada", "Por favor, seleccione un tipo de inversión");
-                }
-                else if (item.tipoinversion.Nombre != null && item.Cuota.CompareTo(MinInv) <= 0)
-                {
-                    ModelState.AddModelError("Cuota incorrecta", "Por favor, introduzca una couta válida.");
-                }
-                else
-                {
-                    inversion.Cuota = item.Cuota;
-                    
-                    //Actualizamos Monedero
-                    inversor = await _context.Users.OfType<Inversor>().Include(m => m.Monedero).FirstOrDefaultAsync<Inversor>(c => c.UserName.Equals(User.Identity.Name));
-
-
-                }
-            }
-
-            
-
-            return RedirectToAction("Details", idsInversion);
-
-
-        }
-
+        }        
+        
         // GET: Inversions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
