@@ -69,7 +69,7 @@ namespace StartGrow.Models
        
 
             if ((this.CantidadRecuperada == recuperada.CantidadRecuperada) && (this.Comentario == recuperada.Comentario)
-               && (this.InversionId == recuperada.InversionId))
+               && (this.InversionId == recuperada.InversionId) && (this.InversionRecuperadaId == recuperada.InversionRecuperadaId))
 
                 return true;
             return false;

@@ -12,11 +12,7 @@ namespace StartGrow.Models.InversionRecuperadaViewModels
         public int[] IdsToAdd { get; set; }
 
 
-        public virtual IList<InversionRecuperada> InversionesRecuperadas
-        {
-            get;
-            set;
-        }
+
 
 
     }
