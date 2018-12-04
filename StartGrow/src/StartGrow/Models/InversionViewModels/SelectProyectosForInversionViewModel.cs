@@ -12,6 +12,7 @@ namespace StartGrow.Models.InversionViewModels
         //Lista de Proyectos
         public IEnumerable <Proyecto> Proyectos { get; set; }           
 
+        public IEnumerable <Preferencias> Preferencias { get; set; }
         //Utilizado para filtrar por Areas
         [Display(Name = "Areas Temáticas")]
         public string [] ids_areas {get; set;}
@@ -19,7 +20,7 @@ namespace StartGrow.Models.InversionViewModels
 
         //Utilizado para filtrar por Rating
         [Display(Name = "Rating")]
-        public string[] ids_rating { get; set; }
+        public string ids_rating { get; set; }
         public IEnumerable <Rating> Rating { get; set; }
 
         //Utilizado para filtrar por TiposInversiones
