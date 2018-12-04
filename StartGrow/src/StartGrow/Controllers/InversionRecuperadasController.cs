@@ -244,7 +244,7 @@ namespace StartGrow.Controllers
 
             InversionRecuperadaDetailsViewModel detailsVM = new InversionRecuperadaDetailsViewModel();
 
-            detailsVM.IdsToAdd= invRecViewModel.InversionesRecuperadas.Select(invrec => invrec.InversionId).ToArray();
+            detailsVM.IdsToAdd = invRecViewModel.InversionesRecuperadas.Select(invrec => invrec.InversionRecuperadaId).ToArray();
 
             return RedirectToAction("Details", detailsVM);
         }
@@ -252,38 +252,30 @@ namespace StartGrow.Controllers
 
 
 
-     
+
 
 
 
 
         // GET: InversionRecuperadas/Details/5
-        public async Task<IActionResult> Details(InversionRecuperadaDetailsViewModel detailsVM )
+        public async Task<IActionResult> Details(InversionRecuperadaDetailsViewModel detailsVM)
         {
-            InversionRecuperada invRec;
             Inversor inversor = _context.Users.OfType<Inversor>().FirstOrDefault<Inversor>(u => u.UserName.Equals(User.Identity.Name));
             InversionRecuperadaDetailsViewModel inv = new InversionRecuperadaDetailsViewModel();
-
+            int[]ids = detailsVM.IdsToAdd;
 
             if (detailsVM.IdsToAdd == null || detailsVM.IdsToAdd.Count() == 0)
             {
                 return RedirectToAction("Create");
             }
-            else
-            {
-                foreach (int id in detailsVM.IdsToAdd)
-                {
-                    invRec = _context.InversionRecuperada.Include(m => m.CantidadRecuperada).Include(m => m.InversionId)
-                        .Include(m => m.FechaRecuperacion)
-                        .Include(m => m.Inversion).Include(m => m.Inversion.Proyecto).Include(m => m.Inversion.TipoInversiones)
-                        .ThenInclude(p => p.ProyectoAreas).ThenInclude(pa => pa.Areas)
-                        .Include(m => m.Inversion).Include(m => m.Inversion.Proyecto).ThenInclude(r => r.Rating)
-                        .FirstOrDefault<InversionRecuperada>(i => i.InversionRecuperadaId.Equals(id));
+          
+                var invRec = _context.InversionRecuperada.Include(m => m.Inversion).ThenInclude(t => t.TipoInversiones)
+                    .Include(m => m.Inversion).ThenInclude(p => p.Proyecto).ThenInclude(pa => pa.ProyectoAreas).ThenInclude(a => a.Areas)
+                    .Include(m => m.Inversion).ThenInclude(p => p.Proyecto).ThenInclude(r => r.Rating)
+                    .Where(i => ids.Contains(i.InversionRecuperadaId)).ToList();
 
-                    inv.InversionesRecuperadas.Add(invRec);
-                }
-            }
-            return View(inv);
+
+            return View(invRec);
         }
 
 
