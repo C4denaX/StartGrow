@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -42,40 +43,58 @@ namespace StartGrow.Models.InversionViewModels
         {
             this.inversion = new Inversion();
         }
-        //It will be necessary whenever we need a relationship with ApplicationUser or any child class
-        public string InversorId
-        {
-            get;
-            set;
-        }
-        [Required]
-        public virtual float Cuota
-        {
-            get;
-            set;
-        }
-        [Required]
-        public virtual float Intereses
-        {
-            get;
-            set;
-        }        
-        public virtual float Total
+
+        public virtual string NombreProyecto
         {
             get;
             set;
         }
 
-        public TiposInversiones tipoinversion
+        public virtual float MinInver
         {
             get;
             set;
         }
+
+        public virtual float Cuota
+        {
+            get;
+            set;
+        }
+        public virtual int Plazo
+        {
+            get;
+            set;
+        }
+        public virtual float Interes
+        {
+            get;
+            set;
+        }        
+
+        public virtual String Rating
+        {
+            get;
+            set;
+        }
+
         public virtual Inversion inversion
         {
             get;
             set;
         }
+
+        public virtual Proyecto Proyecto
+        {
+            get;
+            set;
+        }
+        public SelectList TiposInversion;
+        //needed to store the genre selected by the user
+        
+        public string TiposInversionSelected { get; set; }
+
+
     }
 
 

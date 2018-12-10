@@ -1,54 +1,214 @@
-﻿@model StartGrow.Models.Inversion
+﻿@model IEnumerable<StartGrow.Models.Inversion>
 
 @{
     ViewData["Title"] = "Details";
 }
+
+
+<head>
+    <style>
+        .areas {
+            position: absolute;
+            top: 150px;
+            left: 100px;
+        }
+
+        .areas2 {
+            position: absolute;
+            top: 170px;
+            left: 100px;
+        }
+
+        .rating {
+            position: absolute;
+            top: 600px;
+            left: 100px;
+        }
+
+        .rating2 {
+            position: absolute;
+            top: 620px;
+            left: 100px;
+        }
+
+        .tiposInversiones {
+            position: absolute;
+            top: 740px;
+            left: 100px;
+        }
+
+        .tiposInversiones2 {
+            position: absolute;
+            top: 760px;
+            left: 100px;
+        }
+
+        .InvMinima {
+            position: absolute;
+            top: 860px;
+            left: 100px;
+        }
+
+        .InvMinima2 {
+            position: absolute;
+            top: 880px;
+            left: 100px;
+        }
+
+        .interes {
+            position: absolute;
+            top: 960px;
+            left: 100px;
+        }
+
+        .interes2 {
+            position: absolute;
+            top: 980px;
+            left: 100px;
+        }
+
+        .plazo {
+            position: absolute;
+            top: 1060px;
+            left: 100px;
+        }
+
+        .plazo2 {
+            position: absolute;
+            top: 1080px;
+            left: 100px;
+        }
+
+        .botonFiltro {
+            position: absolute;
+            float: right;
+            top: 1180px;
+            left: 100px;
+        }
+
+        .botonSave {
+            position: absolute;
+            float: right;
+            top: 1060px;
+            left: 100px;
+        }
+
+        table.GeneratedTable {
+            left: 1000px;
+            background-color: white;
+            text-align: left;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            table.GeneratedTable th, td {
+                padding: 20px;
+            }
+
+            table.GeneratedTable thead {
+                background-color: #246355;
+                border-bottom: solid 5px #0F362D;
+                color: white;
+            }
+
+            table.GeneratedTable tr:nth-child(even) {
+                background-color: #ddd;
+            }
+    </style>
+</head>
 
 <h2>Details</h2>
 
 <div>
     <h4>Inversion</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Cuota)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Cuota)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Intereses)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Intereses)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Total)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationUser)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationUser.Id)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Proyecto)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Proyecto.Nombre)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoInversiones)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TipoInversiones.Nombre)
-        </dd>
-    </dl>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Interés
+                </th>
+                <th>
+                    Plazo
+                </th>
+                <th>
+                    Tipo de Inversión
+                </th>
+                <th>
+                    Cantidad Invertida
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Inversion inversion in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => inversion.Proyecto.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => inversion.Proyecto.Rating.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => inversion.Proyecto.Interes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => inversion.Proyecto.Plazo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => inversion.TipoInversionesId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => inversion.Cuota)
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+    @*
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Estado)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaSolicitud)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FechaSolicitud)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Proyecto)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Proyecto.Nombre)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Trabajador)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Trabajador.Id)
+            </dd>
+        </dl>
+    *@
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.InversionId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
