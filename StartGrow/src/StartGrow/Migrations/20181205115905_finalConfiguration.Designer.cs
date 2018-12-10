@@ -7,13 +7,14 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using StartGrow.Data;
+using StartGrow.Models;
 using System;
 
 namespace StartGrow.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181104231728_createdatabase")]
-    partial class createdatabase
+    [Migration("20181205115905_finalConfiguration")]
+    partial class finalConfiguration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -309,13 +310,9 @@ namespace StartGrow.Migrations
                     b.Property<string>("InversorId")
                         .IsRequired();
 
-                    b.Property<string>("InversorId1");
-
                     b.HasKey("MonederoId");
 
                     b.HasIndex("InversorId");
-
-                    b.HasIndex("InversorId1");
 
                     b.ToTable("Monedero");
                 });
@@ -471,6 +468,9 @@ namespace StartGrow.Migrations
                 {
                     b.HasBaseType("StartGrow.Models.ApplicationUser");
 
+                    b.Property<int?>("MonederoId");
+
+                    b.HasIndex("MonederoId");
 
                     b.ToTable("Inversor");
 
@@ -624,10 +624,6 @@ namespace StartGrow.Migrations
                         .WithMany()
                         .HasForeignKey("InversorId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("StartGrow.Models.Inversor")
-                        .WithMany("Monedero")
-                        .HasForeignKey("InversorId1");
                 });
 
             modelBuilder.Entity("StartGrow.Models.Preferencias", b =>
@@ -701,6 +697,13 @@ namespace StartGrow.Migrations
                         .WithMany("SolicitudesTratadas")
                         .HasForeignKey("TrabajadorId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("StartGrow.Models.Inversor", b =>
+                {
+                    b.HasOne("StartGrow.Models.Monedero", "Monedero")
+                        .WithMany()
+                        .HasForeignKey("MonederoId");
                 });
 #pragma warning restore 612, 618
         }

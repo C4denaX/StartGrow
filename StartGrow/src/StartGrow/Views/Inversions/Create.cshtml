@@ -180,26 +180,41 @@
                 {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).inversion.Proyecto.Nombre)
+                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).NombreProyecto)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).inversion.Proyecto.Rating.Nombre)
+                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).Rating)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).inversion.Proyecto.Interes)
+                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).Interes)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).inversion.Proyecto.Plazo)
+                        @Html.DisplayFor(modelItem => modelItem.inversiones.ElementAt(i).Plazo)
                     </td>
                     <td>
                         <div class="dropdown show">
-                            <select asp-for="inversiones[i].inversion.TipoInversiones.Nombre" asp-items="ViewBag.TiposInversiones">
+                            @*<select asp-for="inversiones[i].inversion.TipoInversiones.Nombre" asp-items="ViewBag.TiposInversiones">
                                 <option value=""></option>
-                            </select>
+                            </select>*@
+
+                            <select asp-for="inversiones[i].TiposInversionSelected"
+                                asp-items="Model.inversiones[i].TiposInversion">
+                                <option value="">Pick one</option>
+                              </select>
+
                         </div>
                     </td>
-                    <td>                                  
-                        <input asp-for="inversiones[i].inversion.Cuota" size="10" type="number" />
+                    <td>
+                        <input asp-for="inversiones[i].Cuota" size="10" type="number" />
+                        <input asp-for="inversiones[i].Interes" size="10" type="hidden" />
+                        <input asp-for="inversiones[i].NombreProyecto" size="10" type="hidden" />
+                        <input asp-for="inversiones[i].Plazo" size="10" type="hidden">
+                        <input asp-for="inversiones[i].Cuota" size="10" type="hidden">
+                        <input asp-for="inversiones[i].MinInver" size="10" type="hidden">
+                        <input asp-for="inversiones[i].TiposInversionSelected" size="10" type="hidden" />
+                        <input asp-for="inversiones[i].inversion.Total" size="10" type="hidden" />
+                        <input asp-for="inversiones[i].inversion.Proyecto.ProyectoId" type="hidden" class="form-control" />
+                        <input asp-for="inversiones[i].inversion.Proyecto.Nombre" type="hidden" class="form-control" />
                     </td>
                 </tr>
                 }
