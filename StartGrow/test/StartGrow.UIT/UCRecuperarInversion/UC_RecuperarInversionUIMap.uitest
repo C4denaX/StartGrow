@@ -1021,6 +1021,89 @@
       <WorkItemId>0</WorkItemId>
       <MarkerRegionType>Assertion</MarkerRegionType>
     </TestStepMarkerAction>
+    <MouseAction UIObjectName="UC_RecuperarInversionUIMap.UIGoogleInternetExplorWindow.UIHomePageStartGrowDocument.UILoginHyperlink">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="29" Y="22" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <SetValueAction UIObjectName="UC_RecuperarInversionUIMap.UIHomePageStartGrowIntWindow.UILoginStartGrowDocument.UIEmailEdit">
+      <ParameterName />
+      <Value Encoded="false">gregorio</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <SendKeysAction UIObjectName="UC_RecuperarInversionUIMap.UIHomePageStartGrowIntWindow.UILoginStartGrowDocument.UIEmailEdit">
+      <ParameterName />
+      <ModifierKeys>Alt Control</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Text Encoded="false">2</Text>
+    </SendKeysAction>
+    <SetValueAction UIObjectName="UC_RecuperarInversionUIMap.UIHomePageStartGrowIntWindow.UILoginStartGrowDocument.UIEmailEdit">
+      <ParameterName />
+      <Value Encoded="false">gregorio@uclm.com</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <SetValueAction UIObjectName="UC_RecuperarInversionUIMap.UIHomePageStartGrowIntWindow.UILoginStartGrowDocument.UIPasswordEdit">
+      <ParameterName />
+      <Value Encoded="true">wuYju7QJocI/k7Sw4wzDUdV6p1gwECR4Gz+0C8KKyU8=</Value>
+      <Type>String</Type>
+    </SetValueAction>
+    <MouseAction UIObjectName="UC_RecuperarInversionUIMap.UIHomePageStartGrowIntWindow.UILoginStartGrowDocument.UILoginButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="29" Y="18" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <MouseAction UIObjectName="UC_RecuperarInversionUIMap.UIGoogleInternetExplorWindow.UIHomePageStartGrowDocument.UIRecuperarInversionHyperlink">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="70" Y="21" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <MouseAction UIObjectName="UC_RecuperarInversionUIMap.UIHomePageStartGrowIntWindow.UISeleccionarInversionDocument.UISiguienteButton">
+      <ParameterName />
+      <ModifierKeys>None</ModifierKeys>
+      <IsGlobalHotkey>false</IsGlobalHotkey>
+      <Location X="39" Y="13" />
+      <WheelDirection>0</WheelDirection>
+      <ActionType>Click</ActionType>
+      <MouseButton>Left</MouseButton>
+    </MouseAction>
+    <TestStepMarkerAction Comment="" MarkerInformation="SinMarcar">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Action</MarkerRegionType>
+    </TestStepMarkerAction>
+    <AssertAction UIObjectName="UC_RecuperarInversionUIMap.UIHomePageStartGrowIntWindow.UISeleccionarInversionDocument.UIDebesseleccionaralmeCustom">
+      <ParameterName />
+      <PropertyName>TagName</PropertyName>
+      <ExpectedValue>LI</ExpectedValue>
+      <MessageOnValidationFailure />
+      <Type>String</Type>
+      <PropertyCondition>AreEqual</PropertyCondition>
+    </AssertAction>
+    <TestStepMarkerAction Comment="" MarkerInformation="AssertSinMarcar">
+      <ParameterName />
+      <StepId>-1</StepId>
+      <Direction>Start</Direction>
+      <Outcome />
+      <Disabled>false</Disabled>
+      <WorkItemId>0</WorkItemId>
+      <MarkerRegionType>Assertion</MarkerRegionType>
+    </TestStepMarkerAction>
   </ExecuteActions>
   <CleanupActions />
   <OnErrorActions />
@@ -1659,6 +1742,28 @@ Id del Proyecto </PropertyCondition>
                       <PropertyCondition Name="Class">btn btn-primary</PropertyCondition>
                       <PropertyCondition Name="ControlDefinition">class="btn btn-primary" type="submit"</PropertyCondition>
                       <PropertyCondition Name="TagInstance">3</PropertyCondition>
+                    </FilterCondition>
+                  </AndCondition>
+                  <SupportLevel>0</SupportLevel>
+                  <Descendants />
+                </UIObject>
+                <UIObject ControlType="Custom" Id="UIDebesseleccionaralmeCustom" FriendlyName="Debes seleccionar al menos una inversión" SpecialControlType="None">
+                  <TechnologyName>Web</TechnologyName>
+                  <WindowTitles>
+                    <WindowTitle>Seleccionar Inversion para recuperarla - StartGrow</WindowTitle>
+                  </WindowTitles>
+                  <AndCondition Id="SearchCondition">
+                    <AndCondition Id="Primary">
+                      <PropertyCondition Name="ControlType">Custom</PropertyCondition>
+                      <PropertyCondition Name="TagName">LI</PropertyCondition>
+                      <PropertyCondition Name="Id" />
+                      <PropertyCondition Name="Name" />
+                    </AndCondition>
+                    <FilterCondition Id="Secondary">
+                      <PropertyCondition Name="Class" />
+                      <PropertyCondition Name="ControlDefinition" />
+                      <PropertyCondition Name="InnerText">Debes seleccionar al menos una inversión</PropertyCondition>
+                      <PropertyCondition Name="TagInstance">6</PropertyCondition>
                     </FilterCondition>
                   </AndCondition>
                   <SupportLevel>0</SupportLevel>
