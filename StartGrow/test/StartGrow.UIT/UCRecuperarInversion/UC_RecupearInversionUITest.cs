@@ -56,7 +56,17 @@ namespace StartGrow.UIT.UCRecuperarInversion
             //this.UIMap.CerrarAplicacion();
         }
         [TestMethod]
-        public void TestSinComentario_UCI5()
+        public void SinSeñalarInversion_UCI5()
+        {
+            this.UIMap.AccesoAplicacion();
+            this.UIMap.SinMarcar();
+            this.UIMap.AssertSinMarcar();
+            //  this.UIMap.CerrarAplicacion();
+
+        }
+
+        [TestMethod]
+        public void TestSinComentario_UCI6()
         {
             this.UIMap.AccesoAplicacion();
             this.UIMap.FiltradoDeInversor();
@@ -66,7 +76,7 @@ namespace StartGrow.UIT.UCRecuperarInversion
 
         }
         [TestMethod]
-        public void TestCantidad_0_UCI6()
+        public void TestCantidad_0_UCI7()
         {
             this.UIMap.AccesoAplicacion();
             this.UIMap.FiltradoDeInversor();
@@ -76,7 +86,7 @@ namespace StartGrow.UIT.UCRecuperarInversion
 
         }
         [TestMethod]
-        public void TestCantidad_Mayor_UCI7()
+        public void TestCantidad_Mayor_UCI8()
         {
             this.UIMap.AccesoAplicacion();
             this.UIMap.FiltradoDeInversor();
@@ -85,7 +95,7 @@ namespace StartGrow.UIT.UCRecuperarInversion
           //  this.UIMap.CerrarAplicacion();
         }
         [TestMethod]
-        public void TestInversionRecuperada_UCI8()
+        public void TestInversionRecuperada_UCI9()
         {
             this.UIMap.AccesoAplicacion();
             this.UIMap.FiltradoDeInversor();
@@ -94,7 +104,7 @@ namespace StartGrow.UIT.UCRecuperarInversion
        //     this.UIMap.CerrarAplicacion();
         }
         [TestMethod]
-        public void TestInversionRecuperadaSinFiltrar_UCI9()
+        public void TestInversionRecuperadaSinFiltrar_UCI10()
         {
             this.UIMap.AccesoAplicacion();
             this.UIMap.RecuperarSinFiltrar();

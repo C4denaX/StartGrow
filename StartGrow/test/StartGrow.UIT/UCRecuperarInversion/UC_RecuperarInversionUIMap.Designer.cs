@@ -694,6 +694,58 @@ namespace StartGrow.UIT.UCRecuperarInversion.UC_RecuperarInversionUIMapClasses
             Assert.AreEqual(this.AssertRecuperarEnRecaudacionExpectedValues.UINohayinversionesdispCellInnerText, uINohayinversionesdispCell.InnerText);
         }
         
+        /// <summary>
+        /// SinMarcar: use 'SinMarcarParams' para pasar parámetros a este método.
+        /// </summary>
+        public void SinMarcar()
+        {
+            #region Variable Declarations
+            HtmlHyperlink uILoginHyperlink = this.UIGoogleInternetExplorWindow.UIHomePageStartGrowDocument.UILoginHyperlink;
+            HtmlEdit uIEmailEdit = this.UIHomePageStartGrowIntWindow.UILoginStartGrowDocument.UIEmailEdit;
+            HtmlEdit uIPasswordEdit = this.UIHomePageStartGrowIntWindow.UILoginStartGrowDocument.UIPasswordEdit;
+            HtmlButton uILoginButton = this.UIHomePageStartGrowIntWindow.UILoginStartGrowDocument.UILoginButton;
+            HtmlHyperlink uIRecuperarInversionHyperlink = this.UIGoogleInternetExplorWindow.UIHomePageStartGrowDocument.UIRecuperarInversionHyperlink;
+            HtmlButton uISiguienteButton = this.UIHomePageStartGrowIntWindow.UISeleccionarInversionDocument.UISiguienteButton;
+            #endregion
+
+            // Clic 'Log in' vínculo
+            Mouse.Click(uILoginHyperlink, new Point(29, 22));
+
+            // Escribir 'gregorio' en cuadro de texto 'Email'
+            uIEmailEdit.Text = this.SinMarcarParams.UIEmailEditText;
+
+            // Escribir 'Alt, Control + 2' en cuadro de texto 'Email'
+            Keyboard.SendKeys(uIEmailEdit, this.SinMarcarParams.UIEmailEditSendKeys, (ModifierKeys.Alt | ModifierKeys.Control));
+
+            // Escribir 'gregorio@uclm.com' en cuadro de texto 'Email'
+            uIEmailEdit.Text = this.SinMarcarParams.UIEmailEditText1;
+
+            // Escribir '********' en cuadro de texto 'Password'
+            uIPasswordEdit.Password = this.SinMarcarParams.UIPasswordEditPassword;
+
+            // Clic 'Log in' botón
+            Mouse.Click(uILoginButton, new Point(29, 18));
+
+            // Clic 'Recuperar Inversion' vínculo
+            Mouse.Click(uIRecuperarInversionHyperlink, new Point(70, 21));
+
+            // Clic 'Siguiente' botón
+            Mouse.Click(uISiguienteButton, new Point(39, 13));
+        }
+        
+        /// <summary>
+        /// AssertSinMarcar: use 'AssertSinMarcarExpectedValues' para pasar parámetros a este método.
+        /// </summary>
+        public void AssertSinMarcar()
+        {
+            #region Variable Declarations
+            HtmlCustom uIDebesseleccionaralmeCustom = this.UIHomePageStartGrowIntWindow.UISeleccionarInversionDocument.UIDebesseleccionaralmeCustom;
+            #endregion
+
+            // Compruebe que la propiedad 'TagName' de 'Debes seleccionar al menos una inversión' control personalizado es igual a 'LI'
+            Assert.AreEqual(this.AssertSinMarcarExpectedValues.UIDebesseleccionaralmeCustomTagName, uIDebesseleccionaralmeCustom.TagName);
+        }
+        
         #region Properties
         public virtual AccesoAplicacionParams AccesoAplicacionParams
         {
@@ -1007,6 +1059,30 @@ namespace StartGrow.UIT.UCRecuperarInversion.UC_RecuperarInversionUIMapClasses
             }
         }
         
+        public virtual SinMarcarParams SinMarcarParams
+        {
+            get
+            {
+                if ((this.mSinMarcarParams == null))
+                {
+                    this.mSinMarcarParams = new SinMarcarParams();
+                }
+                return this.mSinMarcarParams;
+            }
+        }
+        
+        public virtual AssertSinMarcarExpectedValues AssertSinMarcarExpectedValues
+        {
+            get
+            {
+                if ((this.mAssertSinMarcarExpectedValues == null))
+                {
+                    this.mAssertSinMarcarExpectedValues = new AssertSinMarcarExpectedValues();
+                }
+                return this.mAssertSinMarcarExpectedValues;
+            }
+        }
+        
         public UIGoogleInternetExplorWindow UIGoogleInternetExplorWindow
         {
             get
@@ -1180,6 +1256,10 @@ namespace StartGrow.UIT.UCRecuperarInversion.UC_RecuperarInversionUIMapClasses
         private AssertFiltrarSinResultadosExpectedValues mAssertFiltrarSinResultadosExpectedValues;
         
         private AssertRecuperarEnRecaudacionExpectedValues mAssertRecuperarEnRecaudacionExpectedValues;
+        
+        private SinMarcarParams mSinMarcarParams;
+        
+        private AssertSinMarcarExpectedValues mAssertSinMarcarExpectedValues;
         
         private UIGoogleInternetExplorWindow mUIGoogleInternetExplorWindow;
         
@@ -1805,6 +1885,51 @@ namespace StartGrow.UIT.UCRecuperarInversion.UC_RecuperarInversionUIMapClasses
         /// Compruebe que la propiedad 'InnerText' de 'No hay inversiones disponibles' celda es igual a 'No hay inversiones disponibles'
         /// </summary>
         public string UINohayinversionesdispCellInnerText = "No hay inversiones disponibles";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'SinMarcar'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class SinMarcarParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Escribir 'gregorio' en cuadro de texto 'Email'
+        /// </summary>
+        public string UIEmailEditText = "gregorio";
+        
+        /// <summary>
+        /// Escribir 'Alt, Control + 2' en cuadro de texto 'Email'
+        /// </summary>
+        public string UIEmailEditSendKeys = "2";
+        
+        /// <summary>
+        /// Escribir 'gregorio@uclm.com' en cuadro de texto 'Email'
+        /// </summary>
+        public string UIEmailEditText1 = "gregorio@uclm.com";
+        
+        /// <summary>
+        /// Escribir '********' en cuadro de texto 'Password'
+        /// </summary>
+        public string UIPasswordEditPassword = "wuYju7QJocI/k7Sw4wzDUdV6p1gwECR4Gz+0C8KKyU8=";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AssertSinMarcar'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AssertSinMarcarExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Compruebe que la propiedad 'TagName' de 'Debes seleccionar al menos una inversión' control personalizado es igual a 'LI'
+        /// </summary>
+        public string UIDebesseleccionaralmeCustomTagName = "LI";
         #endregion
     }
     
@@ -2610,6 +2735,28 @@ namespace StartGrow.UIT.UCRecuperarInversion.UC_RecuperarInversionUIMapClasses
                 return this.mUISiguienteButton;
             }
         }
+        
+        public HtmlCustom UIDebesseleccionaralmeCustom
+        {
+            get
+            {
+                if ((this.mUIDebesseleccionaralmeCustom == null))
+                {
+                    this.mUIDebesseleccionaralmeCustom = new HtmlCustom(this);
+                    #region Criterio de búsqueda
+                    this.mUIDebesseleccionaralmeCustom.SearchProperties["TagName"] = "LI";
+                    this.mUIDebesseleccionaralmeCustom.SearchProperties["Id"] = null;
+                    this.mUIDebesseleccionaralmeCustom.SearchProperties[UITestControl.PropertyNames.Name] = null;
+                    this.mUIDebesseleccionaralmeCustom.FilterProperties["Class"] = null;
+                    this.mUIDebesseleccionaralmeCustom.FilterProperties["ControlDefinition"] = null;
+                    this.mUIDebesseleccionaralmeCustom.FilterProperties["InnerText"] = "Debes seleccionar al menos una inversión";
+                    this.mUIDebesseleccionaralmeCustom.FilterProperties["TagInstance"] = "6";
+                    this.mUIDebesseleccionaralmeCustom.WindowTitles.Add("Seleccionar Inversion para recuperarla - StartGrow");
+                    #endregion
+                }
+                return this.mUIDebesseleccionaralmeCustom;
+            }
+        }
         #endregion
         
         #region Fields
@@ -2632,6 +2779,8 @@ namespace StartGrow.UIT.UCRecuperarInversion.UC_RecuperarInversionUIMapClasses
         private HtmlCheckBox mUIIdsToAddCheckBox;
         
         private HtmlButton mUISiguienteButton;
+        
+        private HtmlCustom mUIDebesseleccionaralmeCustom;
         #endregion
     }
     
