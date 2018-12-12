@@ -54,9 +54,21 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodedUITest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UIMap.cs" />
+    <Compile Include="UCRecuperarInversion\UC_RecupearInversionUITest.cs" />
+    <Compile Include="UCRecuperarInversion\UC_RecuperarInversionUIMap.cs">
+      <DependentUpon>UC_RecuperarInversionUIMap.uitest</DependentUpon>
+    </Compile>
+    <Compile Include="UCRecuperarInversion\UC_RecuperarInversionUIMap.Designer.cs">
+      <DependentUpon>UC_RecuperarInversionUIMap.uitest</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UCRecuperarInversion\Casos de Prueba_Recuperar_Inversion.pdf" />
+    <None Include="UCRecuperarInversion\UC_RecuperarInversionUIMap.uitest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UCRecuperarInversion\dbo.RecuperarInversiones.data.sql" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
