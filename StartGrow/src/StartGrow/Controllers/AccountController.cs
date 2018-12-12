@@ -16,7 +16,7 @@ using StartGrow.Services;
 using StartGrow.Data;
 
 using StartGrow.Models.PreferenciasViewModel;
-
+using System.Collections;
 
 namespace StartGrow.Controllers
 {
@@ -49,6 +49,12 @@ namespace StartGrow.Controllers
 
         //----------------------------------------------------------------------------------------------------------//
 
+
+        //==================================================================//
+        //                             SELECT                               //
+        //==================================================================//
+
+
         //GET
 
         public IActionResult SelectPreferenciasForInversor()
@@ -75,7 +81,7 @@ namespace StartGrow.Controllers
 
             if((SelectedPreferencias.IdsToAddAreas != null) && (SelectedPreferencias.IdsToAddRating != null) && (SelectedPreferencias.IdsToAddTiposInversion != null))
             {
-                return RedirectToAction("create", SelectedPreferencias);
+                return RedirectToAction("Create", SelectedPreferencias);
             }
 
 
@@ -88,6 +94,93 @@ namespace StartGrow.Controllers
 
             return View(SelectPreferencias);
         }
+
+
+
+
+        //==================================================================//
+        //                           CREATE                                 //
+        //==================================================================//
+
+
+        //----GET----
+
+        public IActionResult Create(SelectedPreferenciasForInversor SelectedPreferencias)
+        {
+            List<Preferencias> preferencias = new List<Preferencias>();
+            Rating rating;
+            Areas area;
+            TiposInversiones tp;
+            int id;
+            Inversor inversor = new Inversor();
+            
+
+            if ((SelectedPreferencias.IdsToAddAreas != null) && (SelectedPreferencias.IdsToAddRating != null) && (SelectedPreferencias.IdsToAddTiposInversion != null))
+            {
+                foreach(string ids in SelectedPreferencias.IdsToAddAreas)
+                {
+                    id = int.Parse(ids);
+                    area = _context.Areas.Where(areas => areas.AreasId == id).First();
+                    preferencias.Add(new Preferencias() { Areas = area });
+                }
+                foreach (string ids in SelectedPreferencias.IdsToAddRating)
+                {
+                    id = int.Parse(ids);
+                    rating = _context.Rating.Where(r => r.RatingId == id).First();
+                    preferencias.Add(new Preferencias() { Rating = rating });
+                }
+                foreach (string ids in SelectedPreferencias.IdsToAddTiposInversion)
+                {
+                    id = int.Parse(ids);
+                    tp = _context.TiposInversiones.Where(tpi => tpi.TiposInversionesId == id).First();
+                    preferencias.Add(new Preferencias() { TiposInversiones = tp });
+                }
+
+                inversor.Preferencias = preferencias;
+                
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Debes seleccionar al menos un Area, un Rating y un Tipo de Inversion");
+            }
+
+            return View(inversor);
+        }
+
+
+        //----POST----
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create (PreferenciasCreateViewModel inversor)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(inversor);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details");
+            }
+            return View(inversor);
+        }
+
+
+        //==================================================================//
+        //                           DETAILS                                //
+        //==================================================================//
+
+
+        //----GET----
+
+
+
+
+
+
+        //----POST----
+
+
+
+
 
 
         //-------------------------------------------------------------------------------------------------------//
