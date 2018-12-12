@@ -97,26 +97,32 @@ namespace StartGrow.Data
                     userManager.AddToRoleAsync(user, roles[1]).Wait();
                 }
             }
-            /*
+            
             if (userManager.FindByNameAsync("peter@uclm.com").Result == null)
             {
-                //A customer class has been defined because it has different attributes (purchase, rental, etc.)
-                Customer user = new Customer();
+                ApplicationUser user = new Inversor();
                 user.UserName = "peter@uclm.com";
                 user.Email = "peter@uclm.com";
-                user.Name = "Peter";
-                user.FirstSurname = "Jackson";
-                user.SecondSurname = "Jackson";
+                user.Nombre = "Peter";
+                user.Apellido1 = "Diaz";
+                user.Apellido2 = "Descalzo";
+                user.CodPost = 2000;
+                user.Domicilio = "Calle";
+                user.Municipio = "Albacete";
+                user.Nacionalidad = "Española";
+                user.NIF = "123";
+                user.PaisDeResidencia = "España";
+                user.Provincia = "Albacete";
 
-                IdentityResult result = userManager.CreateAsync(user, "OtherPass12$").Result;
+                IdentityResult result = userManager.CreateAsync(user, "APassword1234%").Result;
 
                 if (result.Succeeded)
                 {
-                    //customer role
-                    userManager.AddToRoleAsync(user, roles[2]).Wait();
+                    //Employee role
+                    userManager.AddToRoleAsync(user, roles[1]).Wait();
                 }
             }
-            */
+            
         }
 /*
         public static void SeedMovies(ApplicationDbContext dbContext)
