@@ -25,40 +25,48 @@ namespace StartGrow.UIT.PublicarProyectos
         [TestMethod]
         public void PublicarProyectoUITest_UCI_1()
         {
-            this.UIMap.AccederApp();
-            this.UIMap.AsercionBotonLogin();
+            this.UIMap.AccesoAplicacion();
+            this.UIMap.AssertBotonLogin();
             // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
         }
 
-        [TestMethod]
-        public void PublicarProyectoUITest_UCI_2()
-        {
-            this.UIMap.LoginEnApp();
-            this.UIMap.AsercionLoginCorrecto();
-            this.UIMap.AsercionLoginCorrecto();
-            this.UIMap.AsercionNombreProyecto();
-            this.UIMap.SeleccionarProyecto();
-            this.UIMap.AsercionBotonCreate();
-            this.UIMap.CreateCorrecto();
-            this.UIMap.AsercionDetails();
-            // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
-        }
+       
+
+        //[TestMethod]
+        //public void PublicarProyectoUITest_UCI_2()
+        //{
+        //    this.UIMap.AccesoAplicacion();
+        //    this.UIMap.AssertBotonLogin();
+        //    this.UIMap.LoginEnApp();
+        //    this.UIMap.AsercionLoginCorrecto();
+        //    this.UIMap.AsercionNoHayProyectos();
+        //    // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
+        //}
 
         [TestMethod]
         public void PublicarProyectoUITest_UCI_3()
         {
+            this.UIMap.AccesoAplicacion();
+            this.UIMap.AssertBotonLogin();
             this.UIMap.LoginEnApp();
             this.UIMap.AsercionLoginCorrecto();
-            this.UIMap.AsercionNoHayProyectos();
+            this.UIMap.SeleccionarProyectoMYRED();
+            this.UIMap.AsercionBotonCreate();
+            this.UIMap.CreateCorrecto();
+            this.UIMap.AssertDetailsMYRED();
             // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
         }
 
         [TestMethod]
         public void PublicarProyectoUITest_UCI_4()
         {
+            this.UIMap.AccesoAplicacion();
+            this.UIMap.AssertBotonLogin();
             this.UIMap.LoginEnApp();
             this.UIMap.AsercionLoginCorrecto();
-            this.UIMap.AsercionProyectosSinFiltrar();
+            this.UIMap.AsercionNombreProyecto();
+            this.UIMap.FiltrarProyectos3();
+            this.UIMap.AsercionProyectosFiltradosSTOYKE();
             this.UIMap.SeleccionarProyecto();
             this.UIMap.AsercionBotonCreate();
             this.UIMap.CreateCorrecto();
@@ -69,21 +77,8 @@ namespace StartGrow.UIT.PublicarProyectos
         [TestMethod]
         public void PublicarProyectoUITest_UCI_5()
         {
-            this.UIMap.LoginEnApp();
-            this.UIMap.AsercionLoginCorrecto();
-            this.UIMap.AsercionNombreProyecto();
-            this.UIMap.FiltrarProyectos3();
-            this.UIMap.AsercionProyectosFiltrados1();
-            this.UIMap.SeleccionarProyecto();
-            this.UIMap.AsercionBotonCreate();
-            this.UIMap.CreateCorrecto();
-            this.UIMap.AsercionDetails();
-            // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
-        }
-
-        [TestMethod]
-        public void PublicarProyectoUITest_UCI_6()
-        {
+            this.UIMap.AccesoAplicacion();
+            this.UIMap.AssertBotonLogin();
             this.UIMap.LoginEnApp();
             this.UIMap.AsercionLoginCorrecto();
             this.UIMap.AsercionNombreProyecto();
@@ -93,44 +88,53 @@ namespace StartGrow.UIT.PublicarProyectos
         }
 
         [TestMethod]
-        public void PublicarProyectoUITest_UCI_7()
+        public void PublicarProyectoUITest_UCI_6()
         {
+            this.UIMap.AccesoAplicacion();
+            this.UIMap.AssertBotonLogin();
             this.UIMap.LoginEnApp();
             this.UIMap.AsercionLoginCorrecto();
             this.UIMap.AsercionNombreProyecto();
-            this.UIMap.FiltrarProyectos3();
-            this.UIMap.SeleccionarProyecto();
+            this.UIMap.FiltrarProyectosJUSTNOW();
+            this.UIMap.AsercionProyectosFiltradosJUSTNOW();
+            this.UIMap.SeleccionarProyectoJUSTNOW();
             this.UIMap.AsercionBotonCreate();
             this.UIMap.EstadoRechazadoRatingB();
-            this.UIMap.AsercionErrorCreate();
+            this.UIMap.AsercionErrorCreateJUSTNOW();
+            // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
+        }
+
+        [TestMethod]
+        public void PublicarProyectoUITest_UCI_7()
+        {
+            this.UIMap.AccesoAplicacion();
+            this.UIMap.AssertBotonLogin();
+            this.UIMap.LoginEnApp();
+            this.UIMap.AsercionLoginCorrecto();
+            this.UIMap.AsercionNombreProyecto();
+            this.UIMap.FiltrarProyectosJUSTNOW();
+            this.UIMap.AsercionProyectosFiltradosJUSTNOW();
+            this.UIMap.SeleccionarProyectoJUSTNOW();
+            this.UIMap.AsercionBotonCreate();
+            this.UIMap.EstadoAceptadoRatingA();
+            this.UIMap.AsercionErrorInteresPlazoJUSTNOW();
             // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
         }
 
         [TestMethod]
         public void PublicarProyectoUITest_UCI_8()
         {
+            this.UIMap.AccesoAplicacion();
+            this.UIMap.AssertBotonLogin();
             this.UIMap.LoginEnApp();
             this.UIMap.AsercionLoginCorrecto();
             this.UIMap.AsercionNombreProyecto();
-            this.UIMap.FiltrarProyectos3();
-            this.UIMap.SeleccionarProyecto();
+            this.UIMap.FiltrarProyectosPOCHOLO();
+            this.UIMap.AsercionProyectosFiltradosPOCHOLO();
+            this.UIMap.SeleccionarProyectoPOCHOLO();
             this.UIMap.AsercionBotonCreate();
-            this.UIMap.EstadoAceptadoRatingA();
-            this.UIMap.AsercionErrorInteresPlazo();
-            // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
-        }
-
-        [TestMethod]
-        public void PublicarProyectoUITest_UCI_9()
-        {
-            this.UIMap.LoginEnApp();
-            this.UIMap.AsercionLoginCorrecto();
-            this.UIMap.AsercionNombreProyecto();
-            this.UIMap.FiltrarProyectos3();
-            this.UIMap.SeleccionarProyecto();
-            this.UIMap.AsercionBotonCreate();
-            this.UIMap.CreateCorrecto();
-            this.UIMap.AsercionDetails();
+            this.UIMap.CreateCorrectoPOCHOLO();
+            this.UIMap.AsercionDetailsPOCHOLO();
             // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
         }
 

@@ -507,6 +507,414 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
             Mouse.Click(uIFiltrarButton, new Point(36, 20));
         }
         
+        /// <summary>
+        /// Metodo de Acceso a la aplicacion
+        /// </summary>
+        public void AccediendoAplicacion()
+        {
+            #region Variable Declarations
+            HtmlHyperlink uIPublicarProyectoHyperlink = this.UIGoogleInternetExplorWindow.UIHomePageStartGrowDocument.UIPublicarProyectoHyperlink;
+            #endregion
+
+            // Ir a página web 'https://localhost:44358/' mediante nueva instancia de explorador
+            this.UIGoogleInternetExplorWindow.LaunchUrl(new System.Uri(this.AccediendoAplicacionParams.UIGoogleInternetExplorWindowUrl));
+
+            // Clic 'Publicar Proyecto' vínculo
+            Mouse.Click(uIPublicarProyectoHyperlink, new Point(81, 29));
+        }
+        
+        /// <summary>
+        /// AssertBotonLogin: use 'AssertBotonLoginExpectedValues' para pasar parámetros a este método.
+        /// </summary>
+        public void AssertBotonLogin()
+        {
+            #region Variable Declarations
+            HtmlButton uILoginButton = this.UILoginStartGrowInternWindow1.UILoginStartGrowDocument.UILoginButton;
+            #endregion
+
+            // Compruebe que la propiedad 'InnerText' de 'Log in' botón es igual a 'Log in'
+            Assert.AreEqual(this.AssertBotonLoginExpectedValues.UILoginButtonInnerText, uILoginButton.InnerText);
+        }
+        
+        /// <summary>
+        /// Acceso: use 'AccesoParams' para pasar parámetros a este método.
+        /// </summary>
+        public void Acceso()
+        {
+            #region Variable Declarations
+            BrowserWindow uIGoogleInternetExplorWindow = this.UIGoogleInternetExplorWindow;
+            #endregion
+
+            // Ir a página web 'https://www.google.es/?gws_rd=ssl' mediante nueva instancia de explorador
+            this.UIGoogleInternetExplorWindow.LaunchUrl(new System.Uri(this.AccesoParams.UIGoogleInternetExplorWindowUrl));
+
+            // Ir a página web 'https://localhost:44358/'
+            uIGoogleInternetExplorWindow.NavigateToUrl(new System.Uri(this.AccesoParams.UIGoogleInternetExplorWindowUrl1));
+        }
+        
+        /// <summary>
+        /// AccesoAplicacion: use 'AccesoAplicacionParams' para pasar parámetros a este método.
+        /// </summary>
+        public void AccesoAplicacion()
+        {
+            #region Variable Declarations
+            HtmlHyperlink uIPublicarProyectoHyperlink = this.UIGoogleInternetExplorWindow.UIHomePageStartGrowDocument.UIPublicarProyectoHyperlink;
+            #endregion
+
+            // Ir a página web 'https://localhost:44358/' mediante nueva instancia de explorador
+            this.UIGoogleInternetExplorWindow.LaunchUrl(new System.Uri(this.AccesoAplicacionParams.UIGoogleInternetExplorWindowUrl));
+
+            // Clic 'Publicar Proyecto' vínculo
+            Mouse.Click(uIPublicarProyectoHyperlink, new Point(74, 22));
+        }
+        
+        /// <summary>
+        /// SeleccionarProyectoMYRED: use 'SeleccionarProyectoMYREDParams' para pasar parámetros a este método.
+        /// </summary>
+        public void SeleccionarProyectoMYRED()
+        {
+            #region Variable Declarations
+            HtmlCheckBox uIIdsToAddCheckBox = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIIdsToAddCheckBox;
+            HtmlButton uISaveButton = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UISaveButton;
+            #endregion
+
+            // Seleccionar casilla 'IdsToAdd'
+            uIIdsToAddCheckBox.Checked = this.SeleccionarProyectoMYREDParams.UIIdsToAddCheckBoxChecked;
+
+            // Clic 'Save' botón
+            Mouse.Click(uISaveButton, new Point(18, 29));
+        }
+        
+        /// <summary>
+        /// AssertDetailsMYRED: use 'AssertDetailsMYREDExpectedValues' para pasar parámetros a este método.
+        /// </summary>
+        public void AssertDetailsMYRED()
+        {
+            #region Variable Declarations
+            HtmlDiv uISolicitudNombreEstadPane = this.UISeleccionelosproyectWindow.UIDetailsStartGrowDocument1.UISolicitudNombreEstadPane;
+            #endregion
+
+            // Compruebe que la propiedad 'InnerText' de 'Solicitud Nombre Estado Solic' panel es igual a 'Solicitud
+            //
+            //
+            //
+            //Nombre 
+            //
+            //Estado Solicitud 
+            //
+            //Rating 
+            //
+            //Interés 
+            //
+            //Plazo de Amortización 
+            //
+            //
+            //MYRED Aceptada A 2 10 '
+            Assert.AreEqual(this.AssertDetailsMYREDExpectedValues.UISolicitudNombreEstadPaneInnerText, uISolicitudNombreEstadPane.InnerText);
+        }
+        
+        /// <summary>
+        /// FiltrarProyectosJUSTNOW: use 'FiltrarProyectosJUSTNOWParams' para pasar parámetros a este método.
+        /// </summary>
+        public void FiltrarProyectosJUSTNOW()
+        {
+            #region Variable Declarations
+            HtmlCheckBox uIAreasSeleccionadaCheckBox = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIAreasSeleccionadaCheckBox;
+            HtmlCheckBox uIAreasSeleccionadaCheckBox1 = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIAreasSeleccionadaCheckBox1;
+            HtmlCheckBox uIAreasSeleccionadaCheckBox2 = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIAreasSeleccionadaCheckBox2;
+            HtmlCheckBox uITipoSeleccionadoCheckBox = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UITipoSeleccionadoCheckBox;
+            HtmlCheckBox uITipoSeleccionadoCheckBox1 = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UITipoSeleccionadoCheckBox1;
+            HtmlEdit uIFechadeExpiracionEdit = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIFechadeExpiracionEdit;
+            HtmlEdit uICapitalEdit = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UICapitalEdit;
+            HtmlEdit uINombredelproyectoEdit = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UINombredelproyectoEdit;
+            HtmlInputButton uIFiltrarButton = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIFiltrarButton;
+            #endregion
+
+            // Seleccionar casilla 'areasSeleccionada'
+            uIAreasSeleccionadaCheckBox.Checked = this.FiltrarProyectosJUSTNOWParams.UIAreasSeleccionadaCheckBoxChecked;
+
+            // Seleccionar casilla 'areasSeleccionada'
+            uIAreasSeleccionadaCheckBox1.Checked = this.FiltrarProyectosJUSTNOWParams.UIAreasSeleccionadaCheckBox1Checked;
+
+            // Seleccionar casilla 'areasSeleccionada'
+            uIAreasSeleccionadaCheckBox2.Checked = this.FiltrarProyectosJUSTNOWParams.UIAreasSeleccionadaCheckBox2Checked;
+
+            // Seleccionar casilla 'tipoSeleccionado'
+            uITipoSeleccionadoCheckBox.Checked = this.FiltrarProyectosJUSTNOWParams.UITipoSeleccionadoCheckBoxChecked;
+
+            // Seleccionar casilla 'tipoSeleccionado'
+            uITipoSeleccionadoCheckBox1.Checked = this.FiltrarProyectosJUSTNOWParams.UITipoSeleccionadoCheckBox1Checked;
+
+            // Escribir '2019-2-9' en cuadro de texto 'Fecha de Expiracion'
+            uIFechadeExpiracionEdit.Text = this.FiltrarProyectosJUSTNOWParams.UIFechadeExpiracionEditText;
+
+            // Escribir '56000' en cuadro de texto 'Capital'
+            uICapitalEdit.Text = this.FiltrarProyectosJUSTNOWParams.UICapitalEditText;
+
+            // Escribir 'JUST NOW' en cuadro de texto 'Nombre del proyecto'
+            uINombredelproyectoEdit.Text = this.FiltrarProyectosJUSTNOWParams.UINombredelproyectoEditText;
+
+            // Clic 'Filtrar' botón
+            Mouse.Click(uIFiltrarButton, new Point(43, 13));
+        }
+        
+        /// <summary>
+        /// SeleccionarProyectoJUSTNOW: use 'SeleccionarProyectoJUSTNOWParams' para pasar parámetros a este método.
+        /// </summary>
+        public void SeleccionarProyectoJUSTNOW()
+        {
+            #region Variable Declarations
+            HtmlCheckBox uIIdsToAddCheckBox1 = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIIdsToAddCheckBox1;
+            HtmlButton uISaveButton = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UISaveButton;
+            #endregion
+
+            // Seleccionar casilla 'IdsToAdd'
+            uIIdsToAddCheckBox1.Checked = this.SeleccionarProyectoJUSTNOWParams.UIIdsToAddCheckBox1Checked;
+
+            // Clic 'Save' botón
+            Mouse.Click(uISaveButton, new Point(26, 23));
+        }
+        
+        /// <summary>
+        /// AsercionErrorCreateJUSTNOW: use 'AsercionErrorCreateJUSTNOWExpectedValues' para pasar parámetros a este método.
+        /// </summary>
+        public void AsercionErrorCreateJUSTNOW()
+        {
+            #region Variable Declarations
+            HtmlCustom uILasolicituddeJUSTNOWCustom = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument2.UILasolicituddeJUSTNOWCustom;
+            #endregion
+
+            // Compruebe que la propiedad 'InnerText' de 'La solicitud de JUST NOW, no puede estar' control personalizado es igual a 'La solicitud de JUST NOW, no puede estar aprobada y tener una calificacion de F o viceversa'
+            Assert.AreEqual(this.AsercionErrorCreateJUSTNOWExpectedValues.UILasolicituddeJUSTNOWCustomInnerText, uILasolicituddeJUSTNOWCustom.InnerText);
+        }
+        
+        /// <summary>
+        /// AsercionErrorInteresPlazoJUSTNOW: use 'AsercionErrorInteresPlazoJUSTNOWExpectedValues' para pasar parámetros a este método.
+        /// </summary>
+        public void AsercionErrorInteresPlazoJUSTNOW()
+        {
+            #region Variable Declarations
+            HtmlCustom uINosehaintroducidocorCustom = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument2.UINosehaintroducidocorCustom;
+            #endregion
+
+            // Compruebe que la propiedad 'InnerText' de 'No se ha introducido correctamente el pl' control personalizado es igual a 'No se ha introducido correctamente el plazo o el interes del proyecto JUST NOW'
+            Assert.AreEqual(this.AsercionErrorInteresPlazoJUSTNOWExpectedValues.UINosehaintroducidocorCustomInnerText, uINosehaintroducidocorCustom.InnerText);
+        }
+        
+        /// <summary>
+        /// CreateCorrectoJUSTNOW: use 'CreateCorrectoJUSTNOWParams' para pasar parámetros a este método.
+        /// </summary>
+        public void CreateCorrectoJUSTNOW()
+        {
+            #region Variable Declarations
+            HtmlComboBox uISolicitudes0estadosComboBox = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument3.UISolicitudes0estadosComboBox;
+            HtmlComboBox uISolicitudes0ratingComboBox = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument3.UISolicitudes0ratingComboBox;
+            HtmlEdit uISolicitudes0interesEdit = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument3.UISolicitudes0interesEdit;
+            HtmlEdit uISolicitudes0plazoEdit = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument3.UISolicitudes0plazoEdit;
+            HtmlInputButton uICreateButton = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument3.UICreateButton;
+            #endregion
+
+            // Seleccionar 'Aceptada' en cuadro combinado 'Solicitudes[0].estados'
+            uISolicitudes0estadosComboBox.SelectedItem = this.CreateCorrectoJUSTNOWParams.UISolicitudes0estadosComboBoxSelectedItem;
+
+            // Seleccionar 'A' en cuadro combinado 'Solicitudes[0].rating'
+            uISolicitudes0ratingComboBox.SelectedItem = this.CreateCorrectoJUSTNOWParams.UISolicitudes0ratingComboBoxSelectedItem;
+
+            // Escribir '20' en cuadro de texto 'Solicitudes[0].interes'
+            uISolicitudes0interesEdit.Text = this.CreateCorrectoJUSTNOWParams.UISolicitudes0interesEditText;
+
+            // Escribir '10' en cuadro de texto 'Solicitudes[0].plazo'
+            uISolicitudes0plazoEdit.Text = this.CreateCorrectoJUSTNOWParams.UISolicitudes0plazoEditText;
+
+            // Clic 'Create' botón
+            Mouse.Click(uICreateButton, new Point(37, 21));
+        }
+        
+        /// <summary>
+        /// AsercionDetailsJUSTNOW: use 'AsercionDetailsJUSTNOWExpectedValues' para pasar parámetros a este método.
+        /// </summary>
+        public void AsercionDetailsJUSTNOW()
+        {
+            #region Variable Declarations
+            HtmlDiv uISolicitudNombreEstadPane = this.UISeleccionelosproyectWindow.UIDetailsStartGrowDocument2.UISolicitudNombreEstadPane;
+            #endregion
+
+            // Compruebe que la propiedad 'InnerText' de 'Solicitud Nombre Estado Solic' panel es igual a 'Solicitud
+            //
+            //
+            //
+            //Nombre 
+            //
+            //Estado Solicitud 
+            //
+            //Rating 
+            //
+            //Interés 
+            //
+            //Plazo de Amortización 
+            //
+            //
+            //JUST NOW Aceptada A 2 10 '
+            Assert.AreEqual(this.AsercionDetailsJUSTNOWExpectedValues.UISolicitudNombreEstadPaneInnerText, uISolicitudNombreEstadPane.InnerText);
+        }
+        
+        /// <summary>
+        /// FiltrarProyectosPOCHOLO: use 'FiltrarProyectosPOCHOLOParams' para pasar parámetros a este método.
+        /// </summary>
+        public void FiltrarProyectosPOCHOLO()
+        {
+            #region Variable Declarations
+            HtmlCheckBox uIAreasSeleccionadaCheckBox3 = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIAreasSeleccionadaCheckBox3;
+            HtmlCheckBox uITipoSeleccionadoCheckBox = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UITipoSeleccionadoCheckBox;
+            HtmlCheckBox uITipoSeleccionadoCheckBox11 = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UITipoSeleccionadoCheckBox11;
+            HtmlCheckBox uITipoSeleccionadoCheckBox1 = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UITipoSeleccionadoCheckBox1;
+            HtmlEdit uIFechadeExpiracionEdit = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIFechadeExpiracionEdit;
+            HtmlEdit uICapitalEdit = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UICapitalEdit;
+            HtmlEdit uINombredelproyectoEdit = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UINombredelproyectoEdit;
+            HtmlInputButton uIFiltrarButton = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIFiltrarButton;
+            #endregion
+
+            // Seleccionar casilla 'areasSeleccionada'
+            uIAreasSeleccionadaCheckBox3.Checked = this.FiltrarProyectosPOCHOLOParams.UIAreasSeleccionadaCheckBox3Checked;
+
+            // Seleccionar casilla 'tipoSeleccionado'
+            uITipoSeleccionadoCheckBox.Checked = this.FiltrarProyectosPOCHOLOParams.UITipoSeleccionadoCheckBoxChecked;
+
+            // Seleccionar casilla 'tipoSeleccionado'
+            uITipoSeleccionadoCheckBox11.Checked = this.FiltrarProyectosPOCHOLOParams.UITipoSeleccionadoCheckBox11Checked;
+
+            // Seleccionar casilla 'tipoSeleccionado'
+            uITipoSeleccionadoCheckBox1.Checked = this.FiltrarProyectosPOCHOLOParams.UITipoSeleccionadoCheckBox1Checked;
+
+            // Escribir '2019-02-09' en cuadro de texto 'Fecha de Expiracion'
+            uIFechadeExpiracionEdit.Text = this.FiltrarProyectosPOCHOLOParams.UIFechadeExpiracionEditText;
+
+            // Escribir '100000' en cuadro de texto 'Capital'
+            uICapitalEdit.Text = this.FiltrarProyectosPOCHOLOParams.UICapitalEditText;
+
+            // Escribir 'POCHOLO RULES' en cuadro de texto 'Nombre del proyecto'
+            uINombredelproyectoEdit.Text = this.FiltrarProyectosPOCHOLOParams.UINombredelproyectoEditText;
+
+            // Clic 'Filtrar' botón
+            Mouse.Click(uIFiltrarButton, new Point(43, 21));
+        }
+        
+        /// <summary>
+        /// SeleccionarProyectoPOCHOLO: use 'SeleccionarProyectoPOCHOLOParams' para pasar parámetros a este método.
+        /// </summary>
+        public void SeleccionarProyectoPOCHOLO()
+        {
+            #region Variable Declarations
+            HtmlCheckBox uIIdsToAddCheckBox = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument6.UIIdsToAddCheckBox;
+            HtmlButton uISaveButton = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument6.UISaveButton;
+            #endregion
+
+            // Seleccionar casilla 'IdsToAdd'
+            uIIdsToAddCheckBox.Checked = this.SeleccionarProyectoPOCHOLOParams.UIIdsToAddCheckBoxChecked;
+
+            // Clic 'Save' botón
+            Mouse.Click(uISaveButton, new Point(35, 24));
+        }
+        
+        /// <summary>
+        /// CreateCorrectoPOCHOLO: use 'CreateCorrectoPOCHOLOParams' para pasar parámetros a este método.
+        /// </summary>
+        public void CreateCorrectoPOCHOLO()
+        {
+            #region Variable Declarations
+            HtmlComboBox uISolicitudes0estadosComboBox = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument4.UISolicitudes0estadosComboBox;
+            HtmlComboBox uISolicitudes0ratingComboBox = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument4.UISolicitudes0ratingComboBox;
+            HtmlEdit uISolicitudes0interesEdit = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument4.UISolicitudes0interesEdit;
+            HtmlEdit uISolicitudes0plazoEdit = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument4.UISolicitudes0plazoEdit;
+            HtmlInputButton uICreateButton = this.UISeleccionelosproyectWindow.UICreateStartGrowDocument4.UICreateButton;
+            #endregion
+
+            // Seleccionar 'Aceptada' en cuadro combinado 'Solicitudes[0].estados'
+            uISolicitudes0estadosComboBox.SelectedItem = this.CreateCorrectoPOCHOLOParams.UISolicitudes0estadosComboBoxSelectedItem;
+
+            // Seleccionar 'A' en cuadro combinado 'Solicitudes[0].rating'
+            uISolicitudes0ratingComboBox.SelectedItem = this.CreateCorrectoPOCHOLOParams.UISolicitudes0ratingComboBoxSelectedItem;
+
+            // Escribir '20' en cuadro de texto 'Solicitudes[0].interes'
+            uISolicitudes0interesEdit.Text = this.CreateCorrectoPOCHOLOParams.UISolicitudes0interesEditText;
+
+            // Escribir '{Tab}' en cuadro de texto 'Solicitudes[0].interes'
+            Keyboard.SendKeys(uISolicitudes0interesEdit, this.CreateCorrectoPOCHOLOParams.UISolicitudes0interesEditSendKeys, ModifierKeys.None);
+
+            // Escribir '10' en cuadro de texto 'Solicitudes[0].plazo'
+            uISolicitudes0plazoEdit.Text = this.CreateCorrectoPOCHOLOParams.UISolicitudes0plazoEditText;
+
+            // Clic 'Create' botón
+            Mouse.Click(uICreateButton, new Point(46, 19));
+        }
+        
+        /// <summary>
+        /// AsercionDetailsPOCHOLO: use 'AsercionDetailsPOCHOLOExpectedValues' para pasar parámetros a este método.
+        /// </summary>
+        public void AsercionDetailsPOCHOLO()
+        {
+            #region Variable Declarations
+            HtmlDiv uISolicitudNombreEstadPane = this.UISeleccionelosproyectWindow.UIDetailsStartGrowDocument3.UISolicitudNombreEstadPane;
+            #endregion
+
+            // Compruebe que la propiedad 'InnerText' de 'Solicitud Nombre Estado Solic' panel es igual a 'Solicitud
+            //
+            //
+            //
+            //Nombre 
+            //
+            //Estado Solicitud 
+            //
+            //Rating 
+            //
+            //Interés 
+            //
+            //Plazo de Amortización 
+            //
+            //
+            //POCHOLO RULES Aceptada A 2 10 '
+            Assert.AreEqual(this.AsercionDetailsPOCHOLOExpectedValues.UISolicitudNombreEstadPaneInnerText, uISolicitudNombreEstadPane.InnerText);
+        }
+        
+        /// <summary>
+        /// AsercionProyectosFiltradosSTOYKE: use 'AsercionProyectosFiltradosSTOYKEExpectedValues' para pasar parámetros a este método.
+        /// </summary>
+        public void AsercionProyectosFiltradosSTOYKE()
+        {
+            #region Variable Declarations
+            HtmlCell uISTOYKECell = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIItemTable.UISTOYKECell;
+            #endregion
+
+            // Compruebe que la propiedad 'InnerText' de 'STOYKE' celda es igual a 'STOYKE '
+            Assert.AreEqual(this.AsercionProyectosFiltradosSTOYKEExpectedValues.UISTOYKECellInnerText, uISTOYKECell.InnerText);
+        }
+        
+        /// <summary>
+        /// AsercionProyectosFiltradosJUSTNOW: use 'AsercionProyectosFiltradosJUSTNOWExpectedValues' para pasar parámetros a este método.
+        /// </summary>
+        public void AsercionProyectosFiltradosJUSTNOW()
+        {
+            #region Variable Declarations
+            HtmlCell uIJUSTNOWCell = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIItemTable.UIJUSTNOWCell;
+            #endregion
+
+            // Compruebe que la propiedad 'InnerText' de 'JUST NOW' celda es igual a 'JUST NOW '
+            Assert.AreEqual(this.AsercionProyectosFiltradosJUSTNOWExpectedValues.UIJUSTNOWCellInnerText, uIJUSTNOWCell.InnerText);
+        }
+        
+        /// <summary>
+        /// AsercionProyectosFiltradosPOCHOLO: use 'AsercionProyectosFiltradosPOCHOLOExpectedValues' para pasar parámetros a este método.
+        /// </summary>
+        public void AsercionProyectosFiltradosPOCHOLO()
+        {
+            #region Variable Declarations
+            HtmlCell uIPOCHOLORULESCell = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UIItemTable.UIPOCHOLORULESCell;
+            #endregion
+
+            // Compruebe que la propiedad 'InnerText' de 'POCHOLO RULES' celda es igual a 'POCHOLO RULES '
+            Assert.AreEqual(this.AsercionProyectosFiltradosPOCHOLOExpectedValues.UIPOCHOLORULESCellInnerText, uIPOCHOLORULESCell.InnerText);
+        }
+        
         #region Properties
         public virtual AccederAppParams AccederAppParams
         {
@@ -760,6 +1168,234 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
             }
         }
         
+        public virtual AccediendoAplicacionParams AccediendoAplicacionParams
+        {
+            get
+            {
+                if ((this.mAccediendoAplicacionParams == null))
+                {
+                    this.mAccediendoAplicacionParams = new AccediendoAplicacionParams();
+                }
+                return this.mAccediendoAplicacionParams;
+            }
+        }
+        
+        public virtual AssertBotonLoginExpectedValues AssertBotonLoginExpectedValues
+        {
+            get
+            {
+                if ((this.mAssertBotonLoginExpectedValues == null))
+                {
+                    this.mAssertBotonLoginExpectedValues = new AssertBotonLoginExpectedValues();
+                }
+                return this.mAssertBotonLoginExpectedValues;
+            }
+        }
+        
+        public virtual AccesoParams AccesoParams
+        {
+            get
+            {
+                if ((this.mAccesoParams == null))
+                {
+                    this.mAccesoParams = new AccesoParams();
+                }
+                return this.mAccesoParams;
+            }
+        }
+        
+        public virtual AccesoAplicacionParams AccesoAplicacionParams
+        {
+            get
+            {
+                if ((this.mAccesoAplicacionParams == null))
+                {
+                    this.mAccesoAplicacionParams = new AccesoAplicacionParams();
+                }
+                return this.mAccesoAplicacionParams;
+            }
+        }
+        
+        public virtual SeleccionarProyectoMYREDParams SeleccionarProyectoMYREDParams
+        {
+            get
+            {
+                if ((this.mSeleccionarProyectoMYREDParams == null))
+                {
+                    this.mSeleccionarProyectoMYREDParams = new SeleccionarProyectoMYREDParams();
+                }
+                return this.mSeleccionarProyectoMYREDParams;
+            }
+        }
+        
+        public virtual AssertDetailsMYREDExpectedValues AssertDetailsMYREDExpectedValues
+        {
+            get
+            {
+                if ((this.mAssertDetailsMYREDExpectedValues == null))
+                {
+                    this.mAssertDetailsMYREDExpectedValues = new AssertDetailsMYREDExpectedValues();
+                }
+                return this.mAssertDetailsMYREDExpectedValues;
+            }
+        }
+        
+        public virtual FiltrarProyectosJUSTNOWParams FiltrarProyectosJUSTNOWParams
+        {
+            get
+            {
+                if ((this.mFiltrarProyectosJUSTNOWParams == null))
+                {
+                    this.mFiltrarProyectosJUSTNOWParams = new FiltrarProyectosJUSTNOWParams();
+                }
+                return this.mFiltrarProyectosJUSTNOWParams;
+            }
+        }
+        
+        public virtual SeleccionarProyectoJUSTNOWParams SeleccionarProyectoJUSTNOWParams
+        {
+            get
+            {
+                if ((this.mSeleccionarProyectoJUSTNOWParams == null))
+                {
+                    this.mSeleccionarProyectoJUSTNOWParams = new SeleccionarProyectoJUSTNOWParams();
+                }
+                return this.mSeleccionarProyectoJUSTNOWParams;
+            }
+        }
+        
+        public virtual AsercionErrorCreateJUSTNOWExpectedValues AsercionErrorCreateJUSTNOWExpectedValues
+        {
+            get
+            {
+                if ((this.mAsercionErrorCreateJUSTNOWExpectedValues == null))
+                {
+                    this.mAsercionErrorCreateJUSTNOWExpectedValues = new AsercionErrorCreateJUSTNOWExpectedValues();
+                }
+                return this.mAsercionErrorCreateJUSTNOWExpectedValues;
+            }
+        }
+        
+        public virtual AsercionErrorInteresPlazoJUSTNOWExpectedValues AsercionErrorInteresPlazoJUSTNOWExpectedValues
+        {
+            get
+            {
+                if ((this.mAsercionErrorInteresPlazoJUSTNOWExpectedValues == null))
+                {
+                    this.mAsercionErrorInteresPlazoJUSTNOWExpectedValues = new AsercionErrorInteresPlazoJUSTNOWExpectedValues();
+                }
+                return this.mAsercionErrorInteresPlazoJUSTNOWExpectedValues;
+            }
+        }
+        
+        public virtual CreateCorrectoJUSTNOWParams CreateCorrectoJUSTNOWParams
+        {
+            get
+            {
+                if ((this.mCreateCorrectoJUSTNOWParams == null))
+                {
+                    this.mCreateCorrectoJUSTNOWParams = new CreateCorrectoJUSTNOWParams();
+                }
+                return this.mCreateCorrectoJUSTNOWParams;
+            }
+        }
+        
+        public virtual AsercionDetailsJUSTNOWExpectedValues AsercionDetailsJUSTNOWExpectedValues
+        {
+            get
+            {
+                if ((this.mAsercionDetailsJUSTNOWExpectedValues == null))
+                {
+                    this.mAsercionDetailsJUSTNOWExpectedValues = new AsercionDetailsJUSTNOWExpectedValues();
+                }
+                return this.mAsercionDetailsJUSTNOWExpectedValues;
+            }
+        }
+        
+        public virtual FiltrarProyectosPOCHOLOParams FiltrarProyectosPOCHOLOParams
+        {
+            get
+            {
+                if ((this.mFiltrarProyectosPOCHOLOParams == null))
+                {
+                    this.mFiltrarProyectosPOCHOLOParams = new FiltrarProyectosPOCHOLOParams();
+                }
+                return this.mFiltrarProyectosPOCHOLOParams;
+            }
+        }
+        
+        public virtual SeleccionarProyectoPOCHOLOParams SeleccionarProyectoPOCHOLOParams
+        {
+            get
+            {
+                if ((this.mSeleccionarProyectoPOCHOLOParams == null))
+                {
+                    this.mSeleccionarProyectoPOCHOLOParams = new SeleccionarProyectoPOCHOLOParams();
+                }
+                return this.mSeleccionarProyectoPOCHOLOParams;
+            }
+        }
+        
+        public virtual CreateCorrectoPOCHOLOParams CreateCorrectoPOCHOLOParams
+        {
+            get
+            {
+                if ((this.mCreateCorrectoPOCHOLOParams == null))
+                {
+                    this.mCreateCorrectoPOCHOLOParams = new CreateCorrectoPOCHOLOParams();
+                }
+                return this.mCreateCorrectoPOCHOLOParams;
+            }
+        }
+        
+        public virtual AsercionDetailsPOCHOLOExpectedValues AsercionDetailsPOCHOLOExpectedValues
+        {
+            get
+            {
+                if ((this.mAsercionDetailsPOCHOLOExpectedValues == null))
+                {
+                    this.mAsercionDetailsPOCHOLOExpectedValues = new AsercionDetailsPOCHOLOExpectedValues();
+                }
+                return this.mAsercionDetailsPOCHOLOExpectedValues;
+            }
+        }
+        
+        public virtual AsercionProyectosFiltradosSTOYKEExpectedValues AsercionProyectosFiltradosSTOYKEExpectedValues
+        {
+            get
+            {
+                if ((this.mAsercionProyectosFiltradosSTOYKEExpectedValues == null))
+                {
+                    this.mAsercionProyectosFiltradosSTOYKEExpectedValues = new AsercionProyectosFiltradosSTOYKEExpectedValues();
+                }
+                return this.mAsercionProyectosFiltradosSTOYKEExpectedValues;
+            }
+        }
+        
+        public virtual AsercionProyectosFiltradosJUSTNOWExpectedValues AsercionProyectosFiltradosJUSTNOWExpectedValues
+        {
+            get
+            {
+                if ((this.mAsercionProyectosFiltradosJUSTNOWExpectedValues == null))
+                {
+                    this.mAsercionProyectosFiltradosJUSTNOWExpectedValues = new AsercionProyectosFiltradosJUSTNOWExpectedValues();
+                }
+                return this.mAsercionProyectosFiltradosJUSTNOWExpectedValues;
+            }
+        }
+        
+        public virtual AsercionProyectosFiltradosPOCHOLOExpectedValues AsercionProyectosFiltradosPOCHOLOExpectedValues
+        {
+            get
+            {
+                if ((this.mAsercionProyectosFiltradosPOCHOLOExpectedValues == null))
+                {
+                    this.mAsercionProyectosFiltradosPOCHOLOExpectedValues = new AsercionProyectosFiltradosPOCHOLOExpectedValues();
+                }
+                return this.mAsercionProyectosFiltradosPOCHOLOExpectedValues;
+            }
+        }
+        
         public UILoginStartGrowInternWindow UILoginStartGrowInternWindow
         {
             get
@@ -781,6 +1417,30 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
                     this.mUISeleccionelosproyectWindow = new UISeleccionelosproyectWindow();
                 }
                 return this.mUISeleccionelosproyectWindow;
+            }
+        }
+        
+        public UIGoogleInternetExplorWindow UIGoogleInternetExplorWindow
+        {
+            get
+            {
+                if ((this.mUIGoogleInternetExplorWindow == null))
+                {
+                    this.mUIGoogleInternetExplorWindow = new UIGoogleInternetExplorWindow();
+                }
+                return this.mUIGoogleInternetExplorWindow;
+            }
+        }
+        
+        public UILoginStartGrowInternWindow1 UILoginStartGrowInternWindow1
+        {
+            get
+            {
+                if ((this.mUILoginStartGrowInternWindow1 == null))
+                {
+                    this.mUILoginStartGrowInternWindow1 = new UILoginStartGrowInternWindow1();
+                }
+                return this.mUILoginStartGrowInternWindow1;
             }
         }
         #endregion
@@ -828,9 +1488,51 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
         
         private FiltrarProyectos3Params mFiltrarProyectos3Params;
         
+        private AccediendoAplicacionParams mAccediendoAplicacionParams;
+        
+        private AssertBotonLoginExpectedValues mAssertBotonLoginExpectedValues;
+        
+        private AccesoParams mAccesoParams;
+        
+        private AccesoAplicacionParams mAccesoAplicacionParams;
+        
+        private SeleccionarProyectoMYREDParams mSeleccionarProyectoMYREDParams;
+        
+        private AssertDetailsMYREDExpectedValues mAssertDetailsMYREDExpectedValues;
+        
+        private FiltrarProyectosJUSTNOWParams mFiltrarProyectosJUSTNOWParams;
+        
+        private SeleccionarProyectoJUSTNOWParams mSeleccionarProyectoJUSTNOWParams;
+        
+        private AsercionErrorCreateJUSTNOWExpectedValues mAsercionErrorCreateJUSTNOWExpectedValues;
+        
+        private AsercionErrorInteresPlazoJUSTNOWExpectedValues mAsercionErrorInteresPlazoJUSTNOWExpectedValues;
+        
+        private CreateCorrectoJUSTNOWParams mCreateCorrectoJUSTNOWParams;
+        
+        private AsercionDetailsJUSTNOWExpectedValues mAsercionDetailsJUSTNOWExpectedValues;
+        
+        private FiltrarProyectosPOCHOLOParams mFiltrarProyectosPOCHOLOParams;
+        
+        private SeleccionarProyectoPOCHOLOParams mSeleccionarProyectoPOCHOLOParams;
+        
+        private CreateCorrectoPOCHOLOParams mCreateCorrectoPOCHOLOParams;
+        
+        private AsercionDetailsPOCHOLOExpectedValues mAsercionDetailsPOCHOLOExpectedValues;
+        
+        private AsercionProyectosFiltradosSTOYKEExpectedValues mAsercionProyectosFiltradosSTOYKEExpectedValues;
+        
+        private AsercionProyectosFiltradosJUSTNOWExpectedValues mAsercionProyectosFiltradosJUSTNOWExpectedValues;
+        
+        private AsercionProyectosFiltradosPOCHOLOExpectedValues mAsercionProyectosFiltradosPOCHOLOExpectedValues;
+        
         private UILoginStartGrowInternWindow mUILoginStartGrowInternWindow;
         
         private UISeleccionelosproyectWindow mUISeleccionelosproyectWindow;
+        
+        private UIGoogleInternetExplorWindow mUIGoogleInternetExplorWindow;
+        
+        private UILoginStartGrowInternWindow1 mUILoginStartGrowInternWindow1;
         #endregion
     }
     
@@ -1369,6 +2071,445 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
         #endregion
     }
     
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AccediendoAplicacion'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AccediendoAplicacionParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Ir a página web 'https://localhost:44358/' mediante nueva instancia de explorador
+        /// </summary>
+        public string UIGoogleInternetExplorWindowUrl = "https://localhost:44358/";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AssertBotonLogin'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AssertBotonLoginExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Compruebe que la propiedad 'InnerText' de 'Log in' botón es igual a 'Log in'
+        /// </summary>
+        public string UILoginButtonInnerText = "Log in";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'Acceso'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AccesoParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Ir a página web 'https://www.google.es/?gws_rd=ssl' mediante nueva instancia de explorador
+        /// </summary>
+        public string UIGoogleInternetExplorWindowUrl = "https://www.google.es/?gws_rd=ssl";
+        
+        /// <summary>
+        /// Ir a página web 'https://localhost:44358/'
+        /// </summary>
+        public string UIGoogleInternetExplorWindowUrl1 = "https://localhost:44358/";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AccesoAplicacion'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AccesoAplicacionParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Ir a página web 'https://localhost:44358/' mediante nueva instancia de explorador
+        /// </summary>
+        public string UIGoogleInternetExplorWindowUrl = "https://localhost:44358/";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'SeleccionarProyectoMYRED'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class SeleccionarProyectoMYREDParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Seleccionar casilla 'IdsToAdd'
+        /// </summary>
+        public bool UIIdsToAddCheckBoxChecked = true;
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AssertDetailsMYRED'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AssertDetailsMYREDExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Compruebe que la propiedad 'InnerText' de 'Solicitud Nombre Estado Solic' panel es igual a 'Solicitud
+        ///
+        ///
+        ///
+        ///Nombre 
+        ///
+        ///Estado Solicitud 
+        ///
+        ///Rating 
+        ///
+        ///Interés 
+        ///
+        ///Plazo de Amortización 
+        ///
+        ///
+        ///MYRED Aceptada A 2 10 '
+        /// </summary>
+        public string UISolicitudNombreEstadPaneInnerText = "Solicitud\r\n\r\n\r\n\r\nNombre \r\n\r\nEstado Solicitud \r\n\r\nRating \r\n\r\nInterés \r\n\r\nPlazo de " +
+            "Amortización \r\n\r\n\r\nMYRED Aceptada A 2 10 ";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'FiltrarProyectosJUSTNOW'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class FiltrarProyectosJUSTNOWParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Seleccionar casilla 'areasSeleccionada'
+        /// </summary>
+        public bool UIAreasSeleccionadaCheckBoxChecked = true;
+        
+        /// <summary>
+        /// Seleccionar casilla 'areasSeleccionada'
+        /// </summary>
+        public bool UIAreasSeleccionadaCheckBox1Checked = true;
+        
+        /// <summary>
+        /// Seleccionar casilla 'areasSeleccionada'
+        /// </summary>
+        public bool UIAreasSeleccionadaCheckBox2Checked = true;
+        
+        /// <summary>
+        /// Seleccionar casilla 'tipoSeleccionado'
+        /// </summary>
+        public bool UITipoSeleccionadoCheckBoxChecked = true;
+        
+        /// <summary>
+        /// Seleccionar casilla 'tipoSeleccionado'
+        /// </summary>
+        public bool UITipoSeleccionadoCheckBox1Checked = true;
+        
+        /// <summary>
+        /// Escribir '2019-2-9' en cuadro de texto 'Fecha de Expiracion'
+        /// </summary>
+        public string UIFechadeExpiracionEditText = "2019-2-9";
+        
+        /// <summary>
+        /// Escribir '56000' en cuadro de texto 'Capital'
+        /// </summary>
+        public string UICapitalEditText = "56000";
+        
+        /// <summary>
+        /// Escribir 'JUST NOW' en cuadro de texto 'Nombre del proyecto'
+        /// </summary>
+        public string UINombredelproyectoEditText = "JUST NOW";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'SeleccionarProyectoJUSTNOW'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class SeleccionarProyectoJUSTNOWParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Seleccionar casilla 'IdsToAdd'
+        /// </summary>
+        public bool UIIdsToAddCheckBox1Checked = true;
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AsercionErrorCreateJUSTNOW'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AsercionErrorCreateJUSTNOWExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Compruebe que la propiedad 'InnerText' de 'La solicitud de JUST NOW, no puede estar' control personalizado es igual a 'La solicitud de JUST NOW, no puede estar aprobada y tener una calificacion de F o viceversa'
+        /// </summary>
+        public string UILasolicituddeJUSTNOWCustomInnerText = "La solicitud de JUST NOW, no puede estar aprobada y tener una calificacion de F o" +
+            " viceversa";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AsercionErrorInteresPlazoJUSTNOW'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AsercionErrorInteresPlazoJUSTNOWExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Compruebe que la propiedad 'InnerText' de 'No se ha introducido correctamente el pl' control personalizado es igual a 'No se ha introducido correctamente el plazo o el interes del proyecto JUST NOW'
+        /// </summary>
+        public string UINosehaintroducidocorCustomInnerText = "No se ha introducido correctamente el plazo o el interes del proyecto JUST NOW";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'CreateCorrectoJUSTNOW'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class CreateCorrectoJUSTNOWParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Seleccionar 'Aceptada' en cuadro combinado 'Solicitudes[0].estados'
+        /// </summary>
+        public string UISolicitudes0estadosComboBoxSelectedItem = "Aceptada";
+        
+        /// <summary>
+        /// Seleccionar 'A' en cuadro combinado 'Solicitudes[0].rating'
+        /// </summary>
+        public string UISolicitudes0ratingComboBoxSelectedItem = "A";
+        
+        /// <summary>
+        /// Escribir '20' en cuadro de texto 'Solicitudes[0].interes'
+        /// </summary>
+        public string UISolicitudes0interesEditText = "20";
+        
+        /// <summary>
+        /// Escribir '10' en cuadro de texto 'Solicitudes[0].plazo'
+        /// </summary>
+        public string UISolicitudes0plazoEditText = "10";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AsercionDetailsJUSTNOW'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AsercionDetailsJUSTNOWExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Compruebe que la propiedad 'InnerText' de 'Solicitud Nombre Estado Solic' panel es igual a 'Solicitud
+        ///
+        ///
+        ///
+        ///Nombre 
+        ///
+        ///Estado Solicitud 
+        ///
+        ///Rating 
+        ///
+        ///Interés 
+        ///
+        ///Plazo de Amortización 
+        ///
+        ///
+        ///JUST NOW Aceptada A 2 10 '
+        /// </summary>
+        public string UISolicitudNombreEstadPaneInnerText = "Solicitud\r\n\r\n\r\n\r\nNombre \r\n\r\nEstado Solicitud \r\n\r\nRating \r\n\r\nInterés \r\n\r\nPlazo de " +
+            "Amortización \r\n\r\n\r\nJUST NOW Aceptada A 2 10 ";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'FiltrarProyectosPOCHOLO'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class FiltrarProyectosPOCHOLOParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Seleccionar casilla 'areasSeleccionada'
+        /// </summary>
+        public bool UIAreasSeleccionadaCheckBox3Checked = true;
+        
+        /// <summary>
+        /// Seleccionar casilla 'tipoSeleccionado'
+        /// </summary>
+        public bool UITipoSeleccionadoCheckBoxChecked = true;
+        
+        /// <summary>
+        /// Seleccionar casilla 'tipoSeleccionado'
+        /// </summary>
+        public bool UITipoSeleccionadoCheckBox11Checked = true;
+        
+        /// <summary>
+        /// Seleccionar casilla 'tipoSeleccionado'
+        /// </summary>
+        public bool UITipoSeleccionadoCheckBox1Checked = true;
+        
+        /// <summary>
+        /// Escribir '2019-02-09' en cuadro de texto 'Fecha de Expiracion'
+        /// </summary>
+        public string UIFechadeExpiracionEditText = "2019-02-09";
+        
+        /// <summary>
+        /// Escribir '100000' en cuadro de texto 'Capital'
+        /// </summary>
+        public string UICapitalEditText = "100000";
+        
+        /// <summary>
+        /// Escribir 'POCHOLO RULES' en cuadro de texto 'Nombre del proyecto'
+        /// </summary>
+        public string UINombredelproyectoEditText = "POCHOLO RULES";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'SeleccionarProyectoPOCHOLO'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class SeleccionarProyectoPOCHOLOParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Seleccionar casilla 'IdsToAdd'
+        /// </summary>
+        public bool UIIdsToAddCheckBoxChecked = true;
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'CreateCorrectoPOCHOLO'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class CreateCorrectoPOCHOLOParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Seleccionar 'Aceptada' en cuadro combinado 'Solicitudes[0].estados'
+        /// </summary>
+        public string UISolicitudes0estadosComboBoxSelectedItem = "Aceptada";
+        
+        /// <summary>
+        /// Seleccionar 'A' en cuadro combinado 'Solicitudes[0].rating'
+        /// </summary>
+        public string UISolicitudes0ratingComboBoxSelectedItem = "A";
+        
+        /// <summary>
+        /// Escribir '20' en cuadro de texto 'Solicitudes[0].interes'
+        /// </summary>
+        public string UISolicitudes0interesEditText = "20";
+        
+        /// <summary>
+        /// Escribir '{Tab}' en cuadro de texto 'Solicitudes[0].interes'
+        /// </summary>
+        public string UISolicitudes0interesEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Escribir '10' en cuadro de texto 'Solicitudes[0].plazo'
+        /// </summary>
+        public string UISolicitudes0plazoEditText = "10";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AsercionDetailsPOCHOLO'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AsercionDetailsPOCHOLOExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Compruebe que la propiedad 'InnerText' de 'Solicitud Nombre Estado Solic' panel es igual a 'Solicitud
+        ///
+        ///
+        ///
+        ///Nombre 
+        ///
+        ///Estado Solicitud 
+        ///
+        ///Rating 
+        ///
+        ///Interés 
+        ///
+        ///Plazo de Amortización 
+        ///
+        ///
+        ///POCHOLO RULES Aceptada A 2 10 '
+        /// </summary>
+        public string UISolicitudNombreEstadPaneInnerText = "Solicitud\r\n\r\n\r\n\r\nNombre \r\n\r\nEstado Solicitud \r\n\r\nRating \r\n\r\nInterés \r\n\r\nPlazo de " +
+            "Amortización \r\n\r\n\r\nPOCHOLO RULES Aceptada A 2 10 ";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AsercionProyectosFiltradosSTOYKE'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AsercionProyectosFiltradosSTOYKEExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Compruebe que la propiedad 'InnerText' de 'STOYKE' celda es igual a 'STOYKE '
+        /// </summary>
+        public string UISTOYKECellInnerText = "STOYKE ";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AsercionProyectosFiltradosJUSTNOW'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AsercionProyectosFiltradosJUSTNOWExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Compruebe que la propiedad 'InnerText' de 'JUST NOW' celda es igual a 'JUST NOW '
+        /// </summary>
+        public string UIJUSTNOWCellInnerText = "JUST NOW ";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'AsercionProyectosFiltradosPOCHOLO'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class AsercionProyectosFiltradosPOCHOLOExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Compruebe que la propiedad 'InnerText' de 'POCHOLO RULES' celda es igual a 'POCHOLO RULES '
+        /// </summary>
+        public string UIPOCHOLORULESCellInnerText = "POCHOLO RULES ";
+        #endregion
+    }
+    
     [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
     public class UILoginStartGrowInternWindow : BrowserWindow
     {
@@ -1699,6 +2840,114 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
                 return this.mUISeleccionelosproyectDocument3;
             }
         }
+        
+        public UISeleccionelosproyectDocument4 UISeleccionelosproyectDocument4
+        {
+            get
+            {
+                if ((this.mUISeleccionelosproyectDocument4 == null))
+                {
+                    this.mUISeleccionelosproyectDocument4 = new UISeleccionelosproyectDocument4(this);
+                }
+                return this.mUISeleccionelosproyectDocument4;
+            }
+        }
+        
+        public UIDetailsStartGrowDocument1 UIDetailsStartGrowDocument1
+        {
+            get
+            {
+                if ((this.mUIDetailsStartGrowDocument1 == null))
+                {
+                    this.mUIDetailsStartGrowDocument1 = new UIDetailsStartGrowDocument1(this);
+                }
+                return this.mUIDetailsStartGrowDocument1;
+            }
+        }
+        
+        public UISeleccionelosproyectDocument5 UISeleccionelosproyectDocument5
+        {
+            get
+            {
+                if ((this.mUISeleccionelosproyectDocument5 == null))
+                {
+                    this.mUISeleccionelosproyectDocument5 = new UISeleccionelosproyectDocument5(this);
+                }
+                return this.mUISeleccionelosproyectDocument5;
+            }
+        }
+        
+        public UICreateStartGrowDocument2 UICreateStartGrowDocument2
+        {
+            get
+            {
+                if ((this.mUICreateStartGrowDocument2 == null))
+                {
+                    this.mUICreateStartGrowDocument2 = new UICreateStartGrowDocument2(this);
+                }
+                return this.mUICreateStartGrowDocument2;
+            }
+        }
+        
+        public UICreateStartGrowDocument3 UICreateStartGrowDocument3
+        {
+            get
+            {
+                if ((this.mUICreateStartGrowDocument3 == null))
+                {
+                    this.mUICreateStartGrowDocument3 = new UICreateStartGrowDocument3(this);
+                }
+                return this.mUICreateStartGrowDocument3;
+            }
+        }
+        
+        public UIDetailsStartGrowDocument2 UIDetailsStartGrowDocument2
+        {
+            get
+            {
+                if ((this.mUIDetailsStartGrowDocument2 == null))
+                {
+                    this.mUIDetailsStartGrowDocument2 = new UIDetailsStartGrowDocument2(this);
+                }
+                return this.mUIDetailsStartGrowDocument2;
+            }
+        }
+        
+        public UISeleccionelosproyectDocument6 UISeleccionelosproyectDocument6
+        {
+            get
+            {
+                if ((this.mUISeleccionelosproyectDocument6 == null))
+                {
+                    this.mUISeleccionelosproyectDocument6 = new UISeleccionelosproyectDocument6(this);
+                }
+                return this.mUISeleccionelosproyectDocument6;
+            }
+        }
+        
+        public UICreateStartGrowDocument4 UICreateStartGrowDocument4
+        {
+            get
+            {
+                if ((this.mUICreateStartGrowDocument4 == null))
+                {
+                    this.mUICreateStartGrowDocument4 = new UICreateStartGrowDocument4(this);
+                }
+                return this.mUICreateStartGrowDocument4;
+            }
+        }
+        
+        public UIDetailsStartGrowDocument3 UIDetailsStartGrowDocument3
+        {
+            get
+            {
+                if ((this.mUIDetailsStartGrowDocument3 == null))
+                {
+                    this.mUIDetailsStartGrowDocument3 = new UIDetailsStartGrowDocument3(this);
+                }
+                return this.mUIDetailsStartGrowDocument3;
+            }
+        }
         #endregion
         
         #region Fields
@@ -1715,6 +2964,24 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
         private UIDetailsStartGrowDocument mUIDetailsStartGrowDocument;
         
         private UISeleccionelosproyectDocument3 mUISeleccionelosproyectDocument3;
+        
+        private UISeleccionelosproyectDocument4 mUISeleccionelosproyectDocument4;
+        
+        private UIDetailsStartGrowDocument1 mUIDetailsStartGrowDocument1;
+        
+        private UISeleccionelosproyectDocument5 mUISeleccionelosproyectDocument5;
+        
+        private UICreateStartGrowDocument2 mUICreateStartGrowDocument2;
+        
+        private UICreateStartGrowDocument3 mUICreateStartGrowDocument3;
+        
+        private UIDetailsStartGrowDocument2 mUIDetailsStartGrowDocument2;
+        
+        private UISeleccionelosproyectDocument6 mUISeleccionelosproyectDocument6;
+        
+        private UICreateStartGrowDocument4 mUICreateStartGrowDocument4;
+        
+        private UIDetailsStartGrowDocument3 mUIDetailsStartGrowDocument3;
         #endregion
     }
     
@@ -2658,6 +3925,1332 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
         
         #region Fields
         private HtmlCustom mUIItemCustom;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UISeleccionelosproyectDocument4 : HtmlDocument
+    {
+        
+        public UISeleccionelosproyectDocument4(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Seleccione los proyectos que vaya a publicar - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Solicitudes/SelectProyectosForSolicitud";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Solicitudes/SelectProyectosForSolicitud";
+            this.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlCheckBox UIIdsToAddCheckBox
+        {
+            get
+            {
+                if ((this.mUIIdsToAddCheckBox == null))
+                {
+                    this.mUIIdsToAddCheckBox = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "IdsToAdd";
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "24";
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"IdsToAdd\" type=\"checkbox\" value=\"2";
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "28";
+                    this.mUIIdsToAddCheckBox.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIIdsToAddCheckBox;
+            }
+        }
+        
+        public HtmlButton UISaveButton
+        {
+            get
+            {
+                if ((this.mUISaveButton == null))
+                {
+                    this.mUISaveButton = new HtmlButton(this);
+                    #region Criterio de búsqueda
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.Id] = null;
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.Name] = null;
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.DisplayText] = "Save";
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.Type] = "submit";
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.Title] = null;
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.Class] = "btn btn-primary";
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.ControlDefinition] = "class=\"btn btn-primary\" type=\"submit\"";
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.TagInstance] = "3";
+                    this.mUISaveButton.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUISaveButton;
+            }
+        }
+        
+        public HtmlCheckBox UIAreasSeleccionadaCheckBox
+        {
+            get
+            {
+                if ((this.mUIAreasSeleccionadaCheckBox == null))
+                {
+                    this.mUIAreasSeleccionadaCheckBox = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIAreasSeleccionadaCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUIAreasSeleccionadaCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "areasSeleccionada";
+                    this.mUIAreasSeleccionadaCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "Salud";
+                    this.mUIAreasSeleccionadaCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUIAreasSeleccionadaCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUIAreasSeleccionadaCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUIAreasSeleccionadaCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"areasSeleccionada\" type=\"checkbox\"";
+                    this.mUIAreasSeleccionadaCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "3";
+                    this.mUIAreasSeleccionadaCheckBox.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIAreasSeleccionadaCheckBox;
+            }
+        }
+        
+        public HtmlCheckBox UIAreasSeleccionadaCheckBox1
+        {
+            get
+            {
+                if ((this.mUIAreasSeleccionadaCheckBox1 == null))
+                {
+                    this.mUIAreasSeleccionadaCheckBox1 = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIAreasSeleccionadaCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUIAreasSeleccionadaCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "areasSeleccionada";
+                    this.mUIAreasSeleccionadaCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "Alimentación";
+                    this.mUIAreasSeleccionadaCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUIAreasSeleccionadaCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUIAreasSeleccionadaCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUIAreasSeleccionadaCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"areasSeleccionada\" type=\"checkbox\"";
+                    this.mUIAreasSeleccionadaCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "12";
+                    this.mUIAreasSeleccionadaCheckBox1.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIAreasSeleccionadaCheckBox1;
+            }
+        }
+        
+        public HtmlCheckBox UIAreasSeleccionadaCheckBox2
+        {
+            get
+            {
+                if ((this.mUIAreasSeleccionadaCheckBox2 == null))
+                {
+                    this.mUIAreasSeleccionadaCheckBox2 = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIAreasSeleccionadaCheckBox2.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUIAreasSeleccionadaCheckBox2.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "areasSeleccionada";
+                    this.mUIAreasSeleccionadaCheckBox2.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "Maquinaria";
+                    this.mUIAreasSeleccionadaCheckBox2.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUIAreasSeleccionadaCheckBox2.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUIAreasSeleccionadaCheckBox2.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUIAreasSeleccionadaCheckBox2.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"areasSeleccionada\" type=\"checkbox\"";
+                    this.mUIAreasSeleccionadaCheckBox2.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "20";
+                    this.mUIAreasSeleccionadaCheckBox2.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIAreasSeleccionadaCheckBox2;
+            }
+        }
+        
+        public HtmlCheckBox UITipoSeleccionadoCheckBox
+        {
+            get
+            {
+                if ((this.mUITipoSeleccionadoCheckBox == null))
+                {
+                    this.mUITipoSeleccionadoCheckBox = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUITipoSeleccionadoCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUITipoSeleccionadoCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "tipoSeleccionado";
+                    this.mUITipoSeleccionadoCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "Crownfunding";
+                    this.mUITipoSeleccionadoCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUITipoSeleccionadoCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUITipoSeleccionadoCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUITipoSeleccionadoCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"tipoSeleccionado\" type=\"checkbox\" ";
+                    this.mUITipoSeleccionadoCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "21";
+                    this.mUITipoSeleccionadoCheckBox.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUITipoSeleccionadoCheckBox;
+            }
+        }
+        
+        public HtmlCheckBox UITipoSeleccionadoCheckBox1
+        {
+            get
+            {
+                if ((this.mUITipoSeleccionadoCheckBox1 == null))
+                {
+                    this.mUITipoSeleccionadoCheckBox1 = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUITipoSeleccionadoCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUITipoSeleccionadoCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "tipoSeleccionado";
+                    this.mUITipoSeleccionadoCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "Venture Capital";
+                    this.mUITipoSeleccionadoCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUITipoSeleccionadoCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUITipoSeleccionadoCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUITipoSeleccionadoCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"tipoSeleccionado\" type=\"checkbox\" ";
+                    this.mUITipoSeleccionadoCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "23";
+                    this.mUITipoSeleccionadoCheckBox1.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUITipoSeleccionadoCheckBox1;
+            }
+        }
+        
+        public HtmlEdit UIFechadeExpiracionEdit
+        {
+            get
+            {
+                if ((this.mUIFechadeExpiracionEdit == null))
+                {
+                    this.mUIFechadeExpiracionEdit = new HtmlEdit(this);
+                    #region Criterio de búsqueda
+                    this.mUIFechadeExpiracionEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "fecha";
+                    this.mUIFechadeExpiracionEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = "fecha";
+                    this.mUIFechadeExpiracionEdit.FilterProperties[HtmlEdit.PropertyNames.LabeledBy] = "Fecha de Expiracion";
+                    this.mUIFechadeExpiracionEdit.FilterProperties[HtmlEdit.PropertyNames.Type] = "SINGLELINE";
+                    this.mUIFechadeExpiracionEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUIFechadeExpiracionEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = "tiposInversiones2";
+                    this.mUIFechadeExpiracionEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "name=\"fecha\" class=\"tiposInversiones2\" i";
+                    this.mUIFechadeExpiracionEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "24";
+                    this.mUIFechadeExpiracionEdit.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIFechadeExpiracionEdit;
+            }
+        }
+        
+        public HtmlEdit UICapitalEdit
+        {
+            get
+            {
+                if ((this.mUICapitalEdit == null))
+                {
+                    this.mUICapitalEdit = new HtmlEdit(this);
+                    #region Criterio de búsqueda
+                    this.mUICapitalEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "capital";
+                    this.mUICapitalEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = "capital";
+                    this.mUICapitalEdit.FilterProperties[HtmlEdit.PropertyNames.LabeledBy] = "Capital";
+                    this.mUICapitalEdit.FilterProperties[HtmlEdit.PropertyNames.Type] = "SINGLELINE";
+                    this.mUICapitalEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUICapitalEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = "InvMinima2";
+                    this.mUICapitalEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "name=\"capital\" class=\"InvMinima2\" id=\"ca";
+                    this.mUICapitalEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "25";
+                    this.mUICapitalEdit.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUICapitalEdit;
+            }
+        }
+        
+        public HtmlEdit UINombredelproyectoEdit
+        {
+            get
+            {
+                if ((this.mUINombredelproyectoEdit == null))
+                {
+                    this.mUINombredelproyectoEdit = new HtmlEdit(this);
+                    #region Criterio de búsqueda
+                    this.mUINombredelproyectoEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "nombreProyecto";
+                    this.mUINombredelproyectoEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = "nombreProyecto";
+                    this.mUINombredelproyectoEdit.FilterProperties[HtmlEdit.PropertyNames.LabeledBy] = "Nombre del proyecto";
+                    this.mUINombredelproyectoEdit.FilterProperties[HtmlEdit.PropertyNames.Type] = "SINGLELINE";
+                    this.mUINombredelproyectoEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUINombredelproyectoEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = null;
+                    this.mUINombredelproyectoEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "name=\"nombreProyecto\" id=\"nombreProyecto";
+                    this.mUINombredelproyectoEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "2";
+                    this.mUINombredelproyectoEdit.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUINombredelproyectoEdit;
+            }
+        }
+        
+        public HtmlInputButton UIFiltrarButton
+        {
+            get
+            {
+                if ((this.mUIFiltrarButton == null))
+                {
+                    this.mUIFiltrarButton = new HtmlInputButton(this);
+                    #region Criterio de búsqueda
+                    this.mUIFiltrarButton.SearchProperties[HtmlButton.PropertyNames.Id] = null;
+                    this.mUIFiltrarButton.SearchProperties[HtmlButton.PropertyNames.Name] = null;
+                    this.mUIFiltrarButton.SearchProperties[HtmlButton.PropertyNames.DisplayText] = "Filtrar";
+                    this.mUIFiltrarButton.SearchProperties[HtmlButton.PropertyNames.Type] = "submit";
+                    this.mUIFiltrarButton.FilterProperties[HtmlButton.PropertyNames.Title] = null;
+                    this.mUIFiltrarButton.FilterProperties[HtmlButton.PropertyNames.Class] = "botonFiltro";
+                    this.mUIFiltrarButton.FilterProperties[HtmlButton.PropertyNames.ControlDefinition] = "class=\"botonFiltro\" type=\"submit\" value=";
+                    this.mUIFiltrarButton.FilterProperties[HtmlButton.PropertyNames.TagInstance] = "26";
+                    this.mUIFiltrarButton.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIFiltrarButton;
+            }
+        }
+        
+        public HtmlCheckBox UIIdsToAddCheckBox1
+        {
+            get
+            {
+                if ((this.mUIIdsToAddCheckBox1 == null))
+                {
+                    this.mUIIdsToAddCheckBox1 = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIIdsToAddCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUIIdsToAddCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "IdsToAdd";
+                    this.mUIIdsToAddCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "25";
+                    this.mUIIdsToAddCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUIIdsToAddCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUIIdsToAddCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUIIdsToAddCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"IdsToAdd\" type=\"checkbox\" value=\"2";
+                    this.mUIIdsToAddCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "29";
+                    this.mUIIdsToAddCheckBox1.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIIdsToAddCheckBox1;
+            }
+        }
+        
+        public HtmlCheckBox UIAreasSeleccionadaCheckBox3
+        {
+            get
+            {
+                if ((this.mUIAreasSeleccionadaCheckBox3 == null))
+                {
+                    this.mUIAreasSeleccionadaCheckBox3 = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIAreasSeleccionadaCheckBox3.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUIAreasSeleccionadaCheckBox3.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "areasSeleccionada";
+                    this.mUIAreasSeleccionadaCheckBox3.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "Transporte";
+                    this.mUIAreasSeleccionadaCheckBox3.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUIAreasSeleccionadaCheckBox3.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUIAreasSeleccionadaCheckBox3.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUIAreasSeleccionadaCheckBox3.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"areasSeleccionada\" type=\"checkbox\"";
+                    this.mUIAreasSeleccionadaCheckBox3.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "8";
+                    this.mUIAreasSeleccionadaCheckBox3.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIAreasSeleccionadaCheckBox3;
+            }
+        }
+        
+        public HtmlCheckBox UITipoSeleccionadoCheckBox11
+        {
+            get
+            {
+                if ((this.mUITipoSeleccionadoCheckBox11 == null))
+                {
+                    this.mUITipoSeleccionadoCheckBox11 = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUITipoSeleccionadoCheckBox11.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUITipoSeleccionadoCheckBox11.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "tipoSeleccionado";
+                    this.mUITipoSeleccionadoCheckBox11.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "Business Angels";
+                    this.mUITipoSeleccionadoCheckBox11.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUITipoSeleccionadoCheckBox11.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUITipoSeleccionadoCheckBox11.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUITipoSeleccionadoCheckBox11.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"tipoSeleccionado\" type=\"checkbox\" ";
+                    this.mUITipoSeleccionadoCheckBox11.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "22";
+                    this.mUITipoSeleccionadoCheckBox11.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUITipoSeleccionadoCheckBox11;
+            }
+        }
+        
+        public UIItemTable3 UIItemTable
+        {
+            get
+            {
+                if ((this.mUIItemTable == null))
+                {
+                    this.mUIItemTable = new UIItemTable3(this);
+                }
+                return this.mUIItemTable;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlCheckBox mUIIdsToAddCheckBox;
+        
+        private HtmlButton mUISaveButton;
+        
+        private HtmlCheckBox mUIAreasSeleccionadaCheckBox;
+        
+        private HtmlCheckBox mUIAreasSeleccionadaCheckBox1;
+        
+        private HtmlCheckBox mUIAreasSeleccionadaCheckBox2;
+        
+        private HtmlCheckBox mUITipoSeleccionadoCheckBox;
+        
+        private HtmlCheckBox mUITipoSeleccionadoCheckBox1;
+        
+        private HtmlEdit mUIFechadeExpiracionEdit;
+        
+        private HtmlEdit mUICapitalEdit;
+        
+        private HtmlEdit mUINombredelproyectoEdit;
+        
+        private HtmlInputButton mUIFiltrarButton;
+        
+        private HtmlCheckBox mUIIdsToAddCheckBox1;
+        
+        private HtmlCheckBox mUIAreasSeleccionadaCheckBox3;
+        
+        private HtmlCheckBox mUITipoSeleccionadoCheckBox11;
+        
+        private UIItemTable3 mUIItemTable;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UIItemTable3 : HtmlTable
+    {
+        
+        public UIItemTable3(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlTable.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlTable.PropertyNames.Name] = null;
+            this.FilterProperties[HtmlTable.PropertyNames.InnerText] = "Nombre del proyecto \r\n\r\nFecha de Expirac";
+            this.FilterProperties[HtmlTable.PropertyNames.ControlDefinition] = "class=\"GeneratedTable\"";
+            this.FilterProperties[HtmlTable.PropertyNames.RowCount] = "5";
+            this.FilterProperties[HtmlTable.PropertyNames.ColumnCount] = "6";
+            this.FilterProperties[HtmlTable.PropertyNames.Class] = "GeneratedTable";
+            this.FilterProperties[HtmlTable.PropertyNames.TagInstance] = "2";
+            this.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlCell UISTOYKECell
+        {
+            get
+            {
+                if ((this.mUISTOYKECell == null))
+                {
+                    this.mUISTOYKECell = new HtmlCell(this);
+                    #region Criterio de búsqueda
+                    this.mUISTOYKECell.SearchProperties[HtmlCell.PropertyNames.Id] = null;
+                    this.mUISTOYKECell.SearchProperties[HtmlCell.PropertyNames.Name] = null;
+                    this.mUISTOYKECell.SearchProperties[HtmlCell.PropertyNames.MaxDepth] = "3";
+                    this.mUISTOYKECell.SearchProperties[HtmlCell.PropertyNames.InnerText] = "STOYKE ";
+                    this.mUISTOYKECell.FilterProperties[HtmlCell.PropertyNames.ControlDefinition] = null;
+                    this.mUISTOYKECell.FilterProperties[HtmlCell.PropertyNames.RowIndex] = "1";
+                    this.mUISTOYKECell.FilterProperties[HtmlCell.PropertyNames.ColumnIndex] = "0";
+                    this.mUISTOYKECell.FilterProperties[HtmlCell.PropertyNames.Class] = null;
+                    this.mUISTOYKECell.FilterProperties[HtmlCell.PropertyNames.TagInstance] = "5";
+                    this.mUISTOYKECell.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUISTOYKECell;
+            }
+        }
+        
+        public HtmlCell UIJUSTNOWCell
+        {
+            get
+            {
+                if ((this.mUIJUSTNOWCell == null))
+                {
+                    this.mUIJUSTNOWCell = new HtmlCell(this);
+                    #region Criterio de búsqueda
+                    this.mUIJUSTNOWCell.SearchProperties[HtmlCell.PropertyNames.Id] = null;
+                    this.mUIJUSTNOWCell.SearchProperties[HtmlCell.PropertyNames.Name] = null;
+                    this.mUIJUSTNOWCell.SearchProperties[HtmlCell.PropertyNames.MaxDepth] = "3";
+                    this.mUIJUSTNOWCell.SearchProperties[HtmlCell.PropertyNames.InnerText] = "JUST NOW ";
+                    this.mUIJUSTNOWCell.FilterProperties[HtmlCell.PropertyNames.ControlDefinition] = null;
+                    this.mUIJUSTNOWCell.FilterProperties[HtmlCell.PropertyNames.RowIndex] = "3";
+                    this.mUIJUSTNOWCell.FilterProperties[HtmlCell.PropertyNames.ColumnIndex] = "0";
+                    this.mUIJUSTNOWCell.FilterProperties[HtmlCell.PropertyNames.Class] = null;
+                    this.mUIJUSTNOWCell.FilterProperties[HtmlCell.PropertyNames.TagInstance] = "17";
+                    this.mUIJUSTNOWCell.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIJUSTNOWCell;
+            }
+        }
+        
+        public HtmlCell UIPOCHOLORULESCell
+        {
+            get
+            {
+                if ((this.mUIPOCHOLORULESCell == null))
+                {
+                    this.mUIPOCHOLORULESCell = new HtmlCell(this);
+                    #region Criterio de búsqueda
+                    this.mUIPOCHOLORULESCell.SearchProperties[HtmlCell.PropertyNames.Id] = null;
+                    this.mUIPOCHOLORULESCell.SearchProperties[HtmlCell.PropertyNames.Name] = null;
+                    this.mUIPOCHOLORULESCell.SearchProperties[HtmlCell.PropertyNames.MaxDepth] = "3";
+                    this.mUIPOCHOLORULESCell.SearchProperties[HtmlCell.PropertyNames.InnerText] = "POCHOLO RULES ";
+                    this.mUIPOCHOLORULESCell.FilterProperties[HtmlCell.PropertyNames.ControlDefinition] = null;
+                    this.mUIPOCHOLORULESCell.FilterProperties[HtmlCell.PropertyNames.RowIndex] = "4";
+                    this.mUIPOCHOLORULESCell.FilterProperties[HtmlCell.PropertyNames.ColumnIndex] = "0";
+                    this.mUIPOCHOLORULESCell.FilterProperties[HtmlCell.PropertyNames.Class] = null;
+                    this.mUIPOCHOLORULESCell.FilterProperties[HtmlCell.PropertyNames.TagInstance] = "23";
+                    this.mUIPOCHOLORULESCell.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIPOCHOLORULESCell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlCell mUISTOYKECell;
+        
+        private HtmlCell mUIJUSTNOWCell;
+        
+        private HtmlCell mUIPOCHOLORULESCell;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UIDetailsStartGrowDocument1 : HtmlDocument
+    {
+        
+        public UIDetailsStartGrowDocument1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Details - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Solicitudes/Details";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Solicitudes/Details?ids=12";
+            this.WindowTitles.Add("Details - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlDiv UISolicitudNombreEstadPane
+        {
+            get
+            {
+                if ((this.mUISolicitudNombreEstadPane == null))
+                {
+                    this.mUISolicitudNombreEstadPane = new HtmlDiv(this);
+                    #region Criterio de búsqueda
+                    this.mUISolicitudNombreEstadPane.SearchProperties[HtmlDiv.PropertyNames.Id] = null;
+                    this.mUISolicitudNombreEstadPane.SearchProperties[HtmlDiv.PropertyNames.Name] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.InnerText] = "Solicitud\r\n\r\n\r\n\r\nNombre \r\n\r\nEstado Solic";
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.Title] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.Class] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.ControlDefinition] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.TagInstance] = "5";
+                    this.mUISolicitudNombreEstadPane.WindowTitles.Add("Details - StartGrow");
+                    #endregion
+                }
+                return this.mUISolicitudNombreEstadPane;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlDiv mUISolicitudNombreEstadPane;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UISeleccionelosproyectDocument5 : HtmlDocument
+    {
+        
+        public UISeleccionelosproyectDocument5(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Seleccione los proyectos que vaya a publicar - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Solicitudes/SelectProyectosForSolicitud";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = @"https://localhost:44358/Solicitudes/SelectProyectosForSolicitud?nombreProyecto=JUST+NOW&areasSeleccionada=Salud&areasSeleccionada=Alimentaci%C3%B3n&areasSeleccionada=Maquinaria&tipoSeleccionado=Crownfunding&tipoSeleccionado=Venture+Capital&fecha=2019-2-9&capital=56000";
+            this.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlCheckBox UIIdsToAddCheckBox
+        {
+            get
+            {
+                if ((this.mUIIdsToAddCheckBox == null))
+                {
+                    this.mUIIdsToAddCheckBox = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "IdsToAdd";
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "25";
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"IdsToAdd\" type=\"checkbox\" value=\"2";
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "27";
+                    this.mUIIdsToAddCheckBox.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIIdsToAddCheckBox;
+            }
+        }
+        
+        public HtmlButton UISaveButton
+        {
+            get
+            {
+                if ((this.mUISaveButton == null))
+                {
+                    this.mUISaveButton = new HtmlButton(this);
+                    #region Criterio de búsqueda
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.Id] = null;
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.Name] = null;
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.DisplayText] = "Save";
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.Type] = "submit";
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.Title] = null;
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.Class] = "btn btn-primary";
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.ControlDefinition] = "class=\"btn btn-primary\" type=\"submit\"";
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.TagInstance] = "3";
+                    this.mUISaveButton.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUISaveButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlCheckBox mUIIdsToAddCheckBox;
+        
+        private HtmlButton mUISaveButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UICreateStartGrowDocument2 : HtmlDocument
+    {
+        
+        public UICreateStartGrowDocument2(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Create - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Solicitudes/Create";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Solicitudes/Create";
+            this.WindowTitles.Add("Create - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlCustom UILasolicituddeJUSTNOWCustom
+        {
+            get
+            {
+                if ((this.mUILasolicituddeJUSTNOWCustom == null))
+                {
+                    this.mUILasolicituddeJUSTNOWCustom = new HtmlCustom(this);
+                    #region Criterio de búsqueda
+                    this.mUILasolicituddeJUSTNOWCustom.SearchProperties["TagName"] = "LI";
+                    this.mUILasolicituddeJUSTNOWCustom.SearchProperties["Id"] = null;
+                    this.mUILasolicituddeJUSTNOWCustom.SearchProperties[UITestControl.PropertyNames.Name] = null;
+                    this.mUILasolicituddeJUSTNOWCustom.FilterProperties["Class"] = null;
+                    this.mUILasolicituddeJUSTNOWCustom.FilterProperties["ControlDefinition"] = null;
+                    this.mUILasolicituddeJUSTNOWCustom.FilterProperties["InnerText"] = "La solicitud de JUST NOW, no puede estar";
+                    this.mUILasolicituddeJUSTNOWCustom.FilterProperties["TagInstance"] = "6";
+                    this.mUILasolicituddeJUSTNOWCustom.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUILasolicituddeJUSTNOWCustom;
+            }
+        }
+        
+        public HtmlCustom UINosehaintroducidocorCustom
+        {
+            get
+            {
+                if ((this.mUINosehaintroducidocorCustom == null))
+                {
+                    this.mUINosehaintroducidocorCustom = new HtmlCustom(this);
+                    #region Criterio de búsqueda
+                    this.mUINosehaintroducidocorCustom.SearchProperties["TagName"] = "LI";
+                    this.mUINosehaintroducidocorCustom.SearchProperties["Id"] = null;
+                    this.mUINosehaintroducidocorCustom.SearchProperties[UITestControl.PropertyNames.Name] = null;
+                    this.mUINosehaintroducidocorCustom.FilterProperties["Class"] = null;
+                    this.mUINosehaintroducidocorCustom.FilterProperties["ControlDefinition"] = null;
+                    this.mUINosehaintroducidocorCustom.FilterProperties["InnerText"] = "No se ha introducido correctamente el pl";
+                    this.mUINosehaintroducidocorCustom.FilterProperties["TagInstance"] = "6";
+                    this.mUINosehaintroducidocorCustom.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUINosehaintroducidocorCustom;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlCustom mUILasolicituddeJUSTNOWCustom;
+        
+        private HtmlCustom mUINosehaintroducidocorCustom;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UICreateStartGrowDocument3 : HtmlDocument
+    {
+        
+        public UICreateStartGrowDocument3(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Create - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Solicitudes/Create";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Solicitudes/Create?IdsToAdd=25";
+            this.WindowTitles.Add("Create - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlComboBox UISolicitudes0estadosComboBox
+        {
+            get
+            {
+                if ((this.mUISolicitudes0estadosComboBox == null))
+                {
+                    this.mUISolicitudes0estadosComboBox = new HtmlComboBox(this);
+                    #region Criterio de búsqueda
+                    this.mUISolicitudes0estadosComboBox.SearchProperties[HtmlComboBox.PropertyNames.Id] = "Solicitudes_0__estados";
+                    this.mUISolicitudes0estadosComboBox.SearchProperties[HtmlComboBox.PropertyNames.Name] = "Solicitudes[0].estados";
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.LabeledBy] = null;
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.Size] = "0";
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.Title] = null;
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.ItemCount] = "3";
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.Class] = null;
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.ControlDefinition] = "name=\"Solicitudes[0].estados\" id=\"Solici";
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.TagInstance] = "1";
+                    this.mUISolicitudes0estadosComboBox.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUISolicitudes0estadosComboBox;
+            }
+        }
+        
+        public HtmlComboBox UISolicitudes0ratingComboBox
+        {
+            get
+            {
+                if ((this.mUISolicitudes0ratingComboBox == null))
+                {
+                    this.mUISolicitudes0ratingComboBox = new HtmlComboBox(this);
+                    #region Criterio de búsqueda
+                    this.mUISolicitudes0ratingComboBox.SearchProperties[HtmlComboBox.PropertyNames.Id] = "Solicitudes_0__rating";
+                    this.mUISolicitudes0ratingComboBox.SearchProperties[HtmlComboBox.PropertyNames.Name] = "Solicitudes[0].rating";
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.LabeledBy] = null;
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.Size] = "0";
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.Title] = null;
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.ItemCount] = "6";
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.Class] = null;
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.ControlDefinition] = "name=\"Solicitudes[0].rating\" id=\"Solicit";
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.TagInstance] = "2";
+                    this.mUISolicitudes0ratingComboBox.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUISolicitudes0ratingComboBox;
+            }
+        }
+        
+        public HtmlEdit UISolicitudes0interesEdit
+        {
+            get
+            {
+                if ((this.mUISolicitudes0interesEdit == null))
+                {
+                    this.mUISolicitudes0interesEdit = new HtmlEdit(this);
+                    #region Criterio de búsqueda
+                    this.mUISolicitudes0interesEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "Solicitudes_0__interes";
+                    this.mUISolicitudes0interesEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = "Solicitudes[0].interes";
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.LabeledBy] = null;
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.Type] = "SINGLELINE";
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = null;
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "name=\"Solicitudes[0].interes\" id=\"Solici";
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "2";
+                    this.mUISolicitudes0interesEdit.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUISolicitudes0interesEdit;
+            }
+        }
+        
+        public HtmlEdit UISolicitudes0plazoEdit
+        {
+            get
+            {
+                if ((this.mUISolicitudes0plazoEdit == null))
+                {
+                    this.mUISolicitudes0plazoEdit = new HtmlEdit(this);
+                    #region Criterio de búsqueda
+                    this.mUISolicitudes0plazoEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "Solicitudes_0__plazo";
+                    this.mUISolicitudes0plazoEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = "Solicitudes[0].plazo";
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.LabeledBy] = null;
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.Type] = "SINGLELINE";
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = null;
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "name=\"Solicitudes[0].plazo\" id=\"Solicitu";
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "3";
+                    this.mUISolicitudes0plazoEdit.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUISolicitudes0plazoEdit;
+            }
+        }
+        
+        public HtmlInputButton UICreateButton
+        {
+            get
+            {
+                if ((this.mUICreateButton == null))
+                {
+                    this.mUICreateButton = new HtmlInputButton(this);
+                    #region Criterio de búsqueda
+                    this.mUICreateButton.SearchProperties[HtmlButton.PropertyNames.Id] = null;
+                    this.mUICreateButton.SearchProperties[HtmlButton.PropertyNames.Name] = null;
+                    this.mUICreateButton.SearchProperties[HtmlButton.PropertyNames.DisplayText] = "Create";
+                    this.mUICreateButton.SearchProperties[HtmlButton.PropertyNames.Type] = "submit";
+                    this.mUICreateButton.FilterProperties[HtmlButton.PropertyNames.Title] = null;
+                    this.mUICreateButton.FilterProperties[HtmlButton.PropertyNames.Class] = "btn btn-default";
+                    this.mUICreateButton.FilterProperties[HtmlButton.PropertyNames.ControlDefinition] = "class=\"btn btn-default\" type=\"submit\" va";
+                    this.mUICreateButton.FilterProperties[HtmlButton.PropertyNames.TagInstance] = "9";
+                    this.mUICreateButton.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUICreateButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlComboBox mUISolicitudes0estadosComboBox;
+        
+        private HtmlComboBox mUISolicitudes0ratingComboBox;
+        
+        private HtmlEdit mUISolicitudes0interesEdit;
+        
+        private HtmlEdit mUISolicitudes0plazoEdit;
+        
+        private HtmlInputButton mUICreateButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UIDetailsStartGrowDocument2 : HtmlDocument
+    {
+        
+        public UIDetailsStartGrowDocument2(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Details - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Solicitudes/Details";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Solicitudes/Details?ids=15";
+            this.WindowTitles.Add("Details - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlDiv UISolicitudNombreEstadPane
+        {
+            get
+            {
+                if ((this.mUISolicitudNombreEstadPane == null))
+                {
+                    this.mUISolicitudNombreEstadPane = new HtmlDiv(this);
+                    #region Criterio de búsqueda
+                    this.mUISolicitudNombreEstadPane.SearchProperties[HtmlDiv.PropertyNames.Id] = null;
+                    this.mUISolicitudNombreEstadPane.SearchProperties[HtmlDiv.PropertyNames.Name] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.InnerText] = "Solicitud\r\n\r\n\r\n\r\nNombre \r\n\r\nEstado Solic";
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.Title] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.Class] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.ControlDefinition] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.TagInstance] = "5";
+                    this.mUISolicitudNombreEstadPane.WindowTitles.Add("Details - StartGrow");
+                    #endregion
+                }
+                return this.mUISolicitudNombreEstadPane;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlDiv mUISolicitudNombreEstadPane;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UISeleccionelosproyectDocument6 : HtmlDocument
+    {
+        
+        public UISeleccionelosproyectDocument6(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Seleccione los proyectos que vaya a publicar - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Solicitudes/SelectProyectosForSolicitud";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Solicitudes/SelectProyectosForSolicitud?nombreProyecto=PO" +
+                "CHOLO+RULES&areasSeleccionada=Transporte&tipoSeleccionado=Crownfunding&tipoSelec" +
+                "cionado=Business+Angels&tipoSeleccionado=Venture+Capital&fecha=2019-02-09&capita" +
+                "l=100000";
+            this.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlCheckBox UIIdsToAddCheckBox
+        {
+            get
+            {
+                if ((this.mUIIdsToAddCheckBox == null))
+                {
+                    this.mUIIdsToAddCheckBox = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "IdsToAdd";
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "26";
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"IdsToAdd\" type=\"checkbox\" value=\"2";
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "27";
+                    this.mUIIdsToAddCheckBox.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUIIdsToAddCheckBox;
+            }
+        }
+        
+        public HtmlButton UISaveButton
+        {
+            get
+            {
+                if ((this.mUISaveButton == null))
+                {
+                    this.mUISaveButton = new HtmlButton(this);
+                    #region Criterio de búsqueda
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.Id] = null;
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.Name] = null;
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.DisplayText] = "Save";
+                    this.mUISaveButton.SearchProperties[HtmlButton.PropertyNames.Type] = "submit";
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.Title] = null;
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.Class] = "btn btn-primary";
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.ControlDefinition] = "class=\"btn btn-primary\" type=\"submit\"";
+                    this.mUISaveButton.FilterProperties[HtmlButton.PropertyNames.TagInstance] = "3";
+                    this.mUISaveButton.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUISaveButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlCheckBox mUIIdsToAddCheckBox;
+        
+        private HtmlButton mUISaveButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UICreateStartGrowDocument4 : HtmlDocument
+    {
+        
+        public UICreateStartGrowDocument4(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Create - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Solicitudes/Create";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Solicitudes/Create?IdsToAdd=26";
+            this.WindowTitles.Add("Create - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlComboBox UISolicitudes0estadosComboBox
+        {
+            get
+            {
+                if ((this.mUISolicitudes0estadosComboBox == null))
+                {
+                    this.mUISolicitudes0estadosComboBox = new HtmlComboBox(this);
+                    #region Criterio de búsqueda
+                    this.mUISolicitudes0estadosComboBox.SearchProperties[HtmlComboBox.PropertyNames.Id] = "Solicitudes_0__estados";
+                    this.mUISolicitudes0estadosComboBox.SearchProperties[HtmlComboBox.PropertyNames.Name] = "Solicitudes[0].estados";
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.LabeledBy] = null;
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.Size] = "0";
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.Title] = null;
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.ItemCount] = "3";
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.Class] = null;
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.ControlDefinition] = "name=\"Solicitudes[0].estados\" id=\"Solici";
+                    this.mUISolicitudes0estadosComboBox.FilterProperties[HtmlComboBox.PropertyNames.TagInstance] = "1";
+                    this.mUISolicitudes0estadosComboBox.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUISolicitudes0estadosComboBox;
+            }
+        }
+        
+        public HtmlComboBox UISolicitudes0ratingComboBox
+        {
+            get
+            {
+                if ((this.mUISolicitudes0ratingComboBox == null))
+                {
+                    this.mUISolicitudes0ratingComboBox = new HtmlComboBox(this);
+                    #region Criterio de búsqueda
+                    this.mUISolicitudes0ratingComboBox.SearchProperties[HtmlComboBox.PropertyNames.Id] = "Solicitudes_0__rating";
+                    this.mUISolicitudes0ratingComboBox.SearchProperties[HtmlComboBox.PropertyNames.Name] = "Solicitudes[0].rating";
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.LabeledBy] = null;
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.Size] = "0";
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.Title] = null;
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.ItemCount] = "6";
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.Class] = null;
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.ControlDefinition] = "name=\"Solicitudes[0].rating\" id=\"Solicit";
+                    this.mUISolicitudes0ratingComboBox.FilterProperties[HtmlComboBox.PropertyNames.TagInstance] = "2";
+                    this.mUISolicitudes0ratingComboBox.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUISolicitudes0ratingComboBox;
+            }
+        }
+        
+        public HtmlEdit UISolicitudes0interesEdit
+        {
+            get
+            {
+                if ((this.mUISolicitudes0interesEdit == null))
+                {
+                    this.mUISolicitudes0interesEdit = new HtmlEdit(this);
+                    #region Criterio de búsqueda
+                    this.mUISolicitudes0interesEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "Solicitudes_0__interes";
+                    this.mUISolicitudes0interesEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = "Solicitudes[0].interes";
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.LabeledBy] = null;
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.Type] = "SINGLELINE";
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = null;
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "name=\"Solicitudes[0].interes\" id=\"Solici";
+                    this.mUISolicitudes0interesEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "2";
+                    this.mUISolicitudes0interesEdit.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUISolicitudes0interesEdit;
+            }
+        }
+        
+        public HtmlEdit UISolicitudes0plazoEdit
+        {
+            get
+            {
+                if ((this.mUISolicitudes0plazoEdit == null))
+                {
+                    this.mUISolicitudes0plazoEdit = new HtmlEdit(this);
+                    #region Criterio de búsqueda
+                    this.mUISolicitudes0plazoEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "Solicitudes_0__plazo";
+                    this.mUISolicitudes0plazoEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = "Solicitudes[0].plazo";
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.LabeledBy] = null;
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.Type] = "SINGLELINE";
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = null;
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "name=\"Solicitudes[0].plazo\" id=\"Solicitu";
+                    this.mUISolicitudes0plazoEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "3";
+                    this.mUISolicitudes0plazoEdit.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUISolicitudes0plazoEdit;
+            }
+        }
+        
+        public HtmlInputButton UICreateButton
+        {
+            get
+            {
+                if ((this.mUICreateButton == null))
+                {
+                    this.mUICreateButton = new HtmlInputButton(this);
+                    #region Criterio de búsqueda
+                    this.mUICreateButton.SearchProperties[HtmlButton.PropertyNames.Id] = null;
+                    this.mUICreateButton.SearchProperties[HtmlButton.PropertyNames.Name] = null;
+                    this.mUICreateButton.SearchProperties[HtmlButton.PropertyNames.DisplayText] = "Create";
+                    this.mUICreateButton.SearchProperties[HtmlButton.PropertyNames.Type] = "submit";
+                    this.mUICreateButton.FilterProperties[HtmlButton.PropertyNames.Title] = null;
+                    this.mUICreateButton.FilterProperties[HtmlButton.PropertyNames.Class] = "btn btn-default";
+                    this.mUICreateButton.FilterProperties[HtmlButton.PropertyNames.ControlDefinition] = "class=\"btn btn-default\" type=\"submit\" va";
+                    this.mUICreateButton.FilterProperties[HtmlButton.PropertyNames.TagInstance] = "9";
+                    this.mUICreateButton.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUICreateButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlComboBox mUISolicitudes0estadosComboBox;
+        
+        private HtmlComboBox mUISolicitudes0ratingComboBox;
+        
+        private HtmlEdit mUISolicitudes0interesEdit;
+        
+        private HtmlEdit mUISolicitudes0plazoEdit;
+        
+        private HtmlInputButton mUICreateButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UIDetailsStartGrowDocument3 : HtmlDocument
+    {
+        
+        public UIDetailsStartGrowDocument3(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Details - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Solicitudes/Details";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Solicitudes/Details?ids=20";
+            this.WindowTitles.Add("Details - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlDiv UISolicitudNombreEstadPane
+        {
+            get
+            {
+                if ((this.mUISolicitudNombreEstadPane == null))
+                {
+                    this.mUISolicitudNombreEstadPane = new HtmlDiv(this);
+                    #region Criterio de búsqueda
+                    this.mUISolicitudNombreEstadPane.SearchProperties[HtmlDiv.PropertyNames.Id] = null;
+                    this.mUISolicitudNombreEstadPane.SearchProperties[HtmlDiv.PropertyNames.Name] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.InnerText] = "Solicitud\r\n\r\n\r\n\r\nNombre \r\n\r\nEstado Solic";
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.Title] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.Class] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.ControlDefinition] = null;
+                    this.mUISolicitudNombreEstadPane.FilterProperties[HtmlDiv.PropertyNames.TagInstance] = "5";
+                    this.mUISolicitudNombreEstadPane.WindowTitles.Add("Details - StartGrow");
+                    #endregion
+                }
+                return this.mUISolicitudNombreEstadPane;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlDiv mUISolicitudNombreEstadPane;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UIGoogleInternetExplorWindow : BrowserWindow
+    {
+        
+        public UIGoogleInternetExplorWindow()
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[UITestControl.PropertyNames.Name] = "Google";
+            this.SearchProperties[UITestControl.PropertyNames.ClassName] = "IEFrame";
+            this.WindowTitles.Add("Google");
+            this.WindowTitles.Add("https://localhost:44358/");
+            this.WindowTitles.Add("Home Page - StartGrow");
+            #endregion
+        }
+        
+        public void LaunchUrl(System.Uri url)
+        {
+            this.CopyFrom(BrowserWindow.Launch(url));
+        }
+        
+        #region Properties
+        public UIHomePageStartGrowDocument UIHomePageStartGrowDocument
+        {
+            get
+            {
+                if ((this.mUIHomePageStartGrowDocument == null))
+                {
+                    this.mUIHomePageStartGrowDocument = new UIHomePageStartGrowDocument(this);
+                }
+                return this.mUIHomePageStartGrowDocument;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIHomePageStartGrowDocument mUIHomePageStartGrowDocument;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UIHomePageStartGrowDocument : HtmlDocument
+    {
+        
+        public UIHomePageStartGrowDocument(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Home Page - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/";
+            this.WindowTitles.Add("Home Page - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlHyperlink UIPublicarProyectoHyperlink
+        {
+            get
+            {
+                if ((this.mUIPublicarProyectoHyperlink == null))
+                {
+                    this.mUIPublicarProyectoHyperlink = new HtmlHyperlink(this);
+                    #region Criterio de búsqueda
+                    this.mUIPublicarProyectoHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Id] = null;
+                    this.mUIPublicarProyectoHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Name] = null;
+                    this.mUIPublicarProyectoHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Target] = null;
+                    this.mUIPublicarProyectoHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.InnerText] = "Publicar Proyecto";
+                    this.mUIPublicarProyectoHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.AbsolutePath] = "/Solicitudes/SelectProyectosForSolicitud";
+                    this.mUIPublicarProyectoHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Title] = null;
+                    this.mUIPublicarProyectoHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Href] = "https://localhost:44358/Solicitudes/SelectProyectosForSolicitud";
+                    this.mUIPublicarProyectoHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Class] = null;
+                    this.mUIPublicarProyectoHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.ControlDefinition] = "href=\"/Solicitudes/SelectProyectosForSol";
+                    this.mUIPublicarProyectoHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.TagInstance] = "2";
+                    this.mUIPublicarProyectoHyperlink.WindowTitles.Add("Home Page - StartGrow");
+                    #endregion
+                }
+                return this.mUIPublicarProyectoHyperlink;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlHyperlink mUIPublicarProyectoHyperlink;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UILoginStartGrowInternWindow1 : BrowserWindow
+    {
+        
+        public UILoginStartGrowInternWindow1()
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[UITestControl.PropertyNames.Name] = "Log in - StartGrow";
+            this.SearchProperties[UITestControl.PropertyNames.ClassName] = "IEFrame";
+            this.WindowTitles.Add("Log in - StartGrow");
+            #endregion
+        }
+        
+        public void LaunchUrl(System.Uri url)
+        {
+            this.CopyFrom(BrowserWindow.Launch(url));
+        }
+        
+        #region Properties
+        public UILoginStartGrowDocument2 UILoginStartGrowDocument
+        {
+            get
+            {
+                if ((this.mUILoginStartGrowDocument == null))
+                {
+                    this.mUILoginStartGrowDocument = new UILoginStartGrowDocument2(this);
+                }
+                return this.mUILoginStartGrowDocument;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UILoginStartGrowDocument2 mUILoginStartGrowDocument;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UILoginStartGrowDocument2 : HtmlDocument
+    {
+        
+        public UILoginStartGrowDocument2(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Log in - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Account/Login";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Account/Login?ReturnUrl=%2FSolicitudes%2FSelectProyectosF" +
+                "orSolicitud";
+            this.WindowTitles.Add("Log in - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlButton UILoginButton
+        {
+            get
+            {
+                if ((this.mUILoginButton == null))
+                {
+                    this.mUILoginButton = new HtmlButton(this);
+                    #region Criterio de búsqueda
+                    this.mUILoginButton.SearchProperties[HtmlButton.PropertyNames.Id] = null;
+                    this.mUILoginButton.SearchProperties[HtmlButton.PropertyNames.Name] = null;
+                    this.mUILoginButton.SearchProperties[HtmlButton.PropertyNames.DisplayText] = "Log in";
+                    this.mUILoginButton.SearchProperties[HtmlButton.PropertyNames.Type] = "submit";
+                    this.mUILoginButton.FilterProperties[HtmlButton.PropertyNames.Title] = null;
+                    this.mUILoginButton.FilterProperties[HtmlButton.PropertyNames.Class] = "btn btn-default";
+                    this.mUILoginButton.FilterProperties[HtmlButton.PropertyNames.ControlDefinition] = "class=\"btn btn-default\" type=\"submit\"";
+                    this.mUILoginButton.FilterProperties[HtmlButton.PropertyNames.TagInstance] = "2";
+                    this.mUILoginButton.WindowTitles.Add("Log in - StartGrow");
+                    #endregion
+                }
+                return this.mUILoginButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlButton mUILoginButton;
         #endregion
     }
 }
