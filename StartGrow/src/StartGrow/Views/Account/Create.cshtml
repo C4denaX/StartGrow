@@ -1,0 +1,130 @@
+﻿@model StartGrow.Models.Inversor
+@{
+    ViewData["Title"] = "Crear Inversor";
+}
+<body style="background-color:#F2F2F2">
+    <p><h2>Rellene todos los campos con sus datos:</h2></p>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form asp-action="Create" method="post">
+        <div class="form-horizontal">
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="col-md-2 control-label">Nombre</label>
+                <div class="col-md-10">
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellido1" class="col-md-2 control-label">Primer apellido</label>
+                <div class="col-md-10">
+                    <input asp-for="Apellido1" class="form-control" />
+                    <span asp-validation-for="Apellido1" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellido2" class="col-md-2 control-label">Segundo apellido</label>
+                <div class="col-md-10">
+                    <input asp-for="Apellido2" class="form-control" />
+                    <span asp-validation-for="Apellido2" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="NIF" class="col-md-2 control-label">NIF</label>
+                <div class="col-md-10">
+                    <input asp-for="NIF" class="form-control" />
+                    <span asp-validation-for="NIF" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nacionalidad" class="col-md-2 control-label">Nacionalidad</label>
+                <div class="col-md-10">
+                    <input asp-for="Nacionalidad" class="form-control" />
+                    <span asp-validation-for="Nacionalidad" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaisDeResidencia" class="col-md-2 control-label">Pais de Residencia</label>
+                <div class="col-md-10">
+                    <input asp-for="PaisDeResidencia" class="form-control" />
+                    <span asp-validation-for="PaisDeResidencia" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Provincia" class="col-md-2 control-label">Provincia</label>
+                <div class="col-md-10">
+                    <input asp-for="Provincia" class="form-control" />
+                    <span asp-validation-for="Provincia" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Municipio" class="col-md-2 control-label">Municipio</label>
+                <div class="col-md-10">
+                    <input asp-for="Municipio" class="form-control" />
+                    <span asp-validation-for="Municipio" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Domicilio" class="col-md-2 control-label">Domicilio</label>
+                <div class="col-md-10">
+                    <input asp-for="Domicilio" class="form-control" />
+                    <span asp-validation-for="Domicilio" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodPost" class="col-md-2 control-label">Codigo Postal</label>
+                <div class="col-md-10">
+                    <input asp-for="CodPost" class="form-control" />
+                    <span asp-validation-for="CodPost" class="text-danger" />
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Rating seleccionados
+                        </th>
+                        <th>
+                            Tipos Inversiones seleccionados
+                        </th>
+                        <th>
+                            Areas seleccioandas
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @* pasamos de vista a vista las preferencias seleccionadas*@
+                    @for (int i = 0; i < Model.Preferencias.Count; i++)
+                    {
+                    <tr>
+                        <td>
+                            <input asp-for="Preferencias[i].Rating.Nombre" class="form-control" />
+                        </td>
+                        <td>
+                            <input asp-for="Preferencias[i].TiposInversiones.Nombre" class="form-control" />
+                        </td>
+                        <td>
+                            <input asp-for="Preferencias[i].Areas.Nombre" class="form-control" />
+                        </td>
+                    </tr>
+                    }  
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-primary" value="Create">Guardar</button>
+                    <a asp-action="Create" class="btn btn-default">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+    }
+</body>
