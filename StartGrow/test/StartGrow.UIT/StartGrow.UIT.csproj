@@ -55,27 +55,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublicarProyectos\PublicarProyectosUITest.cs" />
-    <Compile Include="PublicarProyectos\PublicarProyectoUIMap.cs">
-      <DependentUpon>PublicarProyectoUIMap.uitest</DependentUpon>
+    <Compile Include="UCRecuperarInversion\UC_RecupearInversionUITest.cs" />
+    <Compile Include="UCRecuperarInversion\UC_RecuperarInversionUIMap.cs">
+      
+      <DependentUpon>UC_RecuperarInversionUIMap.uitest</DependentUpon>
     </Compile>
-    <Compile Include="PublicarProyectos\PublicarProyectoUIMap.Designer.cs">
-      <DependentUpon>PublicarProyectoUIMap.uitest</DependentUpon>
-    </Compile>
-    <Compile Include="UIMap.cs">
-      <DependentUpon>UIMap.uitest</DependentUpon>
-    </Compile>
-    <Compile Include="UIMap.Designer.cs">
-      <DependentUpon>UIMap.uitest</DependentUpon>
+    <Compile Include="UCRecuperarInversion\UC_RecuperarInversionUIMap.Designer.cs">
+      <DependentUpon>UC_RecuperarInversionUIMap.uitest</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="PublicarProyectos\Casos de Prueba - Publicar Proyectos.pdf" />
-    <None Include="PublicarProyectos\PublicarProyectoUIMap.uitest" />
-    <None Include="UIMap.uitest" />
+    <None Include="UCRecuperarInversion\Casos de Prueba_Recuperar_Inversion.pdf" />
+    <None Include="UCRecuperarInversion\UC_RecuperarInversionUIMap.uitest" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PublicarProyectos\dbo.PublicarProyectos.data.sql" />
+    <Content Include="UCRecuperarInversion\dbo.RecuperarInversiones.data.sql" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
