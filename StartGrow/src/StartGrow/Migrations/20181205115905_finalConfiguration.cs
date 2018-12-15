@@ -169,8 +169,7 @@ namespace StartGrow.Migrations
                     PreferenciasId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AreasId = table.Column<int>(type: "int", nullable: false),
-                    InversorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    InversorId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    InversorId = table.Column<string>(type: "nvarchar(450)", nullable: false),                    
                     RatingId = table.Column<int>(type: "int", nullable: false),
                     TiposInversionesId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -267,8 +266,7 @@ namespace StartGrow.Migrations
                     Cuota = table.Column<float>(type: "real", nullable: false),
                     EstadosInversiones = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Intereses = table.Column<float>(type: "real", nullable: false),
-                    InversorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    InversorId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    InversorId = table.Column<string>(type: "nvarchar(450)", nullable: false),                    
                     ProyectoId = table.Column<int>(type: "int", nullable: false),
                     TipoInversionesId = table.Column<int>(type: "int", nullable: false),
                     Total = table.Column<float>(type: "real", nullable: false)
@@ -463,11 +461,6 @@ namespace StartGrow.Migrations
                 column: "InversorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Inversion_InversorId1",
-                table: "Inversion",
-                column: "InversorId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Inversion_ProyectoId",
                 table: "Inversion",
                 column: "ProyectoId");
@@ -501,11 +494,6 @@ namespace StartGrow.Migrations
                 name: "IX_Preferencias_InversorId",
                 table: "Preferencias",
                 column: "InversorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Preferencias_InversorId1",
-                table: "Preferencias",
-                column: "InversorId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Preferencias_RatingId",
@@ -561,14 +549,6 @@ namespace StartGrow.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Preferencias_AspNetUsers_InversorId1",
-                table: "Preferencias",
-                column: "InversorId1",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
                 name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                 table: "AspNetUserRoles",
                 column: "UserId",
@@ -607,14 +587,6 @@ namespace StartGrow.Migrations
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Inversion_AspNetUsers_InversorId1",
-                table: "Inversion",
-                column: "InversorId1",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Monedero_AspNetUsers_InversorId",

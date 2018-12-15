@@ -51,14 +51,15 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
             context.Areas.Add(new Areas { Nombre = "Sanidad" });
 
             //Rating
-            context.Rating.Add(new Rating { Nombre = "A" });
+            var rating = new Rating { Nombre = "A" };
+            context.Rating.Add(rating);
 
             //Tipos de Inversiones
             context.TiposInversiones.Add(new TiposInversiones { Nombre = "Crowdfunding" });
 
             //Proyecto
-            context.Proyecto.Add (new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 3});                       
-            context.Proyecto.Add (new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 2});
+            context.Proyecto.Add (new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, Rating = rating});                       
+            context.Proyecto.Add (new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, Rating = rating});
             //context.Proyecto.Add (new Proyecto { ProyectoId = 3, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 93000, Interes = (float) 4.50, MinInversion = 100, Nombre = "SUBSOLE", NumInversores = 0, Plazo = 6, Progreso = 0, RatingId = 1 });
 
             //Inversor
@@ -252,8 +253,8 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 controller.ControllerContext.HttpContext = inversionContext;
 
                 //Proyectos
-                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 3},
-                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 2 }};
+                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
+                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
 
                 //Areas
                 var expectedAreas = new Areas[1] { new Areas { Nombre = "Sanidad" } };
