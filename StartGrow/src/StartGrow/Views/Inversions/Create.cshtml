@@ -142,6 +142,12 @@
             <dd>
                 @Html.DisplayFor(model => model.SecondSurname)
             </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Cantidad)€
+            </dd>
         </dl>
     </div>
 
@@ -206,15 +212,21 @@
                     </td>
                     <td>
                         <input asp-for="inversiones[i].Cuota" size="10" type="number" />
-                        <input asp-for="inversiones[i].Interes" size="10" type="hidden" />
+
                         <input asp-for="inversiones[i].NombreProyecto" size="10" type="hidden" />
-                        <input asp-for="inversiones[i].Plazo" size="10" type="hidden">
-                        <input asp-for="inversiones[i].Cuota" size="10" type="hidden">
-                        <input asp-for="inversiones[i].MinInver" size="10" type="hidden">
+                        <input asp-for="inversiones[i].MinInver" size="10" type="hidden" />
+                        <input asp-for="inversiones[i].Cuota" size="10" type="hidden" />
+                        <input asp-for="inversiones[i].Plazo" size="10" type="hidden" />
+                        <input asp-for="inversiones[i].Interes" size="10" type="hidden" />
+                        <input asp-for="inversiones[i].Rating" size="10" type="hidden" />
+                        <input asp-for="inversiones[i].Proyecto" size="10" type="hidden" />
+                        <input asp-for="inversiones[i].ProyectoId" size="10" type="hidden" />
+                        <input asp-for="inversiones[i].TiposInversion" size="10" type="hidden" />
                         <input asp-for="inversiones[i].TiposInversionSelected" size="10" type="hidden" />
                         <input asp-for="inversiones[i].inversion.Total" size="10" type="hidden" />
                         <input asp-for="inversiones[i].inversion.Proyecto.ProyectoId" type="hidden" class="form-control" />
                         <input asp-for="inversiones[i].inversion.Proyecto.Nombre" type="hidden" class="form-control" />
+                        <input asp-for="inversiones[i].Cantidad" type="hidden" class="form-control" />
                     </td>
                 </tr>
                 }

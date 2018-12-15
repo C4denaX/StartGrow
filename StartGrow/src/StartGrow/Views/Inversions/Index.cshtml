@@ -4,62 +4,63 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Inversiones realizadas</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cuota)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Intereses)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Total)
-                </th>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser)
+                Nombre
+            </th>            
+            <th>
+                Estado de la Inversión
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Proyecto)
+                Tipo de Inversion
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TipoInversiones)
+                Cantidad Invertida
+            </th>
+            <th>
+                Interés
+            </th>
+            <th>
+                Total Esperado
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cuota)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Intereses)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Total)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Proyecto.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoInversiones.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.InversionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.InversionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.InversionId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proyecto.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadosInversiones)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoInversiones.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cuota)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Intereses)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    <a asp-action="SelectInversionForRecuperarInversion" asp-controller="InversionRecuperadas" asp-route-id="@item.InversionId">Recuperar Inversion</a>
+                </td>
+            </tr>            
+        }
     </tbody>
 </table>
+
+<div>
+    <a asp-action="SelectProyectosForInversion">Realiza una nueva inversion</a>
+</div>
+
