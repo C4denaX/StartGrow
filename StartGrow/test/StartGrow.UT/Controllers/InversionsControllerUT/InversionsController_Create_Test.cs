@@ -18,6 +18,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
 {
     public class InversionsController_Create_Test
     {
+        //Aislamiento del controlador utilizando la base de datos InMemory.
         private static DbContextOptions<ApplicationDbContext> CreateNewContextOptions()
         {
             // Create a fresh service provider, and therefore a fresh 
@@ -37,49 +38,69 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
         private ApplicationDbContext context;        
         private DefaultHttpContext inversionContext;
 
+        //Constructor -> Iniciamos la base de datos InMemory.
         public InversionsController_Create_Test()
         {
             _contextOptions = CreateNewContextOptions();
-            // Insert seed data into the database using one instance of the context
             context = new ApplicationDbContext(_contextOptions);
 
-            //Inversor
-            context.Users.Add(new Inversor
-            {
-                UserName = "yasin@uclm.com",
-                NIF = "47446245M",
-                PhoneNumber = "684010548",
-                Email = "yasin@uclm.com",
-                Nombre = "Yasin",
-                Apellido1 = "Muñoz",
-                Apellido2 = "El Merabety",
-                Domicilio = "Gabriel Ciscar, 26",
-                Nacionalidad = "Española",
-                PaisDeResidencia = "España",
-                Provincia = "Albacete"
-            });
+            // Insert seed data into the database using one instance of the context
 
-            //Areas Temáticas
-            context.Areas.Add(new Areas { Nombre = "Sanidad" });
+            //Tipos de Inversiones        
+            TiposInversiones tipo1 = new TiposInversiones { Nombre = "Crowdfunding" };
+            TiposInversiones tipo2 = new TiposInversiones { Nombre = "Venture Capital" };
+            context.TiposInversiones.Add(tipo1);
+            context.TiposInversiones.Add(tipo2);
 
             //Rating
-            context.Rating.Add(new Rating { Nombre = "A" });
+            Rating rating = new Rating { Nombre = "A" };
+            context.Rating.Add(rating);
 
-            //Tipos de Inversiones
-            context.TiposInversiones.Add(new TiposInversiones { Nombre = "Crowdfunding" });
-
-            //Proyecto
-            context.Proyecto.Add(new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = (float)5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 3 });
-            context.Proyecto.Add(new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime(2019, 01, 14), Importe = 70000, Interes = (float)7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 2 });
-            context.Proyecto.Add (new Proyecto { ProyectoId = 3, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 93000, Interes = (float) 4.50, MinInversion = 100, Nombre = "SUBSOLE", NumInversores = 0, Plazo = 6, Progreso = 0, RatingId = 1 });            
-
-            context.SaveChanges();
-
-            foreach (var proyecto in context.Proyecto.ToList())
+            //Monedero
+            Monedero monedero = new Monedero
             {
-                context.ProyectoAreas.Add(new ProyectoAreas { Proyecto = proyecto, Areas = context.Areas.First() });
-                context.ProyectoTiposInversiones.Add(new ProyectoTiposInversiones { Proyecto = proyecto, TiposInversiones = context.TiposInversiones.First() });
-            }
+                MonederoId = 1,
+                Dinero = 8000
+            };
+            context.Monedero.Add(monedero);
+
+            //Proyectos           
+            Proyecto proyecto1 = new Proyecto
+            {
+                ProyectoId = 1,
+                FechaExpiracion = new DateTime(2019, 01, 23),
+                Importe = 30000,
+                Interes = (float)5.90,
+                MinInversion = 50,
+                Nombre = "E-MEDICA",
+                NumInversores = 0,
+                Plazo = 12,
+                Progreso = 0,
+                Rating = rating
+            };
+            context.Proyecto.Add(proyecto1);
+           
+            //Inversor
+            Inversor inversor = new Inversor
+            {
+                Id = "1",
+                Nombre = "Yasin",
+                Email = "yasin@uclm.es",
+                Apellido1 = "Muñoz",
+                Apellido2 = "El Merabety",
+                Domicilio = "C/Gabriel Ciscar",
+                Municipio = "Albacete",
+                NIF = "47446245",
+                Nacionalidad = "Española",
+                PaisDeResidencia = "España",
+                Provincia = "Albacete",
+                PhoneNumber = "684010548",
+                PasswordHash = "password",
+                UserName = "yasin@uclm.com",
+                Monedero = monedero
+            };
+            context.Users.Add(inversor);
+
             context.SaveChanges();
 
             //Simulación conexión de un usuario
@@ -89,98 +110,730 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
             inversionContext.User = identity;
         }
 
-        //METODO GET        
+                                                                        //METODO GET        
 
         [Fact]
-        public async Task CreateGet_ConProyectosSeleccionados()
+        public async Task CreateGet_ConProyectosEnIdsToAdd()
         {
             using (context)
             {
-                // Arrenge
+                                                                              // ARRANGE                
                 var controller = new InversionsController(context);
                 controller.ControllerContext.HttpContext = inversionContext;
 
-                TiposInversiones tipoInversion1 = new TiposInversiones { Nombre = "Crowdfunding" };
-                TiposInversiones tipoInversion2 = new TiposInversiones { Nombre = "Business Angels" };
-
-                var tiposInversiones = new List <TiposInversiones> { tipoInversion1, tipoInversion2};
-
-                var expectedTiposInversiones = new SelectList(tiposInversiones.Select(p => p.Nombre.ToList()));
-
+                //Array ids con un proyecto de id 1
                 String[] ids = new string[1] { "1" };
+                SelectedProyectosForInversionViewModel proyectos = new SelectedProyectosForInversionViewModel() { IdsToAdd = ids};
 
-                SelectedProyectosForInversionViewModel proyectos = new SelectedProyectosForInversionViewModel() { IdsToAdd = ids };
-                Proyecto expectedProyecto = new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = (float)5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 3 };
-                Inversor expectedInversor = new Inversor
+                //Rating esperado
+                var expectedrating = new Rating { RatingId = 1, Nombre = "A" };
+
+                //Proyectos esperados
+                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
+                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
+
+                //SelectList TiposInversiones Esperado
+                TiposInversiones tipo1 = new TiposInversiones { Nombre = "Crowdfunding" };
+                TiposInversiones tipo2 = new TiposInversiones { Nombre = "Venture Capital" };
+
+                var tipos = new List<TiposInversiones> { tipo1, tipo2 };
+                var expectedTipos = new SelectList(tipos.Select(r => r.Nombre.ToList()));
+                
+                //Monedero esperado
+                var expectedMonedero = new Monedero { Dinero = 8000 };
+
+                //Inversor esperado
+                Inversor expectedinversor = new Inversor
                 {
-                    UserName = "yasin@uclm.com",
-                    NIF = "47446245M",
-                    PhoneNumber = "684010548",
-                    Email = "yasin@uclm.com",
+                    Id = "1",
                     Nombre = "Yasin",
+                    Email = "yasin@uclm.es",
                     Apellido1 = "Muñoz",
                     Apellido2 = "El Merabety",
-                    Domicilio = "Gabriel Ciscar, 26",
+                    Domicilio = "C/Gabriel Ciscar",
+                    Municipio = "Albacete",
+                    NIF = "47446245",
                     Nacionalidad = "Española",
                     PaisDeResidencia = "España",
-                    Provincia = "Albacete"
+                    Provincia = "Albacete",
+                    PhoneNumber = "684010548",
+                    PasswordHash = "password",
+                    UserName = "yasin@uclm.com"                    
                 };
 
-                Inversion expectedInversion = new Inversion { Proyecto = expectedProyecto, Inversor = expectedInversor };
+                //inversion Esperada
+                Inversion expectedInversion = new Inversion
+                {
+                    Cuota = 0,
+                    Intereses = (float)expectedProyectos[0].Interes,
+                    Proyecto = expectedProyectos[0],
+                    EstadosInversiones = "En Curso",
+                    TipoInversionesId = 1,
+                    Inversor = expectedinversor,
+                    ProyectoId = expectedProyectos[0].ProyectoId,
+                    InversionId = 1,
+                    Total = 0,
+                };
                 IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel { inversion = expectedInversion } };
                 InversionesCreateViewModel expectedInversionCV = new InversionesCreateViewModel
                 {
-                    Name = expectedInversor.Nombre,
-                    FirstSurname = expectedInversor.Apellido1,
-                    SecondSurname = expectedInversor.Apellido2,
+                    Name = expectedinversor.Nombre,
+                    FirstSurname = expectedinversor.Apellido1,
+                    SecondSurname = expectedinversor.Apellido2,
+                    Cantidad = expectedMonedero.Dinero,
                     inversiones = inversiones
-
                 };
 
                 //Act
                 var result = controller.Create(proyectos);
 
-                //Assert
+                                                                        //Assert
+
                 ViewResult viewResult = Assert.IsType<ViewResult>(result);
-                InversionesCreateViewModel model = viewResult.Model as InversionesCreateViewModel;
+                InversionesCreateViewModel currentInversion = viewResult.Model as InversionesCreateViewModel;
 
-                Assert.Equal(model, expectedInversionCV, Comparer.Get<InversionesCreateViewModel>((p1, p2) =>
-                p1.Name == p2.Name && p1.FirstSurname == p2.FirstSurname && p1.SecondSurname == p2.SecondSurname));
+                //Datos del Inversor
+                Assert.Equal(currentInversion, expectedInversionCV, Comparer.Get<InversionesCreateViewModel>
+                    ((p1,p2) => p1.Name == p2.Name && p1.FirstSurname == p2.FirstSurname && p1.SecondSurname == p2.SecondSurname && p1.Cantidad == p2.Cantidad));
 
-                Assert.Equal(model.inversiones[0].inversion, expectedInversionCV.inversiones[0].inversion, Comparer.Get<Inversion>((p1, p2) => p1.TipoInversiones.Nombre == p2.TipoInversiones.Nombre
-                 && p1.InversionId == p2.InversionId));
-
-                Assert.Equal(model.inversiones[0].inversion.Proyecto, expectedInversionCV.inversiones[0].inversion.Proyecto, Comparer.Get<Proyecto>((p1, p2) => p1.Nombre == p2.Nombre
-                && p1.FechaExpiracion == p2.FechaExpiracion && p1.ProyectoId == p2.ProyectoId));
-
-                Assert.Equal(expectedTiposInversiones, (SelectList)viewResult.ViewData["TiposInversiones"], Comparer.Get<SelectListItem>((s1, s2) => s1.Value == s2.Value));
-                
-
+                //Datos del Proyecto
+                Assert.Equal(currentInversion.inversiones[0].inversion.Proyecto, expectedInversionCV.inversiones[0].inversion.Proyecto, Comparer.Get<Proyecto>
+                    ((p1, p2) => p1.Nombre == p2.Nombre && p1.Plazo == p2.Plazo && p1.RatingId == p2.RatingId));                
             }
         }
 
         [Fact]
-        public async Task CreateGet_SinProyectosSeleccionados()
+        public async Task CreateGet_SinIdsToAdd()
         {
             using (context)
             {
-                // Arrenge
+                // Arrange
                 var controller = new InversionsController(context);
                 controller.ControllerContext.HttpContext = inversionContext;
-
-                SelectedProyectosForInversionViewModel proyectos = new SelectedProyectosForInversionViewModel() { IdsToAdd = new string[0] };
-
+                SelectedProyectosForInversionViewModel proyectos = new SelectedProyectosForInversionViewModel();
 
                 //Act
-
+                var result = controller.Create(proyectos);
 
                 //Assert
-
-
+                var viewResult = Assert.IsType<RedirectToActionResult>(result);
+                Assert.Equal(viewResult.ActionName, "SelectProyectosForInversion");
             }
         }
 
-        //METODO POST
+        [Fact]
+        public async Task CreateGet_SinProyectosEnIdsToAdd()
+        {
+            using (context)
+            {
+                // Arrange
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+                SelectedProyectosForInversionViewModel proyectos = new SelectedProyectosForInversionViewModel();
+                proyectos.IdsToAdd = new string[0]; //IdsToAdd sin Proyectos seleccionados
+
+                //Act
+                var result = controller.Create(proyectos);
+
+                //Assert
+                var viewResult = Assert.IsType<RedirectToActionResult>(result);
+                Assert.Equal(viewResult.ActionName, "SelectProyectosForInversion");
+            }
+        }
+
+                                                                         
+                                                                           //METODO POST        
+
+        [Fact]
+        //No se selecciona ningún tipo de inversión y no se introduce una couta válida.
+        public async Task CreatePost_MalInvMin_MalTipoInversion() 
+        {
+            using (context)
+            {
+                                                                                            // ARRANGE
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;             
+
+                //Proyectos esperados
+                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
+                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
+
+                //Monedero esperado
+                var expectedMonedero = new Monedero { Dinero = 8000 };
+
+                //Inversor esperado
+                Inversor expectedinversor = new Inversor
+                {
+                    Id = "1",
+                    Nombre = "Yasin",
+                    Email = "yasin@uclm.es",
+                    Apellido1 = "Muñoz",
+                    Apellido2 = "El Merabety",
+                    Domicilio = "C/Gabriel Ciscar",
+                    Municipio = "Albacete",
+                    NIF = "47446245",
+                    Nacionalidad = "Española",
+                    PaisDeResidencia = "España",
+                    Provincia = "Albacete",
+                    PhoneNumber = "684010548",
+                    PasswordHash = "password",
+                    UserName = "yasin@uclm.com"
+                };
+
+                //inversion Esperada
+                Inversion expectedInversion = new Inversion
+                {
+                    Cuota = 0,
+                    EstadosInversiones = null,
+                    Intereses = 0,
+                    InversionId = 0,
+                    Inversor = null,
+                    InversorId = null,
+                    Proyecto = expectedProyectos[0],                    
+                    TipoInversiones = null,
+                    TipoInversionesId = 0,                                        
+                    Total = 0,                    
+                };
+                IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
+                {                    
+                    Cantidad = 80000,
+                    Cuota = 0,
+                    Interes = (float) 5.9,
+                    MinInver = 50,
+                    NombreProyecto = "E-MEDICA",
+                    Plazo = 12,
+                    Proyecto = null,
+                    ProyectoId = 1,
+                    Rating = "A",
+                    TiposInversionSelected = null,
+                    inversion = expectedInversion
+
+                } };
+                InversionesCreateViewModel expectedInversionCV = new InversionesCreateViewModel
+                {
+                    Name = expectedinversor.Nombre,
+                    FirstSurname = expectedinversor.Apellido1,
+                    SecondSurname = expectedinversor.Apellido2,
+                    Cantidad = expectedMonedero.Dinero,
+                    inversiones = inversiones
+                };
+
+                // ACT 
+                var result = controller.Create(expectedInversionCV);
+
+                // ASSERT
+                ViewResult viewResult = Assert.IsType<ViewResult>(result.Result);
+                InversionesCreateViewModel currentInversion = viewResult.Model as InversionesCreateViewModel;
+
+                //Mensaje de Error al introducir una couta y un tipo de inversion incorrecto                
+                var error = viewResult.ViewData.ModelState["Cuota y Tipo de Inversión incorrecto"].Errors.FirstOrDefault();
+                Assert.Equal($"Cuota y Tipo de Inversión incorrectos en {currentInversion.inversiones[0].NombreProyecto}. Por favor, vuelva a introducir los datos para realizar las inversiones.", error.ErrorMessage);
+
+                //Datos del Inversor
+                Assert.Equal(currentInversion, expectedInversionCV, Comparer.Get<InversionesCreateViewModel>
+                    ((p1, p2) => p1.Name == p2.Name && p1.FirstSurname == p2.FirstSurname && p1.SecondSurname == p2.SecondSurname && p1.Cantidad == p2.Cantidad));
+
+                //Datos del Proyecto
+                Assert.Equal(currentInversion.inversiones[0].inversion.Proyecto, expectedInversionCV.inversiones[0].inversion.Proyecto, Comparer.Get<Proyecto>
+                    ((p1, p2) => p1.Nombre == p2.Nombre && p1.Plazo == p2.Plazo && p1.RatingId == p2.RatingId));                
+            }
+        }
+
+        [Fact]
+        //Se introduce una Cuota inferior a la inversion mínima, por lo tanto no es válida y se selecciona un tipo de inversión.
+        public async Task CreatePost_MalInvMin_BienTipoInversion() 
+        {
+            using (context)
+            {
+                // ARRANGE
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+
+                //Proyectos esperados
+                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
+                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
+
+                //Monedero esperado
+                var expectedMonedero = new Monedero { Dinero = 8000 };
+
+                //Inversor esperado
+                Inversor expectedinversor = new Inversor
+                {
+                    Id = "1",
+                    Nombre = "Yasin",
+                    Email = "yasin@uclm.es",
+                    Apellido1 = "Muñoz",
+                    Apellido2 = "El Merabety",
+                    Domicilio = "C/Gabriel Ciscar",
+                    Municipio = "Albacete",
+                    NIF = "47446245",
+                    Nacionalidad = "Española",
+                    PaisDeResidencia = "España",
+                    Provincia = "Albacete",
+                    PhoneNumber = "684010548",
+                    PasswordHash = "password",
+                    UserName = "yasin@uclm.com"
+                };
+
+                //inversion Esperada
+                Inversion expectedInversion = new Inversion
+                {
+                    Cuota = 0,
+                    EstadosInversiones = null,
+                    Intereses = 0,
+                    InversionId = 0,
+                    Inversor = null,
+                    InversorId = null,
+                    Proyecto = expectedProyectos[0],
+                    TipoInversiones = null,
+                    TipoInversionesId = 0,
+                    Total = 0,
+                };
+                IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
+                {
+                    Cantidad = 80000,
+                    Cuota = 0,
+                    Interes = (float) 5.9,
+                    MinInver = 50,
+                    NombreProyecto = "E-MEDICA",
+                    Plazo = 12,
+                    Proyecto = null,
+                    ProyectoId = 1,
+                    Rating = "A",
+                    TiposInversionSelected = "Crowdfunding",
+                    inversion = expectedInversion
+
+                } };
+                InversionesCreateViewModel expectedInversionCV = new InversionesCreateViewModel
+                {
+                    Name = expectedinversor.Nombre,
+                    FirstSurname = expectedinversor.Apellido1,
+                    SecondSurname = expectedinversor.Apellido2,
+                    Cantidad = expectedMonedero.Dinero,
+                    inversiones = inversiones
+                };
+
+                // ACT 
+                var result = controller.Create(expectedInversionCV);
+
+                // ASSERT
+                ViewResult viewResult = Assert.IsType<ViewResult>(result.Result);
+                InversionesCreateViewModel currentInversion = viewResult.Model as InversionesCreateViewModel;
+
+                //Mensaje de Error al introducir una couta incorrecta.                
+                var error = viewResult.ViewData.ModelState["Ha introducido una cuota incorrecta"].Errors.FirstOrDefault();
+                Assert.Equal($"Ha introducido una cuota incorrecta en {currentInversion.inversiones[0].NombreProyecto}. Por favor, vuelva a introducir los datos para realizar las inversiones.", error.ErrorMessage);
+
+                //Datos del Inversor
+                Assert.Equal(currentInversion, expectedInversionCV, Comparer.Get<InversionesCreateViewModel>
+                    ((p1, p2) => p1.Name == p2.Name && p1.FirstSurname == p2.FirstSurname && p1.SecondSurname == p2.SecondSurname && p1.Cantidad == p2.Cantidad));
+
+                //Datos del Proyecto
+                Assert.Equal(currentInversion.inversiones[0].inversion.Proyecto, expectedInversionCV.inversiones[0].inversion.Proyecto, Comparer.Get<Proyecto>
+                    ((p1, p2) => p1.Nombre == p2.Nombre && p1.Plazo == p2.Plazo && p1.RatingId == p2.RatingId));
+            }
+        }
+
+        [Fact]
+        //Se introduce una couta válida y no se selecciona ningún tipo de inversión.
+        public async Task CreatePost_BienInvMin_MalTipoInversion() 
+        {
+            using (context)
+            {
+                // ARRANGE
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+
+                //Proyectos esperados
+                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
+                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
+
+                //Monedero esperado
+                var expectedMonedero = new Monedero { Dinero = 8000 };
+
+                //Inversor esperado
+                Inversor expectedinversor = new Inversor
+                {
+                    Id = "1",
+                    Nombre = "Yasin",
+                    Email = "yasin@uclm.es",
+                    Apellido1 = "Muñoz",
+                    Apellido2 = "El Merabety",
+                    Domicilio = "C/Gabriel Ciscar",
+                    Municipio = "Albacete",
+                    NIF = "47446245",
+                    Nacionalidad = "Española",
+                    PaisDeResidencia = "España",
+                    Provincia = "Albacete",
+                    PhoneNumber = "684010548",
+                    PasswordHash = "password",
+                    UserName = "yasin@uclm.com"
+                };
+
+                //inversion Esperada
+                Inversion expectedInversion = new Inversion
+                {
+                    Cuota = 0,
+                    EstadosInversiones = null,
+                    Intereses = 0,
+                    InversionId = 0,
+                    Inversor = null,
+                    InversorId = null,
+                    Proyecto = expectedProyectos[0],
+                    TipoInversiones = null,
+                    TipoInversionesId = 0,
+                    Total = 0,
+                };
+                IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
+                {
+                    Cantidad = 80000,
+                    Cuota = 5000,
+                    Interes = (float) 5.9,
+                    MinInver = 50,
+                    NombreProyecto = "E-MEDICA",
+                    Plazo = 12,
+                    Proyecto = null,
+                    ProyectoId = 1,
+                    Rating = "A",
+                    TiposInversionSelected = null,
+                    inversion = expectedInversion
+
+                } };
+                InversionesCreateViewModel expectedInversionCV = new InversionesCreateViewModel
+                {
+                    Name = expectedinversor.Nombre,
+                    FirstSurname = expectedinversor.Apellido1,
+                    SecondSurname = expectedinversor.Apellido2,
+                    Cantidad = expectedMonedero.Dinero,
+                    inversiones = inversiones
+                };
+
+                // ACT 
+                var result = controller.Create(expectedInversionCV);
+
+                // ASSERT
+                ViewResult viewResult = Assert.IsType<ViewResult>(result.Result);
+                InversionesCreateViewModel currentInversion = viewResult.Model as InversionesCreateViewModel;
+
+                //Mensaje de Error al no seleccionar ningún tipo de inversión.                
+                var error = viewResult.ViewData.ModelState["No ha seleccionado un tipo de inversión"].Errors.FirstOrDefault();
+                Assert.Equal($"No ha seleccionado un tipo de inversión en {currentInversion.inversiones[0].NombreProyecto}. Por favor, vuelva a introducir los datos para realizar las inversiones.", error.ErrorMessage);
+
+                //Datos del Inversor
+                Assert.Equal(currentInversion, expectedInversionCV, Comparer.Get<InversionesCreateViewModel>
+                    ((p1, p2) => p1.Name == p2.Name && p1.FirstSurname == p2.FirstSurname && p1.SecondSurname == p2.SecondSurname && p1.Cantidad == p2.Cantidad));
+
+                //Datos del Proyecto
+                Assert.Equal(currentInversion.inversiones[0].inversion.Proyecto, expectedInversionCV.inversiones[0].inversion.Proyecto, Comparer.Get<Proyecto>
+                    ((p1, p2) => p1.Nombre == p2.Nombre && p1.Plazo == p2.Plazo && p1.RatingId == p2.RatingId));
+            }
+        }
+
+        [Fact]
+        //Se introduce una couta válida y se selecciona Business Angels como tipo de inversión.
+        public async Task CreatePost_BienInvMin_BusinessAngelsTipoInversion()
+        {
+            using (context)
+            {
+                // ARRANGE
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+                controller.TempData = new Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary(inversionContext, new
+                Microsoft.AspNetCore.Mvc.ViewFeatures.SessionStateTempDataProvider());
+
+                //Proyectos esperados
+                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
+                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
+
+                //Monedero esperado
+                var expectedMonedero = new Monedero { Dinero = 8000 };
+
+                //Inversor esperado
+                Inversor expectedinversor = new Inversor
+                {
+                    Id = "1",
+                    Nombre = "Yasin",
+                    Email = "yasin@uclm.es",
+                    Apellido1 = "Muñoz",
+                    Apellido2 = "El Merabety",
+                    Domicilio = "C/Gabriel Ciscar",
+                    Municipio = "Albacete",
+                    NIF = "47446245",
+                    Nacionalidad = "Española",
+                    PaisDeResidencia = "España",
+                    Provincia = "Albacete",
+                    PhoneNumber = "684010548",
+                    PasswordHash = "password",
+                    UserName = "yasin@uclm.com"
+                };
+
+                //inversion Esperada
+                Inversion expectedInversion = new Inversion
+                {
+                    Cuota = 350,
+                    Intereses = (float)expectedProyectos[0].Interes,
+                    Proyecto = expectedProyectos[0],
+                    EstadosInversiones = "En Curso",
+                    TipoInversionesId = 1,
+                    Inversor = expectedinversor,
+                    ProyectoId = expectedProyectos[0].ProyectoId,
+                    InversionId = 1,
+                    Total = 0,
+                };
+                IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
+                {
+                    Cantidad = 80000,
+                    Cuota = 350,
+                    Interes = (float) 5.9,
+                    MinInver = 50,
+                    NombreProyecto = "E-MEDICA",
+                    Plazo = 12,
+                    Proyecto = null,
+                    ProyectoId = 1,
+                    Rating = "A",
+                    TiposInversionSelected = "Business Angels",
+                    inversion = expectedInversion
+
+                } };
+                InversionesCreateViewModel expectedInversionCV = new InversionesCreateViewModel
+                {
+                    Name = expectedinversor.Nombre,
+                    FirstSurname = expectedinversor.Apellido1,
+                    SecondSurname = expectedinversor.Apellido2,
+                    Cantidad = expectedMonedero.Dinero,
+                    inversiones = inversiones
+                };
+
+                // ACT 
+                var result = controller.Create(expectedInversionCV);
+
+                // ASSERT
+                var viewResult = Assert.IsType<RedirectToActionResult>(result.Result);
+                var currentInversion = context.Inversion.Include(s => s.Proyecto).FirstOrDefault();
+
+                Assert.Equal(currentInversion, expectedInversion, Comparer.Get<Inversion>((p1, p2) => p1.TipoInversionesId == p2.TipoInversionesId 
+                && p1.Cuota == p2.Cuota
+                && p1.Intereses == p2.Intereses
+                && p1.Inversor == p2.Inversor
+                && p1.Total == p2.Total));
+
+                Assert.Equal(currentInversion.Proyecto, expectedInversionCV.inversiones[0].inversion.Proyecto, Comparer.Get<Proyecto>((p1, p2) => p1.Nombre == p2.Nombre
+                && p1.FechaExpiracion == p2.FechaExpiracion
+                && p1.ProyectoId == p2.ProyectoId
+                && p1.Rating == p2.Rating
+                && p1.Plazo == p2.Plazo
+                && p1.Interes == p2.Interes
+                && p1.Importe == p2.Importe
+                && p1.MinInversion == p2.MinInversion
+                && p1.Progreso == p2.Progreso));
+
+                Assert.Equal(viewResult.ActionName, "Details");                
+            }
+        }
+
+        [Fact]
+        //Se introduce una couta válida y se selecciona Crownfunding como tipo de inversión.
+        public async Task CreatePost_BienInvMin_CrownfundingTipoInversion()
+        {
+            using (context)
+            {
+                // ARRANGE
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+                controller.TempData = new Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary(inversionContext, new
+                Microsoft.AspNetCore.Mvc.ViewFeatures.SessionStateTempDataProvider());
+
+                //Proyectos esperados
+                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
+                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
+
+                //Monedero esperado
+                var expectedMonedero = new Monedero { Dinero = 8000 };
+
+                //Inversor esperado
+                Inversor expectedinversor = new Inversor
+                {
+                    Id = "1",
+                    Nombre = "Yasin",
+                    Email = "yasin@uclm.es",
+                    Apellido1 = "Muñoz",
+                    Apellido2 = "El Merabety",
+                    Domicilio = "C/Gabriel Ciscar",
+                    Municipio = "Albacete",
+                    NIF = "47446245",
+                    Nacionalidad = "Española",
+                    PaisDeResidencia = "España",
+                    Provincia = "Albacete",
+                    PhoneNumber = "684010548",
+                    PasswordHash = "password",
+                    UserName = "yasin@uclm.com"
+                };
+
+                //inversion Esperada
+                Inversion expectedInversion = new Inversion
+                {
+                    Cuota = 350,
+                    Intereses = (float)expectedProyectos[0].Interes,
+                    Proyecto = expectedProyectos[0],
+                    EstadosInversiones = "En Curso",
+                    TipoInversionesId = 2,
+                    Inversor = expectedinversor,
+                    ProyectoId = expectedProyectos[0].ProyectoId,
+                    InversionId = 1,
+                    Total = 0,
+                };
+                IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
+                {
+                    Cantidad = 80000,
+                    Cuota = 350,
+                    Interes = (float) 5.9,
+                    MinInver = 50,
+                    NombreProyecto = "E-MEDICA",
+                    Plazo = 12,
+                    Proyecto = null,
+                    ProyectoId = 1,
+                    Rating = "A",
+                    TiposInversionSelected = "Crownfunding",
+                    inversion = expectedInversion
+
+                } };
+                InversionesCreateViewModel expectedInversionCV = new InversionesCreateViewModel
+                {
+                    Name = expectedinversor.Nombre,
+                    FirstSurname = expectedinversor.Apellido1,
+                    SecondSurname = expectedinversor.Apellido2,
+                    Cantidad = expectedMonedero.Dinero,
+                    inversiones = inversiones
+                };
+
+                // ACT 
+                var result = controller.Create(expectedInversionCV);
+
+                // ASSERT
+                var viewResult = Assert.IsType<RedirectToActionResult>(result.Result);
+                var currentInversion = context.Inversion.Include(s => s.Proyecto).FirstOrDefault();
+
+                Assert.Equal(currentInversion, expectedInversion, Comparer.Get<Inversion>((p1, p2) => p1.TipoInversionesId == p2.TipoInversionesId
+                && p1.Cuota == p2.Cuota
+                && p1.Intereses == p2.Intereses
+                && p1.Inversor == p2.Inversor
+                && p1.Total == p2.Total));
+
+                Assert.Equal(currentInversion.Proyecto, expectedInversionCV.inversiones[0].inversion.Proyecto, Comparer.Get<Proyecto>((p1, p2) => p1.Nombre == p2.Nombre
+                && p1.FechaExpiracion == p2.FechaExpiracion
+                && p1.ProyectoId == p2.ProyectoId
+                && p1.Rating == p2.Rating
+                && p1.Plazo == p2.Plazo
+                && p1.Interes == p2.Interes
+                && p1.Importe == p2.Importe
+                && p1.MinInversion == p2.MinInversion
+                && p1.Progreso == p2.Progreso));
+
+                Assert.Equal(viewResult.ActionName, "Details");
+            }
+        }
+
+        [Fact]
+        //Se introduce una couta válida y se selecciona Venture Capital como tipo de inversión.
+        public async Task CreatePost_BienInvMin_VentureCapitalTipoInversion()
+        {
+            using (context)
+            {
+                // ARRANGE
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+                controller.TempData = new Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary(inversionContext, new
+                Microsoft.AspNetCore.Mvc.ViewFeatures.SessionStateTempDataProvider());
+
+                //Proyectos esperados
+                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
+                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
+
+                //Monedero esperado
+                var expectedMonedero = new Monedero { Dinero = 8000 };
+
+                //Inversor esperado
+                Inversor expectedinversor = new Inversor
+                {
+                    Id = "1",
+                    Nombre = "Yasin",
+                    Email = "yasin@uclm.es",
+                    Apellido1 = "Muñoz",
+                    Apellido2 = "El Merabety",
+                    Domicilio = "C/Gabriel Ciscar",
+                    Municipio = "Albacete",
+                    NIF = "47446245",
+                    Nacionalidad = "Española",
+                    PaisDeResidencia = "España",
+                    Provincia = "Albacete",
+                    PhoneNumber = "684010548",
+                    PasswordHash = "password",
+                    UserName = "yasin@uclm.com"
+                };
+
+                //inversion Esperada
+                Inversion expectedInversion = new Inversion
+                {
+                    Cuota = 350,
+                    Intereses = (float)expectedProyectos[0].Interes,
+                    Proyecto = expectedProyectos[0],
+                    EstadosInversiones = "En Curso",
+                    TipoInversionesId = 3,
+                    Inversor = expectedinversor,
+                    ProyectoId = expectedProyectos[0].ProyectoId,
+                    InversionId = 1,
+                    Total = 0,
+                };
+                IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
+                {
+                    Cantidad = 80000,
+                    Cuota = 350,
+                    Interes = (float) 5.9,
+                    MinInver = 50,
+                    NombreProyecto = "E-MEDICA",
+                    Plazo = 12,
+                    Proyecto = null,
+                    ProyectoId = 1,
+                    Rating = "A",
+                    TiposInversionSelected = "Venture Capital",
+                    inversion = expectedInversion
+
+                } };
+                InversionesCreateViewModel expectedInversionCV = new InversionesCreateViewModel
+                {
+                    Name = expectedinversor.Nombre,
+                    FirstSurname = expectedinversor.Apellido1,
+                    SecondSurname = expectedinversor.Apellido2,
+                    Cantidad = expectedMonedero.Dinero,
+                    inversiones = inversiones
+                };
+
+                // ACT 
+                var result = controller.Create(expectedInversionCV);
+
+                // ASSERT
+                var viewResult = Assert.IsType<RedirectToActionResult>(result.Result);
+                var currentInversion = context.Inversion.Include(s => s.Proyecto).FirstOrDefault();
+
+                Assert.Equal(currentInversion, expectedInversion, Comparer.Get<Inversion>((p1, p2) => p1.TipoInversionesId == p2.TipoInversionesId
+                && p1.Cuota == p2.Cuota
+                && p1.Intereses == p2.Intereses
+                && p1.Inversor == p2.Inversor
+                && p1.Total == p2.Total));
+
+                Assert.Equal(currentInversion.Proyecto, expectedInversionCV.inversiones[0].inversion.Proyecto, Comparer.Get<Proyecto>((p1, p2) => p1.Nombre == p2.Nombre
+                && p1.FechaExpiracion == p2.FechaExpiracion
+                && p1.ProyectoId == p2.ProyectoId
+                && p1.Rating == p2.Rating
+                && p1.Plazo == p2.Plazo
+                && p1.Interes == p2.Interes
+                && p1.Importe == p2.Importe
+                && p1.MinInversion == p2.MinInversion
+                && p1.Progreso == p2.Progreso));
+
+                Assert.Equal(viewResult.ActionName, "Details");
+            }
+        }
 
     }
 }
