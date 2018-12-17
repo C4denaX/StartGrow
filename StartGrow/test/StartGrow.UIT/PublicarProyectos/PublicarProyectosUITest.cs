@@ -54,6 +54,7 @@ namespace StartGrow.UIT.PublicarProyectos
             this.UIMap.AsercionBotonCreate();
             this.UIMap.CreateCorrecto();
             this.UIMap.AssertDetailsMYRED();
+            this.UIMap.CerrarSesion();
             // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
         }
 
@@ -71,6 +72,7 @@ namespace StartGrow.UIT.PublicarProyectos
             this.UIMap.AsercionBotonCreate();
             this.UIMap.CreateCorrecto();
             this.UIMap.AsercionDetails();
+            this.UIMap.CerrarSesion();
             // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
         }
 
@@ -84,6 +86,7 @@ namespace StartGrow.UIT.PublicarProyectos
             this.UIMap.AsercionNombreProyecto();
             this.UIMap.FiltrarProyectos2();
             this.UIMap.AsercionErrorNoProyecto();
+            this.UIMap.CerrarSesion();
             // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
         }
 
@@ -101,6 +104,7 @@ namespace StartGrow.UIT.PublicarProyectos
             this.UIMap.AsercionBotonCreate();
             this.UIMap.EstadoRechazadoRatingB();
             this.UIMap.AsercionErrorCreateJUSTNOW();
+            this.UIMap.CerrarSesion();
             // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
         }
 
@@ -118,6 +122,7 @@ namespace StartGrow.UIT.PublicarProyectos
             this.UIMap.AsercionBotonCreate();
             this.UIMap.EstadoAceptadoRatingA();
             this.UIMap.AsercionErrorInteresPlazoJUSTNOW();
+            this.UIMap.CerrarSesion();
             // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
         }
 
@@ -135,6 +140,7 @@ namespace StartGrow.UIT.PublicarProyectos
             this.UIMap.AsercionBotonCreate();
             this.UIMap.CreateCorrectoPOCHOLO();
             this.UIMap.AsercionDetailsPOCHOLO();
+            this.UIMap.CerrarSesion();
             // Para generar código para esta prueba, seleccione "Generar código para prueba automatizada de IU" en el menú contextual y seleccione uno de los elementos de menú.
         }
 

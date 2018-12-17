@@ -915,6 +915,19 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
             Assert.AreEqual(this.AsercionProyectosFiltradosPOCHOLOExpectedValues.UIPOCHOLORULESCellInnerText, uIPOCHOLORULESCell.InnerText);
         }
         
+        /// <summary>
+        /// CerrarSesion
+        /// </summary>
+        public void CerrarSesion()
+        {
+            #region Variable Declarations
+            HtmlButton uILogoutButton = this.UISeleccionelosproyectWindow.UISeleccionelosproyectDocument4.UILogoutFormCustom.UILogoutButton;
+            #endregion
+
+            // Clic 'Log out' botón
+            Mouse.Click(uILogoutButton, new Point(10, 10));
+        }
+        
         #region Properties
         public virtual AccederAppParams AccederAppParams
         {
@@ -4280,6 +4293,18 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
                 return this.mUIItemTable;
             }
         }
+        
+        public UILogoutFormCustom1 UILogoutFormCustom
+        {
+            get
+            {
+                if ((this.mUILogoutFormCustom == null))
+                {
+                    this.mUILogoutFormCustom = new UILogoutFormCustom1(this);
+                }
+                return this.mUILogoutFormCustom;
+            }
+        }
         #endregion
         
         #region Fields
@@ -4312,6 +4337,8 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
         private HtmlCheckBox mUITipoSeleccionadoCheckBox11;
         
         private UIItemTable3 mUIItemTable;
+        
+        private UILogoutFormCustom1 mUILogoutFormCustom;
         #endregion
     }
     
@@ -4415,6 +4442,54 @@ namespace StartGrow.UIT.PublicarProyectos.PublicarProyectoUIMapClasses
         private HtmlCell mUIJUSTNOWCell;
         
         private HtmlCell mUIPOCHOLORULESCell;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UILogoutFormCustom1 : HtmlCustom
+    {
+        
+        public UILogoutFormCustom1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties["TagName"] = "FORM";
+            this.SearchProperties["Id"] = "logoutForm";
+            this.SearchProperties[UITestControl.PropertyNames.Name] = null;
+            this.FilterProperties["Class"] = "navbar-right";
+            this.FilterProperties["ControlDefinition"] = "class=\"navbar-right\" id=\"logoutForm\" act";
+            this.FilterProperties["TagInstance"] = "1";
+            this.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlButton UILogoutButton
+        {
+            get
+            {
+                if ((this.mUILogoutButton == null))
+                {
+                    this.mUILogoutButton = new HtmlButton(this);
+                    #region Criterio de búsqueda
+                    this.mUILogoutButton.SearchProperties[HtmlButton.PropertyNames.Id] = null;
+                    this.mUILogoutButton.SearchProperties[HtmlButton.PropertyNames.Name] = null;
+                    this.mUILogoutButton.SearchProperties[HtmlButton.PropertyNames.DisplayText] = "Log out";
+                    this.mUILogoutButton.SearchProperties[HtmlButton.PropertyNames.Type] = "submit";
+                    this.mUILogoutButton.FilterProperties[HtmlButton.PropertyNames.Title] = null;
+                    this.mUILogoutButton.FilterProperties[HtmlButton.PropertyNames.Class] = "btn btn-link navbar-btn navbar-link";
+                    this.mUILogoutButton.FilterProperties[HtmlButton.PropertyNames.ControlDefinition] = "class=\"btn btn-link navbar-btn navbar-li";
+                    this.mUILogoutButton.FilterProperties[HtmlButton.PropertyNames.TagInstance] = "1";
+                    this.mUILogoutButton.WindowTitles.Add("Seleccione los proyectos que vaya a publicar - StartGrow");
+                    #endregion
+                }
+                return this.mUILogoutButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlButton mUILogoutButton;
         #endregion
     }
     
