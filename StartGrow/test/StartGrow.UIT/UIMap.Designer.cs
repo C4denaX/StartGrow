@@ -19,6 +19,7 @@ namespace StartGrow.UIT
     using Microsoft.VisualStudio.TestTools.UITest.Extension;
     using Microsoft.VisualStudio.TestTools.UITesting;
     using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
+    using Microsoft.VisualStudio.TestTools.UITesting.WinControls;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard;
     using Mouse = Microsoft.VisualStudio.TestTools.UITesting.Mouse;
@@ -29,7 +30,94 @@ namespace StartGrow.UIT
     public partial class UIMap
     {
         
+        /// <summary>
+        /// InversionCorrecta: use 'InversionCorrectaParams' para pasar parámetros a este método.
+        /// </summary>
+        public void InversionCorrecta()
+        {
+            #region Variable Declarations
+            HtmlEdit uIEmailEdit = this.UILoginStartGrowInternWindow.UILoginStartGrowDocument2.UIEmailEdit;
+            HtmlEdit uIPasswordEdit = this.UILoginStartGrowInternWindow.UILoginStartGrowDocument2.UIPasswordEdit;
+            HtmlCheckBox uIIdsToAddCheckBox = this.UILoginStartGrowInternWindow.UISelectProyectosForInDocument.UIIdsToAddCheckBox;
+            HtmlCheckBox uIIdsToAddCheckBox1 = this.UILoginStartGrowInternWindow.UISelectProyectosForInDocument.UIIdsToAddCheckBox1;
+            WinToolBar uINotificaciónToolBar = this.UILoginStartGrowInternWindow.UIItemWindow.UISelectProyectosForInClient.UINotificaciónToolBar;
+            WinButton uISÍButton = this.UILoginStartGrowInternWindow.UINotificaciónToolBar.UISÍButton;
+            HtmlButton uIContinuarButton = this.UILoginStartGrowInternWindow.UISelectProyectosForInDocument.UIContinuarButton;
+            HtmlComboBox uIInversiones0TiposInvComboBox = this.UILoginStartGrowInternWindow.UICreateStartGrowDocument.UIInversiones0TiposInvComboBox;
+            HtmlComboBox uIInversiones1TiposInvComboBox = this.UILoginStartGrowInternWindow.UICreateStartGrowDocument.UIInversiones1TiposInvComboBox;
+            HtmlEdit uIInversiones0CuotaEdit = this.UILoginStartGrowInternWindow.UICreateStartGrowDocument.UIInversiones0CuotaEdit;
+            HtmlEdit uIInversiones1CuotaEdit = this.UILoginStartGrowInternWindow.UICreateStartGrowDocument.UIInversiones1CuotaEdit;
+            HtmlInputButton uIContinuarButton1 = this.UILoginStartGrowInternWindow.UICreateStartGrowDocument.UIContinuarButton;
+            #endregion
+
+            // Escribir 'gregorio' en cuadro de texto 'Email'
+            uIEmailEdit.Text = this.InversionCorrectaParams.UIEmailEditText;
+
+            // Escribir 'Alt, Control + 2' en cuadro de texto 'Email'
+            Keyboard.SendKeys(uIEmailEdit, this.InversionCorrectaParams.UIEmailEditSendKeys, (ModifierKeys.Alt | ModifierKeys.Control));
+
+            // Escribir 'gregorio@uclm.com' en cuadro de texto 'Email'
+            uIEmailEdit.Text = this.InversionCorrectaParams.UIEmailEditText1;
+
+            // Escribir '{Tab}' en cuadro de texto 'Email'
+            Keyboard.SendKeys(uIEmailEdit, this.InversionCorrectaParams.UIEmailEditSendKeys1, ModifierKeys.None);
+
+            // Escribir '********' en cuadro de texto 'Password'
+            uIPasswordEdit.Password = this.InversionCorrectaParams.UIPasswordEditPassword;
+
+            // Escribir '{Enter}' en cuadro de texto 'Password'
+            Keyboard.SendKeys(uIPasswordEdit, this.InversionCorrectaParams.UIPasswordEditSendKeys, ModifierKeys.None);
+
+            // Seleccionar casilla 'IdsToAdd'
+            uIIdsToAddCheckBox.Checked = this.InversionCorrectaParams.UIIdsToAddCheckBoxChecked;
+
+            // Seleccionar casilla 'IdsToAdd'
+            uIIdsToAddCheckBox1.Checked = this.InversionCorrectaParams.UIIdsToAddCheckBox1Checked;
+
+            // Establezca la marca para permitir que la reproducción continúe si no hay errores en ninguna acción esencial. (Por ejemplo, si el error es en una acción de mantener el mouse.)
+            Playback.PlaybackSettings.ContinueOnError = true;
+
+            // Clic 'Notificación' barra de herramientas
+            Mouse.Click(uINotificaciónToolBar, new Point(767, 40));
+
+            // Clic 'Sí' botón
+            Mouse.Click(uISÍButton, new Point(21, 14));
+
+            // Restablezca la marca para asegurarse de que la reproducción se detenga si hay un error.
+            Playback.PlaybackSettings.ContinueOnError = false;
+
+            // Clic 'Continuar' botón
+            Mouse.Click(uIContinuarButton, new Point(42, 24));
+
+            // Seleccionar 'Business Angels' en cuadro combinado 'inversiones[0].TiposInversionSelected'
+            uIInversiones0TiposInvComboBox.SelectedItem = this.InversionCorrectaParams.UIInversiones0TiposInvComboBoxSelectedItem;
+
+            // Seleccionar 'Venture Capital' en cuadro combinado 'inversiones[1].TiposInversionSelected'
+            uIInversiones1TiposInvComboBox.SelectedItem = this.InversionCorrectaParams.UIInversiones1TiposInvComboBoxSelectedItem;
+
+            // Escribir '2500' en cuadro de texto 'inversiones[0].Cuota'
+            uIInversiones0CuotaEdit.Text = this.InversionCorrectaParams.UIInversiones0CuotaEditText;
+
+            // Escribir '600' en cuadro de texto 'inversiones[1].Cuota'
+            uIInversiones1CuotaEdit.Text = this.InversionCorrectaParams.UIInversiones1CuotaEditText;
+
+            // Clic 'Continuar' botón
+            Mouse.Click(uIContinuarButton1, new Point(31, 19));
+        }
+        
         #region Properties
+        public virtual InversionCorrectaParams InversionCorrectaParams
+        {
+            get
+            {
+                if ((this.mInversionCorrectaParams == null))
+                {
+                    this.mInversionCorrectaParams = new InversionCorrectaParams();
+                }
+                return this.mInversionCorrectaParams;
+            }
+        }
+        
         public UILoginStartGrowInternWindow UILoginStartGrowInternWindow
         {
             get
@@ -56,9 +144,81 @@ namespace StartGrow.UIT
         #endregion
         
         #region Fields
+        private InversionCorrectaParams mInversionCorrectaParams;
+        
         private UILoginStartGrowInternWindow mUILoginStartGrowInternWindow;
         
         private UISeleccionelosproyectWindow mUISeleccionelosproyectWindow;
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parámetros que se van a pasar a 'InversionCorrecta'
+    /// </summary>
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class InversionCorrectaParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Escribir 'gregorio' en cuadro de texto 'Email'
+        /// </summary>
+        public string UIEmailEditText = "gregorio";
+        
+        /// <summary>
+        /// Escribir 'Alt, Control + 2' en cuadro de texto 'Email'
+        /// </summary>
+        public string UIEmailEditSendKeys = "2";
+        
+        /// <summary>
+        /// Escribir 'gregorio@uclm.com' en cuadro de texto 'Email'
+        /// </summary>
+        public string UIEmailEditText1 = "gregorio@uclm.com";
+        
+        /// <summary>
+        /// Escribir '{Tab}' en cuadro de texto 'Email'
+        /// </summary>
+        public string UIEmailEditSendKeys1 = "{Tab}";
+        
+        /// <summary>
+        /// Escribir '********' en cuadro de texto 'Password'
+        /// </summary>
+        public string UIPasswordEditPassword = "wuYju7QJocI/k7Sw4wzDUdV6p1gwECR4Gz+0C8KKyU8=";
+        
+        /// <summary>
+        /// Escribir '{Enter}' en cuadro de texto 'Password'
+        /// </summary>
+        public string UIPasswordEditSendKeys = "{Enter}";
+        
+        /// <summary>
+        /// Seleccionar casilla 'IdsToAdd'
+        /// </summary>
+        public bool UIIdsToAddCheckBoxChecked = true;
+        
+        /// <summary>
+        /// Seleccionar casilla 'IdsToAdd'
+        /// </summary>
+        public bool UIIdsToAddCheckBox1Checked = true;
+        
+        /// <summary>
+        /// Seleccionar 'Business Angels' en cuadro combinado 'inversiones[0].TiposInversionSelected'
+        /// </summary>
+        public string UIInversiones0TiposInvComboBoxSelectedItem = "Business Angels";
+        
+        /// <summary>
+        /// Seleccionar 'Venture Capital' en cuadro combinado 'inversiones[1].TiposInversionSelected'
+        /// </summary>
+        public string UIInversiones1TiposInvComboBoxSelectedItem = "Venture Capital";
+        
+        /// <summary>
+        /// Escribir '2500' en cuadro de texto 'inversiones[0].Cuota'
+        /// </summary>
+        public string UIInversiones0CuotaEditText = "2500";
+        
+        /// <summary>
+        /// Escribir '600' en cuadro de texto 'inversiones[1].Cuota'
+        /// </summary>
+        public string UIInversiones1CuotaEditText = "600";
         #endregion
     }
     
@@ -72,6 +232,8 @@ namespace StartGrow.UIT
             this.SearchProperties[UITestControl.PropertyNames.Name] = "Log in - StartGrow";
             this.SearchProperties[UITestControl.PropertyNames.ClassName] = "IEFrame";
             this.WindowTitles.Add("Log in - StartGrow");
+            this.WindowTitles.Add("SelectProyectosForInversion - StartGrow");
+            this.WindowTitles.Add("Create - StartGrow");
             #endregion
         }
         
@@ -104,12 +266,82 @@ namespace StartGrow.UIT
                 return this.mUILoginStartGrowDocument1;
             }
         }
+        
+        public UILoginStartGrowDocument2 UILoginStartGrowDocument2
+        {
+            get
+            {
+                if ((this.mUILoginStartGrowDocument2 == null))
+                {
+                    this.mUILoginStartGrowDocument2 = new UILoginStartGrowDocument2(this);
+                }
+                return this.mUILoginStartGrowDocument2;
+            }
+        }
+        
+        public UISelectProyectosForInDocument UISelectProyectosForInDocument
+        {
+            get
+            {
+                if ((this.mUISelectProyectosForInDocument == null))
+                {
+                    this.mUISelectProyectosForInDocument = new UISelectProyectosForInDocument(this);
+                }
+                return this.mUISelectProyectosForInDocument;
+            }
+        }
+        
+        public UIItemWindow UIItemWindow
+        {
+            get
+            {
+                if ((this.mUIItemWindow == null))
+                {
+                    this.mUIItemWindow = new UIItemWindow(this);
+                }
+                return this.mUIItemWindow;
+            }
+        }
+        
+        public UINotificaciónToolBar UINotificaciónToolBar
+        {
+            get
+            {
+                if ((this.mUINotificaciónToolBar == null))
+                {
+                    this.mUINotificaciónToolBar = new UINotificaciónToolBar(this);
+                }
+                return this.mUINotificaciónToolBar;
+            }
+        }
+        
+        public UICreateStartGrowDocument UICreateStartGrowDocument
+        {
+            get
+            {
+                if ((this.mUICreateStartGrowDocument == null))
+                {
+                    this.mUICreateStartGrowDocument = new UICreateStartGrowDocument(this);
+                }
+                return this.mUICreateStartGrowDocument;
+            }
+        }
         #endregion
         
         #region Fields
         private UILoginStartGrowDocument mUILoginStartGrowDocument;
         
         private UILoginStartGrowDocument1 mUILoginStartGrowDocument1;
+        
+        private UILoginStartGrowDocument2 mUILoginStartGrowDocument2;
+        
+        private UISelectProyectosForInDocument mUISelectProyectosForInDocument;
+        
+        private UIItemWindow mUIItemWindow;
+        
+        private UINotificaciónToolBar mUINotificaciónToolBar;
+        
+        private UICreateStartGrowDocument mUICreateStartGrowDocument;
         #endregion
     }
     
@@ -310,6 +542,431 @@ namespace StartGrow.UIT
         private HtmlButton mUILoginButton;
         
         private HtmlHyperlink mUILoginHyperlink;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UILoginStartGrowDocument2 : HtmlDocument
+    {
+        
+        public UILoginStartGrowDocument2(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Log in - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Account/Login";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Account/Login?ReturnUrl=%2FInversions%2FSelectProyectosFo" +
+                "rInversion";
+            this.WindowTitles.Add("Log in - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlEdit UIEmailEdit
+        {
+            get
+            {
+                if ((this.mUIEmailEdit == null))
+                {
+                    this.mUIEmailEdit = new HtmlEdit(this);
+                    #region Criterio de búsqueda
+                    this.mUIEmailEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "Email";
+                    this.mUIEmailEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = "Email";
+                    this.mUIEmailEdit.FilterProperties[HtmlEdit.PropertyNames.LabeledBy] = "Email";
+                    this.mUIEmailEdit.FilterProperties[HtmlEdit.PropertyNames.Type] = "SINGLELINE";
+                    this.mUIEmailEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUIEmailEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = "form-control";
+                    this.mUIEmailEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "name=\"Email\" class=\"form-control\" id=\"Em";
+                    this.mUIEmailEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "1";
+                    this.mUIEmailEdit.WindowTitles.Add("Log in - StartGrow");
+                    #endregion
+                }
+                return this.mUIEmailEdit;
+            }
+        }
+        
+        public HtmlEdit UIPasswordEdit
+        {
+            get
+            {
+                if ((this.mUIPasswordEdit == null))
+                {
+                    this.mUIPasswordEdit = new HtmlEdit(this);
+                    #region Criterio de búsqueda
+                    this.mUIPasswordEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "Password";
+                    this.mUIPasswordEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = "Password";
+                    this.mUIPasswordEdit.FilterProperties[HtmlEdit.PropertyNames.LabeledBy] = "Password";
+                    this.mUIPasswordEdit.FilterProperties[HtmlEdit.PropertyNames.Type] = "PASSWORD";
+                    this.mUIPasswordEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUIPasswordEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = "form-control";
+                    this.mUIPasswordEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "name=\"Password\" class=\"form-control\" id=";
+                    this.mUIPasswordEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "2";
+                    this.mUIPasswordEdit.WindowTitles.Add("Log in - StartGrow");
+                    #endregion
+                }
+                return this.mUIPasswordEdit;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlEdit mUIEmailEdit;
+        
+        private HtmlEdit mUIPasswordEdit;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UISelectProyectosForInDocument : HtmlDocument
+    {
+        
+        public UISelectProyectosForInDocument(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "SelectProyectosForInversion - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Inversions/SelectProyectosForInversion";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Inversions/SelectProyectosForInversion";
+            this.WindowTitles.Add("SelectProyectosForInversion - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlCheckBox UIIdsToAddCheckBox
+        {
+            get
+            {
+                if ((this.mUIIdsToAddCheckBox == null))
+                {
+                    this.mUIIdsToAddCheckBox = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "IdsToAdd";
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "2";
+                    this.mUIIdsToAddCheckBox.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"IdsToAdd\" type=\"checkbox\" value=\"2";
+                    this.mUIIdsToAddCheckBox.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "33";
+                    this.mUIIdsToAddCheckBox.WindowTitles.Add("SelectProyectosForInversion - StartGrow");
+                    #endregion
+                }
+                return this.mUIIdsToAddCheckBox;
+            }
+        }
+        
+        public HtmlCheckBox UIIdsToAddCheckBox1
+        {
+            get
+            {
+                if ((this.mUIIdsToAddCheckBox1 == null))
+                {
+                    this.mUIIdsToAddCheckBox1 = new HtmlCheckBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIIdsToAddCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Id] = null;
+                    this.mUIIdsToAddCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Name] = "IdsToAdd";
+                    this.mUIIdsToAddCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.Value] = "3";
+                    this.mUIIdsToAddCheckBox1.SearchProperties[HtmlCheckBox.PropertyNames.LabeledBy] = null;
+                    this.mUIIdsToAddCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.Title] = null;
+                    this.mUIIdsToAddCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.Class] = null;
+                    this.mUIIdsToAddCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.ControlDefinition] = "name=\"IdsToAdd\" type=\"checkbox\" value=\"3";
+                    this.mUIIdsToAddCheckBox1.FilterProperties[HtmlCheckBox.PropertyNames.TagInstance] = "34";
+                    this.mUIIdsToAddCheckBox1.WindowTitles.Add("SelectProyectosForInversion - StartGrow");
+                    #endregion
+                }
+                return this.mUIIdsToAddCheckBox1;
+            }
+        }
+        
+        public HtmlButton UIContinuarButton
+        {
+            get
+            {
+                if ((this.mUIContinuarButton == null))
+                {
+                    this.mUIContinuarButton = new HtmlButton(this);
+                    #region Criterio de búsqueda
+                    this.mUIContinuarButton.SearchProperties[HtmlButton.PropertyNames.Id] = null;
+                    this.mUIContinuarButton.SearchProperties[HtmlButton.PropertyNames.Name] = null;
+                    this.mUIContinuarButton.SearchProperties[HtmlButton.PropertyNames.DisplayText] = "Continuar";
+                    this.mUIContinuarButton.SearchProperties[HtmlButton.PropertyNames.Type] = "submit";
+                    this.mUIContinuarButton.FilterProperties[HtmlButton.PropertyNames.Title] = null;
+                    this.mUIContinuarButton.FilterProperties[HtmlButton.PropertyNames.Class] = "btn btn-primary";
+                    this.mUIContinuarButton.FilterProperties[HtmlButton.PropertyNames.ControlDefinition] = "class=\"btn btn-primary\" type=\"submit\"";
+                    this.mUIContinuarButton.FilterProperties[HtmlButton.PropertyNames.TagInstance] = "3";
+                    this.mUIContinuarButton.WindowTitles.Add("SelectProyectosForInversion - StartGrow");
+                    #endregion
+                }
+                return this.mUIContinuarButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlCheckBox mUIIdsToAddCheckBox;
+        
+        private HtmlCheckBox mUIIdsToAddCheckBox1;
+        
+        private HtmlButton mUIContinuarButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UIItemWindow : WinWindow
+    {
+        
+        public UIItemWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "Frame Notification Bar";
+            this.WindowTitles.Add("SelectProyectosForInversion - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public UISelectProyectosForInClient UISelectProyectosForInClient
+        {
+            get
+            {
+                if ((this.mUISelectProyectosForInClient == null))
+                {
+                    this.mUISelectProyectosForInClient = new UISelectProyectosForInClient(this);
+                }
+                return this.mUISelectProyectosForInClient;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UISelectProyectosForInClient mUISelectProyectosForInClient;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UISelectProyectosForInClient : WinClient
+    {
+        
+        public UISelectProyectosForInClient(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.WindowTitles.Add("SelectProyectosForInversion - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public WinToolBar UINotificaciónToolBar
+        {
+            get
+            {
+                if ((this.mUINotificaciónToolBar == null))
+                {
+                    this.mUINotificaciónToolBar = new WinToolBar(this);
+                    #region Criterio de búsqueda
+                    this.mUINotificaciónToolBar.SearchProperties[WinToolBar.PropertyNames.Name] = "Notificación";
+                    this.mUINotificaciónToolBar.WindowTitles.Add("SelectProyectosForInversion - StartGrow");
+                    #endregion
+                }
+                return this.mUINotificaciónToolBar;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinToolBar mUINotificaciónToolBar;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UINotificaciónToolBar : WinToolBar
+    {
+        
+        public UINotificaciónToolBar(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[WinToolBar.PropertyNames.Name] = "Notificación";
+            this.WindowTitles.Add("SelectProyectosForInversion - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UISÍButton
+        {
+            get
+            {
+                if ((this.mUISÍButton == null))
+                {
+                    this.mUISÍButton = new WinButton(this);
+                    #region Criterio de búsqueda
+                    this.mUISÍButton.SearchProperties[WinButton.PropertyNames.Name] = "Sí";
+                    this.mUISÍButton.WindowTitles.Add("SelectProyectosForInversion - StartGrow");
+                    #endregion
+                }
+                return this.mUISÍButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUISÍButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Generador de pruebas de UI codificadas", "15.0.26208.0")]
+    public class UICreateStartGrowDocument : HtmlDocument
+    {
+        
+        public UICreateStartGrowDocument(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Criterio de búsqueda
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "Create - StartGrow";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/Inversions/Create";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "https://localhost:44358/Inversions/Create?IdsToAdd=2&IdsToAdd=3";
+            this.WindowTitles.Add("Create - StartGrow");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlComboBox UIInversiones0TiposInvComboBox
+        {
+            get
+            {
+                if ((this.mUIInversiones0TiposInvComboBox == null))
+                {
+                    this.mUIInversiones0TiposInvComboBox = new HtmlComboBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIInversiones0TiposInvComboBox.SearchProperties[HtmlComboBox.PropertyNames.Id] = "inversiones_0__TiposInversionSelected";
+                    this.mUIInversiones0TiposInvComboBox.SearchProperties[HtmlComboBox.PropertyNames.Name] = "inversiones[0].TiposInversionSelected";
+                    this.mUIInversiones0TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.LabeledBy] = null;
+                    this.mUIInversiones0TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.Size] = "0";
+                    this.mUIInversiones0TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.Title] = null;
+                    this.mUIInversiones0TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.ItemCount] = "3";
+                    this.mUIInversiones0TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.Class] = null;
+                    this.mUIInversiones0TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.ControlDefinition] = "name=\"inversiones[0].TiposInversionSelec";
+                    this.mUIInversiones0TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.TagInstance] = "1";
+                    this.mUIInversiones0TiposInvComboBox.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUIInversiones0TiposInvComboBox;
+            }
+        }
+        
+        public HtmlComboBox UIInversiones1TiposInvComboBox
+        {
+            get
+            {
+                if ((this.mUIInversiones1TiposInvComboBox == null))
+                {
+                    this.mUIInversiones1TiposInvComboBox = new HtmlComboBox(this);
+                    #region Criterio de búsqueda
+                    this.mUIInversiones1TiposInvComboBox.SearchProperties[HtmlComboBox.PropertyNames.Id] = "inversiones_1__TiposInversionSelected";
+                    this.mUIInversiones1TiposInvComboBox.SearchProperties[HtmlComboBox.PropertyNames.Name] = "inversiones[1].TiposInversionSelected";
+                    this.mUIInversiones1TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.LabeledBy] = null;
+                    this.mUIInversiones1TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.Size] = "0";
+                    this.mUIInversiones1TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.Title] = null;
+                    this.mUIInversiones1TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.ItemCount] = "3";
+                    this.mUIInversiones1TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.Class] = null;
+                    this.mUIInversiones1TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.ControlDefinition] = "name=\"inversiones[1].TiposInversionSelec";
+                    this.mUIInversiones1TiposInvComboBox.FilterProperties[HtmlComboBox.PropertyNames.TagInstance] = "2";
+                    this.mUIInversiones1TiposInvComboBox.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUIInversiones1TiposInvComboBox;
+            }
+        }
+        
+        public HtmlEdit UIInversiones0CuotaEdit
+        {
+            get
+            {
+                if ((this.mUIInversiones0CuotaEdit == null))
+                {
+                    this.mUIInversiones0CuotaEdit = new HtmlEdit(this);
+                    #region Criterio de búsqueda
+                    this.mUIInversiones0CuotaEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "inversiones_0__Cuota";
+                    this.mUIInversiones0CuotaEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = "inversiones[0].Cuota";
+                    this.mUIInversiones0CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.LabeledBy] = null;
+                    this.mUIInversiones0CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.Type] = "SINGLELINE";
+                    this.mUIInversiones0CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUIInversiones0CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = null;
+                    this.mUIInversiones0CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "name=\"inversiones[0].Cuota\" id=\"inversio";
+                    this.mUIInversiones0CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "2";
+                    this.mUIInversiones0CuotaEdit.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUIInversiones0CuotaEdit;
+            }
+        }
+        
+        public HtmlEdit UIInversiones1CuotaEdit
+        {
+            get
+            {
+                if ((this.mUIInversiones1CuotaEdit == null))
+                {
+                    this.mUIInversiones1CuotaEdit = new HtmlEdit(this);
+                    #region Criterio de búsqueda
+                    this.mUIInversiones1CuotaEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "inversiones_1__Cuota";
+                    this.mUIInversiones1CuotaEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = "inversiones[1].Cuota";
+                    this.mUIInversiones1CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.LabeledBy] = null;
+                    this.mUIInversiones1CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.Type] = "SINGLELINE";
+                    this.mUIInversiones1CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUIInversiones1CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = null;
+                    this.mUIInversiones1CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "name=\"inversiones[1].Cuota\" id=\"inversio";
+                    this.mUIInversiones1CuotaEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "17";
+                    this.mUIInversiones1CuotaEdit.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUIInversiones1CuotaEdit;
+            }
+        }
+        
+        public HtmlInputButton UIContinuarButton
+        {
+            get
+            {
+                if ((this.mUIContinuarButton == null))
+                {
+                    this.mUIContinuarButton = new HtmlInputButton(this);
+                    #region Criterio de búsqueda
+                    this.mUIContinuarButton.SearchProperties[HtmlButton.PropertyNames.Id] = null;
+                    this.mUIContinuarButton.SearchProperties[HtmlButton.PropertyNames.Name] = null;
+                    this.mUIContinuarButton.SearchProperties[HtmlButton.PropertyNames.DisplayText] = "Continuar";
+                    this.mUIContinuarButton.SearchProperties[HtmlButton.PropertyNames.Type] = "submit";
+                    this.mUIContinuarButton.FilterProperties[HtmlButton.PropertyNames.Title] = null;
+                    this.mUIContinuarButton.FilterProperties[HtmlButton.PropertyNames.Class] = "btn btn-primary";
+                    this.mUIContinuarButton.FilterProperties[HtmlButton.PropertyNames.ControlDefinition] = "class=\"btn btn-primary\" type=\"submit\" va";
+                    this.mUIContinuarButton.FilterProperties[HtmlButton.PropertyNames.TagInstance] = "32";
+                    this.mUIContinuarButton.WindowTitles.Add("Create - StartGrow");
+                    #endregion
+                }
+                return this.mUIContinuarButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlComboBox mUIInversiones0TiposInvComboBox;
+        
+        private HtmlComboBox mUIInversiones1TiposInvComboBox;
+        
+        private HtmlEdit mUIInversiones0CuotaEdit;
+        
+        private HtmlEdit mUIInversiones1CuotaEdit;
+        
+        private HtmlInputButton mUIContinuarButton;
         #endregion
     }
     
