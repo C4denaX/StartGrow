@@ -129,8 +129,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 var expectedrating = new Rating { RatingId = 1, Nombre = "A" };
 
                 //Proyectos esperados
-                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
-                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
+                var expectedProyectos = new Proyecto[1] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = (float)5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1 } };
 
                 //SelectList TiposInversiones Esperado
                 TiposInversiones tipo1 = new TiposInversiones { Nombre = "Crowdfunding" };
@@ -245,18 +244,18 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                                                                            //METODO POST        
 
         [Fact]
-        //No se selecciona ningún tipo de inversión y no se introduce una couta válida.
-        public async Task CreatePost_MalInvMin_MalTipoInversion() 
+        //No se selecciona ningún tipo de inversión. 
+        //No se introduce una couta válida. Cuota inferior a la inversión mínima.
+        public async Task CreatePost_MalCuotaInferiorInvMin_MalTipoInversion() 
         {
             using (context)
             {
                                                                                             // ARRANGE
                 var controller = new InversionsController(context);
-                controller.ControllerContext.HttpContext = inversionContext;             
+                controller.ControllerContext.HttpContext = inversionContext;
 
                 //Proyectos esperados
-                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
-                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
+                var expectedProyectos = new Proyecto[1] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = (float)5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1 } };                                                          
 
                 //Monedero esperado
                 var expectedMonedero = new Monedero { Dinero = 8000 };
@@ -296,7 +295,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 };
                 IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
                 {                    
-                    Cantidad = 80000,
+                    Cantidad = 8000,
                     Cuota = 0,
                     Interes = (float) 5.9,
                     MinInver = 50,
@@ -340,8 +339,9 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
         }
 
         [Fact]
-        //Se introduce una Cuota inferior a la inversion mínima, por lo tanto no es válida y se selecciona un tipo de inversión.
-        public async Task CreatePost_MalInvMin_BienTipoInversion() 
+        //Se selecciona un tipo de inversión.
+        //No se introduce una couta válida. Cuota inferior a la inversion mínima.
+        public async Task CreatePost_MalCuotaInferiorInvMin_BienTipoInversion() 
         {
             using (context)
             {
@@ -350,9 +350,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 controller.ControllerContext.HttpContext = inversionContext;
 
                 //Proyectos esperados
-                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
-                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
-
+                var expectedProyectos = new Proyecto[1] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = (float)5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1 } };
                 //Monedero esperado
                 var expectedMonedero = new Monedero { Dinero = 8000 };
 
@@ -391,7 +389,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 };
                 IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
                 {
-                    Cantidad = 80000,
+                    Cantidad = 8000,
                     Cuota = 0,
                     Interes = (float) 5.9,
                     MinInver = 50,
@@ -435,8 +433,9 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
         }
 
         [Fact]
-        //Se introduce una couta válida y no se selecciona ningún tipo de inversión.
-        public async Task CreatePost_BienInvMin_MalTipoInversion() 
+        //No se selecciona ningún tipo de inversión. 
+        //No se introduce una couta válida. Cuota superior al Monedero.
+        public async Task CreatePost_MalCuotaSuperiorMonedero_MalTipoInversion()
         {
             using (context)
             {
@@ -445,9 +444,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 controller.ControllerContext.HttpContext = inversionContext;
 
                 //Proyectos esperados
-                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
-                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
-
+                var expectedProyectos = new Proyecto[1] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = (float)5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1 } };
                 //Monedero esperado
                 var expectedMonedero = new Monedero { Dinero = 8000 };
 
@@ -486,7 +483,195 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 };
                 IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
                 {
-                    Cantidad = 80000,
+                    Cantidad = 8000,
+                    Cuota = 8200,
+                    Interes = (float) 5.9,
+                    MinInver = 50,
+                    NombreProyecto = "E-MEDICA",
+                    Plazo = 12,
+                    Proyecto = null,
+                    ProyectoId = 1,
+                    Rating = "A",
+                    TiposInversionSelected = null,
+                    inversion = expectedInversion
+
+                } };
+                InversionesCreateViewModel expectedInversionCV = new InversionesCreateViewModel
+                {
+                    Name = expectedinversor.Nombre,
+                    FirstSurname = expectedinversor.Apellido1,
+                    SecondSurname = expectedinversor.Apellido2,
+                    Cantidad = expectedMonedero.Dinero,
+                    inversiones = inversiones
+                };
+
+                // ACT 
+                var result = controller.Create(expectedInversionCV);
+
+                // ASSERT
+                ViewResult viewResult = Assert.IsType<ViewResult>(result.Result);
+                InversionesCreateViewModel currentInversion = viewResult.Model as InversionesCreateViewModel;
+
+                //Mensaje de Error al introducir una couta y un tipo de inversion incorrecto                
+                var error = viewResult.ViewData.ModelState["Cuota y Tipo de Inversión incorrecto"].Errors.FirstOrDefault();
+                Assert.Equal($"Cuota y Tipo de Inversión incorrectos en {currentInversion.inversiones[0].NombreProyecto}. Por favor, vuelva a introducir los datos para realizar las inversiones.", error.ErrorMessage);
+
+                //Datos del Inversor
+                Assert.Equal(currentInversion, expectedInversionCV, Comparer.Get<InversionesCreateViewModel>
+                    ((p1, p2) => p1.Name == p2.Name && p1.FirstSurname == p2.FirstSurname && p1.SecondSurname == p2.SecondSurname && p1.Cantidad == p2.Cantidad));
+
+                //Datos del Proyecto
+                Assert.Equal(currentInversion.inversiones[0].inversion.Proyecto, expectedInversionCV.inversiones[0].inversion.Proyecto, Comparer.Get<Proyecto>
+                    ((p1, p2) => p1.Nombre == p2.Nombre && p1.Plazo == p2.Plazo && p1.RatingId == p2.RatingId));
+            }
+        }
+
+        [Fact]
+        //Se selecciona un tipo de inversión.
+        //No se introduce una couta válida. Cuota superior al monerdero.
+        public async Task CreatePost_MalCuotaSuperiorMonedero_BienTipoInversion()
+        {
+            using (context)
+            {
+                // ARRANGE
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+
+                //Proyectos esperados
+                var expectedProyectos = new Proyecto[1] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = (float)5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1 } };
+                //Monedero esperado
+                var expectedMonedero = new Monedero { Dinero = 8000 };
+
+                //Inversor esperado
+                Inversor expectedinversor = new Inversor
+                {
+                    Id = "1",
+                    Nombre = "Yasin",
+                    Email = "yasin@uclm.es",
+                    Apellido1 = "Muñoz",
+                    Apellido2 = "El Merabety",
+                    Domicilio = "C/Gabriel Ciscar",
+                    Municipio = "Albacete",
+                    NIF = "47446245",
+                    Nacionalidad = "Española",
+                    PaisDeResidencia = "España",
+                    Provincia = "Albacete",
+                    PhoneNumber = "684010548",
+                    PasswordHash = "password",
+                    UserName = "yasin@uclm.com"
+                };
+
+                //inversion Esperada
+                Inversion expectedInversion = new Inversion
+                {
+                    Cuota = 0,
+                    EstadosInversiones = null,
+                    Intereses = 0,
+                    InversionId = 0,
+                    Inversor = null,
+                    InversorId = null,
+                    Proyecto = expectedProyectos[0],
+                    TipoInversiones = null,
+                    TipoInversionesId = 0,
+                    Total = 0,
+                };
+                IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
+                {
+                    Cantidad = 8000,
+                    Cuota = 9000,
+                    Interes = (float) 5.9,
+                    MinInver = 50,
+                    NombreProyecto = "E-MEDICA",
+                    Plazo = 12,
+                    Proyecto = null,
+                    ProyectoId = 1,
+                    Rating = "A",
+                    TiposInversionSelected = "Crowdfunding",
+                    inversion = expectedInversion
+
+                } };
+                InversionesCreateViewModel expectedInversionCV = new InversionesCreateViewModel
+                {
+                    Name = expectedinversor.Nombre,
+                    FirstSurname = expectedinversor.Apellido1,
+                    SecondSurname = expectedinversor.Apellido2,
+                    Cantidad = expectedMonedero.Dinero,
+                    inversiones = inversiones
+                };
+
+                // ACT 
+                var result = controller.Create(expectedInversionCV);
+
+                // ASSERT
+                ViewResult viewResult = Assert.IsType<ViewResult>(result.Result);
+                InversionesCreateViewModel currentInversion = viewResult.Model as InversionesCreateViewModel;
+
+                //Mensaje de Error al introducir una couta incorrecta.                
+                var error = viewResult.ViewData.ModelState["Ha introducido una cuota incorrecta"].Errors.FirstOrDefault();
+                Assert.Equal($"Ha introducido una cuota incorrecta en {currentInversion.inversiones[0].NombreProyecto}. Por favor, vuelva a introducir los datos para realizar las inversiones.", error.ErrorMessage);
+
+                //Datos del Inversor
+                Assert.Equal(currentInversion, expectedInversionCV, Comparer.Get<InversionesCreateViewModel>
+                    ((p1, p2) => p1.Name == p2.Name && p1.FirstSurname == p2.FirstSurname && p1.SecondSurname == p2.SecondSurname && p1.Cantidad == p2.Cantidad));
+
+                //Datos del Proyecto
+                Assert.Equal(currentInversion.inversiones[0].inversion.Proyecto, expectedInversionCV.inversiones[0].inversion.Proyecto, Comparer.Get<Proyecto>
+                    ((p1, p2) => p1.Nombre == p2.Nombre && p1.Plazo == p2.Plazo && p1.RatingId == p2.RatingId));
+            }
+        }
+
+        [Fact]
+        //No se selecciona ningún tipo de inversión.
+        //Se introduce una couta válida. 
+        public async Task CreatePost_BienCuota_MalTipoInversion() 
+        {
+            using (context)
+            {
+                // ARRANGE
+                var controller = new InversionsController(context);
+                controller.ControllerContext.HttpContext = inversionContext;
+
+                //Proyectos esperados
+                var expectedProyectos = new Proyecto[1] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = (float)5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1 } };
+                //Monedero esperado
+                var expectedMonedero = new Monedero { Dinero = 8000 };
+
+                //Inversor esperado
+                Inversor expectedinversor = new Inversor
+                {
+                    Id = "1",
+                    Nombre = "Yasin",
+                    Email = "yasin@uclm.es",
+                    Apellido1 = "Muñoz",
+                    Apellido2 = "El Merabety",
+                    Domicilio = "C/Gabriel Ciscar",
+                    Municipio = "Albacete",
+                    NIF = "47446245",
+                    Nacionalidad = "Española",
+                    PaisDeResidencia = "España",
+                    Provincia = "Albacete",
+                    PhoneNumber = "684010548",
+                    PasswordHash = "password",
+                    UserName = "yasin@uclm.com"
+                };
+
+                //inversion Esperada
+                Inversion expectedInversion = new Inversion
+                {
+                    Cuota = 0,
+                    EstadosInversiones = null,
+                    Intereses = 0,
+                    InversionId = 0,
+                    Inversor = null,
+                    InversorId = null,
+                    Proyecto = expectedProyectos[0],
+                    TipoInversiones = null,
+                    TipoInversionesId = 0,
+                    Total = 0,
+                };
+                IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
+                {
+                    Cantidad = 8000,
                     Cuota = 5000,
                     Interes = (float) 5.9,
                     MinInver = 50,
@@ -530,8 +715,9 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
         }
 
         [Fact]
-        //Se introduce una couta válida y se selecciona Business Angels como tipo de inversión.
-        public async Task CreatePost_BienInvMin_BusinessAngelsTipoInversion()
+        //Se selecciona Business Angels como tipo de inversión.
+        //Se introduce una couta válida. 
+        public async Task CreatePost_BienCuota_BusinessAngelsTipoInversion()
         {
             using (context)
             {
@@ -542,9 +728,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 Microsoft.AspNetCore.Mvc.ViewFeatures.SessionStateTempDataProvider());
 
                 //Proyectos esperados
-                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
-                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
-
+                var expectedProyectos = new Proyecto[1] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = (float)5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1 } };
                 //Monedero esperado
                 var expectedMonedero = new Monedero { Dinero = 8000 };
 
@@ -582,7 +766,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 };
                 IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
                 {
-                    Cantidad = 80000,
+                    Cantidad = 8000,
                     Cuota = 350,
                     Interes = (float) 5.9,
                     MinInver = 50,
@@ -632,8 +816,9 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
         }
 
         [Fact]
-        //Se introduce una couta válida y se selecciona Crownfunding como tipo de inversión.
-        public async Task CreatePost_BienInvMin_CrownfundingTipoInversion()
+        //Se selecciona Crownfunding como tipo de inversión.
+        //Se introduce una couta válida. 
+        public async Task CreatePost_BienCuota_CrownfundingTipoInversion()
         {
             using (context)
             {
@@ -644,9 +829,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 Microsoft.AspNetCore.Mvc.ViewFeatures.SessionStateTempDataProvider());
 
                 //Proyectos esperados
-                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
-                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
-
+                var expectedProyectos = new Proyecto[1] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = (float)5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1 } };
                 //Monedero esperado
                 var expectedMonedero = new Monedero { Dinero = 8000 };
 
@@ -684,7 +867,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 };
                 IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
                 {
-                    Cantidad = 80000,
+                    Cantidad = 8000,
                     Cuota = 350,
                     Interes = (float) 5.9,
                     MinInver = 50,
@@ -734,8 +917,9 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
         }
 
         [Fact]
-        //Se introduce una couta válida y se selecciona Venture Capital como tipo de inversión.
-        public async Task CreatePost_BienInvMin_VentureCapitalTipoInversion()
+        //Se selecciona Venture Capital como tipo de inversión.
+        //Se introduce una couta válida. 
+        public async Task CreatePost_BienCuota_VentureCapitalTipoInversion()
         {
             using (context)
             {
@@ -746,9 +930,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 Microsoft.AspNetCore.Mvc.ViewFeatures.SessionStateTempDataProvider());
 
                 //Proyectos esperados
-                var expectedProyectos = new Proyecto[2] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime (2019, 01, 23), Importe = 30000, Interes = (float) 5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1},
-                                                          new Proyecto { ProyectoId = 2, FechaExpiracion = new DateTime (2019, 01, 14), Importe = 70000, Interes = (float) 7.25, MinInversion = 0, Nombre = "PROTOS", NumInversores = 0, Plazo = 48, Progreso = 0, RatingId = 1 }};
-
+                var expectedProyectos = new Proyecto[1] { new Proyecto { ProyectoId = 1, FechaExpiracion = new DateTime(2019, 01, 23), Importe = 30000, Interes = (float)5.90, MinInversion = 50, Nombre = "E-MEDICA", NumInversores = 0, Plazo = 12, Progreso = 0, RatingId = 1 } };
                 //Monedero esperado
                 var expectedMonedero = new Monedero { Dinero = 8000 };
 
@@ -786,7 +968,7 @@ namespace StartGrow.UT.Controllers.InversionsControllerUT
                 };
                 IList<InversionCreateViewModel> inversiones = new InversionCreateViewModel[1] { new InversionCreateViewModel
                 {
-                    Cantidad = 80000,
+                    Cantidad = 8000,
                     Cuota = 350,
                     Interes = (float) 5.9,
                     MinInver = 50,
