@@ -52,7 +52,7 @@ namespace StartGrow.UIT.UC1_Invertir
         [TestMethod]
         public void InvertirUITest_UCI_4()
         {
-            //El Inversor introduce una cantidad inferior a la mínima y un tipo de inversión.
+            //El Inversor introduce una cantidad inferior a la mínima y selecciona un tipo de inversión.
             this.UIMap.CuotaInferiorInvMin();
             this.UIMap.AssertCuotaInferiorInvMin();
         }
@@ -60,7 +60,7 @@ namespace StartGrow.UIT.UC1_Invertir
         [TestMethod]
         public void InvertirUITest_UCI_5()
         {
-            //El Inversor introduce una cantidad superior a la del monedero y un tipo de inversión.
+            //El Inversor introduce una cantidad superior a la del monedero y selecciona un tipo de inversión.
             this.UIMap.CuotaSuperiorMonedero();
             this.UIMap.AssertCuotaSuperiorMonedero();
             

@@ -71,6 +71,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DocTest\Informe de Pruebas StartGrow.pdf" />
     <None Include="DocTest\Plan de Pruebas StartGrow.pdf" />
     <None Include="PublicarProyectos\Casos de Prueba - Publicar Proyectos %28Recuperado automáticamente%29.pdf" />
     <None Include="UC1_Invertir\Casos de Prueba - Invertir.pdf" />
