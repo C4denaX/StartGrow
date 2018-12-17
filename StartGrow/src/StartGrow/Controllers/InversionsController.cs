@@ -173,7 +173,15 @@ namespace StartGrow.Controllers
                 {
                     ModelState.AddModelError("Cuota y Tipo de Inversión incorrecto", $"Cuota y Tipo de Inversión incorrectos en {inversionCreate.inversiones[i].NombreProyecto}. Por favor, vuelva a introducir los datos para realizar las inversiones.");
                 }
+                else if (itemInversion.Cuota.CompareTo((float) itemInversion.Cantidad) >= 0 && itemInversion.TiposInversionSelected == null)
+                {
+                    ModelState.AddModelError("Cuota y Tipo de Inversión incorrecto", $"Cuota y Tipo de Inversión incorrectos en {inversionCreate.inversiones[i].NombreProyecto}. Por favor, vuelva a introducir los datos para realizar las inversiones.");
+                }
                 else if (itemInversion.Cuota.CompareTo(itemInversion.MinInver) <= 0)
+                {
+                    ModelState.AddModelError("Ha introducido una cuota incorrecta", $"Ha introducido una cuota incorrecta en {inversionCreate.inversiones[i].NombreProyecto}. Por favor, vuelva a introducir los datos para realizar las inversiones.");
+                }
+                else if (itemInversion.Cuota.CompareTo((float)itemInversion.Cantidad) >= 0)
                 {
                     ModelState.AddModelError("Ha introducido una cuota incorrecta", $"Ha introducido una cuota incorrecta en {inversionCreate.inversiones[i].NombreProyecto}. Por favor, vuelva a introducir los datos para realizar las inversiones.");
                 }
@@ -183,7 +191,7 @@ namespace StartGrow.Controllers
                 }
                 else
                 {
-                    itemInversion.inversion.Cuota= itemInversion.Cuota;                    
+                    itemInversion.inversion.Cuota = itemInversion.Cuota;                    
                     itemInversion.inversion.Intereses = (float) itemInversion.Interes;
                     itemInversion.inversion.Inversor = inversor;
                     
