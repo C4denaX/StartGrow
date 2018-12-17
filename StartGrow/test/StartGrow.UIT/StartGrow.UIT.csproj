@@ -64,6 +64,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DocTest\Plan de Pruebas StartGrow.pdf" />
     <None Include="PublicarProyectos\Casos de Prueba - Publicar Proyectos %28Recuperado automáticamente%29.pdf" />
     <None Include="UCRecuperarInversion\Casos de Prueba_Recuperar_Inversion.pdf" />
     <None Include="UCRecuperarInversion\UC_RecuperarInversionUIMap.uitest" />

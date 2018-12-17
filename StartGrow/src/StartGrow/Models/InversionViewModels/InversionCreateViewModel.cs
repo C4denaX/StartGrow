@@ -13,6 +13,7 @@ namespace StartGrow.Models.InversionViewModels
         {
             this.inversiones = new List<InversionCreateViewModel>();            
         }
+        [Display(Name = "Nombre")]
         public virtual string Name
         {
             get;
@@ -26,6 +27,12 @@ namespace StartGrow.Models.InversionViewModels
         }
         [Display(Name = "Segundo Apellido")]
         public virtual string SecondSurname
+        {
+            get;
+            set;
+        }
+        [Display(Name = "Cantidad en Monedero")]
+        public virtual decimal Cantidad
         {
             get;
             set;
@@ -89,6 +96,20 @@ namespace StartGrow.Models.InversionViewModels
             get;
             set;
         }
+
+        public virtual decimal Cantidad
+        {
+            get;
+            set;
+        }
+
+        public virtual int ProyectoId
+        {
+            get;
+            set;
+        }
+
+        
         public SelectList TiposInversion;
         //needed to store the genre selected by the user
         
